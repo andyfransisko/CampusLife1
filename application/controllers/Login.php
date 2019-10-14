@@ -30,21 +30,33 @@ class Login extends CI_Controller
 
     public function login()
     {
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
+        $where = array(
+            'username' => $this->input->post('username'),
+            'password' => $this->input->post('password')
 
-        $status_login = $this->M_Home->login_cek($username, $password)->result();
+        );
+
+        $cek_user = $this->M_Home->login_cek('Login', $where)->result();
         
-        if($status_login)
+        if($cek_user > 0)
         {
+            $data_session = array(
+                'username' => $where['username'],
+                'status' => "login"
+            );
+
+            $this->session->set_userdata($data_session);
             redirect('Home');
         }else
         {
-            $this->load->view('Homepage');
+            redirect('Home');
         }
 
+    }
 
-        
+    function logout(){
+        $this->session->sess_destroy();
+        redirect(base_url('login'));
     }
 
 

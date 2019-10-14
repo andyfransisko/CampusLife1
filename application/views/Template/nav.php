@@ -16,10 +16,10 @@
             
 				<!-- <li><a href="#home" class="smoothScroll">HOME</a></li> -->
                 
-				<li><a href="index.html" class="smoothScroll">HOME</a></li>
-				<li><a href="schedule.html" class="smoothScroll">MY SCHEDULES</a></li>
-				<li><a href="#team" class="smoothScroll">MY GRADES</a></li>
-				<li><a href="#portfolio" class="smoothScroll">MY COURSES</a></li>
+				<li><a href="<?php echo base_url() ?>Home" class="smoothScroll">HOME</a></li>
+				<li><a href="<?php echo base_url() ?>Schedule" class="smoothScroll">MY SCHEDULES</a></li>
+				<li><a href="<?php echo base_url() ?>Nilai" class="smoothScroll">MY GRADES</a></li>
+				<li><a href="<?php echo base_url() ?>Mata-kuliah" class="smoothScroll">MY COURSES</a></li>
 				<li><a href="<?php echo base_url() ?>Login" class="smoothScroll">LOGIN</a></li>
 			</ul>
 		</div>

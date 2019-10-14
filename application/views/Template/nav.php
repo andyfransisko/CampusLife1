@@ -16,7 +16,7 @@
             
 				<!-- <li><a href="#home" class="smoothScroll">HOME</a></li> -->
                 
-				<li><a href="index.html" class="smoothScroll">HOME</a></li>
+				<li><a href="<?php echo base_url() ?>home" class="smoothScroll">HOME</a></li>
 				<li><a href="schedule.html" class="smoothScroll">MY SCHEDULES</a></li>
 				<li><a href="#team" class="smoothScroll">MY GRADES</a></li>
 				<li><a href="#portfolio" class="smoothScroll">MY COURSES</a></li>

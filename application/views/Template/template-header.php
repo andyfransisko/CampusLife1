@@ -1,63 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-
-	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-	<title><?php echo $judul ?></title>
-	<meta name="keywords" content="">
-	<meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--
-
-Template 2078 Adventure
-
-http://www.tooplate.com/view/2078-adventure
-
--->
-	<!-- Bootstrap CSS
-   ================================================== -->
-	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap.min.css">
-
-	<!-- Animate CSS
-   ================================================== -->
-	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/animate.min.css">
-
-	<!-- Font Icons
-   ================================================== -->
-	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/font-awesome.min.css">
-	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/et-line-font.css">
-
-	<!-- Nivo Lightbox CSS
-   ================================================== -->
-	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/nivo-lightbox.css">
-	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/nivo_themes/default/default.css">
-
-	<!-- Owl Carousel CSS
-   ================================================== -->
-   	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/owl.theme.css">
-	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/owl.carousel.css">
-
-	<!-- BxSlider CSS
-   ================================================== -->
-   	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/bxslider.css">
+  <head>
+    <title>Campus Life - Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-   	<!-- Main CSS
-   	================================================== -->
-	<link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css">
-	<link rel="icon" type="image/png" href="<?php echo base_url();?>assets/images/LOGOO2.png"/>
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,600,700,800,900" rel="stylesheet">
 
-	<!-- Google web font
-   ================================================== -->
-	<link href='https://fonts.googleapis.com/css?family=Raleway:700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
 
-	
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/util.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/main.css">
-<!--===============================================================================================-->
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
 
     
-	
-</head>
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
 
-<body data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+    <link rel="icon" type="image/png" href="images/logo2.png"/>
+  </head>
+  <body>

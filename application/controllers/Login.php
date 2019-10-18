@@ -8,24 +8,9 @@ class Login extends CI_Controller
         parent::__construct();
     }
 
-    private function head(){
-        $data['judul'] = "Homepage - Campus Life";
-        $this->load->view("Template/template-header", $data);
-        $this->load->view("Template/bg_login");
-        $this->load->view("Template/preloader");
-        $this->load->view("Template/nav");
-
-    }
-
-    private function foot(){
-        $this->load->view("Template/template-footer");
-    }
-
     public function index()
     {
-        $this->head();
-        $this->load->view("Home/login");
-        $this->foot();
+        $this->load->view("Home/V_login");
     }
 
     public function login()
@@ -36,7 +21,7 @@ class Login extends CI_Controller
 
         );
 
-        $cek_user = $this->M_Home->login_cek('Login', $where)->result();
+        $cek_user = $this->M_Home->login_cek('login', $where)->result();
         
         if($cek_user > 0)
         {
@@ -49,7 +34,7 @@ class Login extends CI_Controller
             redirect('Home');
         }else
         {
-            redirect('Home');
+            redirect(base_url('Home'));
         }
 
     }

@@ -8,9 +8,25 @@ class Login extends CI_Controller
         parent::__construct();
     }
 
+    private function head(){
+        $this->load->view("Template/template-header");
+        
+    }
+    
+    private function foot(){
+        $this->load->view("Template/preloader");
+        $this->load->view("Template/template-footer");
+        
+    }
     public function index()
     {
+        $data['nav'] = "Login";
+        $this->head();
+        $this->load->view('Template/nav', $data );
         $this->load->view("Home/V_login");
+        $this->foot();
+
+        
     }
 
     public function login()

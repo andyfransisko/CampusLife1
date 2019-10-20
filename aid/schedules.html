@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Aid - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Campus Life - My Schedules</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -26,10 +26,17 @@
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
 
+    <link rel="icon" type="image/png" href="images/logo2.png"/>
+
     <!-- Schedules -->
 
-    <link rel="stylesheet" href="src/css/vanilla-calendar-min.css">
-    <script src="src/js/vanilla-calendar-min.js"></script>
+    <link rel="stylesheet" href="ccs/stylecalender.css">
+    <link rel="stylesheet" href="css/vanilla-calendar-min.css">
+    <script src="js/vanilla-calendar-min.js"></script>
+
+    <!-- Timeline -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="css/styletime.css">
   </head>
   <body>
       <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -52,18 +59,72 @@
         </nav>
     <!-- END nav -->
     
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/background2.jpeg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
-        
-          <div id="myCalendar" class="vanilla-calendar"></div>
-
+          
+          <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
+              <div id="myCalendar" class="vanilla-calendar" ></div>
+              <div class="col-md-9 ftco-animate pb-5 text-center">
+                
+              </div>
+            </div>  
 
       </div>
     </section>
 	
-   
-
+    <!-- Mata Kuliah -->
+    <div id = "bawah" >
+      <center>
+          <div class="container1" style="z-index:10;">
+              <ul>
+                <li><span></span>
+                  <div>
+                    <div class="title">Codify</div>
+                    <div class="info">Let&apos;s make coolest things in css</div>
+                    <div class="type">Presentation</div>
+                  </div> <span class="number"><span>10:00</span> <span>12:00</span></span>
+                </li>
+                <li>
+                  <div><span></span>
+                    <div class="title">Codify</div>
+                    <div class="info">Let&apos;s make coolest things in javascript</div>
+                    <div class="type">Presentation</div>
+                  </div> <span class="number"><span>13:00</span> <span>14:00</span></span>
+                </li>
+                <li>
+                  <div><span></span>
+                    <div class="title">Codify</div>
+                    <div class="info">Let&apos;s make coolest things in css</div>
+                    <div class="type">Review</div>
+                  </div> <span class="number"><span>15:00</span> <span>17:45</span></span>
+                </li>
+                <li>
+                    <div><span></span>
+                      <div class="title">Codify</div>
+                      <div class="info">Let&apos;s make coolest things in css</div>
+                      <div class="type">Review</div>
+                    </div> <span class="number"><span>15:00</span> <span>17:45</span></span>
+                  </li>
+                  <li>
+                      <div><span></span>
+                        <div class="title">Codify</div>
+                        <div class="info">Let&apos;s make coolest things in css</div>
+                        <div class="type">Review</div>
+                      </div> <span class="number"><span>15:00</span> <span>17:45</span></span>
+                    </li>
+                    <li>
+                        <div><span></span>
+                          <div class="title">Codify</div>
+                          <div class="info">Let&apos;s make coolest things in css</div>
+                          <div class="type">Review</div>
+                        </div> <span class="number"><span>15:00</span> <span>17:45</span></span>
+                      </li>
+              </ul>
+          </div>
+      </center>  
+    </div>  
+    
     <footer class="ftco-footer ftco-section">
         <div class="container">
           <div class="row mb-5">
@@ -112,7 +173,7 @@
             </div>
           </div>
         </div>
-      </footer>
+    </footer>
     
   
 
@@ -135,6 +196,67 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
+
+  <!-- Calender -->
+  <script>
+      let pastDates = true, availableDates = false, availableWeekDays = false
+      
+      let calendar = new VanillaCalendar({
+          selector: "#myCalendar",
+          months: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+          shortWeekday: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+          onSelect: (data, elem) => {
+              console.log(data, elem)
+          }
+      })
+      
+      let btnPastDates = document.querySelector('[name=pastDates]')
+      btnPastDates.addEventListener('click', () => {
+          pastDates = !pastDates
+          calendar.set({pastDates: pastDates})
+          btnPastDates.innerText = `${(pastDates ? 'Disable' : 'Enable')} past dates`
+      })
+      
+      let btnAvailableDates = document.querySelector('[name=availableDates]')
+      btnAvailableDates.addEventListener('click', () => {
+          availableDates = !availableDates
+          btnAvailableDates.innerText = `${(availableDates ? 'Clear available dates' : 'Set available dates')}`
+          if (!availableDates) {
+              calendar.set({availableDates: [], datesFilter: false})
+              return
+          }
+          let dates = () => {
+              let result = []
+              for (let i = 1; i < 15; ++i) {
+                  if (i % 2) continue
+                  let date = new Date(new Date().getTime() + (60 * 60 * 24 * 1000) * i)
+                  result.push({date: `${String(date.getFullYear())}-${String(date.getMonth() + 1).padStart(2, 0)}-${String(date.getDate()).padStart(2, 0)}`})
+              }
+              return result
+          }
+          calendar.set({availableDates: dates(), availableWeekDays: [], datesFilter: true})
+      })
+      
+      let btnAvailableWeekDays = document.querySelector('[name=availableWeekDays]')
+      btnAvailableWeekDays.addEventListener('click', () => {
+          availableWeekDays = !availableWeekDays
+          btnAvailableWeekDays.innerText = `${(availableWeekDays ? 'Clear available weekdays' : 'Set available weekdays')}`
+          if (!availableWeekDays) {
+              calendar.set({availableWeekDays: [], datesFilter: false})
+              return
+          }
+          let days = [{
+              day: 'monday'
+          }, {
+              day: 'tuesday'
+          }, {
+              day: 'wednesday'
+          }, {
+              day: 'friday'
+          }]
+          calendar.set({availableWeekDays: days, availableDates: [], datesFilter: true})
+      })
+  </script>
     
   </body>
 </html>

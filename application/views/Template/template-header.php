@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+
+  
     <title>Campus Life - Home</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,12 +26,15 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
 
     <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/images/logo2.png"/>
-    <!--ada di login-->
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/main.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/util.css">
+    
 
-    <!-- Schedules -->
-    <link rel="stylesheet" href="src/css/vanilla-calendar-min.css">
-    <script src="src/js/vanilla-calendar-min.js"></script>
-  </head>
-  <body>   
+    
+
+    
+
+    
+
+    
+
+  
+     

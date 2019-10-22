@@ -1,5 +1,5 @@
 <?php 
-class Jadwal extends CI_Controller
+class DetailMataKuliah extends CI_Controller
 {
     function __construct()
     {
@@ -10,10 +10,9 @@ class Jadwal extends CI_Controller
     private function head(){
         $this->load->view('Template/html-open');
         $this->load->view('Template/head-open');
-        $data['title'] = "Schedule";
+        $data['title'] = "Course Detail";
         $this->load->view('Template/template-header', $data);
-        $this->load->view('Template/schedule-css');
-        $this->load->view('Template/timeline-css');
+        $this->load->view('Template/course-detail-css');
         $this->load->view('Template/head-close');
         $this->load->view('Template/body-open');
         
@@ -23,7 +22,7 @@ class Jadwal extends CI_Controller
         $this->load->view('Template/preloader');
         $this->load->view('Template/footer');
         $this->load->view('Template/template-footer');
-        $this->load->view('Template/calendar-script');
+        $this->load->view('Template/course-detail-js');
         $this->load->view('Template/body-close');
         $this->load->view('Template/html-close');
         
@@ -31,10 +30,10 @@ class Jadwal extends CI_Controller
 
     public function index()
     {
-        $data['nav'] = "Schedule";
+        $data['nav'] = "Course Detail";
         $this->head();
-        $this->load->view('Template/nav', $data );
-        $this->load->view("Schedule/V_schedule");
+        $this->load->view('Template/nav', $data);
+        $this->load->view('Course/V_detail_course');
         $this->foot();
 
         

@@ -30,7 +30,7 @@
                   </button>
                 </div>
       
-                <div class="text-center w-full p-t-25 p-b-230">
+                <div class="text-center w-full p-t-25 p-b-150">
                   <a href="#" class="txt1">
                     Forgot Username / Password?
                   </a>

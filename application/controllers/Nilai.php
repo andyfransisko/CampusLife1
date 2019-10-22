@@ -8,16 +8,24 @@ class Nilai extends CI_Controller
     }
 
     private function head(){
-        $this->load->view("Template/template-header");
+        $this->load->view('Template/html-open');
+        $this->load->view('Template/head-open');
+        $data['title'] = "Grade";
+        $this->load->view("Template/template-header", $data);
+        $this->load->view("Template/head-close");
+        $this->load->view("Template/body-open");
         
     }
-    
+
     private function foot(){
         $this->load->view("Template/preloader");
         $this->load->view("Template/footer");
         $this->load->view("Template/template-footer");
+        $this->load->view("Template/body-close");
+        $this->load->view("Template/html-close");
         
     }
+
     public function index()
     {
         $data['nav'] = "Grade";

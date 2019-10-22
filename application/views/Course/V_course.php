@@ -1,10 +1,18 @@
 
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo base_url() ?>assets/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo base_url()?>assets/images/courses2.jpeg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
-        
       </div>
     </section>
+    
+    <div style="color:white; position: absolute; bottom: 9%;width: 100%; font-size:30px;">
+        <center>My Courses 
+          <br>
+            <a href = "#bawah">
+              <img class ="inverted"  src="https://image.flaticon.com/icons/svg/25/25415.svg" width="35px" title="To My Courses">
+            </a>
+        </center>
+      </div>
 
     
         <!-- Mata Kuliah -->
@@ -24,9 +32,9 @@
                     <a >waktu</a><a class="cart-btn" >dosen</a>
                 </div>            
               </div>
-              <img src="images/courses1.jpeg" width="110%" class="animated fadeInRight">
+              <img src="<?php echo base_url() ?>assets/images/courses1.jpeg" width="110%" class="animated fadeInRight">
               <div style="position: absolute;right: 6%;bottom: 5%" class="animated fadeInRight">
-                  <a href = "courses2.html" style="color: white;">
+                  <a href = "<?php echo base_url() ?>DetailMataKuliah" style="color: white;">
                     <img class = "inverted" src="https://image.flaticon.com/icons/svg/126/126469.svg" width="62" title="Browse">
                     <br>Browse
                   </a>
@@ -48,7 +56,7 @@
                 <a >waktu</a><a class="cart-btn" >dosen</a>
             </div>            
           </div>
-          <img src="images/courses1.jpeg" width="110%" class="animated fadeInRight">
+          <img src="<?php echo base_url() ?>assets/images/courses1.jpeg" width="110%" class="animated fadeInRight">
           <div style="position: absolute;right: 6%;bottom: 5%" class="animated fadeInRight">
               <a href = "courses2.html" style="color: white;">
                 <img class = "inverted" src="https://image.flaticon.com/icons/svg/126/126469.svg" width="62" title="Browse">
@@ -72,7 +80,7 @@
                 <a >waktu</a><a class="cart-btn" >dosen</a>
             </div>            
           </div>
-          <img src="images/courses1.jpeg" width="110%" class="animated fadeInRight">
+          <img src="<?php echo base_url() ?>assets/images/courses1.jpeg" width="110%" class="animated fadeInRight">
           <div style="position: absolute;right: 6%;bottom: 5%" class="animated fadeInRight">
             <a href = "courses2.html" style="color: white;">
               <img class = "inverted" src="https://image.flaticon.com/icons/svg/126/126469.svg" width="62" title="Browse">

@@ -8,8 +8,8 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item <?php echo ($nav == 'Home') ? 'active' : '' ?>"><a href="<?php base_url() ?>Home" class="nav-link">Home</a></li>
-	        	<li class="nav-item <?php echo ($nav == 'Schedule') ? 'active' : '' ?>"><a href="<?php base_url() ?>Jadwal" class="nav-link">My Schedule</a></li>
-	        	<li class="nav-item <?php echo ($nav == 'Course') ? 'active' : '' ?>"><a href="<?php base_url() ?>MataKuliah" class="nav-link">My Course</a></li>
+	        	<li class="nav-item <?php echo ($nav == 'Schedule') ? 'active' : '' ?>"><a href="<?php base_url() ?>Jadwal" class="nav-link">My Schedules</a></li>
+	        	<li class="nav-item <?php echo ($nav == 'Course') ? 'active' : '' ?>"><a href="<?php base_url() ?>MataKuliah" class="nav-link">My Courses</a></li>
 	        	<li class="nav-item <?php echo ($nav == 'Grade') ? 'active' : '' ?>"><a href="<?php base_url() ?>Nilai" class="nav-link">My Grades</a></li>
 	        	<li class="nav-item <?php echo ($nav == 'Login') ? 'active' : '' ?>"><a href="<?php base_url() ?>Login" class="nav-link">Login</a></li>
 	        	

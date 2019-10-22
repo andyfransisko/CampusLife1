@@ -9,15 +9,24 @@ class Login extends CI_Controller
     }
 
     private function head(){
-        $this->load->view("Template/template-header");
+        $this->load->view('Template/html-open');
+        $this->load->view('Template/head-open');
+        $data['title'] = "Login";
+        $this->load->view('Template/template-header', $data);
+        $this->load->view('Template/login-css');
+        $this->load->view('Template/head-close');
+        $this->load->view('Template/body-open');
         
     }
-    
+
     private function foot(){
-        $this->load->view("Template/preloader");
-        $this->load->view("Template/template-footer");
+        $this->load->view('Template/preloader');
+        $this->load->view('Template/template-footer');
+        $this->load->view('Template/body-close');
+        $this->load->view('Template/html-close');
         
     }
+
     public function index()
     {
         $data['nav'] = "Login";

@@ -6,6 +6,7 @@ class Login extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        $this->load->library('form_validation');
     }
 
     private function head(){
@@ -29,44 +30,75 @@ class Login extends CI_Controller
 
     public function index()
     {
-        $data['nav'] = "Login";
-        $this->head();
-        $this->load->view('Template/nav', $data );
-        $this->load->view("Home/V_login");
-        $this->foot();
+        $this->form_validation->set_rules('username', 'Username', 'required|trim');
+        $this->form_validation->set_rules('password', 'Password', 'required|trim');
+        
+        if($this->form_validation->run() == false){
+            $data['nav'] = "Login";
+            $this->head();
+            $this->load->view('Template/nav', $data );
+            $this->load->view("Home/V_login");
+            $this->foot();
+        }
+        else{
+            $this->login();
+        }
+        
+        
 
         
     }
 
     public function login()
     {
+        
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+        
+        
         $where = array(
-            'username' => $this->input->post('username'),
-            'password' => $this->input->post('password')
+            'username' => $username,
+            'password' => md5($password)
 
         );
 
-        $cek_user = $this->M_Home->login_cek('login', $where)->result();
+        $cek_user = $this->M_Home->login_cek('user', $where)->row_array();
         
-        if($cek_user > 0)
+        //cek user ada tidak
+        if($cek_user)
         {
-            $data_session = array(
-                'username' => $where['username'],
-                'status' => "login"
-            );
+            //cek user uda aktivasi akun belum
+            if($cek_user['status'] == 1){
+                if(password_verify($password, $cek_user['password'])){
+                    $data = array(
+                        'username' => $cek_user['username'],
+                        'tipe_akun' => $cek_user['tipe_akun'],
+                        'aktivasi_akun' => $cek_user['status'],
+                        'status' => "login"
+                    );
+                    $this->session->set_userdata($data);
+                    redirect('User');
+                }else{
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
+                    redirect('Login');
+                }
 
-            $this->session->set_userdata($data_session);
-            redirect('Home');
+            }else{
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Username is not activated!</div>');
+                redirect('Login');    
+            }
         }else
         {
-            redirect(base_url('Home'));
+            //jika tidak ada keluar error
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert>Username is not registered!</div>');
+            redirect('Login');
         }
 
     }
 
     function logout(){
         $this->session->sess_destroy();
-        redirect(base_url('login'));
+        redirect(base_url('Login'));
     }
 
 

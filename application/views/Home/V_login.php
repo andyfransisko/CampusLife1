@@ -4,28 +4,28 @@
       <div class="limiter">
           <div class="container-login100" >
             <div class="wrap-login100 p-t-190 p-b-30">
-              <form class="login100-form validate-form">
-                
-                
-      
+              <form class="login100-form validate-form" action="<?php echo base_url('Login') ?>" method="post">
+                <?php echo $this->session->flashdata('message'); ?>
                 <div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
-                  <input class="input100" type="text" name="username" placeholder="Username">
+                  <input class="input100" type="text" name="username" id="username" placeholder="Username" value="<?php echo set_value('username') ?>">
                   <span class="focus-input100"></span>
                   <span class="symbol-input100">
                     <i class="fa fa-user"></i>
                   </span>
+                  <?php echo form_error('username', '<small class="text-danger pl-3">', '</small>') ?>
                 </div>
       
                 <div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
-                  <input class="input100" type="password" name="pass" placeholder="Password">
+                  <input class="input100" type="password" name="password" id="password" placeholder="Password">
                   <span class="focus-input100"></span>
                   <span class="symbol-input100">
                     <i class="fa fa-lock"></i>
                   </span>
+                  <?php echo form_error('password', '<small class="text-danger pl-3">', '</small>') ?>
                 </div>
       
                 <div class="container-login100-form-btn p-t-10">
-                  <button class="login100-form-btn">
+                  <button class="login100-form-btn" type="submit">
                     Login
                   </button>
                 </div>

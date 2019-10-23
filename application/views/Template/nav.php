@@ -11,7 +11,11 @@
 	        	<li class="nav-item <?php echo ($nav == 'Schedule') ? 'active' : '' ?>"><a href="<?php base_url() ?>Jadwal" class="nav-link">My Schedules</a></li>
 	        	<li class="nav-item <?php echo ($nav == 'Course') ? 'active' : '' ?>"><a href="<?php base_url() ?>MataKuliah" class="nav-link">My Courses</a></li>
 	        	<li class="nav-item <?php echo ($nav == 'Grade') ? 'active' : '' ?>"><a href="<?php base_url() ?>Nilai" class="nav-link">My Grades</a></li>
-	        	<li class="nav-item <?php echo ($nav == 'Login') ? 'active' : '' ?>"><a href="<?php base_url() ?>Login" class="nav-link">Login</a></li>
+				<?php if($this->session->userdata('status') == "login") {?>
+					<li class="nav-item <?php echo ($nav == 'Login') ? 'active' : '' ?>"><a href="<?php base_url() ?>User/profile" class="nav-link"><?php echo $this->session->userdata('nama') ?></a></li>
+				<?php }else{ ?>
+	        		<li class="nav-item <?php echo ($nav == 'Login') ? 'active' : '' ?>"><a href="<?php base_url() ?>Login" class="nav-link">Login</a></li>
+				<?php } ?>
 	        	
 	        </ul>
 	      </div>

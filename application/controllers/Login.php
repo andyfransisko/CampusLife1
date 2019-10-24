@@ -90,7 +90,7 @@ class Login extends CI_Controller
         }else
         {
             //jika tidak ada keluar error
-            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert>Username is not registered!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Username is not registered!</div>');
             redirect('Login');
         }
 
@@ -99,6 +99,58 @@ class Login extends CI_Controller
     function logout(){
         $this->session->sess_destroy();
         redirect(base_url('Login'));
+    }
+
+    function signup(){
+        $tipe = $this->input->post('tipe_akun');
+        
+        switch ($variable) {
+            case '1'://mahasiswa
+                $this->form_validation->set_rules('nim', 'NIM', 'required|trim');
+                $this->form_validation->set_rules('maha_mhs', 'Nama', 'required|trim');
+                if($this->form_validation->run() == false){
+                    
+                    $data = array(
+                        'nim' => $this->input->post('nim'), 
+                        'nama_mhs' => $this->input->post('nama_mhs'), 
+                        'jenis_kelamin' => $this->input->post('jk'), 
+                        'id_jurusan' => $this->input->post('id_jurusan'), 
+                        'email_mhs' => $this->input->post('email_mhs'), 
+                        'tgl_lahir' => $this->input->post('tgl_lahir'), 
+                        'tmpt_lahir' => $this->input->post('tmpt_lahir'), 
+                        'alamat_rumah' => $this->input->post('alamat_rumah'), 
+                        'no_telp' => $this->input->post('no_telp'), 
+                        'agama' => $this->input->post('agama'), 
+                        'username' => $this->input->post('username'), 
+                    );
+                }
+                else{
+
+                }
+
+                
+
+                break;
+            case '2'://dosen
+                $data = array(
+                    'nim' => $this->input->post('nim'), 
+                    'nama_mhs' => $this->input->post('nama_mhs'), 
+                    'jenis_kelamin' => $this->input->post('jk'), 
+                    'id_jurusan' => $this->input->post('id_jurusan'), 
+                    'email_mhs' => $this->input->post('email_mhs'), 
+                    'tgl_lahir' => $this->input->post('tgl_lahir'), 
+                    'tmpt_lahir' => $this->input->post('tmpt_lahir'), 
+                    'alamat_rumah' => $this->input->post('alamat_rumah'), 
+                    'no_telp' => $this->input->post('no_telp'), 
+                    'agama' => $this->input->post('agama'), 
+                    'username' => $this->input->post('username'), 
+                );
+                break;
+            
+            default:
+                # code...
+                break;
+        }
     }
 
 

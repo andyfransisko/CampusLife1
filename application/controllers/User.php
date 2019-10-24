@@ -54,7 +54,7 @@ class User extends CI_Controller
         $data['nav'] = "User";
         $this->head();
         $this->load->view('Template/nav', $data);
-        $this->load->view("User/V_profile", $data);
+        $this->load->view("User/V_profile", $d ata);
         $this->foot();
         
     }

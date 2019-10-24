@@ -8,11 +8,12 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item <?php echo ($nav == 'Home') ? 'active' : '' ?>"><a href="<?php base_url() ?>Home" class="nav-link">Home</a></li>
-	        	<li class="nav-item <?php echo ($nav == 'Schedule') ? 'active' : '' ?>"><a href="<?php base_url() ?>Jadwal" class="nav-link">My Schedules</a></li>
-	        	<li class="nav-item <?php echo ($nav == 'Course') ? 'active' : '' ?>"><a href="<?php base_url() ?>MataKuliah" class="nav-link">My Courses</a></li>
-	        	<li class="nav-item <?php echo ($nav == 'Grade') ? 'active' : '' ?>"><a href="<?php base_url() ?>Nilai" class="nav-link">My Grades</a></li>
-				<?php if($this->session->userdata('status') == "login") {?>
-					<li class="nav-item <?php echo ($nav == 'Login') ? 'active' : '' ?>"><a href="<?php base_url() ?>User/profile" class="nav-link"><?php echo $this->session->userdata('nama') ?></a></li>
+	        	<li class="nav-item <?php echo ($nav == 'Schedule') ? 'active' : '' ?>"><a href="<?php base_url() ?>Schedule" class="nav-link">My Schedules</a></li>
+	        	<li class="nav-item <?php echo ($nav == 'Course') ? 'active' : '' ?>"><a href="<?php base_url() ?>Course" class="nav-link">My Courses</a></li>
+	        	<li class="nav-item <?php echo ($nav == 'Grade') ? 'active' : '' ?>"><a href="<?php base_url() ?>Grade" class="nav-link">My Grades</a></li>
+				<?php if($nav == "User") {?>
+					<li class="nav-item active"><a href="<?php base_url() ?>User/profile" class="nav-link"><?php echo $this->session->userdata('nama') ?></a>
+					</li>
 				<?php }else{ ?>
 	        		<li class="nav-item <?php echo ($nav == 'Login') ? 'active' : '' ?>"><a href="<?php base_url() ?>Login" class="nav-link">Login</a></li>
 				<?php } ?>

@@ -1,5 +1,5 @@
 <?php 
-class MataKuliah extends CI_Controller
+class Course extends CI_Controller
 {
     function __construct()
     {

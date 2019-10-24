@@ -1,5 +1,5 @@
 <?php 
-class Nilai extends CI_Controller
+class Grade extends CI_Controller
 {
     function __construct()
     {

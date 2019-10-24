@@ -3,9 +3,9 @@
       <div class="overlay"></div>
       <div class="limiter">
           <div class="container-login100" >
+                <?php echo $this->session->flashdata('message'); ?>
             <div class="wrap-login100 p-t-190 p-b-30">
               <form class="login100-form validate-form" action="<?php echo base_url('Login') ?>" method="post">
-                <?php echo $this->session->flashdata('message'); ?>
                 <div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
                   <input class="input100" type="text" name="username" id="username" placeholder="Username" value="<?php echo set_value('username') ?>">
                   <span class="focus-input100"></span>
@@ -35,7 +35,6 @@
                     Forgot Username / Password?
                   </a>
                 </div>
-      
                 <div class="text-center w-full">
                   <a class="txt1" href="#">
                     Create new account

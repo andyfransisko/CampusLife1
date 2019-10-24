@@ -1,5 +1,5 @@
 <?php 
-class DetailMataKuliah extends CI_Controller
+class Schedule extends CI_Controller
 {
     function __construct()
     {
@@ -10,9 +10,11 @@ class DetailMataKuliah extends CI_Controller
     private function head(){
         $this->load->view('Template/html-open');
         $this->load->view('Template/head-open');
-        $data['title'] = "Course Detail";
+        $data['title'] = "Schedule";
         $this->load->view('Template/template-header', $data);
-        $this->load->view('Template/course-detail-css');
+        //$this->load->view('Template/schedule-css');
+        $this->load->view('Template/timeline-css');
+        $this->load->view('Template/new');
         $this->load->view('Template/head-close');
         $this->load->view('Template/body-open');
         
@@ -22,7 +24,7 @@ class DetailMataKuliah extends CI_Controller
         $this->load->view('Template/preloader');
         $this->load->view('Template/footer');
         $this->load->view('Template/template-footer');
-        $this->load->view('Template/course-detail-js');
+        //$this->load->view('Schedule/calendar-script');
         $this->load->view('Template/body-close');
         $this->load->view('Template/html-close');
         
@@ -30,10 +32,10 @@ class DetailMataKuliah extends CI_Controller
 
     public function index()
     {
-        $data['nav'] = "Course Detail";
+        $data['nav'] = "Schedule";
         $this->head();
-        $this->load->view('Template/nav', $data);
-        $this->load->view('Course/V_detail_course');
+        $this->load->view('Template/nav', $data );
+        $this->load->view("Schedule/V_schedule");
         $this->foot();
 
         

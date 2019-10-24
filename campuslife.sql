@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2019 at 05:22 AM
--- Server version: 10.1.35-MariaDB
--- PHP Version: 7.2.9
+-- Generation Time: Oct 24, 2019 at 07:32 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -157,13 +157,20 @@ CREATE TABLE `mahasiswa` (
   `username` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `mahasiswa`
+--
+
+INSERT INTO `mahasiswa` (`nim`, `nama_mhs`, `jenis_kelamin`, `id_jurusan`, `email_mhs`, `tgl_lahir`, `tmpt_lahir`, `alamat_rumah`, `no_telp`, `agama`, `username`) VALUES
+(1, 'jjs', '1', 1, 'jsj@gmail.com', '0000-00-00', 'jakarta', 'Jln. arwana no 25', '213124214', '2', '1');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mata_kuliah`
+-- Table structure for table `matakuliah`
 --
 
-CREATE TABLE `mata_kuliah` (
+CREATE TABLE `matakuliah` (
   `id_mata_kuliah` int(11) NOT NULL,
   `nama_mata_kuliah` varchar(50) NOT NULL,
   `sks` int(5) NOT NULL,
@@ -245,8 +252,17 @@ CREATE TABLE `tugas` (
 
 CREATE TABLE `user` (
   `username` varchar(15) NOT NULL,
-  `password` varchar(25) NOT NULL
+  `password` varchar(25) NOT NULL,
+  `tipe_akun` int(11) NOT NULL COMMENT '1=mahasiswa, 2= dosen, 0=admin',
+  `status` int(11) NOT NULL COMMENT '0=belum aktivasi, 1= sudah aktivasi'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`username`, `password`, `tipe_akun`, `status`) VALUES
+('1', '12345', 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -307,9 +323,9 @@ ALTER TABLE `mahasiswa`
   ADD PRIMARY KEY (`nim`);
 
 --
--- Indexes for table `mata_kuliah`
+-- Indexes for table `matakuliah`
 --
-ALTER TABLE `mata_kuliah`
+ALTER TABLE `matakuliah`
   ADD PRIMARY KEY (`id_mata_kuliah`);
 
 --

@@ -7,6 +7,7 @@ class Login extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
+        $this->load->model('M_Login');
     }
 
     private function head(){
@@ -58,39 +59,38 @@ class Login extends CI_Controller
         
         $where = array(
             'username' => $username,
-            'password' => md5($password)
+            'password' => $password
 
         );
 
-        $cek_user = $this->M_Home->login_cek('user', $where)->row_array();
+        $cek_user = $this->M_Login->login_cek('user', $where)->row_array();
         
         //cek user ada tidak
         if($cek_user)
         {
             //cek user uda aktivasi akun belum
             if($cek_user['status'] == 1){
-                if(password_verify($password, $cek_user['password'])){
+                if($password == $cek_user['password']){
                     $data = array(
                         'username' => $cek_user['username'],
                         'tipe_akun' => $cek_user['tipe_akun'],
-                        'aktivasi_akun' => $cek_user['status'],
-                        'status' => "login"
+                        'status' => $cek_user['status'],
                     );
                     $this->session->set_userdata($data);
                     redirect('User');
                 }else{
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Wrong password!</div>');
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Wrong password!</div>');
                     redirect('Login');
                 }
 
             }else{
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Username is not activated!</div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Username is not activated!</div>');
                 redirect('Login');    
             }
         }else
         {
             //jika tidak ada keluar error
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert>Username is not registered!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert>Username is not registered!</div>');
             redirect('Login');
         }
 

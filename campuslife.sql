@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2019 at 07:32 AM
+-- Generation Time: Oct 25, 2019 at 03:38 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -253,6 +253,7 @@ CREATE TABLE `tugas` (
 CREATE TABLE `user` (
   `username` varchar(15) NOT NULL,
   `password` varchar(25) NOT NULL,
+  `images` text NOT NULL,
   `tipe_akun` int(11) NOT NULL COMMENT '1=mahasiswa, 2= dosen, 0=admin',
   `status` int(11) NOT NULL COMMENT '0=belum aktivasi, 1= sudah aktivasi'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -261,8 +262,8 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`username`, `password`, `tipe_akun`, `status`) VALUES
-('1', '12345', 1, 1);
+INSERT INTO `user` (`username`, `password`, `images`, `tipe_akun`, `status`) VALUES
+('1', '12345', 'default.jpg', 1, 1);
 
 --
 -- Indexes for dumped tables

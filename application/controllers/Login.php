@@ -53,7 +53,7 @@ class Login extends CI_Controller
     public function login()
     {
         
-        $username = $this->input->post('username');
+        $username = htmlspecialchars($this->input->post('username'));
         $password = $this->input->post('password');
         
         
@@ -96,65 +96,138 @@ class Login extends CI_Controller
 
     }
 
-    function logout(){
+    public function logout(){
         $this->session->sess_destroy();
         redirect(base_url('Login'));
     }
 
-    function signup(){
-        $tipe = $this->input->post('tipe_akun');
+    public function signup(){
+        $data['nav'] = "Login";
+        $this->head();
+        $this->load->view('Template/nav', $data );
+        $this->load->view("Home/V_signup");
+        $this->foot();
         
-        switch ($variable) {
-            case '1'://mahasiswa
-                $this->form_validation->set_rules('nim', 'NIM', 'required|trim');
-                $this->form_validation->set_rules('maha_mhs', 'Nama', 'required|trim');
-                if($this->form_validation->run() == false){
-                    
-                    $data = array(
-                        'nim' => $this->input->post('nim'), 
-                        'nama_mhs' => $this->input->post('nama_mhs'), 
-                        'jenis_kelamin' => $this->input->post('jk'), 
-                        'id_jurusan' => $this->input->post('id_jurusan'), 
-                        'email_mhs' => $this->input->post('email_mhs'), 
-                        'tgl_lahir' => $this->input->post('tgl_lahir'), 
-                        'tmpt_lahir' => $this->input->post('tmpt_lahir'), 
-                        'alamat_rumah' => $this->input->post('alamat_rumah'), 
-                        'no_telp' => $this->input->post('no_telp'), 
-                        'agama' => $this->input->post('agama'), 
-                        'username' => $this->input->post('username'), 
-                    );
-                }
-                else{
+    }
 
-                }
-
-                
-
-                break;
-            case '2'://dosen
-                $data = array(
-                    'nim' => $this->input->post('nim'), 
-                    'nama_mhs' => $this->input->post('nama_mhs'), 
-                    'jenis_kelamin' => $this->input->post('jk'), 
-                    'id_jurusan' => $this->input->post('id_jurusan'), 
-                    'email_mhs' => $this->input->post('email_mhs'), 
-                    'tgl_lahir' => $this->input->post('tgl_lahir'), 
-                    'tmpt_lahir' => $this->input->post('tmpt_lahir'), 
-                    'alamat_rumah' => $this->input->post('alamat_rumah'), 
-                    'no_telp' => $this->input->post('no_telp'), 
-                    'agama' => $this->input->post('agama'), 
-                    'username' => $this->input->post('username'), 
-                );
-                break;
+    public function signup_mahasiswa(){
+        $_tipe_akun = "1";
+        
+        $this->form_validation->set_rules('nim', 'NIM', 'required|trim|is_unique[mahasiswa.nim]');
+        $this->form_validation->set_rules('nama_mhs', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
+        $this->form_validation->set_rules('id_jurusan', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('email_mhs', 'Nama', 'r   equired|trim|valid_email');
+        $this->form_validation->set_rules('tgl_lahir', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('tmpt_lahir', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('alamat_rumah', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('no_telp', 'Nama', 'required|trim|numeric');
+        $this->form_validation->set_rules('agama', 'Nama', 'required|trim');
+        $this->form_validation->set_rules('password', 'Nama', 'required|trim|min_length[6]|matches[password2]');
+        $this->form_validation->set_rules('password2', 'Nama', 'required|trim|min_length[6]|matches[password]');
+        if($this->form_validation->run() == false){
             
-            default:
-                # code...
-                break;
+            $data['nav'] = "Login";
+            $this->head();
+            $this->load->view('Template/nav', $data );
+            $this->load->view("Home/V_signup");
+            $this->foot();
+        }
+        else{
+            $data_mhs = array(
+                'nim' => htmlspecialchars($this->input->post('nim')), 
+                'nama_mhs' => htmlspecialchars($this->input->post('nama_mhs')), 
+                'jenis_kelamin' => htmlspecialchars($this->input->post('jk')), 
+                'id_jurusan' => htmlspecialchars($this->input->post('id_jurusan')), 
+                'email_mhs' => htmlspecialchars($this->input->post('email_mhs')), 
+                'tgl_lahir' => htmlspecialchars($this->input->post('tgl_lahir')), 
+                'tmpt_lahir' => htmlspecialchars($this->input->post('tmpt_lahir')), 
+                'alamat_rumah' => htmlspecialchars($this->input->post('alamat_rumah')), 
+                'no_telp' => htmlspecialchars($this->input->post('no_telp')), 
+                'agama' => htmlspecialchars($this->input->post('agama')), 
+                 
+            ));
+
+            $data_user = array(
+                'username' => htmlspecialchars($this->input->post('nim')), 
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                'image' => 'default.jpg', 
+                'tipe_akun'=> '1',
+                'status' => '0'
+            );
+
+            $this->M_Login->insert_record('mahasiswa', $data_mhs);
+            $this->M_Login->insert_record('user', $data_user);
+            redirect('Login/activate')
         }
     }
 
+    function signup_dosen(){
+        $_tipe_akun = "2";
+        
+        $this->form_validation->set_rules('nim', 'NIM', 'required|trim');
+        $this->form_validation->set_rules('nama_mhs', 'Nama', 'required|trim');
+        if($this->form_validation->run() == false){
+            
+            $data['nav'] = "Login";
+            $this->head();
+            $this->load->view('Template/nav', $data );
+            $this->load->view("Home/V_signup");
+            $this->foot();
+        }
+        else{
+            $data = array(
+                'nim' => htmlspecialchars($this->input->post('nim')), 
+                'nama_mhs' => htmlspecialchars($this->input->post('nama_mhs')), 
+                'jenis_kelamin' => htmlspecialchars($this->input->post('jk')), 
+                'id_jurusan' => htmlspecialchars($this->input->post('id_jurusan')), 
+                'email_mhs' => htmlspecialchars($this->input->post('email_mhs')), 
+                'tgl_lahir' => htmlspecialchars($this->input->post('tgl_lahir')), 
+                'tmpt_lahir' => htmlspecialchars($this->input->post('tmpt_lahir')), 
+                'alamat_rumah' => htmlspecialchars($this->input->post('alamat_rumah')), 
+                'no_telp' => htmlspecialchars($this->input->post('no_telp')), 
+                'agama' => htmlspecialchars($this->input->post('agama')), 
+            );
 
+            $data_user = array(
+                'username' => htmlspecialchars($this->input->post('nim')), 
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                'image' => 'default.jpg', 
+                'tipe_akun'=> '2',
+                'status' => '0'
+            );
+        }
+    }
 
+    public function activate(){
+        $data['nav'] = "Acivate Account";
+        $this->head();
+        $this->load->view('Template/nav', $data );
+        $this->load->view("Home/V_activate");
+        $this->foot();
+    }
+
+    public function activate_akun(){
+
+    }
+
+    private function _sendEmail(){
+        $config = [
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_user' => 'campuslife@gmail.com',
+            'smtp_pass' => '123456',
+            'smtp_port' => '465',
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'newline' => '\r\n',
+        ];
+
+        $this->load->library('email', $config);
+
+        $this->email->from('campuslife@gmail.com', 'Campus Life');
+        
+    }
 
 
 }

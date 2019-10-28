@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Campus Life - Login</title>
+    <title>Campus Life - Sign Up</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -21,16 +21,22 @@
     <link rel="stylesheet" href="css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="css/jquery.timepicker.css">
 
-    
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
 
     <link rel="icon" type="image/png" href="images/logo2.png"/>
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
 
-    <!-- LOGIN -->
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/util.css">
+    <style>
+    .font1
+    {   
+        font-family: 'Nunito', sans-serif;
+    }
+    </style>
+
+    <!-- SIGNUP -->
+    <link rel="stylesheet" href="css/signup.css">
   </head>
   <body>
       <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -55,56 +61,35 @@
     
     <section class="hero-wrap hero-wrap-2" style="background-image: url('images/login.jpeg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
-      <div class="limiter">
-          <div class="container-login100" >
-            <div class="wrap-login100 p-t-190 p-b-30">
-              <form class="login100-form validate-form">
-                
-                
-      
-                <div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
-                  <input class="input100" type="text" name="username" placeholder="Username">
-                  <span class="focus-input100"></span>
-                  <span class="symbol-input100">
-                    <i class="fa fa-user"></i>
-                  </span>
-                </div>
-      
-                <div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
-                  <input class="input100" type="password" name="pass" placeholder="Password">
-                  <span class="focus-input100"></span>
-                  <span class="symbol-input100">
-                    <i class="fa fa-lock"></i>
-                  </span>
-                </div>
-      
-                <div class="container-login100-form-btn p-t-10">
-                  
-                  <button class="login100-form-btn">
-                    Login
-                  </button>
-                </div>
-      
-                <div class="text-center w-full p-t-25 p-b-230">
-                  <a href="forget.html" class="txt1">
-                    Forgot Username / Password?
-                  </a>
-                </div>
-      
-                <div class="text-center w-full">
-                  <a class="txt1" href="signup2.html">
-                    Create new account
-                    <i class="fa fa-long-arrow-right"></i>						
-                  </a>
-                </div>
-              </form>
-            </div>
+      <div style="position:relative;padding-top: 10%;padding-bottom: 10%;">
+        <div class="form-style-5 container" >
+            <form class="font1">
+            <fieldset>
+            
+            <input type="text" name="field1" placeholder="NIM">
+            <input type="text" name="field1" placeholder="Nama">
+            <input type="text" name="field1" placeholder="Username">
+            <input type="password" name="field1" placeholder="Password">
+            <input type="password" name="field1" placeholder="Konfirmasi Password">
+            <select id="job" name="Jenis Kelamin">
+                  <option value="football">Laki - Laki</option>
+                  <option value="swimming">Wanita</option>
+            </select>      
+            <select id="job" name="Jurusan">
+                <option value="football">Ambil Database</option>
+                <option value="swimming">Ambil Database</option>
+            </select>      
+            
+            <input type="text" name="field1" placeholder="Tempat Lahir">
+            <input type="date" name="field1" placeholder="Tanggal Lahir">
+            <input type="number" name="field1" placeholder="Nomor Telepon">
+            <input type="text" name="field1" placeholder="Agama"> 
+            </fieldset>
+            <input type="submit" value="Sign Up" />
+            </form>
           </div>
-        </div>
-      <div class="container">
-        
-        
       </div>
+        
     </section>
 	
 

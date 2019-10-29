@@ -96,11 +96,6 @@ class Login extends CI_Controller
 
     }
 
-    public function logout(){
-        $this->session->sess_destroy();
-        redirect(base_url('Login'));
-    }
-
     public function signup(){
         $data['nav'] = "Login";
         $this->head();
@@ -157,6 +152,7 @@ class Login extends CI_Controller
             //token
             $token = base64_encode(random_bytes(32));
             $user_token = array(
+                'id'    => $this->input->post('nim'),
                 'email' => $email,
                 'token' => $token
             );
@@ -168,7 +164,7 @@ class Login extends CI_Controller
 
             $this->_send_email($token, 'verify');
 
-            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Your account has been created! Please check your email to activate your account</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Your account has been created! <br> Please check your email to activate your account. </div>');
             redirect('Login');
         }
     }
@@ -230,17 +226,22 @@ class Login extends CI_Controller
         if($type == "verify"){
             $this->email->subject('Account Verification');
             $message = 
-            "Hello". $this->input->post('nama') .",<br>
-            Thank you for sign up with us! <br> 
-            Please click this link to verify your account : \r\n <a href='>".base_url()."Login/verify?id=".$this->input->post('email')."&token=".urlencode($token)."'> Activate your account </a>";
+                "Hello". $this->input->post('nama') .",<br>
+                Thank you for sign up with us! <br> 
+                Please click this link to verify your account : \r\n <a href='>".base_url()."Login/verify?id=".$this->input->post('email')."&token=".urlencode($token)."'> Activate your account </a>";
             $this->email->message($message);
-        }else{
-            
+        }else if($type == "forgot"){
+            $this->email->subject('Reset Password');
+            $message = 
+                "Hello". $this->input->post('nama') .",<br>
+                <br> 
+                Please click this link to reset your password : \r\n <a href='>".base_url()."Login/reset_password?id=".$this->input->post('email')."&token=".urlencode($token)."'> Reset My Password </a>";
+            $this->email->message($message);
         }
         
 
         if($this->email->send()){
-
+            return true;
         }
         else{
             echo $this->email->print_debugger();
@@ -253,7 +254,7 @@ class Login extends CI_Controller
         $email = $this->input->get('email');
         $token = $this->input->get('token');
 
-        $user = $this->M_Login->get_record('user', ['email' => $email])->row_array();
+        $user = $this->M_Login->get_user_record_by_email($email])->row_array();
 
         if($user){
             $user_token = $this->M_Login->get_record('user_token', ['token' => $token])->row_array();
@@ -263,7 +264,7 @@ class Login extends CI_Controller
                     $this->M_Login->update_record('user', ['status' => '1'], ['email'=>$email]);
                     
                     $this->M_Login->delete_record('user_token', ['token' => $token]);
-                    $this->session->set_flashdata('message', '<div class="alert alert-success text-center p-t-25 p-b-50" role="alert">Verification Success! Now please login. </div>');
+                    $this->session->set_flashdata('message', '<div class="alert alert-success text-center p-t-25 p-b-50" role="alert">Verification Success! Please login </div>');
                 }else{
                     $this->M_Login->delete_record('user', ['email' => $email]);
                     $this->M_Login->delete_record('user_token', ['token' => $token]);
@@ -284,7 +285,104 @@ class Login extends CI_Controller
         }
     }
 
+    public function forgot_password(){
+        
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        
+        if($this->form_validation->run() == false){
+            $data['nav'] = "Forgot Password";
+            $this->head();
+            $this->load->view('Template/nav', $data );
+            $this->load->view("Home/V_forgot_password");
+            $this->foot();
+        }
+        else{
+            $email = $this->input->post('email');
 
+            $cek_email = $this->M_Login->get_user_record_by_email(array($email))->row_array();
+
+            $id = ($cek_email['status'] == "1" ? $cek_email['nim']: $cek_email['nidn']);
+            if($cek_email){
+                 //token
+                $token = base64_encode(random_bytes(32));
+                $user_token = array(
+                    'id'    => $id,
+                    'email' => $email,
+                    'token' => $token
+                );
+
+                $this->M_Login->insert_record('user_token', $user_token);
+                $this->_send_email($token, 'forgot')
+                $this->session->set_flashdata('message', '<div class="alert alert-success text-center p-t-25 p-b-50" role="alert">Please check your email to reset your password</div>');
+            redirect('Login');
+            }else{
+                $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Email is not registered or activated!</div>');
+                redirect('Login/forgot_password');
+            }
+        }
+    }
+
+    public function reset_password(){
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+
+        $user = $this->M_Login->get_user_record_by_email($email])->row_array();
+
+        if($user){
+            $user_token = $this->M_Login->get_record('user_token', ['token' => $token])->row_array();
+
+            if($user_token){
+                $this->session->set_userdata('tipe_user', $user['tipe_akun']);
+                $this->session->set_userdata('reset_email', $email);
+                $this->change_password();
+            }else{
+                $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Reset Password Failed! Wrong Token!</div>');
+                redirect('Login');    
+
+            }
+        }
+        else{
+            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Reset Password Failed! Wrong Email!</div>');
+            redirect('Login'); 
+        }
+    }
+
+    public function change_password(){
+        if(!$this->session->userdata('reset_email')){
+            redirect('Login');
+        }
+
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]|matches[password2]');
+        $this->form_validation->set_rules('password2', 'Repeat Password', 'required|trim|min_length[6]|matches[password]');
+        
+        if($this->form_validation->run() == false){
+            $data['nav'] = "Change Password";
+            $this->head();
+            $this->load->view('Template/nav', $data );
+            $this->load->view("Home/V_change_password");
+            $this->foot();
+        }else{
+            $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+            $email    = $this->session->userdata('reset_email');
+            $table    = ($this->session->userdata('tipe_user') == "1" ? "mahasiswa" : "dosen");
+
+            
+            $this->M_Login->update_record($table, ['password' => $password], $email);
+
+            $this->session->unset_userdata('reset_email');
+            $this->session->set_flashdata('message', '<div class="alert alert-success text-center p-t-25 p-b-50" role="alert">Your password has been changed! Please login.</div>');
+            redirect('Login');
+        }
+    }
+
+    public function logout(){
+        $this->session->session_destroy();
+        $this->session->set_flashdata('message', '<div class="alert alert-success text-center p-t-25 p-b-50" role="alert">You have logged out</div>');
+        redirect('Login');
+    }
+
+
+   
 }
 
 ?>

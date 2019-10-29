@@ -235,7 +235,11 @@ class Login extends CI_Controller
             $message = 
                 "Hello". $this->input->post('nama') .",<br>
                 <br> 
-                Please click this link to reset your password : \r\n <a href='>".base_url()."Login/reset_password?id=".$this->input->post('email')."&token=".urlencode($token)."'> Reset My Password </a>";
+                This is your new password. <br>
+                Email : ".$this->input->post('email'). "<br>
+                Password : ".urlencode($token)." <br>
+                <br>
+                Please login using the new password, then change the password to your liking";
             $this->email->message($message);
         }
         
@@ -312,6 +316,7 @@ class Login extends CI_Controller
                 );
 
                 $this->M_Login->insert_record('user_token', $user_token);
+                $this->M_Login->update_record('user', $token, ['username' => $id]);
                 $this->_send_email($token, 'forgot')
                 $this->session->set_flashdata('message', '<div class="alert alert-success text-center p-t-25 p-b-50" role="alert">Please check your email to reset your password</div>');
             redirect('Login');
@@ -319,31 +324,6 @@ class Login extends CI_Controller
                 $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Email is not registered or activated!</div>');
                 redirect('Login/forgot_password');
             }
-        }
-    }
-
-    public function reset_password(){
-        $email = $this->input->get('email');
-        $token = $this->input->get('token');
-
-        $user = $this->M_Login->get_user_record_by_email($email])->row_array();
-
-        if($user){
-            $user_token = $this->M_Login->get_record('user_token', ['token' => $token])->row_array();
-
-            if($user_token){
-                $this->session->set_userdata('tipe_user', $user['tipe_akun']);
-                $this->session->set_userdata('reset_email', $email);
-                $this->change_password();
-            }else{
-                $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Reset Password Failed! Wrong Token!</div>');
-                redirect('Login');    
-
-            }
-        }
-        else{
-            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Reset Password Failed! Wrong Email!</div>');
-            redirect('Login'); 
         }
     }
 

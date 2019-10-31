@@ -5,8 +5,8 @@
           <div class="container-login100" >
             <div class="wrap-login100 p-t-190 p-b-30">
               <form class="login100-form validate-form" action="<?php echo base_url('Login') ?>" method="post">
-              <?php echo $this->session->flashdata('message'); ?>
                 <div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
+              <?php echo $this->session->flashdata('message'); ?>
                   <input class="input100" type="text" name="username" id="username" placeholder="Username" value="<?php echo set_value('username') ?>">
                   <span class="focus-input100"></span>
                   <span class="symbol-input100">
@@ -36,7 +36,7 @@
                   </a>
                 </div>
                 <div class="text-center w-full">
-                  <a class="txt1" href="#">
+                  <a class="txt1" href="<?php echo base_url()?>Login/signup">
                     Create new account
                     <i class="fa fa-long-arrow-right"></i>						
                   </a>

@@ -14,8 +14,7 @@ class M_Login extends CI_Model
         $this->db->join('dosen c', 'a.id = c.nidn', 'left');
         $this->db->where('a.status', '1');
         $this->db->where('b.email_mhs',$where);
-        $this->db->or_where('c.email_dosen',$where);
-        $this->db->order_by('c.track_title','asc');         
+        $this->db->or_where('c.email_dosen',$where);         
         $query = $this->db->get(); 
     }
 

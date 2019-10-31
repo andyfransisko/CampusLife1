@@ -10,15 +10,15 @@ class Login extends CI_Controller
         $this->load->model('M_Login');
     }
 
-    private function head(){
+    private function head_open($data){
         $this->load->view('Template/html-open');
         $this->load->view('Template/head-open');
-        $data['title'] = "Login";
         $this->load->view('Template/template-header', $data);
-        $this->load->view('Template/login-css');
+    }
+
+    private function head_close(){
         $this->load->view('Template/head-close');
         $this->load->view('Template/body-open');
-        
     }
 
     private function foot(){
@@ -36,7 +36,10 @@ class Login extends CI_Controller
         
         if($this->form_validation->run() == false){
             $data['nav'] = "Login";
-            $this->head();
+            $data['title'] = "Login";
+            $this->head_open($data);
+            $this->load->view('Template/login-css');
+            $this->head_close();
             $this->load->view('Template/nav', $data );
             $this->load->view("Home/V_login");
             $this->foot();
@@ -90,36 +93,90 @@ class Login extends CI_Controller
         }else
         {
             //jika tidak ada keluar error
-            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Username is not registered!</div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center" role="alert">Username is not registered!</div>');
             redirect('Login');
         }
 
     }
 
     public function signup(){
-        $data['nav'] = "Login";
-        $this->head();
-        $this->load->view('Template/nav', $data );
-        $this->load->view("Home/V_signup");
-        $this->foot();
+        if($this->session->flashdata('tipe')){
+            if($this->session->flashdata('tipe') == "1"){
+                $data['nav'] = "Login";
+                $data['title'] = "Student Sign Up";
+                $this->head_open($data);
+                $this->load->view('Template/signup-css');
+                $this->head_close();
+                $this->load->view('Template/nav', $data );
+                $this->load->view("Home/V_signup_tipe_mhs");
+                $this->foot();
+            }
+            else if($this->session->flashdata('tipe') == "2"){
+                $data['nav'] = "Login";
+                $data['title'] = "Student Sign Up";
+                $this->head_open($data);
+                $this->load->view('Template/signup-css');
+                $this->head_close();
+                $this->load->view('Template/nav', $data );
+                $this->load->view("Home/V_signup_tipe_mhs");
+                $this->foot();
+            }else{
+                $this->load->view('errors/html/error_404');
+            }
+        }
+        else{
+            $data['nav'] = "Login";
+            $data['title'] = "Sign Up";
+            $this->head_open($data);
+            $this->load->view('Template/signup-css');
+            $this->head_close();
+            $this->load->view('Template/nav', $data );
+            $this->load->view("Home/V_signup");
+            $this->foot();
+        }
+        
         
     }
+    
+    public function signup_tipe_mhs(){
+        $this->session->set_flashdata('tipe', '1');
+        redirect('Login/signup');
+    }
 
-    public function signup_mahasiswa(){
+    public function signup_mhs(){
+        $data['nav'] = "Login";
+            $data['title'] = "Student Sign Up";
+            $this->head_open($data);
+            $this->load->view('Template/signup-css');
+            $this->head_close();
+            $this->load->view('Template/nav', $data );
+            
+        if($this->session->flashdata('tipe_mhs') == "1"){
+            $this->load->view("Home/V_signup_mhs_1");
+        }
+        else{
+            $this->load->view("Home/V_signup_mhs_2");
+        }
+        $this->foot();
+    }
+
+
+    public function signup_mahasiswa_cek(){
         $_tipe_akun = "1";
         
         $this->form_validation->set_rules('nim', 'NIM', 'required|trim|is_unique[mahasiswa.nim]');
-        $this->form_validation->set_rules('nama_mhs', 'Nama', 'required|trim');
-        $this->form_validation->set_rules('jenis_kelamin', 'Jenis Kelamin', 'required|trim');
-        $this->form_validation->set_rules('id_jurusan', 'Nama', 'required|trim');
-        $this->form_validation->set_rules('email_mhs', 'Nama', 'r   equired|trim|valid_email');
-        $this->form_validation->set_rules('tgl_lahir', 'Nama', 'required|trim');
-        $this->form_validation->set_rules('tmpt_lahir', 'Nama', 'required|trim');
-        $this->form_validation->set_rules('alamat_rumah', 'Nama', 'required|trim');
-        $this->form_validation->set_rules('no_telp', 'Nama', 'required|trim|numeric');
-        $this->form_validation->set_rules('agama', 'Nama', 'required|trim');
-        $this->form_validation->set_rules('password', 'Nama', 'required|trim|min_length[6]|matches[password2]');
-        $this->form_validation->set_rules('password2', 'Nama', 'required|trim|min_length[6]|matches[password]');
+        $this->form_validation->set_rules('nama_mhs', 'Name', 'required|trim');
+        $this->form_validation->set_rules('jenis_kelamin', 'Sex', 'required|trim');
+        $this->form_validation->set_rules('id_jurusan', 'Major Name', 'required|trim');
+        $this->form_validation->set_rules('universitas', 'University Name', 'required|trim');
+        $this->form_validation->set_rules('email_mhs', 'Email', 'required|trim|valid_email');
+        $this->form_validation->set_rules('tmpt_lahir', 'Place of Birth', 'required|trim');
+        $this->form_validation->set_rules('tgl_lahir', 'Date of Birth', 'required|trim');
+        $this->form_validation->set_rules('alamat_rumah', 'Address', 'required|trim');
+        $this->form_validation->set_rules('no_telp', 'Telephone Number', 'required|trim|numeric');
+        $this->form_validation->set_rules('agama', 'Religion', 'required|trim|');
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]|matches[password2]');
+        $this->form_validation->set_rules('password2', 'Confirm Password', 'required|trim|min_length[6]|matches[password]');
         if($this->form_validation->run() == false){
             
             $this->signup();
@@ -177,7 +234,7 @@ class Login extends CI_Controller
         if($this->form_validation->run() == false){
             
             $data['nav'] = "Login";
-            $this->head();
+            $this->head_open($data);
             $this->load->view('Template/nav', $data );
             $this->load->view("Home/V_signup");
             $this->foot();
@@ -258,7 +315,7 @@ class Login extends CI_Controller
         $email = $this->input->get('email');
         $token = $this->input->get('token');
 
-        $user = $this->M_Login->get_user_record_by_email($email])->row_array();
+        $user = $this->M_Login->get_user_record_by_email($email)->row_array();
 
         if($user){
             $user_token = $this->M_Login->get_record('user_token', ['token' => $token])->row_array();
@@ -294,8 +351,10 @@ class Login extends CI_Controller
         $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
         
         if($this->form_validation->run() == false){
-            $data['nav'] = "Forgot Password";
-            $this->head();
+            $data['nav'] = "Login";
+            $data['title'] = "Forgot Password";
+            $this->head_open($data);
+            $this->head_close();
             $this->load->view('Template/nav', $data );
             $this->load->view("Home/V_forgot_password");
             $this->foot();
@@ -317,9 +376,9 @@ class Login extends CI_Controller
 
                 $this->M_Login->insert_record('user_token', $user_token);
                 $this->M_Login->update_record('user', $token, ['username' => $id]);
-                $this->_send_email($token, 'forgot')
+                $this->_send_email($token, 'forgot');
                 $this->session->set_flashdata('message', '<div class="alert alert-success text-center p-t-25 p-b-50" role="alert">Please check your email to reset your password</div>');
-            redirect('Login');
+                redirect('Login');
             }else{
                 $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Email is not registered or activated!</div>');
                 redirect('Login/forgot_password');
@@ -336,8 +395,10 @@ class Login extends CI_Controller
         $this->form_validation->set_rules('password2', 'Repeat Password', 'required|trim|min_length[6]|matches[password]');
         
         if($this->form_validation->run() == false){
-            $data['nav'] = "Change Password";
-            $this->head();
+            $data['nav'] = "Login";
+            $data['title'] = "Login";
+            $this->head_open($data);
+            $this->head_close();
             $this->load->view('Template/nav', $data );
             $this->load->view("Home/V_change_password");
             $this->foot();

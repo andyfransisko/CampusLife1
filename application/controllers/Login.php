@@ -187,11 +187,13 @@ class Login extends CI_Controller
             $this->form_validation->set_rules('agama', 'Religion', 'required|trim|');
             $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]|matches[password2]');
             $this->form_validation->set_rules('password2', 'Confirm Password', 'required|trim|min_length[6]|matches[password]');
+            
             if($this->form_validation->run() == false){
                 
                 $this->signup_mhs();
             }
-            else{
+            else
+            {
                 $email = $this->input->post('email_mhs', true);
 
                 $data_mhs = array(
@@ -200,7 +202,7 @@ class Login extends CI_Controller
                     'jenis_kelamin' => htmlspecialchars($this->input->post('jk')), 
                     'id_jurusan' => htmlspecialchars($this->input->post('id_jurusan')), 
                     'email_mhs' => htmlspecialchars($email), 
-                    'tgl_lahir' => date("Y-m-d H:i:S", strtotime(htmlspecialchars($this->input->post('tgl_lahir')))), 
+                    'tgl_lahir' => date_format(strtotime(htmlspecialchars($this->input->post('tgl_lahir'))), "Y-m-d"), 
                     'tmpt_lahir' => htmlspecialchars($this->input->post('tmpt_lahir')), 
                     'alamat_rumah' => htmlspecialchars($this->input->post('alamat_rumah')), 
                     'no_telp' => htmlspecialchars($this->input->post('no_telp')), 
@@ -216,112 +218,29 @@ class Login extends CI_Controller
                     'status' => '0'
                 );
 
-            //token
-            $token = base64_encode(random_bytes(32));
-            $user_token = array(
-                'id'    => $this->input->post('nim'),
-                'email' => $email,
-                'token' => $token
-            );
+                //token
+                $token = base64_encode(random_bytes(32));
+                $user_token = array(
+                    'id'    => $this->input->post('nim'),
+                    'email' => $email,
+                    'token' => $token
+                );
 
 
-            $this->M_Login->insert_record('mahasiswa', $data_mhs);
-            $this->M_Login->insert_record('user', $data_user);
-            $this->M_Login->insert_record('user_token', $user_token);
+                $this->M_Login->insert_record('mahasiswa', $data_mhs);
+                $this->M_Login->insert_record('user', $data_user);
+                $this->M_Login->insert_record('user_token', $user_token);
 
-            $this->_send_email($token, 'verify');
+                $this->_send_email($token, 'verify');
 
-            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Your account has been created! <br> Please check your email to activate your account. </div>');
-            redirect('Login');    
-        }
-        
-        if($this->form_validation->run() == false){
-            
-            $this->signup_mhs();
-        }
-        else{
-            $email = $this->input->post('email_mhs', true);
-
-            $data_mhs = array(
-                'nim' => htmlspecialchars($this->input->post('nim')), 
-                'nama_mhs' => htmlspecialchars($this->input->post('nama_mhs')), 
-                'jenis_kelamin' => htmlspecialchars($this->input->post('jk')), 
-                'id_jurusan' => htmlspecialchars($this->input->post('id_jurusan')), 
-                'email_mhs' => htmlspecialchars($email), 
-                'tgl_lahir' => htmlspecialchars($this->input->post('tgl_lahir')), 
-                'tmpt_lahir' => htmlspecialchars($this->input->post('tmpt_lahir')), 
-                'alamat_rumah' => htmlspecialchars($this->input->post('alamat_rumah')), 
-                'no_telp' => htmlspecialchars($this->input->post('no_telp')), 
-                'agama' => htmlspecialchars($this->input->post('agama')) 
-                 
-            );
-
-            $data_user = array(
-                'username' => htmlspecialchars($this->input->post('nim'), true),
-                'password' => password_hash($this->input->post('password')),   
-                'image' => 'default.jpg', 
-                'tipe_akun'=> '1',
-                'status' => '0'
-            );
-
-            //token
-            $token = base64_encode(random_bytes(32));
-            $user_token = array(
-                'id'    => $this->input->post('nim'),
-                'email' => $email,
-                'token' => $token
-            );
-
-
-            $this->M_Login->insert_record('mahasiswa', $data_mhs);
-            $this->M_Login->insert_record('user', $data_user);
-            $this->M_Login->insert_record('user_token', $user_token);
-
-            $this->_send_email($token, 'verify');
-
-            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Your account has been created! <br> Please check your email to activate your account. </div>');
-            redirect('Login');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Your account has been created! <br> Please check your email to activate your account. </div>');
+                redirect('Login');    
+            }
+           
         }
     }
-
-    function signup_dosen(){
-        $_tipe_akun = "2";
-        
-        $this->form_validation->set_rules('nim', 'NIM', 'required|trim');
-        $this->form_validation->set_rules('nama_mhs', 'Nama', 'required|trim');
-        if($this->form_validation->run() == false){
-            
-            $data['nav'] = "Login";
-            $this->head_open($data);
-            $this->load->view('Template/nav', $data );
-            $this->load->view("Home/V_signup");
-            $this->foot();
-        }
-        else{
-            $data = array(
-                'nim' => htmlspecialchars($this->input->post('nim')), 
-                'nama_mhs' => htmlspecialchars($this->input->post('nama')), 
-                'jenis_kelamin' => htmlspecialchars($this->input->post('jk')), 
-                'id_jurusan' => htmlspecialchars($this->input->post('id_jurusan')), 
-                'email_mhs' => htmlspecialchars($this->input->post('email')), 
-                'tgl_lahir' => htmlspecialchars($this->input->post('tgl_lahir')), 
-                'tmpt_lahir' => htmlspecialchars($this->input->post('tmpt_lahir')), 
-                'alamat_rumah' => htmlspecialchars($this->input->post('alamat_rumah')), 
-                'no_telp' => htmlspecialchars($this->input->post('no_telp')), 
-                'agama' => htmlspecialchars($this->input->post('agama')), 
-            );
-
-            $data_user = array(
-                'username' => htmlspecialchars($this->input->post('nim')), 
-                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
-                'image' => 'default.jpg', 
-                'tipe_akun'=> '2',
-                'status' => '0'
-            );
-        }
-    }
-
-    private function _send_email($token, $type){
+    
+    function send_email($token, $type){
         $config = [
             'protocol' => 'smtp',
             'smtp_host' => 'ssl://smtp.googlemail.com',
@@ -480,8 +399,5 @@ class Login extends CI_Controller
         redirect('Login');
     }
 
-
-   
 }
-
 ?>

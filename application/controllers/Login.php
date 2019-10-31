@@ -113,7 +113,7 @@ class Login extends CI_Controller
             }
             else if($this->session->flashdata('tipe') == "2"){
                 $data['nav'] = "Login";
-                $data['title'] = "Student Sign Up";
+                $data['title'] = "Lecturer Sign Up";
                 $this->head_open($data);
                 $this->load->view('Template/signup-css');
                 $this->head_close();
@@ -139,11 +139,18 @@ class Login extends CI_Controller
     }
     
     public function signup_tipe_mhs(){
+        if($this->session->flashdata('tipe')){
+            $this->session->set_flashdata('tipe_mhs', '1');    
+            redirect('Login/signup_mhs');
+        }
+        
+        
         $this->session->set_flashdata('tipe', '1');
         redirect('Login/signup');
+        
     }
 
-    public function signup_mhs(){
+    public function signup_mhs($tipe){
         $data['nav'] = "Login";
             $data['title'] = "Student Sign Up";
             $this->head_open($data);
@@ -151,35 +158,86 @@ class Login extends CI_Controller
             $this->head_close();
             $this->load->view('Template/nav', $data );
             
-        if($this->session->flashdata('tipe_mhs') == "1"){
+        if($tipe == "1"){
             $this->load->view("Home/V_signup_mhs_1");
         }
-        else{
+        else if($tipe == "2"){
             $this->load->view("Home/V_signup_mhs_2");
+        }
+        else{
+            $this->load->view('errors/html/error_404');
         }
         $this->foot();
     }
 
 
-    public function signup_mahasiswa_cek(){
-        $_tipe_akun = "1";
+    public function signup_mhs_cek($data){
         
-        $this->form_validation->set_rules('nim', 'NIM', 'required|trim|is_unique[mahasiswa.nim]');
-        $this->form_validation->set_rules('nama_mhs', 'Name', 'required|trim');
-        $this->form_validation->set_rules('jenis_kelamin', 'Sex', 'required|trim');
-        $this->form_validation->set_rules('id_jurusan', 'Major Name', 'required|trim');
-        $this->form_validation->set_rules('universitas', 'University Name', 'required|trim');
-        $this->form_validation->set_rules('email_mhs', 'Email', 'required|trim|valid_email');
-        $this->form_validation->set_rules('tmpt_lahir', 'Place of Birth', 'required|trim');
-        $this->form_validation->set_rules('tgl_lahir', 'Date of Birth', 'required|trim');
-        $this->form_validation->set_rules('alamat_rumah', 'Address', 'required|trim');
-        $this->form_validation->set_rules('no_telp', 'Telephone Number', 'required|trim|numeric');
-        $this->form_validation->set_rules('agama', 'Religion', 'required|trim|');
-        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]|matches[password2]');
-        $this->form_validation->set_rules('password2', 'Confirm Password', 'required|trim|min_length[6]|matches[password]');
+        if($data == 1){
+            $this->form_validation->set_rules('nim', 'NIM', 'required|trim|is_unique[mahasiswa.nim]');
+            $this->form_validation->set_rules('nama_mhs', 'Name', 'required|trim');
+            $this->form_validation->set_rules('jenis_kelamin', 'Sex', 'required|trim');
+            $this->form_validation->set_rules('jurusan', 'Major Name', 'required|trim');
+            $this->form_validation->set_rules('universitas', 'University Name', 'required|trim');
+            $this->form_validation->set_rules('email_mhs', 'Email', 'required|trim|valid_email');
+            $this->form_validation->set_rules('tmpt_lahir', 'Place of Birth', 'required|trim');
+            $this->form_validation->set_rules('tgl_lahir', 'Date of Birth', 'required|trim');
+            $this->form_validation->set_rules('alamat_rumah', 'Address', 'required|trim');
+            $this->form_validation->set_rules('no_telp', 'Telephone Number', 'required|trim|numeric');
+            $this->form_validation->set_rules('agama', 'Religion', 'required|trim|');
+            $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]|matches[password2]');
+            $this->form_validation->set_rules('password2', 'Confirm Password', 'required|trim|min_length[6]|matches[password]');
+            if($this->form_validation->run() == false){
+                
+                $this->signup_mhs();
+            }
+            else{
+                $email = $this->input->post('email_mhs', true);
+
+                $data_mhs = array(
+                    'nim' => htmlspecialchars($this->input->post('nim')), 
+                    'nama_mhs' => htmlspecialchars($this->input->post('nama_mhs')), 
+                    'jenis_kelamin' => htmlspecialchars($this->input->post('jk')), 
+                    'id_jurusan' => htmlspecialchars($this->input->post('id_jurusan')), 
+                    'email_mhs' => htmlspecialchars($email), 
+                    'tgl_lahir' => date("Y-m-d H:i:S", strtotime(htmlspecialchars($this->input->post('tgl_lahir')))), 
+                    'tmpt_lahir' => htmlspecialchars($this->input->post('tmpt_lahir')), 
+                    'alamat_rumah' => htmlspecialchars($this->input->post('alamat_rumah')), 
+                    'no_telp' => htmlspecialchars($this->input->post('no_telp')), 
+                    'agama' => htmlspecialchars($this->input->post('agama')) 
+                    
+                );
+
+                $data_user = array(
+                    'username' => htmlspecialchars($this->input->post('nim'), true),
+                    'password' => password_hash($this->input->post('password')),   
+                    'image' => 'default.jpg', 
+                    'tipe_akun'=> '1',
+                    'status' => '0'
+                );
+
+            //token
+            $token = base64_encode(random_bytes(32));
+            $user_token = array(
+                'id'    => $this->input->post('nim'),
+                'email' => $email,
+                'token' => $token
+            );
+
+
+            $this->M_Login->insert_record('mahasiswa', $data_mhs);
+            $this->M_Login->insert_record('user', $data_user);
+            $this->M_Login->insert_record('user_token', $user_token);
+
+            $this->_send_email($token, 'verify');
+
+            $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Your account has been created! <br> Please check your email to activate your account. </div>');
+            redirect('Login');    
+        }
+        
         if($this->form_validation->run() == false){
             
-            $this->signup();
+            $this->signup_mhs();
         }
         else{
             $email = $this->input->post('email_mhs', true);

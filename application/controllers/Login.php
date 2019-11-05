@@ -22,7 +22,7 @@ class Login extends CI_Controller
     }
 
     private function foot(){
-        $this->load->view('Template/preloader');
+        //$this->load->view('Template/preloader');
         $this->load->view('Template/template-footer');
         $this->load->view('Template/body-close');
         $this->load->view('Template/html-close');
@@ -171,49 +171,48 @@ class Login extends CI_Controller
     }
 
 
-    public function signup_mhs_cek($data){
+    public function signup_mhs_cek(){
         
-        if($data == 1){
             $this->form_validation->set_rules('nim', 'NIM', 'required|trim|is_unique[mahasiswa.nim]');
             $this->form_validation->set_rules('nama_mhs', 'Name', 'required|trim');
             $this->form_validation->set_rules('jenis_kelamin', 'Sex', 'required|trim');
             $this->form_validation->set_rules('jurusan', 'Major Name', 'required|trim');
             $this->form_validation->set_rules('universitas', 'University Name', 'required|trim');
-            $this->form_validation->set_rules('email_mhs', 'Email', 'required|trim|valid_email');
+            $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
             $this->form_validation->set_rules('tmpt_lahir', 'Place of Birth', 'required|trim');
             $this->form_validation->set_rules('tgl_lahir', 'Date of Birth', 'required|trim');
             $this->form_validation->set_rules('alamat_rumah', 'Address', 'required|trim');
             $this->form_validation->set_rules('no_telp', 'Telephone Number', 'required|trim|numeric');
-            $this->form_validation->set_rules('agama', 'Religion', 'required|trim|');
+            $this->form_validation->set_rules('agama', 'Religion', 'required|trim');
             $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]|matches[password2]');
             $this->form_validation->set_rules('password2', 'Confirm Password', 'required|trim|min_length[6]|matches[password]');
-            
+
             if($this->form_validation->run() == false){
                 
-                $this->signup_mhs();
+               echo validation_errors('<div class="error">', '</div>');;
+                //redirect('Login/signup_mhs/1');
             }
             else
             {
-                $email = $this->input->post('email_mhs', true);
+                $email = $this->input->post('email', true);
 
                 $data_mhs = array(
                     'nim' => htmlspecialchars($this->input->post('nim')), 
                     'nama_mhs' => htmlspecialchars($this->input->post('nama_mhs')), 
-                    'jenis_kelamin' => htmlspecialchars($this->input->post('jk')), 
+                    'jenis_kelamin' => htmlspecialchars($this->input->post('jenis_kelamin')), 
                     'id_jurusan' => htmlspecialchars($this->input->post('id_jurusan')), 
                     'email_mhs' => htmlspecialchars($email), 
-                    'tgl_lahir' => date_format(strtotime(htmlspecialchars($this->input->post('tgl_lahir'))), "Y-m-d"), 
+                    'tgl_lahir' => date('Y-m-d', strtotime(htmlspecialchars($this->input->post('tgl_lahir')))),
                     'tmpt_lahir' => htmlspecialchars($this->input->post('tmpt_lahir')), 
                     'alamat_rumah' => htmlspecialchars($this->input->post('alamat_rumah')), 
                     'no_telp' => htmlspecialchars($this->input->post('no_telp')), 
                     'agama' => htmlspecialchars($this->input->post('agama')) 
-                    
                 );
 
                 $data_user = array(
                     'username' => htmlspecialchars($this->input->post('nim'), true),
-                    'password' => password_hash($this->input->post('password')),   
-                    'image' => 'default.jpg', 
+                    'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),   
+                    'images' => 'default.jpg', 
                     'tipe_akun'=> '1',
                     'status' => '0'
                 );
@@ -223,41 +222,70 @@ class Login extends CI_Controller
                 $user_token = array(
                     'id'    => $this->input->post('nim'),
                     'email' => $email,
-                    'token' => $token
+                    'token' => $token,
                 );
 
+                $this->load->library('email');  
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'ssl://smtp.gmail.com';
+        $config['smtp_port'] = 465;
+        $config['smtp_timeout'] = 60;
+        $config['smtp_user'] = 'campuslife.cs@gmail.com';
+        $config['smtp_pass'] = 'campus123456';
+        $config['charset'] = 'utf-8';
+        $config['mailtype'] = 'html';
+        $config['newline'] = "\r\n";
+        
+        $this->email->initialize($config);
+        $this->email->set_mailtype("html");
+        $this->email->from('campuslife@gmail.com', 'Campus Life');
+        $this->email->to('jayanagara.joshua@gmail.com');
+        $this->email->subject('tes');
+        $this->email->message('test');
+        
 
-                $this->M_Login->insert_record('mahasiswa', $data_mhs);
-                $this->M_Login->insert_record('user', $data_user);
-                $this->M_Login->insert_record('user_token', $user_token);
+        if($this->email->send()){
+            return true;
+        }
+        else{
+            echo $this->email->print_debugger();
+            die;
+        }
+        
+                // $this->M_Login->insert_record('mahasiswa', $data_mhs);
+                // $this->M_Login->insert_record('user', $data_user);
+                // $this->M_Login->insert_record('user_token', $user_token);
 
-                $this->_send_email($token, 'verify');
+               // $this->_send_email($token, 'verify');
 
                 $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Your account has been created! <br> Please check your email to activate your account. </div>');
                 redirect('Login');    
             }
            
-        }
+        
     }
     
-    function send_email($token, $type){
+    private function _send_email($token, $type){
+        
+        $this->load->library('email');  
         $config = [
             'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.googlemail.com',
-            'smtp_user' => 'campuslife@gmail.com',
-            'smtp_pass' => '123456',
-            'smtp_port' => '465',
+            'smtp_host' => 'smtp.gmail.com',
+            'smtp_user' => 'campuslife.cs@gmail.com',
+            'smtp_pass' => 'campus123456',
+            'smtp_port' => 465,
+            'smtp_timeout' => 60,
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'newline' => "\r\n",
         ];
-
-        $this->load->initialize($config);
+        
+        $this->email->initialize($config);
 
         $this->email->from('campuslife@gmail.com', 'Campus Life');
-        $this->email->to($this->input->post('email'));
+        $this->email->to('jayanagara.joshua@gmail.com');
         
-        if($type == "verify"){
+        /*if($type == "verify"){
             $this->email->subject('Account Verification');
             $message = 
                 "Hello". $this->input->post('nama') .",<br>
@@ -275,7 +303,8 @@ class Login extends CI_Controller
                 <br>
                 Please login using the new password, then change the password to your liking";
             $this->email->message($message);
-        }
+        }*/
+        $this->email->message('test');
         
 
         if($this->email->send()){

@@ -2,17 +2,17 @@
       <div class="overlay"></div>
       <div style="position:relative;padding-top: 10%;padding-bottom: 10%;">
         <div class="form-style-5 container">
-            <form class="" action="<?php echo base_url() ?>Login/signup_mhs_cek/1" style="font-family: 'Nunito', sans-serif;">
+            <form class="form-validation" action="<?php echo base_url() ?>Login/signup_mhs_cek" style="font-family: 'Nunito', sans-serif;" method="post">
                 <?php echo $this->session->flashdata('message'); ?>
                 <fieldset>
                     <input type="text" name="nim" placeholder="NIM" value="<?php echo set_value('nim'); ?>">
-                    <?php echo form_error('nim', '<small class="text-danger pl-3">', '</small>') ?>
+                    <?php echo form_error('nim', '<small class="text-danger">', '</small>') ?>
                     
-                    <input type="text" name="nama" placeholder="Name" value="<?php echo set_value('nama'); ?>">
-                    <?php echo form_error('nama', '<small class="text-danger pl-3">', '</small>') ?>
+                    <input type="text" name="nama_mhs" placeholder="Name" value="<?php echo set_value('nama'); ?>">
+                    <?php echo form_error('nama_mhs', '<small class="text-danger pl-3">', '</small>') ?>
                     
-                    <input type="text" name="username" placeholder="Username" value="<?php echo set_value('username'); ?>">
-                    <?php echo form_error('password', '<small class="text-danger pl-3">', '</small>') ?>
+                    <input type="text" name="email" placeholder="Email" value="<?php echo set_value('email'); ?>">
+                    <?php echo form_error('email', '<small class="text-danger pl-3">', '</small>') ?>
                     
                     <input type="password" name="password" placeholder="Password" value="<?php echo set_value('password'); ?>">
                     <?php echo form_error('password', '<small class="text-danger pl-3">', '</small>') ?>
@@ -29,10 +29,11 @@
                     
                     <input type="text" name="jurusan" placeholder="Major Name" value="<?php echo set_value('tmpt_lahir'); ?>">
                     <?php echo form_error('nama', '<small class="text-danger pl-3">', '</small>') ?>      
+                    
                     <input type="text" name="universitas" placeholder="University Name" value="<?php echo set_value('universitas'); ?>">
                     <?php echo form_error('universitas', '<small class="text-danger pl-3">', '</small>') ?>
 
-                    <input type="text" name="address" placeholder="Address" value="<?php echo set_value('no_telp'); ?>">
+                    <input type="text" name="alamat_rumah" placeholder="Address" value="<?php echo set_value('no_telp'); ?>">
                     <?php echo form_error('address', '<small class="text-danger pl-3">', '</small>') ?>
                     
                     <input type="text" name="tmpt_lahir" placeholder="Place of Birth" value="<?php echo set_value('tmpt_lahir'); ?>">

@@ -4,6 +4,7 @@ class Schedule extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        $this->load->model('M_Schedule');
 
     }
 
@@ -13,7 +14,7 @@ class Schedule extends CI_Controller
         $data['title'] = "Schedule";
         $this->load->view('Template/template-header', $data);
         //$this->load->view('Template/schedule-css');
-        $this->load->view('Template/timeline-css');
+        //$this->load->view('Template/timeline-css');
         $this->load->view('Template/new');
         $this->load->view('Template/head-close');
         $this->load->view('Template/body-open');
@@ -24,7 +25,7 @@ class Schedule extends CI_Controller
         $this->load->view('Template/preloader');
         $this->load->view('Template/footer');
         $this->load->view('Template/template-footer');
-        //$this->load->view('Schedule/calendar-script');
+        $this->load->view('Schedule/calendar-script');
         $this->load->view('Template/body-close');
         $this->load->view('Template/html-close');
         
@@ -33,12 +34,12 @@ class Schedule extends CI_Controller
     public function index()
     {
         $data['nav'] = "Schedule";
+        $data['jadwal'] = $this->M_Schedule->get_jadwal(1, date('Y'), 'ganjil')->result();
         $this->head();
         $this->load->view('Template/nav', $data );
-        $this->load->view("Schedule/V_schedule");
+        $this->load->view("Schedule/V_schedule", $data);
         $this->foot();
 
-        
     }
 
 

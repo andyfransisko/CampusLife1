@@ -25,7 +25,7 @@ class Schedule extends CI_Controller
         $this->load->view('Template/preloader');
         $this->load->view('Template/footer');
         $this->load->view('Template/template-footer');
-        $this->load->view('Schedule/calendar-script');
+        //$this->load->view('Schedule/calendar-script');
         $this->load->view('Template/body-close');
         $this->load->view('Template/html-close');
         
@@ -34,7 +34,7 @@ class Schedule extends CI_Controller
     public function index()
     {
         $data['nav'] = "Schedule";
-        $data['jadwal'] = $this->M_Schedule->get_jadwal(1, date('Y'), 'ganjil')->result();
+        $data['jadwal'] = $this->M_Schedule->get_jadwal(1, 2019, 'ganjil')->result();
         $this->head();
         $this->load->view('Template/nav', $data );
         $this->load->view("Schedule/V_schedule", $data);

@@ -294,38 +294,35 @@ defaultEvents(today, 'YEAH!','Today is your day','important');
 defaultEvents('2019-12-25', 'MERRY CHRISTMAS','A lot of gift!!!!','festivity');
 defaultEvents('2019-03-03', "LUCA'S BIRTHDAY",'Another gifts...?','birthday');
 defaultEvents('2019-03-03', "MY LADY'S BIRTHDAY",'A lot of money to spent!!!!','birthday');
-defaultEvents('2019-03-04', "MY LADY'S BIRTHDAY",'A lot of money to spent!!!!','birthday');
+defaultEvents('2019-11-04', "MY LADY'S BIRTHDAY",'A lot of money to spent!!!!','birthday');
 
 <?php 
-  $simpanTgl = date('Y-m-d');
-  //$tglAkhir = date_create($simpanTgl.getFullYear().'-12-31');
-  $dow   = 'saturday';
-    $step  = 1;
-    $unit  = 'W';
+  
     
-    $start = new DateTime('2019-11-11');
-    $end   = new DateTime('2019-12-31');
+    $start = new DateTime('2019-08-19');
+    $end   = new DateTime('2019-12-21');
     
     //$start->modify($dow); // Move to first occurence
     //$end->add(new DateInterval('2019-12-31')); // Move to 1 year from start
     
-    $interval = new DateInterval("P{$step}{$unit}");
+    $interval = new DateInterval("P1D");
     $period   = new DatePeriod($start, $interval, $end);
+    
   
-  
-    foreach ($period as $date) {
-      $asd =  $date->format('Y-m-d');
+    foreach ($period as $date) {  
+      $startDay = date_format($date, 'N');
+      $hari  = $date->format('Y-m-d');
+      foreach($jadwal as $a){
+          if($startDay == $a->hari){
+
+          
     ?>
     //defaultEvents(<?php //echo $date->format('Y-m-d');?>,'KULIAH', $a->nama_mata_kuliah, 'Kuliah jam <?php //echo $a->jam_mulai."-" ?>')
-    defaultEvents(<?php echo $asd ?>, 'YAY', 'TEST','birthday');
-  
+    defaultEvents('<?php echo $hari ?>', 'KULIAH', '<?php echo $a->nama_mata_kuliah?> <br> <?php echo $a->detail_ruangan?> <br> <?php echo $a->jam_mulai. "-" .$a->jam_selesai?>','birthday');
 
-
-
-
-<?php // tutup for loop tanggal
-  //tutup if
-}// tutup foreach 
+<?php }// tutup if
+  }//tutup foreach jadwal
+}// tutup foreach  period
 ?>
 // ------ functions control -------
 

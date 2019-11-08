@@ -294,32 +294,30 @@ defaultEvents(today, 'YEAH!','Today is your day','important');
 defaultEvents('2019-12-25', 'MERRY CHRISTMAS','A lot of gift!!!!','festivity');
 defaultEvents('2019-03-03', "LUCA'S BIRTHDAY",'Another gifts...?','birthday');
 defaultEvents('2019-03-03', "MY LADY'S BIRTHDAY",'A lot of money to spent!!!!','birthday');
+defaultEvents('2019-03-04', "MY LADY'S BIRTHDAY",'A lot of money to spent!!!!','birthday');
 
 <?php 
   $simpanTgl = date('Y-m-d');
-  $tglAkhir = date_create($simpanTgl.getFullYear().'-12-31');
-  foreach($jadwal as $a){ 
-    $dow   = 'saturday';
+  //$tglAkhir = date_create($simpanTgl.getFullYear().'-12-31');
+  $dow   = 'saturday';
     $step  = 1;
     $unit  = 'W';
     
-    $start = new Date();
-    $end   = clone $start;
+    $start = new DateTime('2019-11-11');
+    $end   = new DateTime('2019-12-31');
     
-    $start->modify($dow); // Move to first occurence
-    $end->add(new DateInterval('2019-11-31')); // Move to 1 year from start
+    //$start->modify($dow); // Move to first occurence
+    //$end->add(new DateInterval('2019-12-31')); // Move to 1 year from start
     
     $interval = new DateInterval("P{$step}{$unit}");
     $period   = new DatePeriod($start, $interval, $end);
-    
+  
+  
     foreach ($period as $date) {
-        echo $date->format('D, d M Y'), PHP_EOL;
-    }  
-    
-    
+      $asd =  $date->format('Y-m-d');
     ?>
-    defaultEvents(,'KULIAH', $a->nama_mata_kuliah, 'Kuliah jam <?php echo $a->jam_mulai."-" ?>')
-
+    //defaultEvents(<?php //echo $date->format('Y-m-d');?>,'KULIAH', $a->nama_mata_kuliah, 'Kuliah jam <?php //echo $a->jam_mulai."-" ?>')
+    defaultEvents(<?php echo $asd ?>, 'YAY', 'TEST','birthday');
   
 
 

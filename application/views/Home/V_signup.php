@@ -7,7 +7,7 @@
                     <section class="cards" style="position: absolute;top:25%;margin-left: 25%;margin-right: 25%;">
                             
                         <article class="card card--1">
-                            <a data-href="<?php echo base_url() ?>Login/signup_tipe_mhs">
+                            <a data-href="<?php echo base_url() ?>Login/signup_mhs">
                                 <div class="card__img"></div>
                                     <div class="card_link">
                                         <div class="card__img--hover"></div>

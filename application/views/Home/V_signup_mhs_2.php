@@ -4,24 +4,47 @@
         <div class="form-style-5 container">
             <form class="" action="<?php echo base_url() ?>Login/signup_mhs_cek" style="font-family: 'Nunito', sans-serif;">
                 <fieldset>
-                    <input type="text" name="nim" placeholder="NIM" value="<?php echo set_value('nim'); ?>">
-                    <input type="text" name="nama" placeholder="Name" value="<?php echo set_value('nama'); ?>">
-                    <input type="text" name="username" placeholder="Username" value="<?php echo set_value('username'); ?>">
+                <input type="text" name="nim" placeholder="NIM" value="<?php echo set_value('nim'); ?>">
+                    <?php echo form_error('nim', '<small class="text-danger">', '</small>') ?>
+                    
+                    <input type="text" name="nama_mhs" placeholder="Name" value="<?php echo set_value('nama'); ?>">
+                    <?php echo form_error('nama_mhs', '<small class="text-danger pl-3">', '</small>') ?>
+                    
+                    <input type="text" name="email" placeholder="Email" value="<?php echo set_value('email'); ?>">
+                    <?php echo form_error('email', '<small class="text-danger pl-3">', '</small>') ?>
+                    
                     <input type="password" name="password" placeholder="Password" value="<?php echo set_value('password'); ?>">
+                    <?php echo form_error('password', '<small class="text-danger pl-3">', '</small>') ?>
+                    
                     <input type="password" name="password2" placeholder="Confirm Password" value="<?php echo set_value('password2'); ?>">
+                    <?php echo form_error('password2', '<small class="text-danger pl-3">', '</small>') ?>
+                    
                     <select id="jenis_kelamin" name="jenis_kelamin">
                         <option value="">Choose Gender</option>
                         <option value="1">Male</option>
                         <option value="2">Female</option>
-                    </select>      
+                    </select>
+                    <?php echo form_error('jenis_kelamin', '<small class="text-danger pl-3">', '</small>') ?>
+
                     <select id="jurusan" name="jurusan">
-                    <!--nanti ambil database-->
-                        <option value="football">Ambil Database</option>
-                        <option value="swimming">Ambil Database</option>
-                    </select>      
-                    <input type="text" name="tmpt_lahir" placeholder="Tempat Lahir" value="<?php echo set_value('tmpt_lahir'); ?>">
-                    <input type="date" name="tgl_lahir" placeholder="Tanggal Lahir" value="<?php echo set_value('tgl_lahir'); ?>">
-                    <input type="number" name="no_telp" placeholder="Nomor Telepon" value="<?php echo set_value('no_telp'); ?>">
+                    <!--ambil database-->
+                        <?php foreach($jurusan as $a) {?>
+                            <option value="<?php echo $a->id_jurusan ?>"><?php echo $a->nama_jurusan ?></option>
+                        <?php } ?>
+                    </select>
+
+                    <input type="text" name="alamat_rumah" placeholder="Address" value="<?php echo set_value('no_telp'); ?>">
+                    <?php echo form_error('address', '<small class="text-danger pl-3">', '</small>') ?>
+                    
+                    <input type="text" name="tmpt_lahir" placeholder="Place of Birth" value="<?php echo set_value('tmpt_lahir'); ?>">
+                    <?php echo form_error('nama', '<small class="text-danger pl-3">', '</small>') ?>
+                    
+                    <input type="date" name="tgl_lahir" placeholder="Date of Birth" value="<?php echo set_value('tgl_lahir'); ?>">
+                    <?php echo form_error('tgl_lahir', '<small class="text-danger pl-3">', '</small>') ?>
+                    
+                    <input type="number" name="no_telp" placeholder="Telephone Number" value="<?php echo set_value('no_telp'); ?>">
+                    <?php echo form_error('no_telp', '<small class="text-danger pl-3">', '</small>') ?>
+                    
                     <select id="agama" name="agama">
                         <option value="">Pilih Agama</option>
                         <option value="1">Kristen</option>
@@ -31,6 +54,7 @@
                         <option value="5">Hindu</option>
                         <option value="6">Kong Hu Cu</option>
                     </select>
+                    <?php echo form_error('agama', '<small class="text-danger pl-3">', '</small>') ?>
                 </fieldset>
                 <input type="submit" value="Sign Up" />
             </form>

@@ -62,10 +62,9 @@ class Login extends CI_Controller
         
         $where = array(
             'username' => $username,
-            'password' => $password
-
         );
 
+        
         $cek_user = $this->M_Login->get_record('user', $where)->row_array();
         
         //cek user ada tidak
@@ -74,10 +73,20 @@ class Login extends CI_Controller
             //cek user uda aktivasi akun belum
             if($cek_user['status'] == 1){
                 if(password_verify($password, $cek_user['password'])){
+                    if($cek_user['tipe_akun'] === 1){
+                        $nama = $cek_user['nama_mhs'];
+                    }
+                    else if($cek_user['tipe_akun'] === 2){
+                        $nama = $cek_user['nama_dosen'];
+                    }
+                    else{
+                        $nama = $cek_user['nama_admin'];
+                    }
+                    
                     $data = array(
                         'username' => $cek_user['username'],
                         'tipe_akun' => $cek_user['tipe_akun'],
-                        'status' => $cek_user['status'],
+                        'nama_user' => $nama
                     );
                     $this->session->set_userdata($data);
                     redirect('User');
@@ -99,16 +108,23 @@ class Login extends CI_Controller
 
     }
 
+    public function signup_mhs(){
+        $this->session->set_flashdata('tipe', "1");
+        redirect('Login/signup');
+    }
+
     public function signup(){
         if($this->session->flashdata('tipe')){
             if($this->session->flashdata('tipe') == "1"){
                 $data['nav'] = "Login";
                 $data['title'] = "Student Sign Up";
+                $this->load->model('M_Major');
+                $data['jurusan'] = $this->M_Major->get_all_record()->result();
                 $this->head_open($data);
                 $this->load->view('Template/signup-css');
                 $this->head_close();
                 $this->load->view('Template/nav', $data );
-                $this->load->view("Home/V_signup_tipe_mhs");
+                $this->load->view("Home/V_signup_mhs_2", $data);
                 $this->foot();
             }
             else if($this->session->flashdata('tipe') == "2"){
@@ -118,7 +134,7 @@ class Login extends CI_Controller
                 $this->load->view('Template/signup-css');
                 $this->head_close();
                 $this->load->view('Template/nav', $data );
-                $this->load->view("Home/V_signup_tipe_mhs");
+                $this->load->view("Home/V_signup_dosen");
                 $this->foot();
             }else{
                 $this->load->view('errors/html/error_404');
@@ -136,38 +152,6 @@ class Login extends CI_Controller
         }
         
         
-    }
-    
-    public function signup_tipe_mhs(){
-        if($this->session->flashdata('tipe')){
-            $this->session->set_flashdata('tipe_mhs', '1');    
-            redirect('Login/signup_mhs');
-        }
-        
-        
-        $this->session->set_flashdata('tipe', '1');
-        redirect('Login/signup');
-        
-    }
-
-    public function signup_mhs($tipe){
-        $data['nav'] = "Login";
-            $data['title'] = "Student Sign Up";
-            $this->head_open($data);
-            $this->load->view('Template/signup-css');
-            $this->head_close();
-            $this->load->view('Template/nav', $data );
-            
-        if($tipe == "1"){
-            $this->load->view("Home/V_signup_mhs_1");
-        }
-        else if($tipe == "2"){
-            $this->load->view("Home/V_signup_mhs_2");
-        }
-        else{
-            $this->load->view('errors/html/error_404');
-        }
-        $this->foot();
     }
 
 
@@ -189,8 +173,8 @@ class Login extends CI_Controller
 
             if($this->form_validation->run() == false){
                 
-               echo validation_errors('<div class="error">', '</div>');;
-                //redirect('Login/signup_mhs/1');
+               
+                redirect('Login/signup');
             }
             else
             {
@@ -217,48 +201,14 @@ class Login extends CI_Controller
                     'status' => '0'
                 );
 
-                //token
-                $token = base64_encode(random_bytes(32));
-                $user_token = array(
-                    'id'    => $this->input->post('nim'),
-                    'email' => $email,
-                    'token' => $token,
-                );
-
-                $this->load->library('email');  
-        $config['protocol'] = 'smtp';
-        $config['smtp_host'] = 'ssl://smtp.gmail.com';
-        $config['smtp_port'] = 465;
-        $config['smtp_timeout'] = 60;
-        $config['smtp_user'] = 'campuslife.cs@gmail.com';
-        $config['smtp_pass'] = 'campus123456';
-        $config['charset'] = 'utf-8';
-        $config['mailtype'] = 'html';
-        $config['newline'] = "\r\n";
-        
-        $this->email->initialize($config);
-        $this->email->set_mailtype("html");
-        $this->email->from('campuslife@gmail.com', 'Campus Life');
-        $this->email->to('jayanagara.joshua@gmail.com');
-        $this->email->subject('tes');
-        $this->email->message('test');
-        
-
-        if($this->email->send()){
-            return true;
-        }
-        else{
-            echo $this->email->print_debugger();
-            die;
-        }
-        
-                // $this->M_Login->insert_record('mahasiswa', $data_mhs);
-                // $this->M_Login->insert_record('user', $data_user);
-                // $this->M_Login->insert_record('user_token', $user_token);
+                
+                
+                 $this->M_Login->insert_record('mahasiswa', $data_mhs);
+                 $this->M_Login->insert_record('user', $data_user);
 
                // $this->_send_email($token, 'verify');
 
-                $this->session->set_flashdata('message', '<div class="alert alert-danger text-center p-t-25 p-b-50" role="alert">Your account has been created! <br> Please check your email to activate your account. </div>');
+                $this->session->set_flashdata('message', '<div class="alert alert-success text-center p-t-25 p-b-50" role="alert">Your account has been created! <br> Please wait until your account verified. </div>');
                 redirect('Login');    
             }
            

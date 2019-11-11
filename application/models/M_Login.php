@@ -7,6 +7,16 @@ class M_Login extends CI_Model
         
     }
 
+    function get_record_name($table, $where){
+        $this->db->select('b.nama_mhs, c.nama_dosen, a.tipe_akun');
+        $this->db->from('user a'); 
+        $this->db->join('mahasiswa b', 'a.username = b.nim', 'left');
+        $this->db->join('dosen c', 'a.username = c.nidn', 'left');
+        $this->db->where('a.status', '1');
+        $this->db->where('a.username', $where);
+        $query = $this->db->get(); 
+    }
+
     function get_user_record_by_email($where){
         $this->db->select('*');
         $this->db->from('user a'); 

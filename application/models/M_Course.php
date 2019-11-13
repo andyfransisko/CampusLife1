@@ -3,6 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Course extends CI_Model{
 
+    function get_all_matkul(){
+        $query=$this->db->get('matakuliah');
+		return $query;
+    }
+    
+    function get_all_matkul_cond($where){
+        $this->db->get_where('matakuliah',$where);
+    }
+    
     function get_matkul($nim, $tahun, $oddeven){
         $query = $this->db->query('SELECT a.nim, a.id_mata_kuliah, d.nama_mata_kuliah, c.tahun, c.jenis_semester
         FROM enroll a 

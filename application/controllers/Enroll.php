@@ -27,10 +27,19 @@ class Enroll extends CI_Controller
     }
 
     public function index(){
-
+        
+        $this->load->model('M_Course');
+        $this->load->model('M_Mahasiswa');
         $data['title'] = "Enroll - Campus Life";
-        $this->load->view('Enroll/tes')
-       
+        $data['matkul'] = $this->M_Course->get_matkul_this_semester(date('Y'))->result();
+        $data['mahasiswa'] = $this->M_Mahasiswa->get_data_mahasiswa()->result();
+        $this->load->view('Enroll/tes', $data);
+        
+    }
+
+    public function send(){
+        $nama = $this->input->post('mahasiswa');
+        $matkul = $this->input->post('matkul');
     }
 
 

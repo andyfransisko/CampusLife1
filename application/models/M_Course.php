@@ -38,6 +38,15 @@ class M_Course extends CI_Model{
 
     }
 
+    function get_matkul_this_semester($year){
+        $query = $this->db->query('SELECT a.id_mata_kuliah, a.nama_mata_kuliah, b.tahun
+        FROM matakuliah a
+        JOIN semester b ON a.id_semester = b.id_semester
+        WHERE b.tahun = '.$year);
+
+        return $query;
+    }
+
     
 
     

@@ -8,11 +8,7 @@
 </head>
 <body>
     <form action="<?php echo base_url() ?>Enroll/send" method="post">
-        <select name="matkul" id="matkul">
-            <?php foreach($matkul as $a){ ?>
-                <option value="<?php echo $a->id_mata_kuliah ?>"><?php echo $a->nama_mata_kuliah?>/<?php echo $a->tahun ?></option>
-            <?php } ?>
-        </select>
+        <input type="text" value="<?php echo $matkul['nama_mata_kuliah']. " - ".$matkul['jenis_semester']?>" readonly>
 
         <button type="submit" name="submit">tes</button>
         <br><br><br>
@@ -29,7 +25,7 @@
             $i = 1;
             foreach($mahasiswa as $b){ ?>
             <tr>
-                <td><input type="checkbox" value="<?php echo $b->nim ?>" name="mahasiswa[]"></td>
+                <td><input type="checkbox" value="<?php echo $b->nim ?>" name="mahasiswa[]" <?php echo ($enrolled['nim'] == $b->nim) ? "checked" : "" ?>></td>
                 <td><?php echo $i?></td>
                 <td><?php echo $b->nim?></td>
                 <td><?php echo $b->nama_mhs?></td>

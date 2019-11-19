@@ -9,7 +9,7 @@ class M_Course extends CI_Model{
     }
     
     function get_all_matkul_cond($where){
-        $this->db->get_where('matakuliah',$where);
+        return $this->db->get_where('matakuliah',$where);
     }
     
     function get_matkul($nim, $tahun, $oddeven){
@@ -32,18 +32,17 @@ class M_Course extends CI_Model{
         JOIN matakuliah d ON a.id_mata_kuliah = d.id_mata_kuliah 
         JOIN dosen e ON b.nidn = e.nidn 
         JOIN ruangan f ON d.id_ruangan = f.id_ruangan
-        WHERE a.id_mata_kuliah = '.$id.'');
+        WHERE a.id_mata_kuliah = '.$id);
 
         return $query;        
 
     }
 
     function get_matkul_this_semester($year){
-        $query = $this->db->query('SELECT a.id_mata_kuliah, a.nama_mata_kuliah, b.tahun
+        $query = $this->db->query('SELECT a.id_mata_kuliah, a.nama_mata_kuliah, b.tahun, b.jenis_semester
         FROM matakuliah a
         JOIN semester b ON a.id_semester = b.id_semester
         WHERE b.tahun = '.$year);
-
         return $query;
     }
 

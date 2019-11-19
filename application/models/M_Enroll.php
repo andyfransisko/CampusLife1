@@ -16,6 +16,35 @@ class M_Enroll extends CI_Model{
         return $this->db->get_where('enroll',$where);
     }
 
+    function tampilkanData()
+	{
+		$query=$this->db->get('enroll');
+		return $query;
+		
+	}
+	function tampilkanRecord()
+	{
+		return $this->db->query('SELECT a.id_enroll, b.nama_matakuliah, c.nama_mhs, d.jenis_semester, d.tahun FROM enroll a JOIN matakuliah b ON a.id_matakuliah = b.id_matakuliah JOIN mahasiswa c ON a.nim = c.nim JOIN semester d ON a.id_semester = d.id_semester');
+	}
+	function insertTable($a,$b)
+	{
+		$this->db->insert($a,$b);
+	}
+	function editRecord($where,$table)
+	{
+		return $this->db->get_where($table,$where);
+	}
+	function updateRecord($where,$data,$table)
+	{
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}
+	function hapusRecord($where,$table)
+	{
+		$this->db->where($where);
+		$this->db->delete($table);
+	}
+
     
 
     

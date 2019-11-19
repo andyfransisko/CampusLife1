@@ -1,13 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_User extends CI_Model {
+class M_Jadwalcustom extends CI_Model {
 
 	function tampilkanData()
 	{
-		$query=$this->db->get('user');
+		$query=$this->db->get('jadwal_custom');
 		return $query;
 		
+	}
+	function tampilkanRecord()
+	{
+		return $this->db->query('SELECT a.id_jadwal, b.nama_mahasiswa, a.nama_kegiatan, a.hari, a.jam_mulai, a.jam_selesai, a.tempat FROM jadwal_custom a JOIN mahasiswa b ON a.nim = b.nim');
 	}
 	function insertTable($a,$b)
 	{

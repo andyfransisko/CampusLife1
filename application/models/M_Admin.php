@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_User extends CI_Model {
+class M_Admin extends CI_Model {
 
 	function tampilkanData()
 	{
-		$query=$this->db->get('user');
+		$query=$this->db->get('admin');
 		return $query;
 		
 	}
@@ -26,6 +26,14 @@ class M_User extends CI_Model {
 	{
 		$this->db->where($where);
 		$this->db->delete($table);
+	}
+	function get_record_ajax($where)
+	{
+		$this->db->where('id_admin',$where);
+		$hasil = $this->db->get('admin');
+		
+		
+		return $hasil;
 	}
 }
 ?>

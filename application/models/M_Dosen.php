@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_User extends CI_Model {
+class M_Dosen extends CI_Model {
 
 	function tampilkanData()
 	{
-		$query=$this->db->get('user');
+		$query=$this->db->get('dosen');
 		return $query;
 		
 	}

@@ -2,7 +2,7 @@
     <div id="right-panel" class="right-panel">
         <!-- Header-->
         <?php
-            include('head.php');
+            include('Template/head.php');
         ?>
         <!-- Header-->
 
@@ -38,6 +38,9 @@
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title">Enroll</strong>
+                                
+                                    
+                                
                                 <div class="float-right">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputEnroll">
                                         <span class="ti-plus"></span> Input
@@ -45,32 +48,36 @@
                                 </div>
                             </div>
                             <div class="card-body">
+                                <select class="custom-select col-4 mb-3" name="semester" id="semester">
+                                        <option value="">Choose Academic Year</option>
+                                        <?php foreach($tahun as $a){ ?>
+                                            <option value="<?php echo $a->id_semester ?>"><?php echo ($a->jenis_semester == 1 ? $a->tahun. " - Ganjil" : ($a->jenis_semester == 2 ? $a->tahun. " - Genap" : $a->tahun. " - Akselerasi")) ?></option>
+                                        
+                                        <?php } ?>
+
+                                </select>
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>ID Enroll</th>
+                                            <th>No.</th>
                                             <th>Nama Matakuliah</th>
-                                            <th>Nama Mahasiswa</th>
-                                            <th>Jenis Semester</th>
-                                            <th>Tahun</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
+                                            <th>Jumlah Mahasiswa</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php 
+                                        $i= 1;
+                                        foreach($matkul as $a) {?>
                                         <tr align="center">
-                                            <td>1</td>
-                                            <td>Vyatta</td>
-                                            <td>Powerbank</td>
-                                            <td>Men</td>
-                                            <td>vyata@gmail.com</td>
+                                            <td><?php echo $i ?></td>
+                                            <td><?php echo $a->nama_mata_kuliah ?></td>
+                                            <td><?php echo $a->jumlah_mahasiswa ?></td>
                                             <td>
-                                                <button type="button" class="btn btn-outline-danger">Edit</button>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-outline-warning">Delete</button>
+                                                <button type="button" class="btn btn-outline-warning"><a>Enrollment</a></button>
                                             </td>
                                         </tr>
+                                        <?php $i++;} ?>
                                     </tbody>
                                 </table>
                             </div>

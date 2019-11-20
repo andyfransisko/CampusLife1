@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_Jurusan extends CI_Model {
+class M_Semester extends CI_Model {
 
 	function tampilkanData()
 	{
-		$query=$this->db->get('jurusan');
+		$query=$this->db->get('semester');
 		return $query;
 		
 	}
@@ -27,6 +27,5 @@ class M_Jurusan extends CI_Model {
 		$this->db->where($where);
 		$this->db->delete($table);
 	}
-
 }
 ?>

@@ -7,7 +7,7 @@
                     <section class="cards" style="position: absolute;top:25%;margin-left: 25%;margin-right: 25%;">
                             
                         <article class="card card--1">
-                            <a data-href="<?php echo base_url() ?>Login/signup_mhs">
+                            <a data-href="<?php echo base_url() ?>Login/signupMahasiswa">
                                 <div class="card__img"></div>
                                     <div class="card_link">
                                         <div class="card__img--hover"></div>
@@ -30,7 +30,7 @@
                         </script>
                               
                             <article class="card card--2">
-                                <a href="<?php echo base_url() ?>Login/signup_dosen">
+                                <a href="<?php echo base_url() ?>Login/signupDosen">
                                     <div class="card__img"></div>
                                             <div class="card__img--hover"></div>
                                     <div class="card__info">
@@ -40,7 +40,7 @@
                             </article>  
 
                             <article class="card card--2">
-                                <a href="signupkaprodi.html">
+                                <a href="<?php echo base_url() ?>Login/signupKaprodi"">
                                     <div class="card__img"></div>
                                             <div class="card__img--hover"></div>
                                     <div class="card__info">

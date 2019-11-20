@@ -8,21 +8,21 @@ class Grade extends CI_Controller
     }
 
     private function head(){
-        $this->load->view('Template/html-open');
-        $this->load->view('Template/head-open');
+        $this->load->view('LandingPage/Template/html-open');
+        $this->load->view('LandingPage/Template/head-open');
         $data['title'] = "Grade";
-        $this->load->view("Template/template-header", $data);
-        $this->load->view("Template/head-close");
-        $this->load->view("Template/body-open");
+        $this->load->view("LandingPage/Template/template-header", $data);
+        $this->load->view("LandingPage/Template/head-close");
+        $this->load->view("LandingPage/Template/body-open");
         
     }
 
     private function foot(){
-        $this->load->view("Template/preloader");
-        $this->load->view("Template/footer");
-        $this->load->view("Template/template-footer");
-        $this->load->view("Template/body-close");
-        $this->load->view("Template/html-close");
+        $this->load->view("LandingPage/Template/preloader");
+        $this->load->view("LandingPage/Template/footer");
+        $this->load->view("LandingPage/Template/template-footer");
+        $this->load->view("LandingPage/Template/body-close");
+        $this->load->view("LandingPage/Template/html-close");
         
     }
 
@@ -30,8 +30,8 @@ class Grade extends CI_Controller
     {
         $data['nav'] = "Grade";
         $this->head();
-        $this->load->view('Template/nav', $data );
-        $this->load->view("Grade/V_grade");
+        $this->load->view('LandingPage/Template/nav', $data );
+        $this->load->view("LandingPage/Grade/V_grade");
         $this->foot();
 
         

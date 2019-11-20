@@ -1,27 +1,23 @@
-<?php 
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class M_Mahasiswa extends CI_Model
-{
-    function tampilkanData()
+
+class M_Nilai extends CI_Model {
+
+	function tampilkanData()
 	{
-		$query=$this->db->get('mahasiswa');
+		$query=$this->db->get('nilai');
 		return $query;
 		
 	}
 	function tampilkanRecord()
 	{
-		return $this->db->query('SELECT a.nim, a.nama_mhs,a.jenis_kelamin, a.email_mhs, b.id_jurusan, b.nama_jurusan, a.tgl_lahir, a.tmpt_lahir, a.alamat_rumah, a.no_telp, a.agama, a.angkatan FROM mahasiswa a JOIN jurusan b ON a.id_jurusan = b.id_jurusan');
+		return $this->db->query('SELECT a.id_nilai, b.id_enroll, a.tipe_nilai, a.nilai_mahasiswa, c.id_tugas FROM nilai a JOIN enroll b ON a.id_enroll = b.id_enroll JOIN tugas c ON a.id_tugas = c.id_tugas');
 	}
 	function insertTable($a,$b)
 	{
 		$this->db->insert($a,$b);
 	}
 	function editRecord($where,$table)
-	{
-		return $this->db->get_where($table,$where);
-	}
-
-	function getRecord($where,$table)
 	{
 		return $this->db->get_where($table,$where);
 	}
@@ -36,7 +32,4 @@ class M_Mahasiswa extends CI_Model
 		$this->db->delete($table);
 	}
 }
-
-
-
 ?>

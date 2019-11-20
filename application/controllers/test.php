@@ -13,4 +13,6 @@
     foreach ($period as $date) {
     echo $date->format('Y-m-d'). "<br>";
 }
+    
+
 ?>

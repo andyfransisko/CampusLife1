@@ -24,10 +24,25 @@ class Enroll extends CI_Controller {
 
 	public function index()
 	{
-		$data['enroll'] = $this->M_Enroll->tampilkanRecord()->result();
+		$data['title'] = "Enroll - Campus Life";
+
+        if(intval(date('m')) < 5){
+            $date = 2;
+        }
+        else if(intval(date('m')) >= 5 && intval(date('m')) < 8){
+            $date = 3;
+        }
+        else{
+            $date = 1;
+        }
+
+        $data['matkul'] = $this->M_Enroll->getMatkulEnroll(date('Y'), $date)->result();
+        $data['mahasiswa'] = $this->M_Mahasiswa->tampilkanData()->result();
+        $data['tahun'] = $this->M_Semester->tampilkanData()->result();
+		
 		$this->head();
-		$this->load->view('V_Enroll',$data);
-		$this->close();
+		$this->load->view('Dashboard/V_Enroll',$data);
+		$this->foot();
 	}
 
 	public function lihatInsertData()

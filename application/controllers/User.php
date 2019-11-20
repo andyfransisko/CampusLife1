@@ -50,7 +50,7 @@ class User extends CI_Controller
         }
         
         
-        $data['user'] = $this->M_User->get_where($tipe, $where)->result();
+        //$data['user'] = $this->M_User->get_where($tipe, $where)->result();
         $data['nav'] = "User";
         $this->head();
         $this->load->view('Template/nav', $data);

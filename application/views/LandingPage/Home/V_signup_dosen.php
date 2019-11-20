@@ -2,40 +2,30 @@
       <div class="overlay"></div>
       <div style="position:relative;padding-top: 10%;padding-bottom: 10%;">
         <div class="form-style-5 container">
-
-            <h1>STUDENT INFORMATION</h1>
-            <form class="" action="<?php echo base_url() ?>Login/signup_mhs_cek" style="font-family: 'Nunito', sans-serif;" method="post">
+            <h3 style="text-align: center; margin-bottom: 50px;">LECTURER INFORMATION</h3>
+            <form class="" action="<?php echo base_url() ?>Login/signup_dosen_cek" style="font-family: 'Nunito', sans-serif;" method="post">
                 <fieldset>
                     <?php echo form_error('nim', '<small class="text-danger">', '</small>') ?>
-                    <input type="text" name="nim" placeholder="NIM" value="<?php echo set_value('nim'); ?>">
+                    <input type="text" name="nidn" placeholder="NIDN" value="<?php echo set_value('nidn'); ?>">
                     
                     
-                    <?php echo form_error('nama_mhs', '<small class="text-danger pl-3">', '</small>') ?>
-                    <input type="text" name="nama_mhs" placeholder="Name" value="<?php echo set_value('nama_mhs'); ?>">
+                    <?php echo form_error('nama_dosen', '<small class="text-danger pl-3">', '</small>') ?>
+                    <input type="text" name="nama_dosen" placeholder="Name" value="<?php echo set_value('nama_dosen'); ?>">
 
                     <?php echo form_error('email', '<small class="text-danger pl-3">', '</small>') ?>
                     <input type="text" name="email" placeholder="Email" value="<?php echo set_value('email'); ?>">
                     
                     <?php echo form_error('password', '<small class="text-danger pl-3">', '</small>') ?>
-                    <input type="password" name="password" placeholder="Password" value="<?php echo set_value('password'); ?>">
+                    <input type="password" name="password" placeholder="Password" value="">
                     
                     <?php echo form_error('password2', '<small class="text-danger pl-3">', '</small>') ?>
-                    <input type="password" name="password2" placeholder="Confirm Password" value="<?php echo set_value('password2'); ?>">
+                    <input type="password" name="password2" placeholder="Confirm Password" value="">
                     
                     <?php echo form_error('jenis_kelamin', '<small class="text-danger pl-3">', '</small>') ?>
-                    <select id="jenis_kelamin" name="jenis_kelamin">
+                    <select class="" id="jenis_kelamin" name="jenis_kelamin">
                         <option value="">Choose Gender</option>
                         <option value="1">Male</option>
                         <option value="2">Female</option>
-                    </select>
-                    
-                    <?php echo form_error('jurusan', '<small class="text-danger pl-3">', '</small>') ?>
-                    <select id="jurusan" name="jurusan">
-                        <option value="">Choose Major</option>
-                    <!--ambil database-->
-                        <?php foreach($jurusan as $a) {?>
-                            <option value="<?php echo $a->id_jurusan ?>"><?php echo $a->nama_jurusan ?></option>
-                        <?php } ?>
                     </select>
 
                     <?php echo form_error('alamat_rumah', '<small class="text-danger pl-3">', '</small>') ?>
@@ -52,7 +42,7 @@
                     
                     <?php echo form_error('agama', '<small class="text-danger pl-3">', '</small>') ?>
                     <select id="agama" name="agama">
-                        <option value="">Pilih Agama</option>
+                        <option value="">Choose Religion</option>
                         <option value="1">Kristen</option>
                         <option value="2">Katolik</option>
                         <option value="3">Islam</option>

@@ -4,6 +4,10 @@ class Enroll extends CI_Controller
 {
     function __construct(){
         parent::__construct();
+        $this->load->model('M_Enroll');
+        $this->load->model('M_Mahasiswa');
+        $this->load->model('M_Matakuliah');
+        $this->load->model('M_Semester');
         
     }
 
@@ -28,8 +32,7 @@ class Enroll extends CI_Controller
 
     public function index(){
         
-        $this->load->model('M_Enroll');
-        $this->load->model('M_Mahasiswa');
+        
         $data['title'] = "Enroll - Campus Life";
 
         if(intval(date('m')) < 5){
@@ -42,10 +45,10 @@ class Enroll extends CI_Controller
             $date = 1;
         }
 
-        $data['matkul'] = $this->M_Enroll->get_matkul_enroll(date('Y'), $date)->result();
-        $data['mahasiswa'] = $this->M_Mahasiswa->get_data_mahasiswa()->result();
-        $data['tahun'] = $this->db->get('semester')->result();
-        $this->load->view('Enroll/tes2', $data);
+        $data['matkul'] = $this->M_Enroll->getMatkulEnroll(date('Y'), $date)->result();
+        $data['mahasiswa'] = $this->M_Mahasiswa->tampilkanData()->result();
+        $data['tahun'] = $this->M_Semester->tampilkanData()->result();
+        $this->load->view('LandingPage/Enroll/tes2', $data);
         
     }
 
@@ -60,19 +63,15 @@ class Enroll extends CI_Controller
             $date = 1;
         } 
         
-        
-        $this->load->model('M_Enroll');
-        $this->load->model('M_Course');
-        $this->load->model('M_Mahasiswa');
 
         $data['title'] = "Enroll - Campus Life";
-        $data['mahasiswa'] = $this->M_Mahasiswa->get_data_mahasiswa()->result();
+        $data['mahasiswa'] = $this->M_Mahasiswa->tampilkanRecord()->result();
         
         $where = [
             'id_mata_kuliah' => $tangkapMatkul
         ];
-        $data['enrolled'] = $this->M_Enroll->get_all_enroll_cond($where)->row_array();
-        $data['matkul'] = $this->M_Course->get_jadwal_matkul($where)->row_array();
+        $data['enrolled'] = $this->M_Enroll->getAllEnrollCond($where)->row_array();
+        $data['matkul'] = $this->M_Matakuliah->getJadwalMatkul($where)->row_array();
         $this->load->view('Enroll/tes', $data);
     }
 

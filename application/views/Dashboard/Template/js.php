@@ -22,50 +22,42 @@
         $(document).ready(function() {
           $('#bootstrap-data-table-export').DataTable();
 
-
           $('#semester').change(function(e){
+            $('#bootstrap-data-table-export').find('tbody').empty();
 
-            e.preventDefault();
             var id_semester = $(this).val();
-
-            $.ajax({
-                url:"<?php echo base_url('Dashboard/Enroll/getEnrollByAjax') ?>",
-                dataType: "JSON",
-                data:{id_semester:id_semester},
-                type: "POST",
-                success: function(data){
-                    var tableContent = '';
-                    if(data.status){
-                    
-                        var count = data.count / 4;
-                        var i;
-
-                        for(i=0; i<data.count;i++){  
-                        $('#test').val(count);
-
-                            /* 
-                            tableContent=tableContent+
-                                    '<tr>'+
-                                    '<td>'+(i+1)+'</td>'+
-                                    '<td>'+data.nama_mata_kuliah+'</td>'+
-                                    '<td>'+data.jumlah_mahasiswa+'</td>'+
-                                    '<td><button type="button" class="btn btn-outline-warning"><a href ="<?php //echo base_url().'Enroll/enroll/' ?>'+data.id_semester+'/'+data.id_mata_kuliah'">Enrollment</a></button></td>'+
-                                    '</tr>';
+            if(id_semester != ""){
+                $.ajax({
+                    url:"<?php echo base_url('Dashboard/Enroll/getEnrollByAjax') ?>",
+                    dataType: "JSON",
+                    data:{id_semester:id_semester},
+                    type: "POST",
+                    success: function(data){
+                        $("#bootstrap-data-table").find('tbody').empty();
+                        var tableContent = '';
+                        if(data.status){
+                            var i;
+                            for(i=0;i<data.count;i++){
+                                
+                                tableContent +=  '<tr>'+
+                                        '<td>'+data.message.no+'</td>'+
+                                        '<td>'+data.message.namaMatkul+'</td>'+
+                                        '<td>'+data.message.jumlahMhs+'</td>'+
+                                        '<td><button type="button" class="btn btn-outline-warning"><a href ="<?php echo base_url().'Dashboard/Enroll/enroll/' ?>'+data.message.idSemester+'/'+data.message.idMatkul+'">Enrollment</a></button></td>'+
+                                        '</tr>';
+                            }
+                            
+                                $('#enroll-body').append(tableContent);
+                        }else{
+                            tableContent='<tr><td colspan="4">NO DATA AVAILABLE</td></tr>';
+                            $('#enroll-body').append(tableContent);
                         }
-*/
-                        // $('#enroll-body').empty();
-                        // $('#enroll-body').append(tableContent);
-
-                    }else{
-                        // tableContent='<tr><td colspan="4">NO DATA AVAILABLE</td></tr>';
-                        // $('#enroll-body').empty();
-                        // $('#enroll-body').append(tableContent);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+                        alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
                     }
-                },
-                error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
-                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
-                }
-            });
+                });
+            }
 
             });
       } );

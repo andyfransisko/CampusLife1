@@ -10,6 +10,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function head(){
+		$this->load->view('Dashboard/Template/bouncer');
 		$this->load->view('Dashboard/Template/head-open');
 		$this->load->view('Dashboard/Template/css');
 		$this->load->view('Dashboard/Template/head-close');
@@ -25,7 +26,7 @@ class Admin extends CI_Controller {
 	{
 		$data['admin']=$this->M_Admin->tampilkanData()->result();
 		$this->head();
-		$this->load->view('V_Admin',$data);
+		$this->load->view('Dashboard/V_Admin',$data);
 		$this->foot();
 	}
 
@@ -46,7 +47,7 @@ class Admin extends CI_Controller {
 		);
 
 		$this->M_Admin->insertTable('admin',$data);
-		redirect('Admin/index');
+		redirect('Dashboard/Admin/index');
 	}
 
 	function editData() {
@@ -83,7 +84,7 @@ class Admin extends CI_Controller {
 		);
 
 		$this->M_Admin->updateRecord($where,$data,'admin');
-		redirect('Admin/index');
+		redirect('Dashboard/Admin/index');
 	}
 	
 	function hapusData($id_admin){
@@ -91,7 +92,7 @@ class Admin extends CI_Controller {
 		$where = array('id_admin' => $id_admin);
 
 		$this->M_Admin->hapusRecord($where,'admin');
-		redirect('Admin/index');
+		redirect('Dashboard/Admin/index');
 	}
 }
 ?>

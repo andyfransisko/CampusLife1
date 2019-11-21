@@ -21,7 +21,8 @@
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
                                     <li>Master Data</li>
-                                    <li class="active">Enroll</li>
+                                    <li>Enroll</li>
+                                    <li class="active">Course Enroll</li>
                                 </ol>
                             </div>
                         </div>
@@ -59,18 +60,27 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>No.</th>
-                                            <th>Nama Matakuliah</th>
-                                            <th>Jumlah Mahasiswa</th>
-                                            <th>Aksi</th>
+                                            <th><input type="checkbox"></th>
+                                            <th>NIM</th>
+                                            <th>Nama</th>
+                                            <th>Angkatan</th>
+                                            <th>Jurusan</th>
                                         </tr>
                                     </thead>
                                     <tbody id="enroll-body">
                                         <tr>
-                                            <td>asd</td>
-                                            <td>asd</td>
-                                            <td>asd</td>
-                                            <td>asd</td>
+                                        <?php 
+                                            $i = 1;
+                                            foreach($mahasiswa as $b){ ?>
+                                            <tr>
+                                                <td><input type="checkbox" value="<?php echo $b->nim ?>" name="mahasiswa[]" <?php echo ($enrolled['nim'] == $b->nim) ? "checked" : "" ?>></td>
+                                                <td><?php echo $i?></td>
+                                                <td><?php echo $b->nim?></td>
+                                                <td><?php echo $b->nama_mhs?></td>
+                                                <td><?php echo $b->angkatan?></td>
+                                                <td><?php echo $b->nama_jurusan?></td>
+                                            </tr>
+                                            <?php $i++;} ?>
                                         </tr>
                                     </tbody>
                                 </table>

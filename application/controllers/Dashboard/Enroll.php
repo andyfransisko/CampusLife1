@@ -10,6 +10,7 @@ class Enroll extends CI_Controller {
 	}
 	
 	public function head(){
+		//$this->load->view('Dashboard/Template/bouncer');
 		$this->load->view('Dashboard/Template/head-open');
 		$this->load->view('Dashboard/Template/css');
 		$this->load->view('Dashboard/Template/head-close');
@@ -49,12 +50,20 @@ class Enroll extends CI_Controller {
 	public function getEnrollByAjax(){
         $id_semester = $this->input->post('id_semester');
 
-        $enrollList = $this->M_Enroll->getMatkulEnroll($id_semester)->row_array();
+        $enrollList = $this->M_Enroll->getMatkulEnroll($id_semester)->result_array();
 
 		
 		if(count($enrollList) > 0){
 			$response['status'] = true;
-			$response['message'] = $enrollList;
+			$i=0;
+			foreach($enrollList as $a){
+				$response['message']['no'] = $i+1;
+				$response['message']['namaMatkul'] = $a['nama_mata_kuliah'];
+				$response['message']['jumlahMhs'] = $a['jumlah_mahasiswa'];
+				$response['message']['idSemester'] = $a['id_semester'];
+				$response['message']['idMatkul'] = $a['id_mata_kuliah'];
+				$i++;
+			}
 			$response['count'] = count($enrollList);
 		}
 		else{
@@ -62,6 +71,31 @@ class Enroll extends CI_Controller {
 		}
 
         echo json_encode($response);
+	}
+	
+	public function enroll($tangkapMatkul ='', $tangkapSemester= ''){
+        if(intval(date('m')) < 5){
+            $date = 2;
+        }
+        else if(intval(date('m')) >= 5 && intval(date('m')) < 8){
+            $date = 3;
+        }
+        else{
+            $date = 1;
+        } 
+        
+
+        $data['title'] = "Enroll - Campus Life";
+        $data['mahasiswa'] = $this->M_Mahasiswa->tampilkanRecord()->result();
+        
+        $where = [
+            'id_mata_kuliah' => $tangkapMatkul,
+		];
+        $data['enrolled'] = $this->M_Enroll->getAllEnrollCond($where['id_mata_kuliah'])->result();
+        $data['matkul'] = $this->M_Matakuliah->getJadwalMatkul($where['id_mata_kuliah'])->result();
+		$this->head();
+		$this->load->view('Dashboard/V_Enroll_Matkul', $data);
+		$this->foot();
     }
 	
 	

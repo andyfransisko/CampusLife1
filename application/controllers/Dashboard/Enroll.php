@@ -18,6 +18,7 @@ class Enroll extends CI_Controller {
 	
 	public function foot(){
 		$this->load->view('Dashboard/Template/js');
+		// $this->load->view('Dashboard/Template/enroll-script');
 		$this->load->view('Dashboard/Template/body-close');
 
 	}
@@ -36,7 +37,7 @@ class Enroll extends CI_Controller {
             $date = 1;
         }
 
-        $data['matkul'] = $this->M_Enroll->getMatkulEnroll(date('Y'), $date)->result();
+        //$data['matkul'] = $this->M_Enroll->getMatkulEnroll(date('Y'), $date)->result();
         $data['mahasiswa'] = $this->M_Mahasiswa->tampilkanData()->result();
         $data['tahun'] = $this->M_Semester->tampilkanData()->result();
 		
@@ -45,6 +46,25 @@ class Enroll extends CI_Controller {
 		$this->foot();
 	}
 
+	public function getEnrollByAjax(){
+        $id_semester = $this->input->post('id_semester');
+
+        $enrollList = $this->M_Enroll->getMatkulEnroll($id_semester)->row_array();
+
+		
+		if(count($enrollList) > 0){
+			$response['status'] = true;
+			$response['message'] = $enrollList;
+			$response['count'] = count($enrollList);
+		}
+		else{
+			$response['status'] = false;
+		}
+
+        echo json_encode($response);
+    }
+	
+	
 	public function lihatInsertData()
 	{
 		$data['matakuliah'] = $this->M_Matakuliah->tampilkanData()->result();

@@ -56,6 +56,10 @@
                                         <?php } ?>
 
                                 </select>
+                                <input type="text" name="test" id="test1">
+                                <input type="text" name="test" id="test2">
+                                <input type="text" name="test" id="test3">
+                                <input type="text" name="test" id="test4">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
@@ -65,19 +69,8 @@
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <?php 
-                                        $i= 1;
-                                        foreach($matkul as $a) {?>
-                                        <tr align="center">
-                                            <td><?php echo $i ?></td>
-                                            <td><?php echo $a->nama_mata_kuliah ?></td>
-                                            <td><?php echo $a->jumlah_mahasiswa ?></td>
-                                            <td>
-                                                <button type="button" class="btn btn-outline-warning"><a>Enrollment</a></button>
-                                            </td>
-                                        </tr>
-                                        <?php $i++;} ?>
+                                    <tbody id="enroll-body">
+                                    
                                     </tbody>
                                 </table>
                             </div>
@@ -186,3 +179,4 @@
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
+    

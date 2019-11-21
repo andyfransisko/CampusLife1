@@ -211,8 +211,8 @@ class Login extends CI_Controller
         
                 
                 
-                 $this->M_Login->insert_record('mahasiswa', $data_mhs);
-                 $this->M_Login->insert_record('user', $data_user);
+                 $this->M_Login->insertTable('mahasiswa', $data_mhs);
+                 $this->M_Login->insertTable('user', $data_user);
         
                // $this->_send_email($token, 'verify');
         
@@ -274,8 +274,8 @@ class Login extends CI_Controller
             );
     
             
-             $this->M_Login->insert_record('dosen', $data_dosen);
-             $this->M_Login->insert_record('user', $data_user);
+             $this->M_Login->insertTable('dosen', $data_dosen);
+             $this->M_Login->insertTable('user', $data_user);
     
            // $this->_send_email($token, 'verify');
     

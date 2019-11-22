@@ -3,7 +3,7 @@
     <div id="right-panel" class="right-panel">
         <!-- Header-->
         <?php
-            include('head.php');
+            include('Template/head.php');
         ?>
         <!-- Header-->
 

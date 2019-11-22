@@ -31,14 +31,14 @@
 <body>
   <!-- /#left-panel -->
   <?php
-        include('left.php');
+        include('Template/left.php');
     ?>
 
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
         <!-- Header-->
         <?php
-            include('head.php');
+            include('Template/head.php');
         ?>
         <!-- Header-->
 

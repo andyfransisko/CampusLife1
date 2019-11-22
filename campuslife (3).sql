@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2019 at 03:38 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Generation Time: Nov 22, 2019 at 09:03 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -43,15 +43,23 @@ CREATE TABLE `admin` (
 CREATE TABLE `dosen` (
   `nidn` int(11) NOT NULL,
   `nama_dosen` varchar(50) NOT NULL,
+  `jenis_kelamin` int(11) NOT NULL COMMENT '1 = Laki - laki, 2 = Perempuan',
   `tipe_dosen` int(3) NOT NULL COMMENT '1 = Kepala Program Studi, 2 = Pembimbing Akademik, 3 = Dosen Reguler',
   `email_dosen` varchar(50) NOT NULL,
   `tmpt_lahir` varchar(25) NOT NULL,
   `tgl_lahir` date NOT NULL,
   `alamat_rumah` varchar(100) NOT NULL,
   `no_telp` varchar(15) NOT NULL,
-  `agama` varchar(10) NOT NULL,
-  `username` int(11) NOT NULL
+  `agama` varchar(10) NOT NULL COMMENT '1 = Kristen, 2 = Katolik, 3 = Islam, 4 = Buddha, 5 = Hindu, 6 = Kong Hu Cu'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dosen`
+--
+
+INSERT INTO `dosen` (`nidn`, `nama_dosen`, `jenis_kelamin`, `tipe_dosen`, `email_dosen`, `tmpt_lahir`, `tgl_lahir`, `alamat_rumah`, `no_telp`, `agama`) VALUES
+(1, 'qwerty', 1, 1, 'rtyyui', 'awdrwqr', '2121-12-11', 'dwaddwd', '12412456', 'dwad'),
+(33, 'asd', 1, 3, 'a@gmail.com', 'asdasd', '1999-12-12', 'asdasd', '12345678', '1');
 
 -- --------------------------------------------------------
 
@@ -65,6 +73,13 @@ CREATE TABLE `enroll` (
   `nim` int(11) NOT NULL,
   `id_semester` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `enroll`
+--
+
+INSERT INTO `enroll` (`id_enroll`, `id_mata_kuliah`, `nim`, `id_semester`) VALUES
+(1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -137,6 +152,14 @@ CREATE TABLE `jurusan` (
   `keterangan_jurusan` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `jurusan`
+--
+
+INSERT INTO `jurusan` (`id_jurusan`, `nama_jurusan`, `keterangan_jurusan`) VALUES
+(1, 'TIF', 'FIK'),
+(2, 'SI', 'SISTECH');
+
 -- --------------------------------------------------------
 
 --
@@ -148,21 +171,22 @@ CREATE TABLE `mahasiswa` (
   `nama_mhs` varchar(50) NOT NULL,
   `jenis_kelamin` varchar(25) NOT NULL,
   `id_jurusan` int(11) NOT NULL,
+  `angkatan` int(11) NOT NULL,
   `email_mhs` varchar(50) NOT NULL,
   `tgl_lahir` date NOT NULL,
   `tmpt_lahir` varchar(25) NOT NULL,
   `alamat_rumah` varchar(100) NOT NULL,
   `no_telp` varchar(15) NOT NULL,
-  `agama` varchar(10) NOT NULL,
-  `username` varchar(15) NOT NULL
+  `agama` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`nim`, `nama_mhs`, `jenis_kelamin`, `id_jurusan`, `email_mhs`, `tgl_lahir`, `tmpt_lahir`, `alamat_rumah`, `no_telp`, `agama`, `username`) VALUES
-(1, 'jjs', '1', 1, 'jsj@gmail.com', '0000-00-00', 'jakarta', 'Jln. arwana no 25', '213124214', '2', '1');
+INSERT INTO `mahasiswa` (`nim`, `nama_mhs`, `jenis_kelamin`, `id_jurusan`, `angkatan`, `email_mhs`, `tgl_lahir`, `tmpt_lahir`, `alamat_rumah`, `no_telp`, `agama`) VALUES
+(1, 'jjs', '1', 1, 2017, 'jsj@gmail.com', '0000-00-00', 'jakarta', 'Jln. arwana no 25', '213124214', '2'),
+(2, 'asdasd', '1', 2, 2017, 'asd@gmail.com', '1999-01-01', 'jkt', 'asdasd', '123123123', '2');
 
 -- --------------------------------------------------------
 
@@ -174,9 +198,16 @@ CREATE TABLE `matakuliah` (
   `id_mata_kuliah` int(11) NOT NULL,
   `nama_mata_kuliah` varchar(50) NOT NULL,
   `sks` int(5) NOT NULL,
-  `id_ruangan` int(11) NOT NULL,
   `id_semester` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `matakuliah`
+--
+
+INSERT INTO `matakuliah` (`id_mata_kuliah`, `nama_mata_kuliah`, `sks`, `id_semester`) VALUES
+(1, 'web', 4, 1),
+(2, 'algo', 4, 1);
 
 -- --------------------------------------------------------
 
@@ -227,9 +258,16 @@ CREATE TABLE `ruangan` (
 
 CREATE TABLE `semester` (
   `id_semester` int(11) NOT NULL,
-  `jenis_semester` varchar(10) NOT NULL,
+  `jenis_semester` varchar(10) NOT NULL COMMENT '1 = ganjil, 2 genap, 3=akselerasi',
   `tahun` year(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `semester`
+--
+
+INSERT INTO `semester` (`id_semester`, `jenis_semester`, `tahun`) VALUES
+(1, '1', 2019);
 
 -- --------------------------------------------------------
 
@@ -252,8 +290,8 @@ CREATE TABLE `tugas` (
 
 CREATE TABLE `user` (
   `username` varchar(15) NOT NULL,
-  `password` varchar(25) NOT NULL,
-  `images` text NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `images` varchar(100) NOT NULL DEFAULT 'default.jpg',
   `tipe_akun` int(11) NOT NULL COMMENT '1=mahasiswa, 2= dosen, 0=admin',
   `status` int(11) NOT NULL COMMENT '0=belum aktivasi, 1= sudah aktivasi'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -263,7 +301,13 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `images`, `tipe_akun`, `status`) VALUES
-('1', '12345', 'default.jpg', 1, 1);
+('1', '12345', 'default.jpg', 1, 1),
+('33', '$2y$10$cLcbeJRzjaIYX5j7qNpGc.L5e9Y.nhHbDKodIg5GvbcWE0uodkVgW', 'default.jpg', 2, 1),
+('awdawd', 'awdawd', 'default.jpg', 2, 1),
+('dwadawd', 'dwadaw', 'default.jpg', 2, 1),
+('dwadwad', 'dwadwadadw', 'default.jpg', 2, 1),
+('ghi', 'jkl', 'default.jpg', 2, 1),
+('yuio', 'iop', 'default.jpg', 2, 1);
 
 --
 -- Indexes for dumped tables

@@ -47,7 +47,7 @@
                                         '</tr>';
                             }
                             
-                                $('#enroll-body').append(tableContent);
+                                $('#enroll-body').html(tableContent);
                         }else{
                             tableContent='<tr><td colspan="4">NO DATA AVAILABLE</td></tr>';
                             $('#enroll-body').append(tableContent);
@@ -57,6 +57,8 @@
                         alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
                     }
                 });
+                
+                
             }
 
             });

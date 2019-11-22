@@ -58,23 +58,20 @@
                                             <th>Nama</th>
                                             <th>Angkatan</th>
                                             <th>Jurusan</th>
-                                            <th>Nama Jurusan</th>
                                         </tr>
                                     </thead>
                                     <tbody id="enroll-body">
                                         <tr>
                                         <?php 
-                                            $i = 1;
                                             foreach($mahasiswa as $b){ ?>
                                             <tr>
                                                 <td><input type="checkbox" value="<?php echo $b->nim ?>" name="mahasiswa[]" <?php echo ($enrolled['nim'] == $b->nim) ? "checked" : "" ?>></td>
-                                                <td><?php echo $i?></td>
                                                 <td><?php echo $b->nim?></td>
                                                 <td><?php echo $b->nama_mhs?></td>
                                                 <td><?php echo $b->angkatan?></td>
                                                 <td><?php echo $b->nama_jurusan?></td>
                                             </tr>
-                                            <?php $i++;} ?>
+                                            <?php } ?>
                                         </tr>
                                     </tbody>
                                 </table>

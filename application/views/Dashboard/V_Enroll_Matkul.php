@@ -49,14 +49,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <select class="custom-select col-4 mb-3" name="semester" id="semester">
-                                        <option value="">Choose Academic Year</option>
-                                        <?php foreach($tahun as $a){ ?>
-                                            <option value="<?php echo $a->id_semester ?>"><?php echo ($a->jenis_semester == 1 ? $a->tahun. " - Ganjil" : ($a->jenis_semester == 2 ? $a->tahun. " - Genap" : $a->tahun. " - Akselerasi")) ?></option>
-                                        
-                                        <?php } ?>
-
-                                </select>
+                                <h1>Mata Kuliah : <?php echo $matkul['nama_mata_kuliah'] ?></h1>
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
@@ -65,6 +58,7 @@
                                             <th>Nama</th>
                                             <th>Angkatan</th>
                                             <th>Jurusan</th>
+                                            <th>Nama Jurusan</th>
                                         </tr>
                                     </thead>
                                     <tbody id="enroll-body">

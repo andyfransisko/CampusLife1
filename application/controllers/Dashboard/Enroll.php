@@ -73,7 +73,7 @@ class Enroll extends CI_Controller {
         echo json_encode($response);
 	}
 	
-	public function enroll($tangkapMatkul ='', $tangkapSemester= ''){
+	public function enroll($semester, $matkul){
         if(intval(date('m')) < 5){
             $date = 2;
         }
@@ -87,12 +87,15 @@ class Enroll extends CI_Controller {
 
         $data['title'] = "Enroll - Campus Life";
         $data['mahasiswa'] = $this->M_Mahasiswa->tampilkanRecord()->result();
-        
+		
+		$tangkapSemester = $semester;
+		$tangkapMatkul = $matkul;
         $where = [
-            'id_mata_kuliah' => $tangkapMatkul,
+			'id_mata_kuliah' => $tangkapMatkul,
+			'id_semester' 	 => $tangkapSemester
 		];
-        $data['enrolled'] = $this->M_Enroll->getAllEnrollCond($where['id_mata_kuliah'])->result();
-        $data['matkul'] = $this->M_Matakuliah->getJadwalMatkul($where['id_mata_kuliah'])->result();
+        $data['enrolled'] = $this->M_Enroll->getAllEnrollCond($where)->row_array();
+        $data['matkul'] = $this->M_Matakuliah->getAllMatkulCond($where)->row_array();
 		$this->head();
 		$this->load->view('Dashboard/V_Enroll_Matkul', $data);
 		$this->foot();

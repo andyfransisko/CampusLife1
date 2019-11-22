@@ -4,7 +4,7 @@ class Schedule extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('M_Schedule');
+        $this->load->model('M_Jadwalkuliah');
 
     }
 
@@ -34,7 +34,7 @@ class Schedule extends CI_Controller
     public function index()
     {
         $data['nav'] = "Schedule";
-        $data['jadwal'] = $this->M_Schedule->getJadwal(1, 2019, 1)->result();
+        $data['jadwal'] = $this->M_Jadwalkuliah->getJadwal(1, 2019, 1)->result();
         $this->head();
         $this->load->view('LandingPage/Template/nav', $data );
         $this->load->view("LandingPage/Schedule/V_schedule", $data);

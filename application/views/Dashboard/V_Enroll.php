@@ -49,7 +49,7 @@
                             </div>
                             <div class="card-body">
                                 <select class="custom-select col-4 mb-3" name="semester" id="semester">
-                                        <option value="">Choose Academic Year</option>
+                                        <option value="" selected>Choose Academic Year</option>
                                         <?php foreach($tahun as $a){ ?>
                                             <option value="<?php echo $a->id_semester ?>"><?php echo ($a->jenis_semester == 1 ? $a->tahun. " - Ganjil" : ($a->jenis_semester == 2 ? $a->tahun. " - Genap" : $a->tahun. " - Akselerasi")) ?></option>
                                         

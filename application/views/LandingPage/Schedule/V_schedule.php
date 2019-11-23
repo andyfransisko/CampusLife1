@@ -114,7 +114,7 @@ function fill_table(month, month_length, indexMonth, year) {
       </div>
       <span class="c-paginator__year">2019</span>
     </div>
-    <div class="c-sort">
+    <div class="c-sort" style="position:relative;right:20%;">
       <a class="o-btn c-today__btn" href="javascript:;">TODAY</a>
     </div>
   </div>

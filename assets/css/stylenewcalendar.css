@@ -62,8 +62,6 @@ body.overlay:before {
   z-index: 100;
 }
 html {
-  height: 100%;
-  background: #003567;
   color: #ffffff;
   font-size: 13px;
   font-family: 'Lato', sans-serif;
@@ -115,9 +113,11 @@ a {
 header {
   position: absolute;
   height: 8%;
-  width: 100%;
+  width: 69%;
+  border-radius: 50px;
   z-index: 50;
   background: #003567;
+  left: 16%;
 }
 header > .wrapper {
   display: flex;
@@ -275,6 +275,8 @@ header > .wrapper a {
 }
 .c-calendar {
   padding-top: 80px;
+  position: relative;
+  left: 23%;
   display: flex;
   justify-content: space-between;
   flex-direction: row;

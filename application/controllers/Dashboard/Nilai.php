@@ -8,17 +8,31 @@ class Nilai extends CI_Controller {
 		parent:: __construct();
 		$this->load->model(array('M_Enroll','M_Nilai','M_Tugas'));
 	}
+	public function head(){
+		$this->load->view('Dashboard/Template/head-open');
+		$this->load->view('Dashboard/Template/css');
+		$this->load->view('Dashboard/Template/head-close');
+		$this->load->view('Dashboard/Template/left');
+	}
+	
+	public function foot(){
+		$this->load->view('Dashboard/Template/js');
+		$this->load->view('Dashboard/Template/body-close');
+
+	}
 	public function index()
 	{
 		$data['Nilai'] = $this->M_Nilai->tampilkanRecord()->result();
-		$this->load->view('V_Nilai',$data);
+		$this->head();
+		$this->load->view('Dashboard/V_Nilai',$data);
+		$this->foot();
 	}
 
 	public function lihatInsertData()
 	{
 		$data['enroll'] = $this->M_Enroll->tampilkanData()->result();
 		$data['tugas'] = $this->M_Tugas->tampilkanData()->result();
-		$this->load->view('V_inputNilai',$data);
+		$this->load->view('Dashboard/V_inputNilai',$data);
 	}
 
 	public function insertData()
@@ -48,7 +62,7 @@ class Nilai extends CI_Controller {
 		$data['enroll'] = $this->M_Enroll->tampilkanData()->result();
 		$data['tugas'] = $this->M_Tugas->tampilkanData()->result();
 		$data['NilaiEdit'] = $this->M_Nilai->editRecord($where,'nilai')->result();
-		$this->load->view('V_Edit_Nilai',$data);
+		$this->load->view('Dashboard/V_Edit_Nilai',$data);
 	}
 
 	function updateData(){

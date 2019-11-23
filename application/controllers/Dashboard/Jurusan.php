@@ -26,7 +26,7 @@ class Jurusan extends CI_Controller {
 	{
 		$data['jurusan']=$this->M_Jurusan->tampilkanData()->result();
 		$this->head();
-		$this->load->view('V_Jurusan',$data);
+		$this->load->view('Dashboard/V_Jurusan',$data);
 		$this->foot();
 	}
 
@@ -52,7 +52,7 @@ class Jurusan extends CI_Controller {
 		$this->load->model('M_Jurusan');
 		$where = array('id_jurusan' => $id_jurusan);
 		$data['JurusanEdit'] = $this->M_Jurusan->editRecord($where,'Jurusan')->result();
-		$this->load->view('V_Edit_Jurusan',$data);
+		$this->load->view('Dashboard/V_Edit_Jurusan',$data);
 	}
 
 	function updateData(){

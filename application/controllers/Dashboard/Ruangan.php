@@ -8,10 +8,26 @@ class Ruangan extends CI_Controller {
 		parent:: __construct();
 		$this->load->model('M_Ruangan');
 	}
+
+	public function head(){
+		$this->load->view('Dashboard/Template/head-open');
+		$this->load->view('Dashboard/Template/css');
+		$this->load->view('Dashboard/Template/head-close');
+		$this->load->view('Dashboard/Template/left');
+	}
+	
+	public function foot(){
+		$this->load->view('Dashboard/Template/js');
+		$this->load->view('Dashboard/Template/body-close');
+
+	}
+
 	public function index()
 	{
 		$data['ruangan']=$this->M_Ruangan->tampilkanData()->result();
-		$this->load->view('V_Ruangan',$data);
+		$this->head();
+		$this->load->view('Dashboard/V_Ruangan',$data);
+		$this->foot();
 	}
 
 
@@ -36,7 +52,7 @@ class Ruangan extends CI_Controller {
 		$this->load->model('M_Ruangan');
 		$where = array('id_ruangan' => $id_ruangan);
 		$data['RuanganEdit'] = $this->M_Ruangan->editRecord($where,'ruangan')->result();
-		$this->load->view('V_Edit_Ruangan',$data);
+		$this->load->view('Dashboard/V_Edit_Ruangan',$data);
 	}
 
 	function updateData(){

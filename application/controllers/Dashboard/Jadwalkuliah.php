@@ -26,7 +26,7 @@ class Jadwalkuliah extends CI_Controller {
 	{
 		$data['jadwal_kuliah'] = $this->M_Jadwalkuliah->tampilkanRecord()->result();
 		$this->head();
-		$this->load->view('V_Jadwalkuliah',$data);
+		$this->load->view('Dashboard/V_Jadwalkuliah',$data);
 		$this->foot();
 	}
 
@@ -35,7 +35,7 @@ class Jadwalkuliah extends CI_Controller {
 		$data['dosen'] = $this->M_Dosen->tampilkanData()->result();
 		$data['matakuliah'] = $this->M_Matakuliah->tampilkanData()->result();
 		$data['ruangan'] = $this->M_Ruangan->tampilkanData()->result();
-		$this->load->view('V_inputJadwalkuliah',$data);
+		$this->load->view('Dashboard/V_inputJadwalkuliah',$data);
 	}
 
 	public function insertData()
@@ -71,7 +71,7 @@ class Jadwalkuliah extends CI_Controller {
 		$data['ruangan'] = $this->M_Ruangan->tampilkanData()->result();
 		$data['matakuliah'] = $this->M_Matakuliah->tampilkanData()->result();
 		$data['JadwalkuliahEdit'] = $this->M_Jadwalkuliah->editRecord($where,'jadwal_custom')->result();
-		$this->load->view('V_Edit_Jadwalkuliah',$data);
+		$this->load->view('Dashboard/V_Edit_Jadwalkuliah',$data);
 	}
 
 	function updateData(){

@@ -26,49 +26,64 @@ class Dosen extends CI_Controller {
 	{
 		$data['dosen'] = $this->M_Dosen->tampilkanData()->result();
 		$this->head();
-		$this->load->view('V_Dosen',$data);
-		$this->close();
+		$this->load->view('Dashboard/V_Dosen',$data);
+		$this->foot();
 	}
 
 
 	public function insertData()
 	{
-		$tangkapNidn = $this->input->post('nidn');
-		$tangkapNama= $this->input->post('nama_dosen');
-		$tangkapTipedosen = $this->input->post('tipe_dosen');
-		$tangkapEmail = $this->input->post('email_dosen');
-		$tangkapTgllahir= $this->input->post('tanggal_lahir');
-		$tangkapTmptlahir = $this->input->post('tempat_lahir');
-		$tangkapAlamat= $this->input->post('alamat');
-		$tangkapNotelp = $this->input->post('no_telpon');
-		$tangkapAgama= $this->input->post('agama');
-		$tangkapUsername = $this->input->post('username');
-		$tangkapPassword = $this->input->post('password');
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('nidn', 'NIDN', 'required|trim|is_unique[mahasiswa.nim]');
+		$this->form_validation->set_rules('nama_dosen', 'Name', 'required|trim');
+		$this->form_validation->set_rules('tipe_dosen', 'Lecturer Type', 'required|trim');
+		$this->form_validation->set_rules('jenis_kelamin', 'Sex', 'required|trim');
+		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+		$this->form_validation->set_rules('tmpt_lahir', 'Place of Birth', 'required|trim');
+		$this->form_validation->set_rules('tgl_lahir', 'Date of Birth', 'required|trim');
+		$this->form_validation->set_rules('alamat', 'Address', 'required|trim');
+		$this->form_validation->set_rules('no_telp', 'Telephone Number', 'required|trim|numeric');
+		$this->form_validation->set_rules('agama', 'Religion', 'required|trim');
+		$this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]|matches[password2]');
+		$this->form_validation->set_rules('password2', 'Confirm Password', 'required|trim|min_length[6]|matches[password]');
 
-		$data=array(
-			'nidn' =>$tangkapNidn,
-			'nama_dosen' =>$tangkapNama,
-			'tipe_dosen' =>$tangkapTipedosen,
-			'email_dosen' =>$tangkapEmail,
-			'tgl_lahir' =>$tangkapTgllahir,
-			'tmpt_lahir' =>$tangkapTmptlahir,
-			'alamat_rumah' =>$tangkapAlamat,
-			'no_telp' =>$tangkapNotelp,
-			'agama' =>$tangkapAgama,
-			'username' =>$tangkapUsername,
-		);
+		
+		if($this->form_validation->run() == false){
+			echo validation_errors();
+		}
+		else{
+			$data_dosen = array(
+				'nidn' => htmlspecialchars($this->input->post('nidn')), 
+				'nama_dosen' => htmlspecialchars($this->input->post('nama_dosen')), 
+				'tipe_dosen' => htmlspecialchars($this->input->post('tipe_dosen')), 
+				'jenis_kelamin' => htmlspecialchars($this->input->post('jenis_kelamin')), 
+				'email_dosen' => htmlspecialchars($this->input->post('email')), 
+				'tgl_lahir' => date('Y-m-d', strtotime(htmlspecialchars($this->input->post('tgl_lahir')))),
+				'tmpt_lahir' => htmlspecialchars($this->input->post('tmpt_lahir')), 
+				'alamat_rumah' => htmlspecialchars($this->input->post('alamat')), 
+				'no_telp' => htmlspecialchars($this->input->post('no_telp')), 
+				'agama' => htmlspecialchars($this->input->post('agama')),
+				'user_add' => htmlspecialchars($this->input->post('nidn')),  
+				'user_edit' => '',  
+				'user_delete' => '',
+				'status_delete' => 1
+			);
+	
+			$data_user = array(
+				'username' => htmlspecialchars($this->input->post('nidn'), true),
+				'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),   
+				'images' => 'default.jpg', 
+				'tipe_akun'=> '2',
+				'status' => '0'
+			);
 
-		$data2 = array(
-			'username' => $tangkapUsername,
-			'password' => $tangkapPassword,
-			'tipe_akun' => "2",
-			'status' => "1",
+			$this->M_Dosen->insertTable('dosen',$data_dosen);
+			$this->M_User->insertTable('user',$data_user);
+			redirect('Dashboard/Dosen/index');
 
-	);
+		}
 
-		$this->M_Dosen->insertTable('dosen',$data);
-		$this->M_User->insertTable('user',$data2);
-		redirect('Dosen/index');
 	}
 
 	function editData($nidn) {
@@ -76,38 +91,45 @@ class Dosen extends CI_Controller {
 		$where = array('nidn' => $nidn);
 		$data['user'] = $this->M_User->tampilkanData()->result();
 		$data['DosenEdit'] = $this->M_Dosen->editRecord($where,'dosen')->result();
-		$this->load->view('V_Edit_Dosen',$data);
+		$this->load->view('Dashboard/V_Edit_Dosen',$data);
 	}
 
 	function updateData(){
-		$tangkapNidn = $this->input->post('nidn');
-		$tangkapNama= $this->input->post('nama_dosen');
-		$tangkapTipedosen = $this->input->post('tipe_dosen');
-		$tangkapEmail = $this->input->post('email_dosen');
-		$tangkapTgllahir= $this->input->post('tanggal_lahir');
-		$tangkapTmptlahir = $this->input->post('tempat_lahir');
-		$tangkapAlamat= $this->input->post('alamat');
-		$tangkapNotelp = $this->input->post('no_telpon');
-		$tangkapAgama = $this->input->post('agama');
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('nama_dosen', 'Name', 'required|trim');
+		$this->form_validation->set_rules('jenis_kelamin', 'Sex', 'required|trim');
+		$this->form_validation->set_rules('tipe_dosen', 'Lecturer Type', 'required|trim');
+		$this->form_validation->set_rules('email_dosen', 'Email', 'required|trim|valid_email');
+		$this->form_validation->set_rules('tmpt_lahir', 'Place of Birth', 'required|trim');
+		$this->form_validation->set_rules('tgl_lahir', 'Date of Birth', 'required|trim');
+		$this->form_validation->set_rules('alamat', 'Address', 'required|trim');
+		$this->form_validation->set_rules('no_telp', 'Telephone Number', 'required|trim|numeric');
+		$this->form_validation->set_rules('agama', 'Religion', 'required|trim');
 
-		$data=array(
-			'nidn' =>$tangkapNidn,
-			'nama_dosen' =>$tangkapNama,
-			'tipe_dosen' =>$tangkapTipedosen,
-			'email_dosen' =>$tangkapEmail,
-			'tgl_lahir' =>$tangkapTgllahir,
-			'tmpt_lahir' =>$tangkapTmptlahir,
-			'alamat_rumah' =>$tangkapAlamat,
-			'no_telp' =>$tangkapNotelp,
-			'agama' =>$tangkapAgama,
-		);
+		if($this->form_validation->run() == false){
+			echo validation_errors();
+		}
+		else{
+			$data_dosen = array(
+				'nama_dosen' => htmlspecialchars($this->input->post('nama_dosen')), 
+				'jenis_kelamin' => htmlspecialchars($this->input->post('jenis_kelamin')), 
+				'email_dosen' => htmlspecialchars($this->input->post('email_dosen')), 
+				'tgl_lahir' => date('Y-m-d', strtotime(htmlspecialchars($this->input->post('tgl_lahir')))),
+				'tmpt_lahir' => htmlspecialchars($this->input->post('tmpt_lahir')), 
+				'alamat_rumah' => htmlspecialchars($this->input->post('alamat')), 
+				'no_telp' => htmlspecialchars($this->input->post('no_telp')), 
+				'agama' => htmlspecialchars($this->input->post('agama')), 
+				'user_edit' => $this->session->userdata('username'),  
+			);
 
-		$where = array(
-			'nidn' => $tangkapNidn
-		);
+			$where = array(
+				'nidn' => $this->input->post('nidn'),
+			);
+			$this->M_Dosen->updateRecord($where,$data_dosen,'dosen');
+			redirect('Dashboard/Dosen/index');
 
-		$this->M_Dosen->updateRecord($where,$data,'dosen');
-		redirect('Dosen/index');
+		}
 	}
 	
 	function hapusData($nidn){

@@ -17,6 +17,10 @@ class M_Enroll extends CI_Model{
 
     function getAllEnrollCond($where){
         return $this->db->get_where('enroll',$where);
+	}
+	
+	function getMahasiswaEnroll($matkul, $semester){
+        return $this->db->query('SELECT a.id_enroll, b.nama_mata_kuliah, c.nim, c.nama_mhs, c.angkatan, e.nama_jurusan, d.jenis_semester, d.tahun FROM enroll a JOIN matakuliah b ON a.id_mata_kuliah = b.id_mata_kuliah JOIN mahasiswa c ON a.nim = c.nim JOIN semester d ON b.id_semester = d.id_semester JOIN jurusan e ON c.id_jurusan = e.id_jurusan WHERE b.id_mata_kuliah = '.$matkul.' AND a.id_semester='.$semester);
     }
 
     function tampilkanData()

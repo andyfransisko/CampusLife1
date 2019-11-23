@@ -161,7 +161,7 @@ function fill_table(month, month_length, indexMonth, year) {
     <form id="addEvent">
       <input placeholder="Event name" type="text" name="name">
       <input type="date" name="date">
-      <textarea placeholder="Notes" name="notes" cols="30" rows="10"></textarea>
+      
       <select name="tags">
           <option value="event">event</option>
           <option value="important">important</option>

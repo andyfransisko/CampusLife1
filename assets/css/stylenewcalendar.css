@@ -113,9 +113,9 @@ a {
 }
 /* STYLE ===========================================================*/
 header {
-  position: fixed;
-  height: 10%;
-  width: 85%;
+  position: absolute;
+  height: 8%;
+  width: 100%;
   z-index: 50;
   background: #003567;
 }

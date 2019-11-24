@@ -1,6 +1,6 @@
 <section class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo base_url()?>assets/images/login.jpeg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
-      <div style="position:relative;padding-top: 10%;padding-bottom: 10%;">
+      <div style="position:relative;padding-top: 18%;padding-bottom: 10%;">
         <div class="form-style-5 container">
             <h3 style="text-align: center; margin-bottom: 50px;">LECTURER INFORMATION</h3>
             <form class="" action="<?php echo base_url() ?>Login/signup_dosen_cek" style="font-family: 'Nunito', sans-serif;" method="post">
@@ -57,3 +57,10 @@
       </div>
         
     </section>
+
+    <div>
+        <ul class="progress-indicator">
+            <li class="completed" style=> <span class="bubble"></span> Choose User </li>
+            <li class="active"> <span class="bubble"></span> Fill Information </li>
+        </ul>
+    </div>  

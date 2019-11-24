@@ -1,13 +1,20 @@
+
 <section class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo base_url()?>assets/images/login.jpeg');" data-stellar-background-ratio="0.5"></section>
       <div class="overlay"></div>
       <div class="limiter">
           <div class="container-login100" >
             <div class="wrap-login100 p-t-190 p-b-30">
-              
-                    <section class="cards" style="position: absolute;top:25%;margin-left: 25%;margin-right: 25%;">
+                
+            <div>
+                <ul class="progress-indicator">
+                    <li class="completed" style=> <span class="bubble"></span> Choose User </li>
+                    <li class=""> <span class="bubble"></span> Fill Information </li>
+                </ul>
+            </div>  
+                    <section class="cards" style="position: absolute;top:35%;margin-left: 25%;margin-right: 25%;">
                             
                         <article class="card card--1">
-                            <a data-href="<?php echo base_url() ?>Login/signupMahasiswa">
+                            <a href="<?php echo base_url() ?>Login/signupMahasiswa">
                                 <div class="card__img"></div>
                                     <div class="card_link">
                                         <div class="card__img--hover"></div>
@@ -39,8 +46,8 @@
                                 </a>
                             </article>  
 
-                            <article class="card card--2">
-                                <a href="<?php echo base_url() ?>Login/signupKaprodi"">
+                            <article class="card card--3">
+                                <a href="<?php echo base_url() ?>Login/signupKaprodi">
                                     <div class="card__img"></div>
                                             <div class="card__img--hover"></div>
                                     <div class="card__info">

@@ -12,6 +12,7 @@ class Grade extends CI_Controller
         $this->load->view('LandingPage/Template/head-open');
         $data['title'] = "Grade";
         $this->load->view("LandingPage/Template/template-header", $data);
+        $this->load->view("LandingPage/Template/css-grade");
         $this->load->view("LandingPage/Template/head-close");
         $this->load->view("LandingPage/Template/body-open");
         

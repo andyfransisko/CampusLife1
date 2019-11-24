@@ -8,15 +8,29 @@ class User extends CI_Controller {
 		parent:: __construct();
 		$this->load->model('M_User');
 	}
+	public function head(){
+		$this->load->view('Dashboard/Template/head-open');
+		$this->load->view('Dashboard/Template/css');
+		$this->load->view('Dashboard/Template/head-close');
+		$this->load->view('Dashboard/Template/left');
+	}
+	
+	public function foot(){
+		$this->load->view('Dashboard/Template/js');
+		$this->load->view('Dashboard/Template/body-close');
+
+	}
 	public function index()
 	{
 		$data['user']=$this->M_User->tampilkanData()->result();
-		$this->load->view('V_User',$data);
+		$this->head();
+		$this->load->view('Dashboard/V_User',$data);
+		$this->foot();
 	}
 
 	public function lihatInsertData()
 	{
-		$this->load->view('V_Input_User',$data);
+		$this->load->view('Dashboard/V_Input_User',$data);
 	}
 
 	public function insertData()
@@ -44,7 +58,7 @@ class User extends CI_Controller {
 		$this->load->model('M_User');
 		$where = array('username' => $username);
 		$data['UserEdit'] = $this->M_User->editRecord($where,'user')->result();
-		$this->load->view('V_Edit_User',$data);
+		$this->load->view('Dashboard/V_Edit_User',$data);
 	}
 
 	function updateData(){

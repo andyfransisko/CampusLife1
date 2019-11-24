@@ -33,7 +33,7 @@ class Jadwalcustom extends CI_Controller {
 	public function lihatInsertData()
 	{
 		$data['mahasiswa'] = $this->M_Mahasiswa->tampilkanData()->result();
-		$this->load->view('V_inputJadwalcustom',$data);
+		$this->load->view('Dashboard/V_inputJadwalcustom',$data);
 	}
 
 	public function insertData()
@@ -65,7 +65,7 @@ class Jadwalcustom extends CI_Controller {
 		$where = array('id_jadwal' => $id_jadwalcustom);
 		$data['mahasiswa'] = $this->M_Mahasiswa->tampilkanData()->result();
 		$data['JadwalcustomEdit'] = $this->M_Jadwalcustom->editRecord($where,'jadwal_custom')->result();
-		$this->load->view('V_Edit_Jadwalcustom',$data);
+		$this->load->view('Dashboard/V_Edit_Jadwalcustom',$data);
 	}
 
 	function updateData(){

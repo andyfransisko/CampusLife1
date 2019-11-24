@@ -66,12 +66,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="enroll-body">
-                                        <tr>
-                                            <td>asd</td>
-                                            <td>asd</td>
-                                            <td>asd</td>
-                                            <td>asd</td>
-                                        </tr>
+                                        
                                     </tbody>
                                 </table>
                             </div>

@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/dashboard/css/cs-skin-elastic.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/dashboard/css/lib/datatable/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/dashboard/css/style.css">
+    <link rel="stylesheet" href="<?php echo base_url() ?>assets/dashboard/css/lib/chosen/chosen.min.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 

@@ -1,38 +1,3 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ela Admin - HTML5 Admin Template</title>
-    <meta name="description" content="Ela Admin - HTML5 Admin Template">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-    <link rel="icon" type="image/png" href="images/logo5.png"/>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="../assets/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="../assets/css/lib/datatable/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
-
-</head>
-<body>
-  <!-- /#left-panel -->
-  <?php
-        include('Template/left.php');
-    ?>
 
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
@@ -94,19 +59,90 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php foreach($user as $list){ ?>
                                         <tr align="center">
-                                            <td>1</td>
-                                            <td>12345</td>
-                                            <td>Powerbank.jpg</td>
-                                            <td>1</td>
-                                            <td>1</td>
+                                            <td><?php echo $list->username ?></td>
+                                            <td><?php echo $list->password ?></td>
+                                            <td><?php echo $list->images ?></td>
                                             <td>
-                                                <button type="button" class="btn btn-outline-danger">Edit</button>
+                                                <?php   
+                                                   if($list->tipe_akun == 1){
+                                                    echo "Mahasiswa";
+                                                    }
+                                                    else if($list->tipe_akun == 2){
+                                                        echo "Dosen";
+                                                    }
+                                                    else{
+                                                        echo "Admin";
+                                                    } 
+                                                ?>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-outline-warning">Delete</button>
+                                            <?php   
+                                                    if($list->status == 1){
+                                                        echo "Aktif";
+                                                    
+                                                    }else{
+                                                        echo "Non-Aktif";
+                                                    } 
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#editUser_<?php echo $list->username?>">Edit</button>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-outline-danger"><a href="<?php echo base_url(). 'Dashboard/Semester/hapusData/'.$list->username;?>">Delete</button>
                                             </td>
                                         </tr>
+                                        <div class="modal fade" id="editUser_<?php echo $list->nim?>" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="mediumModalLabel">Edit Data User</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="<?php echo base_url(). "Dashboard/User/updateData"?>" method="POST" novalidate="novalidate">
+                                                    <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label for="cc-payment" class="control-label mb-1">Username</label>
+                                                                    <input type="text" class="form-control" placeholder = "Username" id="username" name="username" value="<?php echo $list->username ?>" readonly>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="cc-payment" class="control-label mb-1">New Password</label>
+                                                                    <input  type="text" class="form-control" placeholder = "New Password" id="password" name="password">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="jenis_kelamin" class="control-label mb-1">Image Directory</label><br>
+                                                                    <input  type="text" class="form-control" placeholder = "Image" id="password" name="password">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="id_jurusan" class="control-label mb-1">Account Type</label><br>
+                                                                    <select data-placeholder="Pilih Jenis Semester" class="standardSelect" tabindex="1" name="tipe_akun" id="tipe_akun">
+                                                                        <option value="1" <?php echo ($list->tipe_akun == 1 ? "selected" : "") ?>>Mahasiswa</option>
+                                                                        <option value="2" <?php echo ($list->tipe_akun == 2 ? "selected" : "") ?>>Dosen</option>
+                                                                        <option value="0" <?php echo ($list->tipe_akun == 3 ? "selected" : "") ?>>Admin</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="cc-payment" class="control-label mb-1">Status</label>
+                                                                    <select data-placeholder="Pilih Jenis Semester" class="standardSelect" tabindex="1" name="id_jurusan" id="id_jurusan">
+                                                                        <option value="1" <?php echo ($list->status == 1 ? "selected" : "") ?>>Aktif</option>
+                                                                        <option value="0" <?php echo ($list->status == 0 ? "selected" : "") ?>>Non-Aktif/Deleted</option>
+                                                                    </select>
+                                                                </div>
+                                                                            
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -133,19 +169,19 @@
                             <form action="#" method="post" novalidate="novalidate">
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Username</label>
-                                                <input id="cc-payment" name="cc-payment" type="text" class="form-control" placeholder = "Username">
+                                                <input id="cc-payment" name="username" type="text" class="form-control" placeholder = "Username">
                                             </div>
                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Password</label>
-                                                <input id="cc-payment" name="cc-payment" type="password" class="form-control" placeholder = "Password">
+                                                <label for="cc-payment" class="control-label mb-1">Password (New)</label>
+                                                <input id="cc-payment" name="password" type="password" class="form-control" placeholder = "Password">
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Images</label>
-                                                <input id="cc-payment" name="cc-payment" type="text" class="form-control" placeholder = "Images">
+                                                <input id="cc-payment" name="image" type="text" class="form-control" placeholder = "Images">
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Tipe Akun</label><br>
-                                                <select data-placeholder="Pilih Tipe Akun" class="standardSelect" tabindex="1">
+                                                <select data-placeholder="Pilih Tipe Akun" class="standardSelect" tabindex="1" name="tipe_akun">
                                                     <option value="1">Mahasiswa</option>
                                                     <option value="2">Dosen</option>
                                                     <option value="0">Admin</option>
@@ -153,19 +189,17 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Status</label><br>
-                                                <select data-placeholder="Pilih Tipe Dosen" class="standardSelect" tabindex="1">
-                                                    <option value="0">Belum Aktivasi</option>
-                                                    <option value="1">Sudah Aktivasi</option>
+                                                <select data-placeholder="Pilih Tipe Dosen" class="standardSelect" tabindex="1" name="">
+                                                    <option value="1">Aktif</option>
+                                                    <option value="0">Non-aktif</option>
                                                 </select>
-                                            </div>
-                                            
-                                        </form>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary">Submit</button>
-                        </div>
+                                            </div> 
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
                     </div>
                 </div>
             </div>
@@ -189,32 +223,3 @@
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
-
-    <!-- Scripts -->
-   <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-    <script src="../assets/js/main.js"></script>
-
-
-    <script src="../assets/js/lib/data-table/datatables.min.js"></script>
-    <script src="../assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-    <script src="../assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-    <script src="../assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-    <script src="../assets/js/lib/data-table/jszip.min.js"></script>
-    <script src="../assets/js/lib/data-table/vfs_fonts.js"></script>
-    <script src="../assets/js/lib/data-table/buttons.html5.min.js"></script>
-    <script src="../assets/js/lib/data-table/buttons.print.min.js"></script>
-    <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
-    <script src="../assets/js/init/datatables-init.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-          $('#bootstrap-data-table-export').DataTable();
-      } );
-  </script>
-
-
-</body>
-</html>

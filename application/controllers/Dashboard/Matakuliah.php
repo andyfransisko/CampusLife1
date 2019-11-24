@@ -8,10 +8,25 @@ class Matakuliah extends CI_Controller {
 		parent:: __construct();
 		$this->load->model('M_Matakuliah');
 	}
+
+	public function head(){
+		$this->load->view('Dashboard/Template/head-open');
+		$this->load->view('Dashboard/Template/css');
+		$this->load->view('Dashboard/Template/head-close');
+		$this->load->view('Dashboard/Template/left');
+	}
+	
+	public function foot(){
+		$this->load->view('Dashboard/Template/js');
+		$this->load->view('Dashboard/Template/body-close');
+
+	}
 	public function index()
 	{
 		$data['matakuliah']=$this->M_Matakuliah->tampilkanData()->result();
-		$this->load->view('V_Matakuliah',$data);
+		$this->head();
+		$this->load->view('Dashboard/V_Matakuliah',$data);
+		$this->foot();
 	}
 
 	public function insertData()

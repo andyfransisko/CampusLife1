@@ -4,6 +4,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script src="<?php echo base_url() ?>assets/dashboard/js/main.js"></script>
+    <script src="<?php echo base_url() ?>assets/dashboard/js/lib/chosen/chosen.jquery.min.js"></script>
 
 
     <script src="<?php echo base_url() ?>assets/dashboard/js/lib/data-table/datatables.min.js"></script>
@@ -19,7 +20,17 @@
 
 
     <script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery(".standardSelect").chosen({
+            disable_search_threshold: 10,
+            no_results_text: "Oops, nothing found!",
+            width: "100%"
+        });
+    });
+
         $(document).ready(function() {
+            
+            
           $('#bootstrap-data-table-export').DataTable();
 
           $('#semester').change(function(e){
@@ -47,7 +58,9 @@
                                         '</tr>';
                             }
                             
-                                $('#enroll-body').html(tableContent);
+                                $('#enroll-body').append(tableContent);
+
+                                
                         }else{
                             tableContent='<tr><td colspan="4">NO DATA AVAILABLE</td></tr>';
                             $('#enroll-body').append(tableContent);
@@ -56,6 +69,9 @@
                     error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
                         alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
                     }
+                }).done(function (result){
+                    $('#bootstrap-data-export').DataTable().ajax.reload();
+                    $('#bootstrap-data-export').reload();
                 });
                 
                 

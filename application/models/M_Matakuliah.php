@@ -23,6 +23,17 @@ class M_Matakuliah extends CI_Model{
 
     }
 
+    function getMatkulBySemester($id, $year){
+        $query = $this->db->query('SELECT a.id_mata_kuliah, d.nama_mata_kuliah,c.id_semester, c.tahun, c.jenis_semester
+        FROM enroll a 
+        JOIN semester c ON a.id_semester = c.id_semester 
+        JOIN matakuliah d ON a.id_mata_kuliah = d.id_mata_kuliah 
+        WHERE d.id_mata_kuliah = '.$id.' AND a.id_semester = '.$year);
+
+        return $query;
+
+    }
+
     function getJadwalMatkul($id){
         $query = $this->db->query('SELECT a.nim, 
         d.nama_mata_kuliah, c.tahun, c.jenis_semester, b.hari, b.jam_mulai, b.jam_selesai, e.nama_dosen, f.detail_ruangan 

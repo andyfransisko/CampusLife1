@@ -1,38 +1,3 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Ela Admin - HTML5 Admin Template</title>
-    <meta name="description" content="Ela Admin - HTML5 Admin Template">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-    <link rel="icon" type="image/png" href="images/logo5.png"/>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="../assets/css/cs-skin-elastic.css">
-    <link rel="stylesheet" href="../assets/css/lib/datatable/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
-
-</head>
-<body>
-  <!-- /#left-panel -->
-  <?php
-        include('Template/left.php');
-    ?>
 
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
@@ -98,13 +63,25 @@
                           ?>
                                         <tr align="center">
                                             <td><?php echo $list->id_semester ?></td>
-                                            <td><?php echo $list->jenis_semester ?></td>
+                                            <td>
+                                                <?php 
+                                                    if($list->jenis_semester == 1){
+                                                        echo "Ganjil";
+                                                    }
+                                                    else if($list->jenis_semester == 2){
+                                                        echo "Genap";
+                                                    }
+                                                    else{
+                                                        echo "Akselerasi";
+                                                    }
+                                                ?>
+                                            </td>
                                             <td><?php echo $list->tahun ?></td>
                                             <td>
                                                 <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#editSemester_<?php echo $list->id_semester?>">Edit</button>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-outline-danger"><a href="<?php echo base_url(). 'Semester/hapusData/'.$list->id_semester;?>">Delete</button>
+                                                <button type="button" class="btn btn-outline-danger"><a href="<?php echo base_url(). 'Dashboard/Semester/hapusData/'.$list->id_semester;?>">Delete</button>
                                             </td>
                                         </tr>
                                          <div class="modal fade" id="editSemester_<?php echo $list->id_semester?>" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
@@ -118,14 +95,18 @@
                                                     </div>
                                                     <div class="modal-body">
                             
-                            <form action="<?php echo 'updateData'?>" method="POST" novalidate="novalidate">
+                            <form action="<?php echo base_url().'Dashboard/Semester/updateData'?>" method="POST" novalidate="novalidate">
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">ID Semester</label>
                                                 <input type="text" class="form-control" placeholder = "ID Semester" id="id_semester" name="id_semester" value="<?php echo $list->id_semester ?>" readonly>
                                             </div>
                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Jenis Semester</label>
-                                                <input  type="text" class="form-control" placeholder = "Jenis Semester" id="jenis_semester" name="jenis_semester" value="<?php echo $list->jenis_semester?>">
+                                                <label for="cc-payment" class="control-label mb-1">Jenis Semester</label><br>
+                                                <select data-placeholder="Pilih Jenis Semester" class="standardSelect" tabindex="1" name="jenis_semester" id="jenis_semester">
+                                                    <option value="1"<?php if(($list->jenis_semester) == "1")  echo "selected" ?>>Ganjil</option>
+                                                    <option value="2" <?php if(($list->jenis_semester) == "2") echo "selected" ?>>Genap</option>
+                                                    <option value="3" <?php if(($list->jenis_semester) == "3") echo "selected" ?>>Akselerasi</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Tahun</label>
@@ -166,14 +147,18 @@
                         </div>
                         <div class="modal-body">
                             
-                            <form action="<?php echo 'insertData'?>" method="post" novalidate="novalidate">
+                            <form action="<?php echo base_url(). 'Dashboard/Semester/insertData'?>" method="post" novalidate="novalidate">
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">ID Semester</label>
-                                                <input id="cc-payment" name="id_semester" type="text" class="form-control" placeholder = "ID Semester">
+                                                <input id="cc-payment" name="id_semester" type="text" class="form-control" value="SMSTR-<?php echo $count+1;?>" placeholder = "ID Semester" readonly>
                                             </div>
                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Jenis Semester</label>
-                                                <input id="cc-payment" name="jenis_semester" type="text" class="form-control" placeholder = "Jenis Semester">
+                                                <label for="cc-payment" class="control-label mb-1">Jenis Semester</label><br>
+                                                <select data-placeholder="Pilih Jenis Semester" class="standardSelect" tabindex="1" name="jenis_semester" id="jenis_semester">
+                                                    <option value="1">Ganjil</option>
+                                                    <option value="2">Genap</option>
+                                                    <option value="3">Akselerasi</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Tahun</label>
@@ -211,33 +196,3 @@
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-    <script src="../assets/js/main.js"></script>
-
-
-    <script src="../assets/js/lib/data-table/datatables.min.js"></script>
-    <script src="../assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
-    <script src="../assets/js/lib/data-table/dataTables.buttons.min.js"></script>
-    <script src="../assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
-    <script src="../assets/js/lib/data-table/jszip.min.js"></script>
-    <script src="../assets/js/lib/data-table/vfs_fonts.js"></script>
-    <script src="../assets/js/lib/data-table/buttons.html5.min.js"></script>
-    <script src="../assets/js/lib/data-table/buttons.print.min.js"></script>
-    <script src="../assets/js/lib/data-table/buttons.colVis.min.js"></script>
-    <script src="../assets/js/init/datatables-init.js"></script>
-
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-          $('#bootstrap-data-table-export').DataTable();
-      } );
-  </script>
-
-
-</body>
-</html>

@@ -198,7 +198,11 @@ class Login extends CI_Controller
                     'tmpt_lahir' => htmlspecialchars($this->input->post('tmpt_lahir')), 
                     'alamat_rumah' => htmlspecialchars($this->input->post('alamat_rumah')), 
                     'no_telp' => htmlspecialchars($this->input->post('no_telp')), 
-                    'agama' => htmlspecialchars($this->input->post('agama')) 
+                    'agama' => htmlspecialchars($this->input->post('agama')),
+                    'user_add' => htmlspecialchars($this->input->post('nim')),  
+                    'user_edit' => '',  
+                    'user_delete' => '',
+                    'status_delete' => 1 
                 );
         
                 $data_user = array(

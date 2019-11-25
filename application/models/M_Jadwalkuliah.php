@@ -26,7 +26,7 @@ class M_Jadwalkuliah extends CI_Model{
 	}
 	function tampilkanRecord()
 	{
-		return $this->db->query('SELECT a.id_jadwal, b.nama_matakuliah, c.nama_dosen, a.hari, a.jam_mulai, a.jam_selesai, d.detail_ruangan FROM jadwal_kuliah a JOIN matakuliah b ON a.id_mata_kuliah = b.id_mata_kuliah JOIN dosen c ON a.nidn = c.nidn JOIN ruangan d ON a.id_ruangan = d.id_ruangan');
+		return $this->db->query('SELECT a.id_jadwal, b.id_mata_kuliah, b.nama_mata_kuliah, c.nidn, c.nama_dosen, a.hari, a.jam_mulai, a.jam_selesai, d.id_ruangan, d.detail_ruangan FROM jadwal_kuliah a JOIN matakuliah b ON a.id_mata_kuliah = b.id_mata_kuliah JOIN dosen c ON a.nidn = c.nidn JOIN ruangan d ON a.id_ruangan = d.id_ruangan');
 	}
 	function insertTable($a,$b)
 	{

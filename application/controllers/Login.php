@@ -83,6 +83,7 @@ class Login extends CI_Controller
                             'username' => $cek_user['username'],
                             'tipe_akun' => $cek_user['tipe_akun'],
                             'nama_user' => $nama['nama_mhs'],
+                            'images' => $cek_user['images'],
                         );
                     }else if($cek_user['tipe_akun'] == 2){
                         $nama = $this->M_Login->getRecordNameDosen($where)->query_row;
@@ -90,6 +91,7 @@ class Login extends CI_Controller
                             'username' => $cek_user['username'],
                             'tipe_akun' => $cek_user['tipe_akun'],
                             'nama_user' => $nama['nama_dosen'],
+                            'images' => $cek_user['images'],
                         );
                     }
                     else{
@@ -98,6 +100,7 @@ class Login extends CI_Controller
                             'username' => $cek_user['username'],
                             'tipe_akun' => $cek_user['tipe_akun'],
                             'nama_user' => $nama['nama_admin'],
+                            'images' => $cek_user['images'],
                         );
                     }
                     

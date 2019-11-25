@@ -94,7 +94,7 @@
                                                 <button type="button" class="btn btn-outline-danger"><a href="<?php echo base_url(). 'Dashboard/Semester/hapusData/'.$list->username;?>">Delete</button>
                                             </td>
                                         </tr>
-                                        <div class="modal fade" id="editUser_<?php echo $list->nim?>" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="editUser_<?php echo $list->username?>" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">

@@ -3,7 +3,7 @@
     <div id="right-panel" class="right-panel">
         <!-- Header-->
         <?php
-            include('head.php');
+            include('Template/head.php');
         ?>
         <!-- Header-->
 
@@ -61,21 +61,102 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php 
+                                        $arr = array(
+                                            1 => "Senin",
+                                            2 => "Selasa", 
+                                            3 => "Rabu", 
+                                            4 => "Kamis", 
+                                            5 => "Jumat", 
+                                            6 => "Sabtu", 
+                                            7 => "Minggu",  
+                                          );
+                                        foreach($jadwal as $a){ ?>
                                         <tr align="center">
-                                            <td>1</td>
-                                            <td>Vyatta</td>
-                                            <td>Powerbank</td>
-                                            <td>Men</td>
-                                            <td>vyata@gmail.com</td>
-                                            <td>vyata@gmail.com</td>
-                                            <td>vyata@gmail.com</td>
+                                            <td><?php echo $a->id_jadwal ?></td>
+                                            <td><?php echo $a->nama_dosen ?></td>
+                                            <td><?php echo $a->nama_mata_kuliah ?></td>
+                                            <td><?php echo $arr[$a->hari] ?></td>
+                                            <td><?php echo date('H:i',strtotime($a->jam_mulai)) ?></td>
+                                            <td><?php echo date('H:i',strtotime($a->jam_selesai)) ?></td>
+                                            <td><?php echo $a->detail_ruangan ?></td>
                                             <td>
-                                                <button type="button" class="btn btn-outline-danger">Edit</button>
+                                                <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#editJadwal_<?php echo $a->id_jadwal?>">Edit</button>
                                             </td>
                                             <td>
-                                                <button type="button" class="btn btn-outline-warning">Delete</button>
+                                                <button type="button" class="btn btn-outline-danger"><a href="<?php echo base_url(). 'Dashboard/Jadwalkuliah/hapusData/'.$a->id_jadwal;?>">Delete</button>
                                             </td>
                                         </tr>
+                                        <div class="modal fade" id="editJadwal_<?php echo $a->id_jadwal?>" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="mediumModalLabel">Edit Jadwal Kuliah</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="<?php echo base_url(). "Dashboard/Jadwalkuliah/updateData"?>" method="POST" novalidate="novalidate">
+                                                    <div class="modal-body">
+                                                                <div class="form-group">
+                                                                    <label for="cc-payment" class="control-label mb-1">ID Jadwal</label>
+                                                                    <input type="text" class="form-control" placeholder = "ID Jadwal" id="id_jadwal" name="id_jadwal" value="<?php echo $a->id_jadwal ?>" readonly>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="cc-payment" class="control-label mb-1">Nama Dosen</label><br>
+                                                                    <select data-placeholder="Pilih Dosen" class="standardSelect" tabindex="1" name="nidn" id="nidn">
+                                                                        <?php foreach($dosen as $b) {?>
+                                                                            <option value="<?php echo $b->nidn ?>" <?php echo ($b->nidn == $a->nidn ? "selected" : "") ?>><?php echo $b->nama_dosen ?></option>
+                                                                        <?php } ?>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="id_mata_kuliah" class="control-label mb-1">Nama Mata Kuliah</label><br>
+                                                                    <select data-placeholder="Pilih Mata Kuliah" class="standardSelect" tabindex="1" name="id_mata_kuliah" id="id_mata_kuliah">
+                                                                        <?php foreach($matkul as $c) {?>
+                                                                            <option value="<?php echo $c->id_mata_kuliah ?>" <?php echo ($c->id_mata_kuliah == $a->id_mata_kuliah ? "selected" : "") ?>><?php echo $c->nama_mata_kuliah ?></option>
+                                                                        <?php } ?>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="hari" class="control-label mb-1">Hari</label><br>
+                                                                    <select data-placeholder="Pilih Hari" class="standardSelect" tabindex="1" name="hari" id="hari">
+                                                                        <option value="1" <?php echo ($a->hari == 1 ? "selected" : "") ?>>Senin</option>
+                                                                        <option value="2" <?php echo ($a->hari == 2 ? "selected" : "") ?>>Selasa</option>
+                                                                        <option value="3" <?php echo ($a->hari == 3 ? "selected" : "") ?>>Rabu</option>
+                                                                        <option value="4" <?php echo ($a->hari == 4 ? "selected" : "") ?>>Kamis</option>
+                                                                        <option value="5" <?php echo ($a->hari == 5 ? "selected" : "") ?>>Jumat</option>
+                                                                        <option value="6" <?php echo ($a->hari == 6 ? "selected" : "") ?>>Sabtu</option>
+                                                                        <option value="7" <?php echo ($a->hari == 7 ? "selected" : "") ?>>Minggu</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="cc-payment" class="control-label mb-1">Jam Mulai</label>
+                                                                    <input type="time" class="form-control" placeholder = "Jam Mulai" id="jam_mulai" name="jam_mulai" value="<?php echo $a->jam_mulai ?>" min="04:00" max="23:59">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="cc-payment" class="control-label mb-1">Jam Selesai</label>
+                                                                    <input type="time" class="form-control" placeholder = "Jam Selesai" id="jam_selesai" name="jam_selesai" value="<?php echo $a->jam_selesai ?>" min="04:00" max="23:59">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="jenis_kelamin" class="control-label mb-1">Ruangan</label><br>
+                                                                    <select data-placeholder="Pilih Ruangan" class="standardSelect" tabindex="1" name="id_ruangan" id="id_ruangan">
+                                                                        <?php foreach($ruangan as $d) {?>
+                                                                            <option value="<?php echo $d->id_ruangan ?>" <?php echo ($d->id_ruangan == $a->id_ruangan ? "selected" : "") ?>><?php echo $d->detail_ruangan." - ".$d->kapasitas." orang" ?></option>
+                                                                        <?php } ?>
+                                                                    </select>
+                                                                </div>
+                                                                            
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -88,7 +169,7 @@
         </div><!-- .content -->
 
         <!-- Modal -->
-        <div class="modal fade" id="inputJadwal Kuliah" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+        <div class="modal fade" id="inputJadwalKuliah" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -99,68 +180,59 @@
                         </div>
                         <div class="modal-body">
                             
-                            <form action="#" method="post" novalidate="novalidate">
-                                            
+                            <form action="<?php echo base_url()."Dashboard/Jadwalkuliah/insertData" ?>" method="post" novalidate="novalidate">
                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">ID Jadwal Kuliah</label>
-                                                <input id="cc-payment" name="cc-payment" type="text" class="form-control" placeholder = "ID Jadwal Kuliah" disabled>
-                                            </div>
-                                           <div class="form-group">
-                                                <label for="cc-number" class="control-label mb-1">Nama Dosen</label><br>
-                                                <select data-placeholder="Pilih Dosen" class="standardSelect" tabindex="1">
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
+                                                <label for="cc-payment" class="control-label mb-1">Nama Dosen</label><br>
+                                                <select data-placeholder="Pilih Dosen" class="standardSelect" tabindex="1" name="nidn" id="nidn">
+                                                    <?php foreach($dosen as $b) {?>
+                                                        <option value="<?php echo $b->nidn ?>"><?php echo $b->nama_dosen ?></option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="cc-number" class="control-label mb-1">Nama Matakuliah</label><br>
-                                                <select data-placeholder="Pilih Matakuliah" class="standardSelect" tabindex="1">
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
+                                                <label for="id_mata_kuliah" class="control-label mb-1">Nama Mata Kuliah</label><br>
+                                                <select data-placeholder="Pilih Mata Kuliah" class="standardSelect" tabindex="1" name="id_mata_kuliah" id="id_mata_kuliah">
+                                                    <?php foreach($matkul as $c) {?>
+                                                        <option value="<?php echo $c->id_mata_kuliah ?>"><?php echo $c->nama_mata_kuliah ?></option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Hari</label>
-                                                <input id="cc-payment" name="cc-payment" type="text" class="form-control" placeholder = "Hari" >
+                                                <label for="hari" class="control-label mb-1">Hari</label><br>
+                                                <select data-placeholder="Pilih Hari" class="standardSelect" tabindex="1" name="hari" id="hari">
+                                                    <option value="1">Senin</option>
+                                                    <option value="2">Selasa</option>
+                                                    <option value="3">Rabu</option>
+                                                    <option value="4">Kamis</option>
+                                                    <option value="5">Jumat</option>
+                                                    <option value="6">Sabtu</option>
+                                                    <option value="7">Minggu</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Jam Mulai</label>
-                                                <input id="cc-payment" name="cc-payment" type="time" class="form-control" placeholder = "Jam Mulai" >
+                                                <input type="time" class="form-control" placeholder = "Jam Mulai" id="jam_mulai" name="jam_mulai" value="" min="04:00" max="23:59">
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Jam Selesai</label>
-                                                <input id="cc-payment" name="cc-payment" type="time" class="form-control" placeholder = "Jam Selesai">
+                                                <input type="time" class="form-control" placeholder = "Jam Selesai" id="jam_selesai" name="jam_selesai" value="" min="04:00" max="23:59">
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Ruangan</label><br>
-                                                <select data-placeholder="Pilih Ruangan" class="standardSelect" tabindex="1">
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
+                                                <select data-placeholder="Pilih Ruangan" class="standardSelect" tabindex="1" name="id_ruangan" id="id_ruangan">
+                                                    <?php foreach($ruangan as $d) {?>
+                                                        <option value="<?php echo $d->id_ruangan ?>"><?php echo $d->detail_ruangan." - ".$d->kapasitas." orang" ?></option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
                                             
-                                        </form>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary">Submit</button>
-                        </div>
+                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
                     </div>
                 </div>
             </div>

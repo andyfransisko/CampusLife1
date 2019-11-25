@@ -20,7 +20,7 @@ class M_Jadwalcustom extends CI_Model {
 	}
 	function tampilkanRecord()
 	{
-		return $this->db->query('SELECT a.id_jadwal, b.nama_mahasiswa, a.nama_kegiatan, a.hari, a.jam_mulai, a.jam_selesai, a.tempat FROM jadwal_custom a JOIN mahasiswa b ON a.nim = b.nim');
+		return $this->db->query('SELECT a.id_jadwal, b.nama_mhs, a.nama_kegiatan, a.tipe_kegiatan, a.tanggal, a.jam_mulai, a.jam_selesai, a.tempat FROM jadwal_custom a JOIN mahasiswa b ON a.user_id = b.nim');
 	}
 	function insertTable($a,$b)
 	{

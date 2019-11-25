@@ -69,10 +69,31 @@
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="#"><i class="fa fa- user"></i>Edit Profile</a>
-                            <a class="nav-link" href="../<?php base_url() ?>Login/logout"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#logout"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 
                 </div>
             </div>
         </header>
+        <div class="modal fade" id="logout" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-md" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h2 class="modal-title" id="mediumModalLabel"><strong>Logout Confirmation</strong></h2>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <form action="<?php echo base_url()."Login/logout"?>" method="POST" novalidate="novalidate">
+                                                    <div class="modal-body">
+                                                        Are you sure you want to sign out?             
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                        <button type="submit" class="btn btn-primary">Yes</button>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>

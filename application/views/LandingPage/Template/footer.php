@@ -18,9 +18,11 @@
               <h2 class="ftco-heading-2">Links</h2>
               <ul class="list-unstyled">
                 <li><a href="<?php echo base_url()."Home" ?>" class="py-2 d-block">Home</a></li>
+                <?php if($this->session->userdata('nama_user') != null) {?>
                 <li><a href="<?php echo base_url()."Schedule" ?>" class="py-2 d-block">My Schedules</a></li>
                 <li><a href="<?php echo base_url()."Course" ?>" class="py-2 d-block">My Courses</a></li>
                 <li><a href="<?php echo base_url()."Grade" ?>" class="py-2 d-block">My Grades</a></li>
+                <?php } ?>
               </ul>
             </div>
           </div>

@@ -48,7 +48,7 @@
                             <div class="card-body">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="week1-tab" data-toggle="tab" href="#week1" role="tab" aria-controls="home" aria-selected="true">Week 1</a>
+                                            <a class="nav-link active" id="week1-tab" data-toggle="tab" href="#week1" role="tab" aria-controls="home" aria-selected="true">Menu 1</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" id="week2-tab" data-toggle="tab" href="#week2" role="tab" aria-controls="contact" aria-selected="false">Menu 2</a>
@@ -97,68 +97,68 @@
                                         </li>
                                 </ul>
                                 <div class="tab-content pl-3 p-1" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <div class="tab-pane fade show active" id="week1" role="tabpanel" aria-labelledby="home-tab">
                                         <h3>Week 1</h3>
                                         <p>Some content here.</p>
                                     </div>
-                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="tab-pane fade" id="week2" role="tabpanel" aria-labelledby="profile-tab">
                                         <h3>Week 2</h3>
                                         <p>Some content here.</p>
                                     </div>
-                                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="week">
+                                    <div class="tab-pane fade" id="week3" role="tabpanel" aria-labelledby="week">
                                         <h3>Week 3</h3>
                                         <p>Some content here.</p>
                                     </div>
-                                    <div class="tab-pane fade" id="week2-tab" role="tabpanel" aria-labelledby="week2">
+                                    <div class="tab-pane fade" id="week4" role="tabpanel" aria-labelledby="week2">
                                         <h3>Week 4</h3>
                                         <p>Some content here.</p>
                                     </div>
-                                    <div class="tab-pane fade" id="week3-tab" role="tabpanel" aria-labelledby="week3">
+                                    <div class="tab-pane fade" id="week5" role="tabpanel" aria-labelledby="week3">
                                         <h3>Week 5</h3>
                                         <p>Some content here.</p>
                                     </div>
-                                    <div class="tab-pane fade" id="week4-tab" role="tabpanel" aria-labelledby="week4">
+                                    <div class="tab-pane fade" id="week6" role="tabpanel" aria-labelledby="week4">
                                         <h3>Week 6</h3>
                                         <p>Some content here.</p>
                                     </div>
-                                    <div class="tab-pane fade" id="week5-tab" role="tabpanel" aria-labelledby="week5">
+                                    <div class="tab-pane fade" id="week7" role="tabpanel" aria-labelledby="week5">
                                         <h3>Week 7</h3>
                                         <p>Some content here.</p>
                                     </div>
-                                    <div class="tab-pane fade" id="week6-tab" role="tabpanel" aria-labelledby="week6">
+                                    <div class="tab-pane fade" id="week8" role="tabpanel" aria-labelledby="week6">
                                         <h3>Week 8</h3>
                                         <p>Some content here.</p>
                                     </div>
-                                    <div class="tab-pane fade" id="week7-tab" role="tabpanel" aria-labelledby="week4">
+                                    <div class="tab-pane fade" id="week9" role="tabpanel" aria-labelledby="week4">
                                         <h3>Week 9</h3>
                                         <p>Some content here.</p>
                                     </div>
-                                    <div class="tab-pane fade" id="week8-tab" role="tabpanel" aria-labelledby="week4">
+                                    <div class="tab-pane fade" id="week10" role="tabpanel" aria-labelledby="week4">
                                         <h3>Week 10</h3>
                                         <p>Some content here.</p>
                                     </div>
-                                    <div class="tab-pane fade" id="week4-tab" role="tabpanel" aria-labelledby="week4">
+                                    <div class="tab-pane fade" id="week11" role="tabpanel" aria-labelledby="week4">
                                         <h3>Week 11</h3>
                                         <p>Some content here.</p>
                                     </div>
-                                    <div class="tab-pane fade" id="week4-tab" role="tabpanel" aria-labelledby="week4">
+                                    <div class="tab-pane fade" id="week12" role="tabpanel" aria-labelledby="week4">
                                         <h3>Week 12</h3>
                                         <p>Some content here.</p>
                                     </div>
-                                    <div class="tab-pane fade" id="week4-tab" role="tabpanel" aria-labelledby="week4">
+                                    <div class="tab-pane fade" id="week13" role="tabpanel" aria-labelledby="week4">
                                         <h3>Week 13</h3>
                                         <p>Some content here.</p>
                                     </div>
-                                    <div class="tab-pane fade" id="week4-tab" role="tabpanel" aria-labelledby="week4">
+                                    <div class="tab-pane fade" id="week14" role="tabpanel" aria-labelledby="week4">
                                         <h3>Week 14</h3>
                                         <p>Some content here.</p>
                                     </div>
 
-                                    <div class="tab-pane fade" id="week4-tab" role="tabpanel" aria-labelledby="week4">
+                                    <div class="tab-pane fade" id="week15" role="tabpanel" aria-labelledby="week4">
                                         <h3>Week 15</h3>
                                         <p>Some content here.</p>
                                     </div>
-                                    <div class="tab-pane fade" id="week4-tab" role="tabpanel" aria-labelledby="week4">
+                                    <div class="tab-pane fade" id="week16" role="tabpanel" aria-labelledby="week4">
                                         <h3>Week 16</h3>
                                         <p>Some content here.</p>
                                     </div>

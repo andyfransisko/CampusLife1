@@ -12,8 +12,24 @@
 	        	<li class="nav-item <?php echo ($nav == 'Schedule') ? 'active' : '' ?>"><a href="<?php echo base_url() ?>Schedule" class="nav-link">My Schedules</a></li>
 	        	<li class="nav-item <?php echo ($nav == 'Course') ? 'active' : '' ?>"><a href="<?php echo base_url() ?>Course" class="nav-link">My Courses</a></li>
 	        	<li class="nav-item <?php echo ($nav == 'Grade') ? 'active' : '' ?>"><a href="<?php echo base_url() ?>Grade" class="nav-link">My Grades</a></li>
-						<li class="nav-item active"><a href="<?php base_url() ?>User/profile" class="nav-link"><?php echo $this->session->userdata('nama_user') ?></a>
-					</li>
+						<li class="nav-item <?php echo ($nav == 'Profile') ? 'active' : '' ?>">
+						<li>	
+						<div class="dropdown" >
+								<button class="dropbtn">
+									<b>
+										<?php echo $this->session->userdata('nama_user') ?>
+										<i class="fa fa-caret-down"></i>
+									</b>
+								</button>
+								<div class="dropdown-content">
+									<a href="<?php base_url() ?>User/profile" class="nav-link">Edit Profile</a>
+									<a href="<?php base_url() ?>User/profile" class="nav-link">Logout</a>    
+								</div>
+							</div>
+						</li>
+    			</div>
+				
+					
 				<?php }else{ ?>
 	        		<li class="nav-item <?php echo ($nav == 'Login') ? 'active' : '' ?>"><a href="<?php echo base_url() ?>Login" class="nav-link">Login</a></li>
 				<?php } ?>

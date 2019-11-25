@@ -9526,3 +9526,37 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+    /* dropdown */
+    
+    .dropbtn {
+      background-color: transparent;
+      color: #538fcd;
+      padding-top:3.5%;
+      font-family: "Nunito Sans", Arial, sans-serif;
+      border: none;
+    }
+
+    .dropdown {
+      position: relative;
+      top: 26%;
+      display: inline-block;
+    }
+    
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
+    }
+    
+    .dropdown-content a {
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+    
+    .dropdown:hover .dropdown-content {display: block;}
+    

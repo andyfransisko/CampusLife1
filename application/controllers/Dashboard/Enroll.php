@@ -129,8 +129,8 @@ class Enroll extends CI_Controller {
                 'id_semester' =>$id_semester,
             );
             $this->M_Enroll->insertTable('enroll', $data);
-			redirect('Dashboard/Enroll/enroll/'.$id_semester.'/'.$id_matkul);
 		}
+		redirect('Dashboard/Enroll/enroll/'.$id_semester.'/'.$id_matkul);
 		
     }
 
@@ -165,12 +165,20 @@ class Enroll extends CI_Controller {
 		redirect('Enroll');
 	}
 	
-	function hapusData($nim){
-		$this->load->model('M_Enroll');
-		$where = array('id_enroll' => $id_enroll);
+	function hapusData(){
+		$id_enroll = htmlspecialchars($this->input->post('id_enroll'));
+        $id_matkul = htmlspecialchars($this->input->post('id_mata_kuliah'));
+        $mahasiswa = $this->input->post('mahasiswa');
+        $id_semester = htmlspecialchars($this->input->post('id_semester'));
 
-		$this->M_Enroll->hapusRecord($where,'enroll');
-		redirect('Enroll');
+		
+        foreach($mahasiswa as $a){
+			$where = array(
+				'id_enroll' => $a,
+			);
+            $this->M_Enroll->hapusRecord($where, 'enroll');
+		}
+		redirect('Dashboard/Enroll/enroll/'.$id_semester.'/'.$id_matkul);
 	}
 }
 ?>

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html"><img src = "<?php echo base_url('assets/images/logo2.png');?>" width = "10%"></a>
+	      <a class="navbar-brand" href="<?php echo base_url('Home') ?>"><img src = "<?php echo base_url('assets/images/logo2.png');?>" width = "10%"></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
@@ -22,7 +22,7 @@
 									</b>
 								</button>
 								<div class="dropdown-content">
-									<a href="<?php base_url() ?>User/profile" class="nav-link">Edit Profile</a>
+									<a href="<?php base_url() ?>User/profile" class="nav-link">Profile</a>
 									<a href="<?php base_url() ?>Login/logout" class="nav-link">Logout</a>    
 								</div>
 							</div>

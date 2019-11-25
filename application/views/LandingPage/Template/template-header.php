@@ -25,7 +25,14 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/icomoon.css">
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/style.css">
 
+
     <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/images/logo2.png"/>
+
+    
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
     
 
     

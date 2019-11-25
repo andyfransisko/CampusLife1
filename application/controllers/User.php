@@ -65,7 +65,16 @@ class User extends CI_Controller
         redirect(base_url('Login'));
     }
 
-
+    public function profile()
+    {
+        $data['nav'] = "User";
+        $this->head();
+        $this->load->view("LandingPage/Template/profile-css");
+        $this->load->view('LandingPage/Template/nav', $data);
+        $this->load->view("LandingPage/Home/V_profile");
+        //$this->load->view("User/V_profile", $data);
+        $this->foot();
+    }
 
 
 

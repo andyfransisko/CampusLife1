@@ -35,7 +35,7 @@ class Home extends CI_Controller
         $this->load->view("LandingPage/Home/V_index");
         $this->foot();
 
-
+        
     }
 
 

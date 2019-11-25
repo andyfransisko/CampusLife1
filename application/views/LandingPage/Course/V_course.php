@@ -54,7 +54,7 @@
               </div>
               <img src="<?php echo base_url() ?>assets/images/courses1.jpeg" width="110%" class="animated fadeInRight">
               <div style="position: absolute;right: 6%;bottom: 5%" class="animated fadeInRight">
-                  <a href = "<?php echo base_url() ?>DetailMataKuliah" style="color: white;">
+                  <a href = "<?php echo base_url()."CourseDetail/index/".$a->id_mata_kuliah ?>" style="color: white;">
                     <img class = "inverted" src="https://image.flaticon.com/icons/svg/126/126469.svg" width="62" title="Browse">
                     <br>Browse
                   </a>

@@ -31,10 +31,19 @@ class Course extends CI_Controller
 
     public function index()
     {
+        if(intval(date('m')) < 5){
+            $date = 2;
+        }
+        else if(intval(date('m')) >= 5 && intval(date('m')) < 8){
+            $date = 3;
+        }
+        else{
+            $date = 1;
+        } 
         $data['nav'] = "Course";
-        $data['matkul'] = $this->M_Matakuliah->getMatkul(1, 2019, 1)->result();
+        $data['matkul'] = $this->M_Matakuliah->getMatkul($this->session->userdata('username'), date('Y'), $date)->result();
         foreach ($data['matkul'] as $a) {
-            $data['detail_matkul'] = $this->M_Matakuliah->getJadwalMatkul($a->id_mata_kuliah)->result();
+            $data['detail_matkul'] = $this->M_Matakuliah->getJadwalMatkul($a->id_mata_kuliah, $this->session->userdata('username'))->result();
         }
         
         $this->head();
@@ -45,40 +54,12 @@ class Course extends CI_Controller
         
     }
 
-    function getHari($hari){
-        switch ($hari) {
-            case 1:
-                echo "Monday";
-                break;
-            
-            case 2:
-                echo "Tuesday";
-                break;
-
-            case 3:
-                echo "Wednesday";
-                break;
-
-            case 4:
-                echo "Thursday";
-                break;
-
-            case 5:
-                echo "Friday";
-                break;
-
-            case 6:
-                echo "Saturday";
-                break;
-
-            case 7:
-                echo "Sunday";
-                break;
-
-            default:
-                return null;
-                break;
-        }
+    public function detailCourse($id){
+        $data['nav'] = "Course Detail";
+        $this->head();
+        $this->load->view('LandingPage/Template/nav', $data);
+        $this->load->view('LandingPage/Course/V_detail_course');
+        $this->foot();
     }
     
 

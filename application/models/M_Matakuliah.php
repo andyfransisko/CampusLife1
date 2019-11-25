@@ -34,7 +34,7 @@ class M_Matakuliah extends CI_Model{
 
     }
 
-    function getJadwalMatkul($id){
+    function getJadwalMatkul($id, $nim){
         $query = $this->db->query('SELECT a.nim, 
         d.nama_mata_kuliah, c.tahun, c.jenis_semester, b.hari, b.jam_mulai, b.jam_selesai, e.nama_dosen, f.detail_ruangan 
         FROM enroll a 
@@ -43,7 +43,7 @@ class M_Matakuliah extends CI_Model{
         JOIN matakuliah d ON a.id_mata_kuliah = d.id_mata_kuliah 
         JOIN dosen e ON b.nidn = e.nidn 
         JOIN ruangan f ON b.id_ruangan = f.id_ruangan
-        WHERE a.id_mata_kuliah = '.$id);
+        WHERE a.id_mata_kuliah = '.$id.' AND a.nim = '.$nim);
 
         return $query;        
 

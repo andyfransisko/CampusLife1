@@ -4,7 +4,7 @@
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2"><img src = "<?php echo base_url() ?>assets/images/logo2.png" width = "7%"> &nbsp; Campus Life</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <p>Campus Life is an academic web system that designed to help students manage their activies in campus. We hope this system can work exactly like universities students need in their university life.</p>
               <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
                 <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
                 <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
@@ -17,10 +17,10 @@
              <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">Links</h2>
               <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Home</a></li>
-                <li><a href="#" class="py-2 d-block">My Schedules</a></li>
-                <li><a href="#" class="py-2 d-block">My Courses</a></li>
-                <li><a href="#" class="py-2 d-block">My Grades</a></li>
+                <li><a href="<?php echo base_url()."Home" ?>" class="py-2 d-block">Home</a></li>
+                <li><a href="<?php echo base_url()."Schedule" ?>" class="py-2 d-block">My Schedules</a></li>
+                <li><a href="<?php echo base_url()."Course" ?>" class="py-2 d-block">My Courses</a></li>
+                <li><a href="<?php echo base_url()."Grade" ?>" class="py-2 d-block">My Grades</a></li>
               </ul>
             </div>
           </div>
@@ -29,9 +29,9 @@
             	<h2 class="ftco-heading-2">Contact Us</h2>
             	<div class="block-23 mb-3">
 	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+	                <li><span class="icon icon-map-marker"></span><span class="text">Jl. MH. Thamrin Boulevard 1100, Kelapa Dua, Kec. Karawaci, Kota Tangerang, Banten 15811</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">(021) 5460901</span></a></li>
+	                <li><a href="mailto:campuslife.cs@gmail.com" target="_blank"><span class="icon icon-envelope"></span><span class="text">campuslife.cs@gmail.com</span></a></li>
 	              </ul>
 	            </div>
             </div>

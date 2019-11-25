@@ -23,7 +23,7 @@
     					<div class="col-lg-7">
     						<div class="text py-5 pl-md-4 pr-md-3">
     							<h2 class="mb-4 ftco-animate">About Us</h2>
-    							<p class="ftco-animate">Campus Life is a ajsdjkasndjk sjdaskjdhasdh sadhsahdiahdai ashdiuashduihe fuewihcnkjbcwi cbfcuiencewhuci ceiuwhcnewjb wehiuewhnewfi</p>
+    							<p class="ftco-animate">Campus Life is an academic web system that designed to help students manage their activies in campus. We hope this system can work exactly like universities students need in their university life. In this system, we provide academic services such as scheduling, grading system, enrollment for faculties, and others.</p>
     							
     						</div>
     					</div>

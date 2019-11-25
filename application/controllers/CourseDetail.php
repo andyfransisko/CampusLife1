@@ -28,7 +28,7 @@ class CourseDetail extends CI_Controller
         
     }
 
-    public function index()
+    public function index($id)
     {
         $data['nav'] = "Course Detail";
         $this->head();

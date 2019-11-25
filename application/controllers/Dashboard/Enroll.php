@@ -113,26 +113,26 @@ class Enroll extends CI_Controller {
 		$this->load->view('V_inputEnroll',$data);
 	}
 
-	public function insertData()
-	{
-		$tangkapIdenroll = $this->input->post('id_enroll');
-		$tangkapIdmatakuliah= $this->input->post('id_matkul');
-		$tangkapNim = $this->input->post('nim');
-		$tangkapIdsemester = $this->input->post('id_semester');
-		foreach($tangkapNim as $a){
-			
+	public function insertData(){
+        
+        
+        $id_enroll = htmlspecialchars($this->input->post('id_enroll'));
+        $id_matkul = htmlspecialchars($this->input->post('id_mata_kuliah'));
+        $mahasiswa = $this->input->post('mahasiswa');
+        $id_semester = htmlspecialchars($this->input->post('id_semester'));
+
+        foreach($mahasiswa as $a){
+            $data = array(
+                'id_enroll' =>$id_enroll,
+                'id_mata_kuliah' =>$id_matkul,
+                'nim' =>$a,
+                'id_semester' =>$id_semester,
+            );
+            $this->M_Enroll->insertTable('enroll', $data);
+			redirect('Dashboard/Enroll/enroll/'.$id_semester.'/'.$id_matkul);
 		}
-		$data=array(
-			'nim' =>$tangkapNim,
-			'id_enroll' =>$tangkapIdenroll,
-			'id_matakuliah' =>$tangkapIdmatakuliah,
-			'id_semester' =>$tangkapIdsemester
-		);
-
-
-		$this->M_Enroll->insertTable('enroll',$data);
-		redirect('Dashboard/Enroll');
-	}
+		
+    }
 
 	function editData($nim) {
 		$this->load->model('M_Enroll');

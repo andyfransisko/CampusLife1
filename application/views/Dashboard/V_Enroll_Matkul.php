@@ -67,6 +67,9 @@
                                                 <td><?php echo $b->nama_mhs?></td>
                                                 <td><?php echo $b->angkatan?></td>
                                                 <td><?php echo $b->nama_jurusan?></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#editSemester_<?php echo $list->id_semester?>">Edit</button>
+                                                </td>
                                             </tr>
                                             <?php $i++;} ?>
                                     </tbody>
@@ -92,14 +95,15 @@
                         </div>
                         <div class="modal-body">
                             
-                            <form action="<?php echo base_url()."Enroll/insertData" ?>" method="post" novalidate="novalidate">
+                            <form action="<?php echo base_url()."Dashboard/Enroll/insertData" ?>" method="post" novalidate="novalidate">
                                             <input type="hidden" name="id_semester" value="<?php echo $matkul_enrolled['id_semester']; ?>">
+                                            <input type="hidden" name="id_mata_kuliah" value="<?php echo $matkul_enrolled['id_mata_kuliah']; ?>">
                                             <div class="form-group">
                                                 <input id="cc-payment" name="id_enroll" type="hidden" class="form-control" placeholder = "ID Enroll" value="ENROLL-<?php echo count($mhs_enrolled)+1; ?>" >
                                             </div>
                                             <div class="form-group">
                                                 <label for="id_matkul" class="control-label mb-1">Nama Matakuliah</label><br>
-                                                <input type="text" name="id_matkul" id="id_matkul" class="form-control" value="<?php echo $matkul_enrolled['nama_mata_kuliah']." - ".($matkul_enrolled['jenis_semester'] == 1 ? $matkul_enrolled['tahun']. " - Ganjil" : ($matkul_enrolled['jenis_semester'] == 2 ? $matkul_enrolled['tahun']. " - Genap" : $matkul_enrolled['tahun']. " - Akselerasi")); ?>" readonly>
+                                                <input type="text" name="id_matkul_view" id="id_matkul_view" class="form-control" value="<?php echo $matkul_enrolled['nama_mata_kuliah']." - ".($matkul_enrolled['jenis_semester'] == 1 ? $matkul_enrolled['tahun']. " - Ganjil" : ($matkul_enrolled['jenis_semester'] == 2 ? $matkul_enrolled['tahun']. " - Genap" : $matkul_enrolled['tahun']. " - Akselerasi")); ?>" readonly>
                                             </div>
                                            <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Nama Mahasiswa</label><br>
@@ -142,13 +146,13 @@
                                                 </table>
                                             </div>
                                             
-                                        </form>
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
+                                        </form>
                     </div>
                 </div>
             </div>

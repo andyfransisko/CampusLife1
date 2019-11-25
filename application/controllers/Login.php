@@ -31,6 +31,10 @@ class Login extends CI_Controller
 
     public function index()
     {
+        if($this->session->userdata('nama_user') != null){
+            redirect('Home');
+       }
+
         $this->form_validation->set_rules('username', 'Username', 'required|trim');
         $this->form_validation->set_rules('password', 'Password', 'required|trim');
         
@@ -73,15 +77,33 @@ class Login extends CI_Controller
             //cek user uda aktivasi akun belum
             if($cek_user['status'] == 1){
                 if(password_verify($password, $cek_user['password'])){
-                    $data = array(
-                        'username' => $cek_user['username'],
-                        'tipe_akun' => $cek_user['tipe_akun'],
-                        'nama_user' => $nama
-                    );
+                    if($cek_user['tipe_akun'] == 1){
+                        $nama = $this->M_Login->getRecordNameMhs($where)->row_array();
+                        $data = array(
+                            'username' => $cek_user['username'],
+                            'tipe_akun' => $cek_user['tipe_akun'],
+                            'nama_user' => $nama['nama_mhs'],
+                        );
+                    }else if($cek_user['tipe_akun'] == 2){
+                        $nama = $this->M_Login->getRecordNameDosen($where)->row_array();
+                        $data = array(
+                            'username' => $cek_user['username'],
+                            'tipe_akun' => $cek_user['tipe_akun'],
+                            'nama_user' => $nama['nama_dosen'],
+                        );
+                    }
+                    else{
+                        $nama = $this->M_Login->getRecordNameDosen($where)->row_array();
+                        $data = array(
+                            'username' => $cek_user['username'],
+                            'tipe_akun' => $cek_user['tipe_akun'],
+                            'nama_user' => $nama['nama_admin'],
+                        );
+                    }
+                    
                     $this->session->set_userdata($data);
 
                     if($cek_user['tipe_akun'] == 1){
-                        $nama = $cek_user['nama_mhs'];
                         redirect('User');
                     }
                     else{

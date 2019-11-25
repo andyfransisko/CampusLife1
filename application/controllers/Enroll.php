@@ -75,9 +75,23 @@ class Enroll extends CI_Controller
         $this->load->view('Enroll/tes', $data);
     }
 
-    public function send(){
-        $nama = $this->input->post('mahasiswa');
-        $matkul = $this->input->post('matkul');
+    public function insertData(){
+        
+        
+        $id_enroll = htmlspecialchars($this->input->post('id_enroll'));
+        $id_matkul = htmlspecialschars($this->input->post('id_matkul'));
+        $mahasiswa = htmlspecialschars($this->input->post('mahasiswa'));
+        $id_semester = htmlspecialschars($this->input->post('id_semester'));
+
+        foreach($mahasiswa as $a){
+            $data = array(
+                'id_enroll' =>$id_enroll,
+                'id_mata_kuliah' =>$id_matkul,
+                'nim' =>$mahasiswa,
+                'id_semester' =>$id_semester,
+            );
+            $this->M_Enroll->insertTable('enroll', $data);
+        }
     }
 
 

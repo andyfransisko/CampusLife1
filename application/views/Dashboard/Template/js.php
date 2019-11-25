@@ -20,16 +20,10 @@
 
 
     <script type="text/javascript">
-    jQuery(document).ready(function() {
-        jQuery(".standardSelect").chosen({
-            disable_search_threshold: 10,
-            no_results_text: "Oops, nothing found!",
-            width: "100%"
-        });
-    });
+   
 
         $(document).ready(function() {
-            
+           
             
           $('#bootstrap-data-table-export').DataTable();
 
@@ -78,5 +72,15 @@
             }
 
             });
+
+            $('modal').shown(function(){
+                $('#bootstrap-data-export').DataTable();
+            });
+
+            jQuery(".standardSelect").chosen({
+                disable_search_threshold: 10,
+                no_results_text: "Oops, nothing found!",
+                width: "100%"
+             });
       } );
   </script>

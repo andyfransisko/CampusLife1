@@ -38,6 +38,9 @@
                         <?php } ?>
                     </select>
 
+                    <?php echo form_error('angkatan', '<small class="text-danger pl-3">', '</small>') ?>
+                    <input type="text" name="angkatan" placeholder="Batch" value="<?php echo set_value('angkatan'); ?>">
+
                     <?php echo form_error('alamat_rumah', '<small class="text-danger pl-3">', '</small>') ?>
                     <input type="text" name="alamat_rumah" placeholder="Address" value="<?php echo set_value('no_telp'); ?>">
                     

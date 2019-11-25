@@ -106,7 +106,7 @@ header {
   width: 69%;
   border-radius: 50px;
   z-index: 50;
-  background: #003567;
+  background: #4CA9DB ;
   left: 16%;
 }
 header > .wrapper {
@@ -194,7 +194,7 @@ header > .wrapper a {
   width: 30px;
   height: 30px;
   padding: 9px 12px;
-  background-color: #004b8f;
+  background-color: #4C85A4;
   cursor: pointer;
   z-index: 10;
   box-sizing: border-box;
@@ -241,10 +241,11 @@ header > .wrapper a {
   padding: 0 10px;
   line-height: 30px;
   height: 30px;
-  background-color: #004b8f;
+  background-color: #4C85A4;
   text-transform: uppercase;
   letter-spacing: 2px;
   border-radius: 15px;
+  color: white;
   -webkit-border-radius: 15px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   -webkit-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -272,7 +273,7 @@ header > .wrapper a {
   flex-direction: row;
 }
 .c-calendar__style {
-  background-color: #00407b;
+  background-color: #4CA9DB;
   margin: 20px;
   padding: 10px;
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.18);
@@ -346,6 +347,7 @@ header > .wrapper a {
   line-height: 50px;
   letter-spacing: 2px;
   text-transform: uppercase;
+  color: white;
 }
 .c-cal__cel {
   position: relative;
@@ -365,7 +367,7 @@ header > .wrapper a {
   width: 40px;
   height: 40px;
   line-height: 40px;
-  background: #004585;
+  background: #258CC4;
   transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
   border-radius: 50%;
@@ -382,7 +384,7 @@ header > .wrapper a {
   background: rgba(215, 16, 15, 0.2);
 }
 .c-cal__cel:nth-child(7) p {
-  background: #003b71;
+  background: #1271A4;
 }
 .c-cal__cel:hover {
   background-color: #004b8f !important;
@@ -437,19 +439,23 @@ header > .wrapper a {
   
   width: 300px;
   padding: 20px;
+  color:white;
 }
 .c-aside__day {
   font-size: 28px;
   margin: 50px 0;
+  color:white;
 }
 .c-aside__day .c-aside__num {
   font-family: 'Lato', sans-serif;
   font-weight: 900;
+  color:white;
 }
 .c-aside__event {
   position: relative;
   padding-left: 20px;
   margin: 20px 0;
+  color:white;
 }
 .c-aside__event:before {
   position: absolute;
@@ -478,10 +484,10 @@ header > .wrapper a {
 }
 .c-event__creator {
   position: fixed;
-  top: 50%;
+  top: 45%;
   left: 50%;
   max-width: 500px;
-  max-height: 300px;
+  max-height: 500px;
   width: 100%;
   height: 100%;
   z-index: 100;
@@ -495,6 +501,7 @@ header > .wrapper a {
   -webkit-box-sizing: border-box;
   transform: translate(-50%, -50%) scale(0.9);
   -webkit-transform: translate(-50%, -50%) scale(0.9);
+  background-color: #078ED6;
 }
 .c-event__creator.long {
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);

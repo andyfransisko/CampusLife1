@@ -10,22 +10,22 @@ class User extends CI_Controller
     }
 
     private function head(){
-        $this->load->view('Template/html-open');
-        $this->load->view('Template/head-open');
+        $this->load->view('LandingPage/Template/html-open');
+        $this->load->view('LandingPage/Template/head-open');
         $data['title'] = 'User Profile';
-        $this->load->view('Template/template-header', $data);
-        $this->load->view('Template/login-css');
-        $this->load->view('Template/head-close');
-        $this->load->view('Template/body-open');
+        $this->load->view('LandingPage/Template/template-header', $data);
+        $this->load->view('LandingPage/Template/login-css');
+        $this->load->view('LandingPage/Template/head-close');
+        $this->load->view('LandingPage/Template/body-open');
         
     }
 
     private function foot(){
-        $this->load->view('Template/preloader');
-        $this->load->view('Template/template-footer');
-        $this->load->view('Template/body-close');
-        $this->load->view('Template/html-close');
-        
+        $this->load->view("LandingPage/Template/preloader");
+        $this->load->view("LandingPage/Template/footer");
+        $this->load->view("LandingPage/Template/template-footer");
+        $this->load->view("LandingPage/Template/body-close");
+        $this->load->view("LandingPage/Template/html-close");
     }
 
     public function index()
@@ -53,8 +53,9 @@ class User extends CI_Controller
         //$data['user'] = $this->M_User->get_where($tipe, $where)->result();
         $data['nav'] = "User";
         $this->head();
-        $this->load->view('Template/nav', $data);
-        $this->load->view("User/V_profile", $data);
+        $this->load->view('LandingPage/Template/nav', $data);
+        $this->load->view("LandingPage/Home/V_index");
+        //$this->load->view("User/V_profile", $data);
         $this->foot();
         
     }

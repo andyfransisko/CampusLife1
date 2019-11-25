@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2019 at 02:49 PM
+-- Generation Time: Nov 25, 2019 at 10:39 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -102,7 +102,6 @@ INSERT INTO `enroll` (`id_enroll`, `id_mata_kuliah`, `nim`, `id_semester`) VALUE
 
 CREATE TABLE `file` (
   `id_file` varchar(15) NOT NULL,
-  `id_enroll` int(11) NOT NULL,
   `direktori_file` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -166,7 +165,8 @@ CREATE TABLE `jadwal_kuliah` (
 --
 
 INSERT INTO `jadwal_kuliah` (`id_jadwal`, `id_mata_kuliah`, `nidn`, `hari`, `jam_mulai`, `jam_selesai`, `id_ruangan`) VALUES
-('JDL-KUL-1', '1', '1', '1', '07:00:00', '09:00:00', 'R-1');
+('JDL-KUL-1', '1', '2', '3', '07:00:00', '09:00:00', 'R-1'),
+('JDL-KUL-2', '2', '212', '4', '09:00:00', '11:00:00', 'R-1');
 
 -- --------------------------------------------------------
 
@@ -246,6 +246,21 @@ INSERT INTO `matakuliah` (`id_mata_kuliah`, `nama_mata_kuliah`, `sks`, `id_semes
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `materi`
+--
+
+CREATE TABLE `materi` (
+  `id_materi` varchar(15) NOT NULL,
+  `id_mata_kuliah` varchar(15) NOT NULL,
+  `judul_materi` text NOT NULL,
+  `penjelasan_materi` text NOT NULL,
+  `kali_pertemuan` int(11) NOT NULL COMMENT 'value 1- 16',
+  `direktori_file` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `message`
 --
 
@@ -266,10 +281,11 @@ CREATE TABLE `message` (
 
 CREATE TABLE `nilai` (
   `id_nilai` varchar(15) NOT NULL,
-  `id_enroll` varchar(15) NOT NULL,
+  `nim` varchar(15) NOT NULL,
   `tipe_nilai` int(11) NOT NULL COMMENT '1=KAT 1, 2=KAT 2, 3=KAT 3, 4=UTS, 5= UAS',
   `nilai_mahasiswa` int(5) NOT NULL,
-  `id_tugas` varchar(15) NOT NULL
+  `id_tugas` varchar(15) NOT NULL,
+  `id_mata_kuliah` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -323,9 +339,8 @@ INSERT INTO `semester` (`id_semester`, `jenis_semester`, `tahun`, `user_add`, `u
 
 CREATE TABLE `tugas` (
   `id_tugas` varchar(15) NOT NULL,
-  `id_enroll` varchar(15) NOT NULL,
-  `direktori_soal` varchar(100) NOT NULL,
-  `direktori_jawaban` varchar(100) NOT NULL
+  `id_mata_kuliah` varchar(15) NOT NULL,
+  `direktori_file` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -353,7 +368,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`username`, `password`, `images`, `tipe_akun`, `status`, `user_add`, `user_edit`, `user_delete`, `status_delete`) VALUES
 ('1', '$2y$10$aZPh/HUUaJnlyH7BmvKVwetZBT/CePiKvCE79SQ35pfHDXCkTzttO', 'default.jpg', 1, 1, '', '', '', 0),
 ('2', '$2y$10$1JnKmrJknhAS.Ovmnrrkree3ZAXrUvnof1LkAIFh2/CAwn7JGEfN.', 'default.jpg', 2, 1, '', '', '', 0),
-('212', '$2y$10$Cu5/CZZf24QQO7zfi45CrOCZHVvhupqs3HZbVMnHXyFZt9c9ucZby', 'default.jpg', 2, 0, '', '', '', 0),
+('212', '$2y$10$Cu5/CZZf24QQO7zfi45CrOCZHVvhupqs3HZbVMnHXyFZt9c9ucZby', 'default.jpg', 2, 1, '', '', '', 0),
 ('33', '$2y$10$gvlS1dW93SPaWP1Tx9WvXOZ16QgjsyrX4C5.dsqKurnhe64/186fS', 'default.jpg', 1, 1, '', '', '', 0),
 ('41241', '$2y$10$ISdG3OZr0.Z563pJ4C1y1Owb4AP14ksZ.NaHHgCdUrsqc5TZcNRGS', 'default.jpg', 1, 0, '', '', '', 0),
 ('administrator', '$2y$10$J0UCMTMhJlsUzB2euKHTw.PnQKW122TCSKR65RN507dm2UNsrI0t.', 'default.jpg', 0, 1, '', '', '', 0);
@@ -421,6 +436,12 @@ ALTER TABLE `mahasiswa`
 --
 ALTER TABLE `matakuliah`
   ADD PRIMARY KEY (`id_mata_kuliah`);
+
+--
+-- Indexes for table `materi`
+--
+ALTER TABLE `materi`
+  ADD PRIMARY KEY (`id_materi`);
 
 --
 -- Indexes for table `message`

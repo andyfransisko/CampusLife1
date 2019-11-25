@@ -85,7 +85,7 @@ class Login extends CI_Controller
                             'nama_user' => $nama['nama_mhs'],
                         );
                     }else if($cek_user['tipe_akun'] == 2){
-                        $nama = $this->M_Login->getRecordNameDosen($where)->row_array();
+                        $nama = $this->M_Login->getRecordNameDosen($where)->query_row;
                         $data = array(
                             'username' => $cek_user['username'],
                             'tipe_akun' => $cek_user['tipe_akun'],
@@ -93,7 +93,7 @@ class Login extends CI_Controller
                         );
                     }
                     else{
-                        $nama = $this->M_Login->getRecordNameDosen($where)->row_array();
+                        $nama = $this->M_Login->getRecordNameDosen($where)->query_row;
                         $data = array(
                             'username' => $cek_user['username'],
                             'tipe_akun' => $cek_user['tipe_akun'],
@@ -471,7 +471,7 @@ class Login extends CI_Controller
     }
 
     public function logout(){
-        $this->session->session_destroy();
+        $this->session->sess_destroy();
         $this->session->set_flashdata('message', '<div class="alert alert-success text-center p-t-25 p-b-50" role="alert">You have logged out</div>');
         redirect('Login');
     }

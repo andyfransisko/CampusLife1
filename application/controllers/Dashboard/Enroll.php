@@ -74,17 +74,7 @@ class Enroll extends CI_Controller {
 	}
 	
 	public function enroll($semester, $matkul){
-        if(intval(date('m')) < 5){
-            $date = 2;
-        }
-        else if(intval(date('m')) >= 5 && intval(date('m')) < 8){
-            $date = 3;
-        }
-        else{
-            $date = 1;
-        } 
         
-
         $data['title'] = "Enroll - Campus Life";
         $data['mahasiswa'] = $this->M_Mahasiswa->tampilkanRecord()->result();
 		

@@ -12,7 +12,7 @@ class M_Jadwalkuliah extends CI_Model{
         JOIN matakuliah d ON a.id_mata_kuliah = d.id_mata_kuliah 
         JOIN mahasiswa e ON a.nim = e.nim
         JOIN ruangan f ON b.id_ruangan = f.id_ruangan
-        WHERE a.nim = '.$nim.' AND c.tahun = '.$tahun.' AND c.jenis_semester = "'.$oddeven.'"');
+        WHERE a.nim = '.$nim.' AND c.tahun = '.$tahun.' AND c.jenis_semester = '.$oddeven);
 
         return $query;
 

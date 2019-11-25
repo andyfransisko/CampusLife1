@@ -424,11 +424,14 @@ header > .wrapper a {
 .event--birthday:before {
   background-color: #FACC2E;
 }
-.event--festivity:before {
+.event--event:before {
   background-color: #10DDC2;
 }
 .event--important:before {
   background-color: #F57170;
+}
+.event--meeting:before {
+  background-color: rgb(38, 255, 0);
 }
 .c-aside {
   
@@ -462,7 +465,12 @@ header > .wrapper a {
 .c-aside__event--birthday:before {
   background-color: #FACC2E;
 }
-.c-aside__event--festivity:before {
+
+.c-aside__event--meeting:before {
+  background-color: rgb(38, 255, 0);
+}
+
+.c-aside__event--event:before {
   background-color: #10DDC2;
 }
 .c-aside__event--important:before {

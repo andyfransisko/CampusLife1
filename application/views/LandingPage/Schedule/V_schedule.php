@@ -158,19 +158,23 @@ function fill_table(month, month_length, indexMonth, year) {
 
   <div class="c-event__creator c-calendar__style js-event__creator">
     <a href="javascript:;" class="o-btn js-event__close">CLOSE <span class="fa fa-close"></span></a>
-    <form id="addEvent">
-      <input placeholder="Event name" type="text" name="name">
-      <input type="date" name="date">
+    <form id="addEvent" action="<?php echo base_url().'Schedule/addCustomJadwal' ?>" method="post">
+      <input placeholder="Event name" type="text" name="eventName">
+      <input type="date" name="date" placeholder="Date">
+      <input type="time" name="jam_mulai" placeholder="Time started?">
+      <input type="time" name="jam_selesai" placeholder="Time finished?">
+      <input type="text" name="tempat" placeholder="Place">
       
       <select name="tags">
-          <option value="event">event</option>
-          <option value="important">important</option>
-          <option value="birthday">birthday</option>
-          <option value="festivity">festivity</option>
+          <option value="" style="display:none">Select tags</option>
+          <option value="1">Event</option>
+          <option value="2">Meeting</option>
+          <option value="3">Birthday</option>
+          <option value="4">Important!</option>
         </select>
-    </form>
     <br>
-    <a href="javascript:;" class="o-btn js-event__save">SAVE <span class="fa fa-save"></span></a>
+      <a href="javascript:;" onclick="document.getElementById('addEvent').submit();" class="o-btn js-event__save">SAVE <span class="fa fa-save"></span></a>
+    </form>
   </div>
 </div>
 <!-- partial -->
@@ -241,14 +245,12 @@ function defaultEvents(dataDay,dataName,dataNotes,classTag){
 }
 
 defaultEvents(today, 'YEAH!','Today is your day','important');
-defaultEvents('2019-12-25', 'MERRY CHRISTMAS','A lot of gift!!!!','festivity');
-defaultEvents('2019-03-03', "LUCA'S BIRTHDAY",'Another gifts...?','birthday');
-defaultEvents('2019-03-03', "MY LADY'S BIRTHDAY",'A lot of money to spent!!!!','birthday');
-defaultEvents('2019-11-04', "MY LADY'S BIRTHDAY",'A lot of money to spent!!!!','birthday');
+//defaultEvents('2019-12-25', 'MERRY CHRISTMAS','A lot of gift!!!!','festivity');
+//defaultEvents('2019-03-03', "LUCA'S BIRTHDAY",'Another gifts...?','birthday');
+//defaultEvents('2019-03-03', "MY LADY'S BIRTHDAY",'A lot of money to spent!!!!','birthday');
+//defaultEvents('2019-11-04', "MY LADY'S BIRTHDAY",'A lot of money to spent!!!!','birthday');
 
 <?php 
-  
-    
     $start = new DateTime('2019-08-19');
     $end   = new DateTime('2019-12-21');
     
@@ -263,16 +265,32 @@ defaultEvents('2019-11-04', "MY LADY'S BIRTHDAY",'A lot of money to spent!!!!','
       $startDay = date_format($date, 'N');
       $hari  = $date->format('Y-m-d');
       foreach($jadwal as $a){
-          if($startDay == $a->hari){
-
-          
+          if($startDay == $a->hari){   
     ?>
     //defaultEvents(<?php //echo $date->format('Y-m-d');?>,'KULIAH', $a->nama_mata_kuliah, 'Kuliah jam <?php //echo $a->jam_mulai."-" ?>')
-    defaultEvents('<?php echo $hari ?>', 'KULIAH', '<?php echo $a->nama_mata_kuliah?> <br> <?php echo $a->detail_ruangan?> <br> <?php echo $a->jam_mulai. "-" .$a->jam_selesai?>','birthday');
+    defaultEvents('<?php echo $hari ?>', 'KULIAH', '<?php echo $a->nama_mata_kuliah?> <br> <?php echo $a->detail_ruangan?> <br> <?php echo date('H:i',strtotime($a->jam_mulai)). "-" .date('H:i',strtotime($a->jam_selesai))?>','KULIAH');
 
-<?php }// tutup if
-  }//tutup foreach jadwal
-}// tutup foreach  period
+<?php     }// tutup if
+      }//tutup foreach jadwal
+      foreach($jadwal_custom as $b){
+        $tag ='';
+        switch($b->tipe_kegiatan){
+          case 1 : $tag = "event";break;
+          case 2 : $tag = "meeting";break;
+          case 3 : $tag = "birthday";break;
+          case 4 : $tag = "important";break;
+        }
+        if($hari == $b->tanggal){
+?>
+        defaultEvents('<?php echo $hari ?>', 'CUSTOM', '<?php echo $b->nama_kegiatan?> <br> <?php echo $b->tempat?> <br> <?php echo date('H:i',strtotime($b->jam_mulai)). "-" .date('H:i',strtotime($b->jam_selesai))?>','<?php echo $tag?>');
+
+<?php
+        }//tutup if
+      }//tutup foreach jadwal custom
+
+
+
+    }// tutup foreach  period
 ?>
 // ------ functions control -------
 
@@ -348,7 +366,8 @@ function fillEventSidebar(self) {
   var thisNotes = self.attr("data-notes");
   var thisImportant = self.hasClass("event--important");
   var thisBirthday = self.hasClass("event--birthday");
-  var thisFestivity = self.hasClass("event--festivity");
+  var thisEvents = self.hasClass("event--event");
+  var thisMeeting = self.hasClass("event--meeting");
   var thisEvent = self.hasClass("event");
   
   switch (true) {
@@ -356,7 +375,7 @@ function fillEventSidebar(self) {
       $(".c-aside__eventList").append(
         "<p class='c-aside__event c-aside__event--important'>" +
         thisName +
-        " <span> • " +
+        " <span><br> • " +
         thisNotes +
         "</span></p>"
       );
@@ -365,16 +384,25 @@ function fillEventSidebar(self) {
       $(".c-aside__eventList").append(
         "<p class='c-aside__event c-aside__event--birthday'>" +
         thisName +
-        " <span> • " +
+        " <span><br> • " +
         thisNotes +
         "</span></p>"
       );
       break;
-    case thisFestivity:
+    case thisEvents:
       $(".c-aside__eventList").append(
-        "<p class='c-aside__event c-aside__event--festivity'>" +
+        "<p class='c-aside__event c-aside__event--event'>" +
         thisName +
-        " <span> • " +
+        " <span><br> • " +
+        thisNotes +
+        "</span></p>"
+      );
+      break;
+    case thisMeeting:
+      $(".c-aside__eventList").append(
+        "<p class='c-aside__event c-aside__event--meeting'>" +
+        thisName +
+        " <span><br> • " +
         thisNotes +
         "</span></p>"
       );
@@ -383,7 +411,7 @@ function fillEventSidebar(self) {
       $(".c-aside__eventList").append(
         "<p class='c-aside__event'>" +
         thisName +
-        " <span> • " +
+        " <span><br> • " +
         thisNotes +
         "</span></p>"
       );

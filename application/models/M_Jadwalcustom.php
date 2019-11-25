@@ -2,6 +2,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_Jadwalcustom extends CI_Model {
+	function getJadwal($nim){
+        $query = $this->db->query('SELECT a.nama_kegiatan, a.tipe_kegiatan, 
+        a.tanggal, a.jam_mulai, a.jam_selesai, a.tempat 
+        FROM jadwal_custom a 
+        WHERE a.user_id = '.$nim);
+
+        return $query;
+
+	}
 
 	function tampilkanData()
 	{

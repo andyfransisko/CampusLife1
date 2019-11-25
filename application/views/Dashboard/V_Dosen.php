@@ -47,7 +47,7 @@
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
-                                    <thead>
+                                    <thead align="center">
                                         <tr>
                                             <th>NIDN</th>
                                             <th>Nama Dosen</th>

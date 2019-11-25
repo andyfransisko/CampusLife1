@@ -23,7 +23,7 @@
 								</button>
 								<div class="dropdown-content">
 									<a href="<?php base_url() ?>User/profile" class="nav-link">Edit Profile</a>
-									<a href="<?php base_url() ?>User/profile" class="nav-link">Logout</a>    
+									<a href="<?php base_url() ?>Login/logout" class="nav-link">Logout</a>    
 								</div>
 							</div>
 						</li>

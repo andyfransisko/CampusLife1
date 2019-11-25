@@ -10,7 +10,7 @@ class M_Mahasiswa extends CI_Model
 	}
 	function tampilkanRecord()
 	{
-		return $this->db->query('SELECT a.nim, a.nama_mhs,a.jenis_kelamin, a.email_mhs, b.id_jurusan, b.nama_jurusan, a.tgl_lahir, a.tmpt_lahir, a.alamat_rumah, a.no_telp, a.agama, a.angkatan FROM mahasiswa a JOIN jurusan b ON a.id_jurusan = b.id_jurusan');
+		return $this->db->query('SELECT a.nim, a.nama_mhs,a.jenis_kelamin, a.email_mhs, b.id_jurusan, b.nama_jurusan, a.tgl_lahir, a.tmpt_lahir, a.alamat_rumah, a.no_telp, a.agama, a.angkatan, c.username, c.status, c.tipe_akun FROM mahasiswa a JOIN jurusan b ON a.id_jurusan = b.id_jurusan JOIN user c ON a.nim=c.username');
 	}
 	function insertTable($a,$b)
 	{

@@ -18,14 +18,27 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	function __construct()
+	{
+		parent:: __construct();
+		$this->load->model(array('M_Dosen','M_Mahasiswa','M_User'));
+	}
 	public function index()
 	{
+		$data['mahasiswa'] = $this->M_Mahasiswa->tampilkanRecord()->result();
 		$this->load->view('Dashboard/Template/head-open');
 		$this->load->view('Dashboard/Template/index-css');
 		$this->load->view('Dashboard/Template/head-close');
 		$this->load->view('Dashboard/Template/left');
-		$this->load->view('Dashboard/index');
+		$this->load->view('Dashboard/index',$data);
 		$this->load->view('Dashboard/Template/index-js');
 		$this->load->view('Dashboard/Template/body-close');
+	}
+	public function Activating($username)
+	{
+		$data = ['status'=>'1'];
+		$this->db->where('username',$username);
+		$this->db->update('user',$data);
+		redirect('Dashboard/Welcome');
 	}
 }

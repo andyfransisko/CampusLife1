@@ -39,21 +39,21 @@
           <div class="row">
             <div class="col-md-4">
               <div class="causes causes-2 text-center pb-4 px-md-4">
-                <div class="img ftco-animate" style="background-image: url(<?php echo base_url() ?>assets/images/causes-1.jpg);"></div>
+                <div class="img ftco-animate" style="background-image: url(<?php echo base_url() ?>assets/images/andy.jpg);"></div>
                 <h2 class="ftco-animate">Andy Fransisko</h2>
                 
               </div>
             </div>
             <div class="col-md-4">
               <div class="causes causes-2 text-center pb-4 px-md-4">
-                <div class="img ftco-animate" style="background-image: url(<?php echo base_url() ?>assets/images/causes-2.jpg);"></div>
+                <div class="img ftco-animate" style="background-image: url(<?php echo base_url() ?>assets/images/joshua.jpg);"></div>
                 <h2 class="ftco-animate">Joshua Satria</h2>
                 
               </div>
             </div>
             <div class="col-md-4">
               <div class="causes causes-2 text-center pb-4 px-md-4">
-                <div class="img ftco-animate" style="background-image: url(<?php echo base_url() ?>assets/images/causes-3.jpg);"></div>
+                <div class="img ftco-animate" style="background-image: url(<?php echo base_url() ?>assets/images/kelvin.jpg);"></div>
                 <h2 class="ftco-animate">Kelvin Cahyadi</h2>
                 
               </div>

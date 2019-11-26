@@ -21,7 +21,7 @@ class Materi extends CI_Controller
 
     function index(){
         //$data['materi'] = $this->M_Jadwalcustom->tampilkanRecord()->result();
-        $data ="";
+        $data = $this->;
         $this->head();
 		$this->load->view('Dashboard/V_Materi',$data);
 		$this->foot();

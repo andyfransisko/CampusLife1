@@ -38,21 +38,21 @@ class Matakuliah extends CI_Controller {
 		$tangkapNamamatakuliah= $this->input->post('nama_mata_kuliah');
 		$tangkapSks = $this->input->post('sks');
 		$tangkapIdsemester = $this->input->post('id_semester');
-		$tangkapJumlahPenilaian = count($this->input->post('nilai'));
+		$tangkapJumlahPenilaian = $this->input->post('nilai');
 
 		$data=array(
 			'id_mata_kuliah' =>$tangkapIdmatakuliah,
 			'nama_mata_kuliah' =>$tangkapNamamatakuliah,
 			'sks' =>$tangkapSks,
 			'id_semester' => $tangkapIdsemester,
-			'jumlah_penilaian' => $tangkapJumlahPenilaian
+			'jumlah_penilaian' => count($tangkapJumlahPenilaian)
 		);
 
 		$this->M_Matakuliah->insertTable('matakuliah',$data);
 
 		foreach($tangkapJumlahPenilaian as $a){
 			$data2 = array(
-				'id_nilai'			=>	$this->M_Matakuliah->count(getAllNilaiMatkul()->result())+1,
+				'id_nilai'			=>	count($this->M_Matakuliah->getAllNilaiMatkul()->result())+1,
 				'id_mata_kuliah'	=> 	$tangkapIdmatakuliah,
 				'id_tipe_nilai'		=> 	$a,
 			);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2019 at 04:18 PM
+-- Generation Time: Nov 26, 2019 at 11:42 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -92,7 +92,8 @@ CREATE TABLE `enroll` (
 
 INSERT INTO `enroll` (`id_enroll`, `id_mata_kuliah`, `nim`, `id_semester`) VALUES
 ('1', '1', '1', '1'),
-('ENROLL-2', '1', '2', '1');
+('ENROLL-2', '1', '2', '1'),
+('ENROLL-3', '2', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -241,8 +242,9 @@ CREATE TABLE `matakuliah` (
 --
 
 INSERT INTO `matakuliah` (`id_mata_kuliah`, `nama_mata_kuliah`, `sks`, `id_semester`, `jumlah_penilaian`) VALUES
-('1', 'web', 4, 1, 0),
-('2', 'algo', 4, 1, 0);
+('1', 'web', 4, 1, 3),
+('2', 'algo', 4, 1, 4),
+('MTKL-3', 'mpsi', 3, 1, 3);
 
 -- --------------------------------------------------------
 
@@ -253,8 +255,17 @@ INSERT INTO `matakuliah` (`id_mata_kuliah`, `nama_mata_kuliah`, `sks`, `id_semes
 CREATE TABLE `matakuliah_nilai` (
   `id_nilai` varchar(15) NOT NULL,
   `id_mata_kuliah` varchar(15) NOT NULL,
-  `id_tipe_penilaian` int(11) NOT NULL
+  `id_tipe_nilai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `matakuliah_nilai`
+--
+
+INSERT INTO `matakuliah_nilai` (`id_nilai`, `id_mata_kuliah`, `id_tipe_nilai`) VALUES
+('1', 'MTKL-3', 1),
+('2', 'MTKL-3', 4),
+('3', 'MTKL-3', 5);
 
 -- --------------------------------------------------------
 

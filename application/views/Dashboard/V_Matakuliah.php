@@ -40,11 +40,6 @@
                             <div class="card-header">
                                 <strong class="card-title">Matakuliah</strong>
                                 <div class="float-right">
-                                    <a href="<?php echo base_url().'Dashboard/Matakuliah/exportPDF' ?>" target="_blank">
-                                        <button type="button" class="btn btn-success">
-                                            Export
-                                        </button>
-                                    </a>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputMatakuliah">
                                         <span class="ti-plus"></span> Input
                                     </button>
@@ -101,7 +96,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Nama Mata Kuliah</label>
-                                                <input  type="text" class="form-control" placeholder = "Nama Matakuliah" id="nama_matakuliah" name="nama_mata_kuliah" value="<?php echo $list->nama_mata_kuliah?>">
+                                                <input  type="text" class="form-control" placeholder = "Nama Matakuliah" id="nama_mata_kuliah" name="nama_mata_kuliah" value="<?php echo $list->nama_mata_kuliah?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">SKS</label>
@@ -121,6 +116,40 @@
                                                         <option value="<?php echo $a->id_semester?>" <?php echo ($list->id_semester == $a->id_semester) ? "selected" : ""?>><?php echo $a->tahun. " - " .$arr[$a->jenis_semester]?></option>
                                                     <?php }?>
                                                 </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cc-number" class="control-label mb-1">Penilaian</label><br>
+                                                <div class="row form-group">
+                                                    <div class="col col-md-12">
+                                                        <div class="form-check">
+                                                            <div class="checkbox">
+                                                                <label for="checkbox1" class="form-check-label ">
+                                                                    <input type="checkbox" id="kat1" name="nilai[]" value="1" class="form-check-input" checked>KAT 1
+                                                                </label>
+                                                            </div>
+                                                            <div class="checkbox">
+                                                                <label for="checkbox2" class="form-check-label ">
+                                                                    <input type="checkbox" id="kat2" name="nilai[]" value="2" class="form-check-input" <?php echo ($list->jumlah_penilaian == 4) ? "checked" : ($list->jumlah_penilaian == 5) ? "checked" : ""; ?>> KAT 2
+                                                                </label>
+                                                            </div>
+                                                            <div class="checkbox">
+                                                                <label for="checkbox3" class="form-check-label ">
+                                                                    <input type="checkbox" id="kat3" name="nilai[]" value="3" class="form-check-input" <?php echo  ($list->jumlah_penilaian == 5) ? "checked" : ""; ?>> KAT 3
+                                                                </label>
+                                                            </div>
+                                                            <div class="checkbox">
+                                                                <label for="checkbox3" class="form-check-label ">
+                                                                    <input type="checkbox" id="uts" name="nilai[]" value="4" class="form-check-input" checked readonly> UTS
+                                                                </label>
+                                                            </div>
+                                                            <div class="checkbox">
+                                                                <label for="checkbox3" class="form-check-label ">
+                                                                    <input type="checkbox" id="uas" name="nilai[]" value="5" class="form-check-input" checked readonly> UAS
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                         </div>
                         <div class="modal-footer">

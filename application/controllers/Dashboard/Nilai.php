@@ -106,18 +106,9 @@ class Nilai extends CI_Controller {
 				$this->M_Nilai->updateRecord($where,$data,'nilai_mhs');
 				$i++;
 			}
-
+		}
+		else if($count == 4){
 			
-			
-			
-			
-			$datauts = array(
-				'id_nilai_mhs' => 'NILMHS-'.($baris+2),
-				'tipe_nilai' => 1,
-				'nilai_mahasiswa' => $tangkapUTS,
-				'id_enroll' => $tangkapIdEnroll 
-			);
-			$this->M_Nilai->updateRecord($where,$datakat1,'nilai_mhs');
 		}
 		
 		$tangkapNilai = $this->input->post('nilai');

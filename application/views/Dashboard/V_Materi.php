@@ -40,7 +40,7 @@
                             <div class="card-header">
                                 <strong class="card-title">Mata Kuliah</strong>
                                 <div class="float-right">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputJadwalCustom">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputMateri">
                                         <span class="ti-plus"></span> Input
                                     </button>
                                 </div>
@@ -99,7 +99,9 @@
                                 <div class="tab-content pl-3 p-1" id="myTabContent">
                                     <div class="tab-pane fade show active" id="week1" role="tabpanel" aria-labelledby="home-tab">
                                         <h3>Week 1</h3>
-                                        <p>Some content here.</p>
+                                        <h5><?php echo $data['judul']; ?></h5>
+                                        <p><?php echo $data['penjelasan'] ?></p>
+
                                     </div>
                                     <div class="tab-pane fade" id="week2" role="tabpanel" aria-labelledby="profile-tab">
                                         <h3>Week 2</h3>
@@ -174,11 +176,11 @@
         </div><!-- .content -->
 
         <!-- Modal -->
-        <div class="modal fade" id="inputJadwal Custom" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+        <div class="modal fade" id="inputMateri" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="mediumModalLabel">Input Data Jadwal Custom</h5>
+                            <h5 class="modal-title" id="mediumModalLabel">Input Data Materi</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -188,49 +190,57 @@
                             <form action="#" method="post" novalidate="novalidate">
                                             
                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">ID Jadwal Custom</label>
-                                                <input id="cc-payment" name="cc-payment" type="text" class="form-control" placeholder = "ID Jadwal Custom" disabled>
+                                                <label for="cc-payment" class="control-label mb-1">ID Materi</label>
+                                                <input id="cc-payment" name="id_materi" type="text" class="form-control" placeholder = "ID Jadwal Custom" value="MTR-<?php $count+1?>" readonly>
                                             </div>
                                            <div class="form-group">
-                                                <label for="cc-number" class="control-label mb-1">Nama Mahasiswa</label><br>
+                                                <label for="cc-number" class="control-label mb-1">Mata Kuliah</label><br>
                                                 <select data-placeholder="Pilih Mahasiswa" class="standardSelect" tabindex="1">
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
+                                                    <?php foreach($matkul as $a){ ?>
+                                                        <option value="<?php echo $a->id_mata_kuliah ?>"><?php echo $a->nama_mata_kuliah ?></option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Nama Kegiatan</label>
-                                                <input id="cc-payment" name="cc-payment" type="text" class="form-control" placeholder = "Nama Kegiatan" >
+                                                <label for="cc-payment" class="control-label mb-1">Judul Materi</label>
+                                                <input id="cc-payment" name="judul_materi" type="text" class="form-control" placeholder = "                                    </div>
+                                            <div class="form-group">
+                                                <label for="cc-payment" class="control-label mb-1">Penjelasan Materi</label>
+                                                <textarea id="cc-payment" name="penjelasan_materi" type="text" class="form-control" placeholder = "Penjelasan Materi"></textarea>
                                             </div>
                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Hari</label>
-                                                <input id="cc-payment" name="cc-payment" type="text" class="form-control" placeholder = "Hari" >
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Jam Mulai</label>
-                                                <input id="cc-payment" name="cc-payment" type="time" class="form-control" placeholder = "Jam Mulai" >
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Jam Selesai</label>
-                                                <input id="cc-payment" name="cc-payment" type="time" class="form-control" placeholder = "Jam Selesai">
+                                                <label for="cc-payment" class="control-label mb-1">Pertemuan</label>
+                                                <select data-placeholder="Pilih Mahasiswa" class="standardSelect" tabindex="1">
+                                                    <option value="1">Week 1</option>
+                                                    <option value="2">Week 2</option>
+                                                    <option value="3">Week 3</option>
+                                                    <option value="4">Week 4</option>
+                                                    <option value="5">Week 5</option>
+                                                    <option value="6">Week 6</option>
+                                                    <option value="7">Week 7</option>
+                                                    <option value="8">Week 8</option>
+                                                    <option value="9">Week 9</option>
+                                                    <option value="10">Week 10</option>
+                                                    <option value="11">Week 11</option>
+                                                    <option value="12">Week 12</option>
+                                                    <option value="13">Week 13</option>
+                                                    <option value="14">Week 14</option>
+                                                    <option value="15">Week 15</option>
+                                                    <option value="16">Week 16</option>
+                                                </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Tempat</label>
-                                                <input id="cc-payment" name="cc-payment" type="text" class="form-control" placeholder = "Tempat">
+                                                <input id="cc-payment" name="file" type="file" class="form-control" placeholder = "Tempat">
                                             </div>
                                             
-                                        </form>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary">Submit</button>
-                        </div>
+                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
                     </div>
                 </div>
             </div>

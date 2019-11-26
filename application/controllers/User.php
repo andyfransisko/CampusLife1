@@ -6,7 +6,7 @@ class User extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('M_User');
+        $this->load->model(array('M_Jurusan','M_Mahasiswa','M_User', 'M_Jurusan'));
     }
 
     private function head(){
@@ -65,15 +65,22 @@ class User extends CI_Controller
         redirect(base_url('Login'));
     }
 
-    public function profile()
+    public function profile($nim)
     {
         $data['nav'] = "User";
+        $this->load->model('M_User');
+        $where = array('nim' => $nim);
+        $data['user'] = $this->M_User->tampilkanData()->result();
+        $data['jurusan'] = $this->M_Jurusan->tampilkanData()->result();
+		$data['user'] = $this->M_User->tampilkanData()->result();
         $this->head();
         $this->load->view("LandingPage/Template/profile-css");
         $this->load->view('LandingPage/Template/nav', $data);
         $this->load->view("LandingPage/Home/V_profile");
         //$this->load->view("User/V_profile", $data);
         $this->foot();
+
+        
     }
 
 

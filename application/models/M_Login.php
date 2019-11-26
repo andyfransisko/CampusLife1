@@ -8,7 +8,7 @@ class M_Login extends CI_Model
     }
 
     function getRecordNameMhs($where){
-        return $this->db->query('SELECT b.nama_mhs, a.tipe_akun FROM user a JOIN mahasiswa b ON a.username=b.nim WHERE a.username = '.$where['username']);
+        return $this->db->query('SELECT * FROM user a JOIN mahasiswa b ON a.username=b.nim WHERE a.username = '.$where['username']);
         
     }
 

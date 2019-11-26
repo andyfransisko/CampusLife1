@@ -83,6 +83,15 @@ class Login extends CI_Controller
                             'username' => $cek_user['username'],
                             'tipe_akun' => $cek_user['tipe_akun'],
                             'nama_user' => $nama['nama_mhs'],
+                            'jenisk' => $nama['jenis_kelamin'],
+                            'jurusan' => $nama['id_jurusan'],
+                            'angkatan1' => $nama['angkatan'],
+                            'email1' => $nama['email_mhs'],
+                            'tempat1' => $nama['tgl_lahir'],
+                            'tanggal1' => $nama['tmpt_lahir'],
+                            'alamat1' => $nama['alamat_rumah'],
+                            'phone1' => $nama['no_telp'],
+                            'agama1' => $nama['agama'],
                             'images' => $cek_user['images'],
                         );
                     }else if($cek_user['tipe_akun'] == 2){

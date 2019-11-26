@@ -84,7 +84,7 @@
                                                 <button type="button" class="btn btn-outline-danger"><a href="<?php echo base_url(). 'Dashboard/Semester/hapusData/'.$list->id_semester;?>">Delete</button>
                                             </td>
                                         </tr>
-                                         <div class="modal fade" id="editSemester_<?php echo $list->id_semester?>" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="editSemester_<?php echo $list->id_semester?>" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -93,34 +93,34 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <div class="modal-body">
+                                                <div class="modal-body">
                             
-                            <form action="<?php echo base_url().'Dashboard/Semester/updateData'?>" method="POST" novalidate="novalidate">
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">ID Semester</label>
-                                                <input type="text" class="form-control" placeholder = "ID Semester" id="id_semester" name="id_semester" value="<?php echo $list->id_semester ?>" readonly>
+                                                        <form action="<?php echo base_url().'Dashboard/Semester/updateData'?>" method="POST" novalidate="novalidate">
+                                                    <div class="form-group">
+                                                        <label for="cc-payment" class="control-label mb-1">ID Semester</label>
+                                                        <input type="text" class="form-control" placeholder = "ID Semester" id="id_semester" name="id_semester" value="<?php echo $list->id_semester ?>" readonly>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="cc-payment" class="control-label mb-1">Jenis Semester</label><br>
+                                                        <select data-placeholder="Pilih Jenis Semester" class="standardSelect" tabindex="1" name="jenis_semester" id="jenis_semester">
+                                                            <option value="1"<?php if(($list->jenis_semester) == "1")  echo "selected" ?>>Ganjil</option>
+                                                            <option value="2" <?php if(($list->jenis_semester) == "2") echo "selected" ?>>Genap</option>
+                                                            <option value="3" <?php if(($list->jenis_semester) == "3") echo "selected" ?>>Akselerasi</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="cc-payment" class="control-label mb-1">Tahun</label>
+                                                        <input type="text" class="form-control" placeholder = "Tahun" id="tahun" name="tahun" value="<?php echo $list->tahun?>">
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                                </form>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Jenis Semester</label><br>
-                                                <select data-placeholder="Pilih Jenis Semester" class="standardSelect" tabindex="1" name="jenis_semester" id="jenis_semester">
-                                                    <option value="1"<?php if(($list->jenis_semester) == "1")  echo "selected" ?>>Ganjil</option>
-                                                    <option value="2" <?php if(($list->jenis_semester) == "2") echo "selected" ?>>Genap</option>
-                                                    <option value="3" <?php if(($list->jenis_semester) == "3") echo "selected" ?>>Akselerasi</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Tahun</label>
-                                                <input type="text" class="form-control" placeholder = "Tahun" id="tahun" name="tahun" value="<?php echo $list->tahun?>">
-                                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+                                        </div>
+                                    </div>
                                         <?php
                           } 
                           ?>

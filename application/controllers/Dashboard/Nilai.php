@@ -23,7 +23,6 @@ class Nilai extends CI_Controller {
 	public function index()
 	{
 		$data['matkul'] = $this->M_Matakuliah->getMatkulByDosen($this->session->userdata('username'))->result();
-		$data['count'] = $this->M_Matakuliah->getRecord($where,'matakuliah_nilai')->num_rows();
 		//$data['Nilai'] = $this->M_Nilai->tampilkanRecord()->result();
 		$this->head();
 		$this->load->view('Dashboard/V_Nilai',$data);
@@ -31,12 +30,19 @@ class Nilai extends CI_Controller {
 	}
 
 	public function viewGrading($matkul, $semester){
+		$where = array(
+			'id_mata_kuliah' => $matkul,
+		);
+		$data['nama'] = $this->M_Matakuliah->getRecord($where, 'matakuliah')->row_array();
+
+
 		$data['mhs'] = $this->M_Mahasiswa->getMhsByMatkul($matkul, $semester)->result();
-		$data['kat1'] = $this->M_Matakuliah->getNilaiMhs(1)->row_array();
-		$data['kat2'] = $this->M_Matakuliah->getNilaiMhs(2)->row_array();
-		$data['kat3'] =	$this->M_Matakuliah->getNilaiMhs(3)->row_array();
-		$data['uts'] = $this->M_Matakuliah->getNilaiMhs(4)->row_array();
-		$data['uas'] = $this->M_Matakuliah->getNilaiMhs(5)->row_array();
+		$data['count'] = $this->M_Matakuliah->getRecord($where,'matakuliah_nilai')->num_rows();
+		$data['kat1'] = $this->M_Nilai->getNilaiMhs(1)->row_array();
+		$data['kat2'] = $this->M_Nilai->getNilaiMhs(2)->row_array();
+		$data['kat3'] =	$this->M_Nilai->getNilaiMhs(3)->row_array();
+		$data['uts'] = $this->M_Nilai->getNilaiMhs(4)->row_array();
+		$data['uas'] = $this->M_Nilai->getNilaiMhs(5)->row_array();
 		
 		$this->head();
 		$this->load->view('Dashboard/V_Grading',$data);
@@ -81,9 +87,39 @@ class Nilai extends CI_Controller {
 	}
 
 	function updateData(){
-		$tangkapIdnilai = $this->input->post('id_nilai');
-		$tangkapIdenroll = $this->input->post('id_enroll');
-		$tangkapTipenilai = $this->input->post('tipe_nilai');
+		$count = $this->M_Matakuliah->getRecord($where,'matakuliah_nilai')->num_rows();
+		
+		$baris = $this->M_Nilai->tampilkanData()->num_rows();
+		if($count == 3){
+			$tangkapIdEnroll = $this->input->post('id_enroll');
+			$tangkapNIM = $this->input->post('nim');
+			$nilai = $this->input->post('nilai');
+			$i = 0;
+			foreach($nilai as $a){
+				$data = array(
+					'nilai_mahasiswa' => $a,
+				);
+				$where = array(
+					'tipe_nilai' => ($i == 0 ? 1: ($i == 1) ? 4 : 5),
+					'id_enroll' => $tangkapIdEnroll,
+				);
+				$this->M_Nilai->updateRecord($where,$data,'nilai_mhs');
+				$i++;
+			}
+
+			
+			
+			
+			
+			$datauts = array(
+				'id_nilai_mhs' => 'NILMHS-'.($baris+2),
+				'tipe_nilai' => 1,
+				'nilai_mahasiswa' => $tangkapUTS,
+				'id_enroll' => $tangkapIdEnroll 
+			);
+			$this->M_Nilai->updateRecord($where,$datakat1,'nilai_mhs');
+		}
+		
 		$tangkapNilai = $this->input->post('nilai');
 		$tangkapIdtugas = $this->input->post('id_tugas');
 
@@ -96,10 +132,9 @@ class Nilai extends CI_Controller {
 		);
 
 		$where = array(
-			'id_nilai' => $tangkapIdnilai
+			'id_nilai_mhs' => $tangkapIdnilai
 		);
 
-		$this->M_Nilai->updateRecord($where,$data,'nilai');
 		redirect('Nilai');
 	}
 	

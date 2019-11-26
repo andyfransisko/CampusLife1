@@ -153,11 +153,11 @@
                             <form action="<?php echo 'insertData'?>" method="post" novalidate="novalidate">
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">ID Matakuliah</label>
-                                                <input type="text" class="form-control" placeholder = "ID Matakuliah" id="id_matakuliah" name="id_mata_kuliah" value="MTKL-<?php echo $count+1?>">
+                                                <input type="text" class="form-control" placeholder = "ID Matakuliah" id="id_matakuliah" name="id_mata_kuliah" value="MTKL-<?php echo $count+1?>" readonly>
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Nama Matakuliah</label>
-                                                <input  type="text" class="form-control" placeholder = "Nama Matakuliah" id="nama_matakuliah" name="nama_matakuliah">
+                                                <input  type="text" class="form-control" placeholder = "Nama Matakuliah" id="nama_matakuliah" name="nama_mata_kuliah">
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">SKS</label>
@@ -185,7 +185,7 @@
                                                         <div class="form-check">
                                                             <div class="checkbox">
                                                                 <label for="checkbox1" class="form-check-label ">
-                                                                    <input type="checkbox" id="kat1" name="nilai[]" value="1" class="form-check-input" checked disabled>KAT 1
+                                                                    <input type="checkbox" id="kat1" name="nilai[]" value="1" class="form-check-input" checked>KAT 1
                                                                 </label>
                                                             </div>
                                                             <div class="checkbox">
@@ -200,19 +200,18 @@
                                                             </div>
                                                             <div class="checkbox">
                                                                 <label for="checkbox3" class="form-check-label ">
-                                                                    <input type="checkbox" id="uts" name="nilai[]" value="4" class="form-check-input" checked disabled> UTS
+                                                                    <input type="checkbox" id="uts" name="nilai[]" value="4" class="form-check-input" checked readonly> UTS
                                                                 </label>
                                                             </div>
                                                             <div class="checkbox">
                                                                 <label for="checkbox3" class="form-check-label ">
-                                                                    <input type="checkbox" id="uas" name="nilai[]" value="5" class="form-check-input" checked disabled> UAS
+                                                                    <input type="checkbox" id="uas" name="nilai[]" value="5" class="form-check-input" checked readonly> UAS
                                                                 </label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

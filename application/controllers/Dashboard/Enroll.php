@@ -120,6 +120,14 @@ class Enroll extends CI_Controller {
             );
             $this->M_Enroll->insertTable('enroll', $data);
 		}
+		$baris = $this->M_Nilai->tampilkanData()->num_rows();
+		$data2 = array(
+			'id_nilai_mhs' => 'NILMHS-'.($baris+1),
+			'tipe_nilai' => 1,
+			'nilai_mahasiswa' => 0,
+			'id_enroll' => $id_enroll 
+		);
+		$this->M_Enroll->insertTable('nilai_mhs', $data2);
 		redirect('Dashboard/Enroll/enroll/'.$id_semester.'/'.$id_matkul);
 		
     }

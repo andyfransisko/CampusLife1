@@ -37,16 +37,15 @@ class Matakuliah extends CI_Controller {
 		$tangkapIdmatakuliah = $this->input->post('id_mata_kuliah');
 		$tangkapNamamatakuliah= $this->input->post('nama_mata_kuliah');
 		$tangkapSks = $this->input->post('sks');
-		$tangkapIdruangan= $this->input->post('id_ruangan');
 		$tangkapIdsemester = $this->input->post('id_semester');
-		$tangkapJumlahPenilaian = $this->input->post('nilai');
+		$tangkapJumlahPenilaian = count($this->input->post('nilai'));
 
 		$data=array(
 			'id_mata_kuliah' =>$tangkapIdmatakuliah,
 			'nama_mata_kuliah' =>$tangkapNamamatakuliah,
 			'sks' =>$tangkapSks,
-			'id_ruangan' =>$tangkapIdruangan,
-			'id_semester' =>$tangkapIdsemester
+			'id_semester' => $tangkapIdsemester,
+			'jumlah_penilaian' => $tangkapJumlahPenilaian
 		);
 
 		$this->M_Matakuliah->insertTable('matakuliah',$data);
@@ -60,7 +59,7 @@ class Matakuliah extends CI_Controller {
 
 			$this->M_Matakuliah->insertTable('matakuliah_nilai',$data2);
 		}
-		redirect('Matakuliah/index');
+		redirect('Dashboard/Matakuliah/index');
 	}
 
 	function editData($id_matakuliah) {

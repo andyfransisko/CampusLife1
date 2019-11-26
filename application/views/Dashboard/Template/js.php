@@ -72,6 +72,30 @@
             }
 
             });
+            $("#kat1").on("click", function (e) {
+                var checkbox = $(this);
+                if (!checkbox.is(":checked")) {
+                    // do the confirmation thing here
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            $("#uts").on("click", function (e) {
+                var checkbox = $(this);
+                if (!checkbox.is(":checked")) {
+                    // do the confirmation thing here
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            $("#uas").on("click", function (e) {
+                var checkbox = $(this);
+                if (!checkbox.is(":checked")) {
+                    // do the confirmation thing here
+                    e.preventDefault();
+                    return false;
+                }
+            });
 
             $('modal').shown(function(){
                 $('#bootstrap-data-export').DataTable();
@@ -82,5 +106,7 @@
                 no_results_text: "Oops, nothing found!",
                 width: "100%"
              });
+
+             
       } );
   </script>

@@ -6,7 +6,7 @@ class Nilai extends CI_Controller {
 	function __construct()
 	{
 		parent:: __construct();
-		$this->load->model(array('M_Enroll','M_Nilai'));
+		$this->load->model(array('M_Enroll','M_Nilai', 'M_Matakuliah','M_Mahasiswa'));
 	}
 	public function head(){
 		$this->load->view('Dashboard/Template/head-open');
@@ -22,9 +22,24 @@ class Nilai extends CI_Controller {
 	}
 	public function index()
 	{
-		$data['Nilai'] = $this->M_Nilai->tampilkanRecord()->result();
+		$data['matkul'] = $this->M_Matakuliah->getMatkulByDosen($this->session->userdata('username'))->result();
+		$data['count'] = $this->M_Matakuliah->getRecord($where,'matakuliah_nilai')->num_rows();
+		//$data['Nilai'] = $this->M_Nilai->tampilkanRecord()->result();
 		$this->head();
 		$this->load->view('Dashboard/V_Nilai',$data);
+		$this->foot();
+	}
+
+	public function viewGrading($matkul, $semester){
+		$data['mhs'] = $this->M_Mahasiswa->getMhsByMatkul($matkul, $semester)->result();
+		$data['kat1'] = $this->M_Matakuliah->getNilaiMhs(1)->row_array();
+		$data['kat2'] = $this->M_Matakuliah->getNilaiMhs(2)->row_array();
+		$data['kat3'] =	$this->M_Matakuliah->getNilaiMhs(3)->row_array();
+		$data['uts'] = $this->M_Matakuliah->getNilaiMhs(4)->row_array();
+		$data['uas'] = $this->M_Matakuliah->getNilaiMhs(5)->row_array();
+		
+		$this->head();
+		$this->load->view('Dashboard/V_Grading',$data);
 		$this->foot();
 	}
 

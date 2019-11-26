@@ -94,5 +94,11 @@ class Admin extends CI_Controller {
 		$this->M_Admin->hapusRecord($where,'admin');
 		redirect('Dashboard/Admin/index');
 	}
+
+	function exportPDF()
+	{
+		$data['admin']=$this->M_Admin->tampilkanData()->result();
+		$this->load->view('Dashboard/E_Admin',$data);
+	}
 }
 ?>

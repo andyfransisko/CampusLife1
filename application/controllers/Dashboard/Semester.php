@@ -96,5 +96,12 @@ class Semester extends CI_Controller {
 		$this->M_Semester->hapusRecord($where,'semester');
 		redirect('Semester/index');
 	}
+
+	function exportPDF()
+	{
+		$data['semester']=$this->M_Semester->tampilkanData()->result();
+		$data['count'] = $this->M_Semester->tampilkanData()->num_rows();
+		$this->load->view('Dashboard/E_Semester',$data);
+	}
 }
 ?>

@@ -92,5 +92,11 @@ class User extends CI_Controller {
 		$this->M_User->hapusRecord($where,'user');
 		redirect('User');
 	}
+
+	function exportPDF()
+	{
+		$data['user']=$this->M_User->tampilkanData()->result();
+		$this->load->view('Dashboard/E_User',$data);
+	}
 }
 ?>

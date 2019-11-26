@@ -82,5 +82,11 @@ class Ruangan extends CI_Controller {
 		$this->M_Ruangan->hapusRecord($where,'ruangan');
 		redirect('Ruangan/index');
 	}
+
+	function exportPDF()
+	{
+		$data['ruangan']=$this->M_Ruangan->tampilkanData()->result();
+		$this->load->view('Dashboard/E_Ruangan',$data);
+	}
 }
 ?>

@@ -149,5 +149,12 @@ class Mahasiswa extends CI_Controller {
 		$this->M_User->hapusRecord($where_user,'user');
 		redirect('Mahasiswa/index');
 	}
+
+	function exportPDF()
+	{
+		$data['mahasiswa'] = $this->M_Mahasiswa->tampilkanRecord()->result();
+		$data['jurusan'] = $this->M_Jurusan->tampilkanData()->result();
+		$this->load->view('Dashboard/E_Mahasiswa',$data);
+	}
 }
 ?>

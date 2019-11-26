@@ -99,6 +99,48 @@ class User extends CI_Controller
         
     }
 
+    function updateData(){
+		$this->load->library('form_validation');
+		
+		$this->form_validation->set_rules('nama_mhs', 'Name', 'required|trim');
+		$this->form_validation->set_rules('jenis_kelamin', 'Sex', 'required|trim');
+		$this->form_validation->set_rules('id_jurusan', 'Major Name', 'required|trim');
+		$this->form_validation->set_rules('angkatan', 'Batch', 'required|trim');
+		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+		$this->form_validation->set_rules('tmpt_lahir', 'Place of Birth', 'required|trim');
+		$this->form_validation->set_rules('tgl_lahir', 'Date of Birth', 'required|trim');
+		$this->form_validation->set_rules('alamat', 'Address', 'required|trim');
+		$this->form_validation->set_rules('no_telp', 'Telephone Number', 'required|trim|numeric');
+		$this->form_validation->set_rules('agama', 'Religion', 'required|trim');
+
+		if($this->form_validation->run() == false){
+			echo validation_errors();
+		}
+		else{
+			$data_mhs = array(
+				'nama_mhs' => htmlspecialchars($this->input->post('nama_mhs')), 
+				'jenis_kelamin' => htmlspecialchars($this->input->post('jenis_kelamin')), 
+				'id_jurusan' => htmlspecialchars($this->input->post('id_jurusan')), 
+				'angkatan' => htmlspecialchars($this->input->post('angkatan')), 
+				'email_mhs' => htmlspecialchars($this->input->post('email')), 
+				'tgl_lahir' => date('Y-m-d', strtotime(htmlspecialchars($this->input->post('tgl_lahir')))),
+				'tmpt_lahir' => htmlspecialchars($this->input->post('tmpt_lahir')), 
+				'alamat_rumah' => htmlspecialchars($this->input->post('alamat')), 
+				'no_telp' => htmlspecialchars($this->input->post('no_telp')), 
+				'agama' => htmlspecialchars($this->input->post('agama')), 
+				'user_edit' => $this->session->userdata('username'),  
+			);
+
+			$where = array(
+				'nim' => $this->input->post('nim'),
+			);
+			$this->M_Mahasiswa->updateRecord($where,$data_mhs,'mahasiswa');
+			redirect('Dashboard/Mahasiswa/index');
+
+		}
+
+		
+	}
 
 
 }

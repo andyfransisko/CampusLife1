@@ -40,6 +40,11 @@
                             <div class="card-header">
                                 <strong class="card-title">Mahasiswa</strong>
                                 <div class="float-right">
+                                    <a href="<?php echo base_url().'Dashboard/Mahasiswa/exportPDF' ?>">
+                                        <button type="button" class="btn btn-success">
+                                            Export
+                                        </button>
+                                    </a>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputMahasiswa">
                                         <span class="ti-plus"></span> Input
                                     </button>

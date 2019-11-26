@@ -40,6 +40,11 @@
                             <div class="card-header">
                                 <strong class="card-title">User</strong>
                                 <div class="float-right">
+                                    <a href="<?php echo base_url().'Dashboard/User/exportPDF' ?>">
+                                        <button type="button" class="btn btn-success">
+                                            Export
+                                        </button>
+                                    </a>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputUser">
                                         <span class="ti-plus"></span> Input
                                     </button>
@@ -48,9 +53,8 @@
                             <div class="card-body">
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
-                                        <tr>
+                                        <tr align="center">
                                             <th>Username</th>
-                                            <th>Password</th>
                                             <th>Images</th>
                                             <th>Tipe Akun</th>
                                             <th>Status</th>
@@ -62,7 +66,6 @@
                                         <?php foreach($user as $list){ ?>
                                         <tr align="center">
                                             <td><?php echo $list->username ?></td>
-                                            <td><?php echo $list->password ?></td>
                                             <td><?php echo $list->images ?></td>
                                             <td>
                                                 <?php   

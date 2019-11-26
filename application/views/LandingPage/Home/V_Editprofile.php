@@ -49,6 +49,7 @@
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" style="padding-bottom:10%;">
+                                    <form action="<?php echo base_url(). "User/updateData" ?>" method="post">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <label>NIM</label>
@@ -70,7 +71,10 @@
                                                 <label>Gender</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('jenisk') ?></p>
+                                                <select class="form-control" tabindex="1" name="jenis_kelamin">
+                                                    <option value="1">Laki - Laki</option>
+                                                    <option value="2">Perempuan</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -78,7 +82,11 @@
                                                 <label>Major</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('jurusan') ?></p>
+                                            <select class="form-control" tabindex="1" name="id_jurusan">
+                                                    <?php foreach($jurusan as $a){ ?>
+                                                        <option value="<?php echo $a->id_jurusan ?>"><?php echo $a->nama_jurusan ?></option>
+                                                    <?php } ?>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -134,15 +142,14 @@
                                                 <label>Religion</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <select data-placeholder="Pilih Agama" class="standardSelect" tabindex="1" name="agama">
-                                                    <option value="1" <?php echo ($list->agama == 1 ? "selected" : "")?>>Kristen</option>
-                                                    <option value="2" <?php echo ($list->agama == 2 ? "selected" : "")?>>Katolik</option>
-                                                    <option value="3" <?php echo ($list->agama == 3 ? "selected" : "")?>>Islam</option>
-                                                    <option value="4" <?php echo ($list->agama == 4 ? "selected" : "")?>>Buddha</option>
-                                                    <option value="5" <?php echo ($list->agama == 5 ? "selected" : "")?>>Hindu</option>
-                                                    <option value="6" <?php echo ($list->agama == 6 ? "selected" : "")?>>Kong Hu Cu</option>
+                                                <select class="form-control" tabindex="1" name="agama">
+                                                    <option value="1">Kristen</option>
+                                                    <option value="2">Katolik</option>
+                                                    <option value="3">Islam</option>
+                                                    <option value="4">Buddha</option>
+                                                    <option value="5">Hindu</option>
+                                                    <option value="6">Kong Hu Cu</option>
                                                 </select>
-                                                <p><?php echo $this->session->userdata('agama1') ?></p>
                                             </div>
                                         </div>
                                         
@@ -156,6 +163,7 @@
                                                 </button>
                                             </div>
                                         </div>
+                                    </form>
                             </div>
                             
                         </div>

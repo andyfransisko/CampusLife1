@@ -65,11 +65,10 @@ class User extends CI_Controller
         redirect(base_url('Login'));
     }
 
-    public function profile($nim)
+    public function profile()
     {
         $data['nav'] = "User";
         $this->load->model('M_User');
-        $where = array('nim' => $nim);
         $data['user'] = $this->M_User->tampilkanData()->result();
         $data['jurusan'] = $this->M_Jurusan->tampilkanData()->result();
 		$data['user'] = $this->M_User->tampilkanData()->result();
@@ -77,6 +76,23 @@ class User extends CI_Controller
         $this->load->view("LandingPage/Template/profile-css");
         $this->load->view('LandingPage/Template/nav', $data);
         $this->load->view("LandingPage/Home/V_profile");
+        //$this->load->view("User/V_profile", $data);
+        $this->foot();
+
+        
+    }
+
+    public function Editprofile()
+    {
+        $data['nav'] = "User";
+        $this->load->model('M_User');
+        $data['user'] = $this->M_User->tampilkanData()->result();
+        $data['jurusan'] = $this->M_Jurusan->tampilkanData()->result();
+		$data['user'] = $this->M_User->tampilkanData()->result();
+        $this->head();
+        $this->load->view("LandingPage/Template/profile-css");
+        $this->load->view('LandingPage/Template/nav', $data);
+        $this->load->view("LandingPage/Home/V_Editprofile");
         //$this->load->view("User/V_profile", $data);
         $this->foot();
 

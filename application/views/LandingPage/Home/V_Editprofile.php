@@ -54,7 +54,7 @@
                                                 <label>NIM</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('username') ?></p>
+                                                <input type = "text" class="form-control" readonly value="<?php echo $this->session->userdata('username') ?>">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -62,7 +62,7 @@
                                                 <label>Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('nama_user') ?></p>
+                                            <input type = "text" class="form-control"  value="<?php echo $this->session->userdata('nama_user') ?>">
                                             </div>
                                         </div>
                                         <div class="row">

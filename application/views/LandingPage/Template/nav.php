@@ -22,7 +22,7 @@
 									</b>
 								</button>
 								<div class="dropdown-content">
-									<a href="<?php base_url() ?>User/profile/s" class="nav-link">Profile</a>
+									<a href="<?php base_url() ?>User/profile" class="nav-link">Profile</a>
 									<a href="<?php base_url() ?>Login/logout" class="nav-link">Logout</a>    
 								</div>
 							</div>

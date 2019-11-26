@@ -38,7 +38,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Daftar Mata Kuliah</strong>
+                                <strong class="card-title">Grade Mata Kuliah</strong>
                                 <div class="float-right">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputNilai">
                                         <span class="ti-plus"></span> Input
@@ -46,31 +46,48 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                <table id="bootstrap-data-table" class="table table-striped table-bordered" style="text-align:center">
                                     <thead>
                                         <tr>
-                                            <th>ID Mata Kuliah</th>
-                                            <th>Nama Mata Kuliah</th>
-                                            <th>Jumlah Mahasiswa</th>
-                                            <th>Tahun Ajaran </th>
-                                            <th>Grading</th>
+                                            <th rowspan="2">Nama Mahasiswa</th>
+                                            <th colspan="<?php echo ($count == 3) ? "3" : ($count == 4) ? "4" : "5" ?>" style="text-align:center">Nilai</th>
+                                            <th rowspan="2">Grade </th>
+                                        </tr>
+                                        <tr>
+                                            <th>KAT 1</th>
+                                            <?php if($count == 4){?>
+                                                <th>KAT 2</th>
+                                            <?php }else{?>
+                                                <th>KAT 2</th>
+                                                <th>KAT 3</th>
+                                            <?php
+                                                }
+                                            ?>
+                                            <th>UTS</th>
+                                            <th>UAS</th>
+                                            
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php 
-                                        $arr = [
-                                            1=>'Ganjil',
-                                            2=>'Genap',
-                                            3=>'Akselerasi'
-                                        ];
-                                        foreach($matkul as $a){?>
+                                        foreach($mhs as $a){?>
                                         <tr align="center">
-                                            <td><?php echo $a->id_mata_kuliah?></td>
-                                            <td><?php echo $a->nama_mata_kuliah?></td>
-                                            <td><?php echo $a->jumlah_mahasiswa?></td>
-                                            <td><?php echo $a->tahun. " - ".$arr[$a->jenis_semester]?></td>
+                                            <td><?php echo $a->nama_mhs?></td>
+                                            <td><?php echo $a->nilai_mahasiswa?></td>
+                                            
+                                            <td><?php echo $kat1['nilai_mahasiswa']?></td>
+                                            <?php if($count == 4){?>
+                                            <?php }else{?>
+                                                <td><?php echo $kat2['nilai_mahasiswa']?></td>
+                                                <td><?php echo $kat3['nilai_mahasiswa']?></td>
+                                            <?php
+                                                }
+                                            ?>
+                                            <td><?php echo $uts['nilai_mahasiswa']?></td>
+                                            <td><?php echo $uas['nilai_mahasiswa']?></td>
                                             <td>
-                                                <button type="button" class="btn btn-outline-danger"><a href="<?php echo base_url(). "Dashboard/Nilai/viewGrading/".$a->id_mata_kuliah."/".$a->id_semester?>">GRADE</a></button>
+                                                <button type="button" class="btn btn-outline-primary"><a href="<?php echo base_url(). "Dashboard/Nilai/gradeMhs/"?>">GRADE MAHASISWA</a></button>
                                             </td>
                                         </tr>
                                         <?php }?>

@@ -5,13 +5,23 @@ class M_Nilai extends CI_Model {
 
 	function tampilkanData()
 	{
-		$query=$this->db->get('nilai');
+		$query=$this->db->get('nilai_mhs');
 		return $query;
 		
 	}
 	function tampilkanRecord()
 	{
-		return $this->db->query('SELECT a.id_nilai, b.id_enroll, a.tipe_nilai, a.nilai_mahasiswa, c.id_tugas FROM nilai a JOIN enroll b ON a.id_enroll = b.id_enroll JOIN tugas c ON a.id_tugas = c.id_tugas');
+		return $this->db->query('SELECT a.id_nilai_mhs, b.id_enroll, a.tipe_nilai, a.nilai_mahasiswa, c.id_tugas FROM nilai_mhs a JOIN enroll b ON a.id_enroll = b.id_enroll JOIN tugas c ON a.id_tugas = c.id_tugas');
+	}
+
+	function getNilaiMhs($id){
+		return $this->db->query('SELECT a.nim, a.tipe_nilai, e.detail_penilaian, a.nilai_mahasiswa, c.id_tugas 
+		FROM nilai_mhs a 
+		JOIN enroll b ON a.id_enroll = b.id_enroll 
+		JOIN tugas c ON a.id_tugas = c.id_tugas
+		JOIN matakuliah d ON d.id_mata_kuliah = b.id_mata_kuliah
+		JOIN matakuliah_nilai e ON e.id_tipe_penilaian = a.tipe_nilai
+		WHERE a.tipe_nilai = '.$id);
 	}
 	function insertTable($a,$b)
 	{

@@ -52,21 +52,25 @@
                                             <th>ID Matakuliah</th>
                                             <th>Nama Matakuliah</th>
                                             <th>SKS</th>
-                                            <th>ID Semester</th>
+                                            <th>Tahun Ajaran</th>
                                             <th>Edit</th>
                                             <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-                            $i=1;
+                            $arr=[
+                                1=>"Ganjil",
+                                2=>"Genap",
+                                3=>"Akselerasi",
+                            ];
                             foreach($matakuliah as $list){
                           ?>
                                         <tr align="center">
                                             <td><?php echo $list->id_mata_kuliah ?></td>
                                             <td><?php echo $list->nama_mata_kuliah ?></td>
                                             <td><?php echo $list->sks ?></td>
-                                            <td><?php echo $list->id_semester ?></td>
+                                            <td><?php echo $list->tahun." - ".$arr[$list->jenis_semester] ?></td>
                                             <td>
                                                 <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#editMatakuliah_<?php echo $list->id_mata_kuliah?>">Edit</button>
                                             </td>
@@ -85,14 +89,14 @@
                         </div>
                         <div class="modal-body">
                             
-                            <form action="<?php echo 'updateData'?>" method="POST" novalidate="novalidate">
+                            <form action="<?php echo base_url().'Dashboard/Matakuliah/updateData'?>" method="POST" novalidate="novalidate">
                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">ID Matakuliah</label>
-                                                <input type="text" class="form-control" placeholder = "nidn" id="id_matakuliah" name="id_mata_kuliah" value="<?php echo $list->id_mata_kuliah ?>" readonly>
+                                                <label for="cc-payment" class="control-label mb-1">ID Mata Kuliah</label>
+                                                <input type="text" class="form-control" placeholder = "id_mata_kuliah" id="id_mata_kuliah" name="id_mata_kuliah" value="<?php echo $list->id_mata_kuliah ?>" readonly>
                                             </div>
                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Nama Matakuliah</label>
-                                                <input  type="text" class="form-control" placeholder = "Nama Matakuliah" id="nama_matakuliah" name="nama_matakuliah" value="<?php echo $list->nama_mata_kuliah?>">
+                                                <label for="cc-payment" class="control-label mb-1">Nama Mata Kuliah</label>
+                                                <input  type="text" class="form-control" placeholder = "Nama Matakuliah" id="nama_matakuliah" name="nama_mata_kuliah" value="<?php echo $list->nama_mata_kuliah?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">SKS</label>
@@ -101,9 +105,16 @@
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Jenis Semester - Tahun</label><br>
                                                 <select data-placeholder="Pilih Jenis Semester" class="standardSelect" tabindex="1"name="id_semester" id="id_semester">
-                                                    <option value="3" <?php if(($list->id_semster) == "3") echo "selected" ?>>Matakuliah Reguler</option>
-                                                    <option value="2" <?php if(($list->id_semester) == "2") echo "selected" ?>>Matakuliah Pembimbing Akademik</option>
-                                                    <option value="1"<?php if(($list->id_semester) == "1")  echo "selected" ?>>Kepala Program Studi</option>
+                                                    <?php 
+                                                    $arr=[
+                                                        1=>"Ganjil",
+                                                        2=>"Genap",
+                                                        3=>"Akselerasi",
+
+                                                    ];
+                                                    foreach($semester as $a){?>
+                                                        <option value="<?php echo $a->id_semester?>" <?php echo ($list->id_semester == $a->id_semester) ? "selected" : ""?>><?php echo $a->tahun. " - " .$arr[$a->jenis_semester]?></option>
+                                                    <?php }?>
                                                 </select>
                                             </div>
                         </div>
@@ -142,7 +153,7 @@
                             <form action="<?php echo 'insertData'?>" method="post" novalidate="novalidate">
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">ID Matakuliah</label>
-                                                <input type="text" class="form-control" placeholder = "ID Matakuliah" id="id_matakuliah" name="id_mata_kuliah">
+                                                <input type="text" class="form-control" placeholder = "ID Matakuliah" id="id_matakuliah" name="id_mata_kuliah" value="MTKL-<?php echo $count+1?>">
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Nama Matakuliah</label>
@@ -153,13 +164,55 @@
                                                 <input  type="text" class="form-control" placeholder = "SKS" id="sks" name="sks">
                                             </div>
                                             <div class="form-group">
-                                                <label for="cc-number" class="control-label mb-1">Jenis Semester - Tahun</label><br>
+                                                <label for="cc-number" class="control-label mb-1">Tahun - Jenis Semester</label><br>
                                                 <select data-placeholder="Pilih Jenis Semester" class="standardSelect" tabindex="1"name="id_semester" id="tipe_Matakuliah">
-                                                    <option value="3" <?php if(($list->tipe_Matakuliah) == "3") echo "selected" ?>>Matakuliah Reguler</option>
-                                                    <option value="2" <?php if(($list->tipe_Matakuliah) == "2") echo "selected" ?>>Matakuliah Pembimbing Akademik</option>
-                                                    <option value="1"<?php if(($list->tipe_Matakuliah) == "1")  echo "selected" ?>>Kepala Program Studi</option>
+                                                    <?php 
+                                                    $arr=[
+                                                        1=>"Ganjil",
+                                                        2=>"Genap",
+                                                        3=>"Akselerasi",
+
+                                                    ];
+                                                    foreach($semester as $a){?>
+                                                        <option value="<?php echo $a->id_semester?>"><?php echo $a->tahun. " - " .$arr[$a->jenis_semester]?></option>
+                                                    <?php }?>
                                                 </select>
                                             </div>
+                                            <div class="form-group">
+                                                <label for="cc-number" class="control-label mb-1">Penilaian</label><br>
+                                                <div class="row form-group">
+                                                    <div class="col col-md-12">
+                                                        <div class="form-check">
+                                                            <div class="checkbox">
+                                                                <label for="checkbox1" class="form-check-label ">
+                                                                    <input type="checkbox" id="kat1" name="nilai[]" value="1" class="form-check-input" checked disabled>KAT 1
+                                                                </label>
+                                                            </div>
+                                                            <div class="checkbox">
+                                                                <label for="checkbox2" class="form-check-label ">
+                                                                    <input type="checkbox" id="kat2" name="nilai[]" value="2" class="form-check-input"> KAT 2
+                                                                </label>
+                                                            </div>
+                                                            <div class="checkbox">
+                                                                <label for="checkbox3" class="form-check-label ">
+                                                                    <input type="checkbox" id="kat3" name="nilai[]" value="3" class="form-check-input"> KAT 3
+                                                                </label>
+                                                            </div>
+                                                            <div class="checkbox">
+                                                                <label for="checkbox3" class="form-check-label ">
+                                                                    <input type="checkbox" id="uts" name="nilai[]" value="4" class="form-check-input" checked disabled> UTS
+                                                                </label>
+                                                            </div>
+                                                            <div class="checkbox">
+                                                                <label for="checkbox3" class="form-check-label ">
+                                                                    <input type="checkbox" id="uas" name="nilai[]" value="5" class="form-check-input" checked disabled> UAS
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

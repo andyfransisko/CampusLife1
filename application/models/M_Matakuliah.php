@@ -7,6 +7,11 @@ class M_Matakuliah extends CI_Model{
         $query=$this->db->get('matakuliah');
 		return $query;
     }
+
+    function getAllNilaiMatkul(){
+        $query=$this->db->get('matakuliah_nilai');
+		return $query;
+    }
     
     function getAllMatkulCond($where){
         return $this->db->get_where('matakuliah',$where);
@@ -57,6 +62,15 @@ class M_Matakuliah extends CI_Model{
         return $query;
     }
 
+    function getMatkulByDosen($dosen){
+        return $this->db->query('SELECT a.id_mata_kuliah, a.nama_mata_kuliah, b.nidn, COUNT(c.nim) as jumlah_mahasiswa, d.id_semester, d.tahun, d.jenis_semester 
+        FROM matakuliah a
+        JOIN jadwal_kuliah b ON a.id_mata_kuliah = b.id_mata_kuliah
+        JOIN enroll c ON a.id_mata_kuliah = c.id_mata_kuliah
+        JOIN semester d ON a.id_semester = d.id_semester
+        WHERE b.nidn ='. $dosen);
+    }
+
     function tampilkanData()
 	{
 		$query=$this->db->get('matakuliah');
@@ -66,7 +80,7 @@ class M_Matakuliah extends CI_Model{
     
 	function tampilkanRecord()
 	{
-		return $this->db->query('SELECT a.id_mata_kuliah, a.nama_mata_kuliah, a.sks, b.id_semester
+		return $this->db->query('SELECT a.id_mata_kuliah, a.nama_mata_kuliah, a.sks, b.id_semester, b.tahun, b.jenis_semester
         FROM matakuliah a 
         JOIN semester b ON a.id_semester = b.id_semester 
         ');
@@ -78,6 +92,11 @@ class M_Matakuliah extends CI_Model{
     }
     
 	function editRecord($where,$table)
+	{
+		return $this->db->get_where($table,$where);
+    }
+
+    function getRecord($where,$table)
 	{
 		return $this->db->get_where($table,$where);
     }

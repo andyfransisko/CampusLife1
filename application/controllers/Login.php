@@ -84,7 +84,7 @@ class Login extends CI_Controller
                             'tipe_akun' => $cek_user['tipe_akun'],
                             'nama_user' => $nama['nama_mhs'],
                             'jenisk' => $nama['jenis_kelamin'],
-                            'jurusan' => $nama['id_jurusan'],
+                            'jurusan' => $nama['nama_jurusan'],
                             'angkatan1' => $nama['angkatan'],
                             'email1' => $nama['email_mhs'],
                             'tempat1' => $nama['tgl_lahir'],

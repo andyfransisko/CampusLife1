@@ -37,8 +37,8 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <a href = "<?php echo base_url() ?>User/Editprofile" >
-                            Edit Profile
+                        <a href = "<?php echo base_url() ?>User/profile" >
+                            Back
                         </a>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" style="padding-bottom:10%;">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <label>NIM</label>
@@ -86,7 +86,7 @@
                                                 <label>Cohort</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('angkatan1') ?></p>
+                                            <input type = "text" class="form-control" value="<?php echo $this->session->userdata('angkatan1') ?>">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -94,7 +94,7 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('email1') ?></p>
+                                            <input type = "text" class="form-control"  value="<?php echo $this->session->userdata('email1') ?>">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -102,7 +102,7 @@
                                                 <label>Birth Date</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('tempat1') ?></p>
+                                            <input type = "text" class="form-control"  value="<?php echo $this->session->userdata('tempat1') ?>">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -110,7 +110,7 @@
                                                 <label>Birth Place</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('tanggal1') ?></p>
+                                            <input type = "text" class="form-control"  value="<?php echo $this->session->userdata('tanggal1') ?>">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -118,7 +118,7 @@
                                                 <label>Address</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('alamat1') ?></p>
+                                            <input type = "text" class="form-control"  value="<?php echo $this->session->userdata('alamat1') ?>">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -126,7 +126,7 @@
                                                 <label>Phone Number</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('phone1') ?></p>
+                                            <input type = "text" class="form-control" value="<?php echo $this->session->userdata('phone1') ?>">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -134,7 +134,26 @@
                                                 <label>Religion</label>
                                             </div>
                                             <div class="col-md-6">
+                                                <select data-placeholder="Pilih Agama" class="standardSelect" tabindex="1" name="agama">
+                                                    <option value="1" <?php echo ($list->agama == 1 ? "selected" : "")?>>Kristen</option>
+                                                    <option value="2" <?php echo ($list->agama == 2 ? "selected" : "")?>>Katolik</option>
+                                                    <option value="3" <?php echo ($list->agama == 3 ? "selected" : "")?>>Islam</option>
+                                                    <option value="4" <?php echo ($list->agama == 4 ? "selected" : "")?>>Buddha</option>
+                                                    <option value="5" <?php echo ($list->agama == 5 ? "selected" : "")?>>Hindu</option>
+                                                    <option value="6" <?php echo ($list->agama == 6 ? "selected" : "")?>>Kong Hu Cu</option>
+                                                </select>
                                                 <p><?php echo $this->session->userdata('agama1') ?></p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                
+                                            </div>
+                                            <div class="col-md-6">
+                                                <button type="submit" class="form-control">
+                                                    SUBMIT
+                                                </button>
                                             </div>
                                         </div>
                             </div>

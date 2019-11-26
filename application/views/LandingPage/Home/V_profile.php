@@ -70,7 +70,16 @@
                                                 <label>Gender</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('jenisk') ?></p>
+                                                <p>
+                                                <?php 
+                                                    if($this->session->userdata('jenisk') == 1){
+                                                        echo "Laki laki";
+                                                    }
+                                                    else if($this->session->userdata('jenisk') == 2){
+                                                        echo "Perempuan";
+                                                    }
+                                                    ?>
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -134,7 +143,28 @@
                                                 <label>Religion</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('agama1') ?></p>
+                                                <p>
+                                                    <?php 
+                                                    if($this->session->userdata('agama1') == 1){
+                                                        echo "Kristen";
+                                                    }
+                                                    else if($this->session->userdata('agama1') == 2){
+                                                        echo "Katolik";
+                                                    }
+                                                    else if($this->session->userdata('agama1') == 3){
+                                                        echo "Islam";
+                                                    }
+                                                    else if($this->session->userdata('agama1') == 4){
+                                                        echo "Buddha";
+                                                    }
+                                                    else if($this->session->userdata('agama1') == 5){
+                                                        echo "Hindu";
+                                                    }
+                                                    else{
+                                                        echo "Kong Hu Cu";
+                                                    }
+                                                    ?>
+                                                </p>
                                             </div>
                                         </div>
                             </div>

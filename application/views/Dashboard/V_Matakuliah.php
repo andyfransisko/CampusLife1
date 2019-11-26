@@ -40,7 +40,7 @@
                             <div class="card-header">
                                 <strong class="card-title">Matakuliah</strong>
                                 <div class="float-right">
-                                    <a href="<?php echo base_url().'Dashboard/Matakuliah/exportPDF' ?>">
+                                    <a href="<?php echo base_url().'Dashboard/Matakuliah/exportPDF' ?>" target="_blank">
                                         <button type="button" class="btn btn-success">
                                             Export
                                         </button>

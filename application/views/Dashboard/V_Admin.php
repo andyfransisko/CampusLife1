@@ -40,7 +40,7 @@
                             <div class="card-header">
                                 <strong class="card-title">Admin</strong>
                                 <div class="float-right">
-                                    <a href="<?php echo base_url().'Dashboard/Admin/exportPDF' ?>">
+                                    <a href="<?php echo base_url().'Dashboard/Admin/exportPDF' ?>" target="_blank">
                                         <button type="button" class="btn btn-success">
                                             Export
                                         </button>

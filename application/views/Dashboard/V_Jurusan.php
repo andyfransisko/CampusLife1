@@ -40,7 +40,7 @@
                             <div class="card-header">
                                 <strong class="card-title">Jurusan</strong>
                                 <div class="float-right">
-                                    <a href="<?php echo base_url().'Dashboard/Jurusan/exportPDF' ?>">
+                                    <a href="<?php echo base_url().'Dashboard/Jurusan/exportPDF' ?>" target="_blank">
                                         <button type="button" class="btn btn-success">
                                             Export
                                         </button>

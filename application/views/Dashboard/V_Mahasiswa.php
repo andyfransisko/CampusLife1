@@ -40,7 +40,7 @@
                             <div class="card-header">
                                 <strong class="card-title">Mahasiswa</strong>
                                 <div class="float-right">
-                                    <a href="<?php echo base_url().'Dashboard/Mahasiswa/exportPDF' ?>">
+                                    <a href="<?php echo base_url().'Dashboard/Mahasiswa/exportPDF' ?>" target="_blank">
                                         <button type="button" class="btn btn-success">
                                             Export
                                         </button>

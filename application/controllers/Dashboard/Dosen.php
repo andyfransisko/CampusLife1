@@ -139,5 +139,11 @@ class Dosen extends CI_Controller {
 		$this->M_Dosen->hapusRecord($where,'Dosen');
 		redirect('Dosen/index');
 	}
+
+	function exportPDF()
+	{
+		$data['dosen'] = $this->M_Dosen->tampilkanData()->result();
+		$this->load->view('Dashboard/E_Dosen',$data);
+	}
 }
 ?>

@@ -40,6 +40,11 @@
                             <div class="card-header">
                                 <strong class="card-title">Dosen</strong>
                                 <div class="float-right">
+                                    <a href="<?php echo base_url().'Dashboard/Dosen/exportPDF' ?>" target="_blank">
+                                        <button type="button" class="btn btn-success">
+                                            Export
+                                        </button>
+                                    </a>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputDosen">
                                         <span class="ti-plus"></span> Input
                                     </button>

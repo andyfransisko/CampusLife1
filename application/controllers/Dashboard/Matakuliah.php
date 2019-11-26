@@ -143,5 +143,13 @@ class Matakuliah extends CI_Controller {
 		$this->M_Matakuliah->hapusRecord($where,'matakuliah');
 		redirect('Dashboard/Matakuliah/index');
 	}
+
+	function exportPDF()
+	{
+		$data['matakuliah']=$this->M_Matakuliah->tampilkanRecord()->result();
+		$data['semester']=$this->M_Semester->tampilkanData()->result();
+		$data['count']=$this->M_Matakuliah->tampilkanData()->num_rows();
+		$this->load->view('Dashboard/E_Matakuliah',$data);
+	}
 }
 ?>

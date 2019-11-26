@@ -82,5 +82,11 @@ class Jurusan extends CI_Controller {
 		$this->M_Jurusan->hapusRecord($where,'jurusan');
 		redirect('Jurusan/index');
 	}
+
+	function exportPDF()
+	{
+		$data['jurusan']=$this->M_Jurusan->tampilkanData()->result();
+		$this->load->view('Dashboard/E_Jurusan',$data);
+	}
 }
 ?>

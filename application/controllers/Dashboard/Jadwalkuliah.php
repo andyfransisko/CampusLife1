@@ -24,9 +24,16 @@ class Jadwalkuliah extends CI_Controller {
 
 	public function index()
 	{
-		$data['jadwal_kuliah'] = $this->M_Jadwalkuliah->tampilkanRecord()->result();
+		$data['jadwal'] = $this->M_Jadwalkuliah->tampilkanRecord()->result();
+		$data['dosen'] = $this->M_Dosen->tampilkanRecord()->result();
+		$data['matkul'] = $this->M_Matakuliah->tampilkanRecord()->result();
+		$data['ruangan'] = $this->M_Ruangan->tampilkanData()->result();
 		$this->head();
-		$this->load->view('Dashboard/V_Jadwalkuliah',$data);
+		if($this->session->userdata('tipe_akun') == 2){
+			$this->load->view('Dashboard/V_Jadwalkuliahdosen',$data);
+		}else{
+			$this->load->view('Dashboard/V_Jadwalkuliah',$data);
+		}
 		$this->foot();
 	}
 
@@ -40,7 +47,10 @@ class Jadwalkuliah extends CI_Controller {
 
 	public function insertData()
 	{
-		$tangkapIdjadwalkuliah = $this->input->post('id_jadwal_kuliah');
+		$baris = $this->M_Jadwalkuliah->tampilkanData()->num_rows();
+		
+		
+		$tangkapIdjadwalkuliah = "JDL-KUL-".($baris+1);
 		$tangkapNidn = $this->input->post('nidn');
 		$tangkapIdmatakuliah = $this->input->post('id_mata_kuliah');
 		$tangkapHari = $this->input->post('hari');
@@ -61,7 +71,7 @@ class Jadwalkuliah extends CI_Controller {
 
 
 		$this->M_Jadwalkuliah->insertTable('jadwal_kuliah',$data);
-		redirect('Jadwalkuliah');
+		redirect('Dashboard/Jadwalkuliah');
 	}
 
 	function editData($nim) {
@@ -75,7 +85,7 @@ class Jadwalkuliah extends CI_Controller {
 	}
 
 	function updateData(){
-		$tangkapIdjadwalkuliah = $this->input->post('id_jadwal_kuliah');
+		$tangkapIdjadwalkuliah = $this->input->post('id_jadwal');
 		$tangkapNidn = $this->input->post('nidn');
 		$tangkapIdmatakuliah = $this->input->post('id_mata_kuliah');
 		$tangkapHari = $this->input->post('hari');
@@ -85,7 +95,6 @@ class Jadwalkuliah extends CI_Controller {
 
 		$data=array(
 			'nidn' =>$tangkapNidn,
-			'id_jadwal' =>$tangkapIdjadwalkuliah,
 			'id_mata_kuliah' =>$tangkapIdmatakuliah,
 			'hari' =>$tangkapHari,
 			'jam_mulai' =>$tangkapJammulai,
@@ -99,7 +108,7 @@ class Jadwalkuliah extends CI_Controller {
 		);
 
 		$this->M_Jadwalkuliah->updateRecord($where,$data,'jadwal_kuliah');
-		redirect('Jadwalkuliah');
+		redirect('Dashboard/Jadwalkuliah');
 	}
 	
 	function hapusData($nim){
@@ -107,7 +116,7 @@ class Jadwalkuliah extends CI_Controller {
 		$where = array('id_jadwal' => $id_jadwalkuliah);
 
 		$this->M_Jadwalkuliah->hapusRecord($where,'jadwal_kuliah');
-		redirect('Jadwalkuliah');
+		redirect('Dashboard/Jadwalkuliah');
 	}
 }
 ?>

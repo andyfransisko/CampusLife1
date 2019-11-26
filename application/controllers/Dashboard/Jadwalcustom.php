@@ -26,8 +26,8 @@ class Jadwalcustom extends CI_Controller {
 	{
 		$data['jadwal_custom'] = $this->M_Jadwalcustom->tampilkanRecord()->result();
 		$this->head();
-		$this->load->view('V_Jadwalcustom',$data);
-		$this->close();
+		$this->load->view('Dashboard/V_Jadwalcustom',$data);
+		$this->foot();
 	}
 
 	public function lihatInsertData()

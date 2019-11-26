@@ -33,32 +33,81 @@
                         <li><a href="#tab-11">Week 11</a></li>
                         <li><a href="#tab-12">Week 12</a></li>
                         <li><a href="#tab-13">Week 13</a></li>
+                        <li><a href="#tab-14">Week 14</a></li>
+                        <li><a href="#tab-15">Week 15</a></li>
+                        <li><a href="#tab-16">Week 16</a></li>
                         </ul>
                     </nav>
                     
                     <div id="tab-1" class="active">
-                        <h2>Tab 1</h2>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad cum non iure magnam dolores earum nemo quo tempora ab unde! Nesciunt ea iste impedit suscipit cupiditate quam earum explicabo quas veniam doloribus sed aut aliquam repellendus deleniti laudantium molestias fuga nihil quidem voluptatum atque sapiente perferendis facilis. Tempora mollitia odio?
+                        <h2>Week 1</h2>
+                        <h2>JUDUL</h2>
+                        <p>PENJELASAN</p>
+                        DOWNLOAD FILE
                     </div>
                     
                     <div id="tab-2">
-                        <h2>Tab 2</h2>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur est natus esse minima nihil quidem tenetur alias pariatur. Obcaecati repudiandae temporibus provident sapiente iure doloribus praesentium voluptates dolores quia eos velit fugit cum ipsam. Deleniti fugiat maxime vel tempore illum esse illo fugit quam recusandae aut aperiam omnis at quaerat!
+                        <h2>Week 2</h2>
+                        hehe
                     </div>
                     
                     <div id="tab-3">
-                        <h2>Tab 3</h2>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores numquam cupiditate aliquam quisquam repellendus fugit eaque asperiores voluptatem ut accusamus soluta corporis in facere quae provident itaque magni eum repellat ducimus dolore. Beatae aperiam accusamus at voluptatem ad sunt mollitia perspiciatis tempora numquam rerum aliquam deserunt illum necessitatibus nisi omnis.
+                        <h2>Week 3</h2>
+                        apa
                     </div>
                     
                     <div id="tab-4">
-                        <h2>Tab 4</h2>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste officiis impedit ut culpa quaerat error pariatur voluptatum sapiente alias quasi itaque voluptas expedita necessitatibus odio dolorem totam veniam quisquam nulla vero placeat corporis cupiditate assumenda amet inventore mollitia quidem similique laudantium maxime aperiam ea reprehenderit iusto a ad tempora harum.
+                        <h2>Week 4</h2>
+                        lu
                     </div>
                 
                     <div id="tab-5">
-                        <h2>Tab 5</h2>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste officiis impedit ut culpa quaerat error pariatur voluptatum sapiente alias quasi itaque voluptas expedita necessitatibus odio dolorem totam veniam quisquam nulla vero placeat corporis cupiditate assumenda amet inventore mollitia quidem similique laudantium maxime aperiam ea reprehenderit iusto a ad tempora harum.
+                        <h2>Week 5</h2>
+                        liat
+                    </div>
+                    <div id="tab-6">
+                        <h2>Week 6</h2>
+                        liat
+                    </div>
+                    <div id="tab-7">
+                        <h2>Week 7</h2>
+                        ati 
+                    </div>
+                    <div id="tab-8">
+                        <h2>Week 8</h2>
+                        ati
+                    </div>
+                    <div id="tab-9">
+                        <h2>Week 9</h2>
+                        liat
+                    </div>
+                    <div id="tab-10">
+                        <h2>Week 10</h2>
+                        liat
+                    </div>
+                    <div id="tab-11">
+                        <h2>Week 11</h2>
+                        liat
+                    </div>
+                    <div id="tab-12">
+                        <h2>Week 12</h2>
+                        liat
+                    </div>
+                    <div id="tab-13">
+                        <h2>Week 12</h2>
+                        liat
+                    </div>
+                    <div id="tab-14">
+                        <h2>Week 13</h2>
+                        liat
+                    </div>
+                    <div id="tab-15">
+                        <h2>Week 15</h2>
+                        liat
+                    </div>
+                    <div id="tab-16">
+                        <h2>Week 16</h2>
+                        liat
                     </div>
                 </div>
             </center>

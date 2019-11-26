@@ -66,7 +66,10 @@ class M_Matakuliah extends CI_Model{
     
 	function tampilkanRecord()
 	{
-		return $this->db->query('SELECT a.id_matakuliah, a.nama_mata_kuliah, a.sks, b.id_semester, c.id_ruangan FROM matakuliah a JOIN semester b ON a.id_semester = b.id_semester JOIN ruangan c ON a.id_ruangan = c.id_ruangan');
+		return $this->db->query('SELECT a.id_mata_kuliah, a.nama_mata_kuliah, a.sks, b.id_semester
+        FROM matakuliah a 
+        JOIN semester b ON a.id_semester = b.id_semester 
+        ');
     }
     
 	function insertTable($a,$b)

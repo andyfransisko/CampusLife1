@@ -22,7 +22,7 @@
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
                                     <li>Academics</li>
-                                    <li class="active">Mata Kuliah</li>
+                                    <li class="active">Materi</li>
                                 </ol>
                             </div>
                         </div>
@@ -38,133 +38,71 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Mata Kuliah</strong>
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputJadwalCustom">
-                                        <span class="ti-plus"></span> Input
-                                    </button>
-                                </div>
+                                <strong class="card-title">Materi</strong>
                             </div>
-                            <div class="card-body">
-                                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="week1-tab" data-toggle="tab" href="#week1" role="tab" aria-controls="home" aria-selected="true">Menu 1</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="week2-tab" data-toggle="tab" href="#week2" role="tab" aria-controls="contact" aria-selected="false">Menu 2</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="week3-tab2" data-toggle="tab" href="#week3" role="tab" aria-controls="contact" aria-selected="false">Menu 3</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="week4-tab" data-toggle="tab" href="#week4" role="tab" aria-controls="contact" aria-selected="false">Menu 4</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="week5-tab" data-toggle="tab" href="#week5" role="tab" aria-controls="contact" aria-selected="false">Menu 5</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="week6-tab" data-toggle="tab" href="#week6" role="tab" aria-controls="contact" aria-selected="false">Menu 6</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="week7-tab" data-toggle="tab" href="#week7" role="tab" aria-controls="contact" aria-selected="false">Menu 7</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="week8-tab" data-toggle="tab" href="#week8" role="tab" aria-controls="contact" aria-selected="false">Menu 8</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="week9-tab" data-toggle="tab" href="#week9" role="tab" aria-controls="contact" aria-selected="false">Menu 9</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="week10-tab" data-toggle="tab" href="#week10" role="tab" aria-controls="contact" aria-selected="false">Menu 10</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="week11-tab" data-toggle="tab" href="#week11" role="tab" aria-controls="contact" aria-selected="false">Menu 11</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="week12-tab" data-toggle="tab" href="#week12" role="tab" aria-controls="contact" aria-selected="false">Menu 12</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="week13-tab" data-toggle="tab" href="#week13" role="tab" aria-controls="contact" aria-selected="false">Menu 13</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="week14-tab" data-toggle="tab" href="#week14" role="tab" aria-controls="contact" aria-selected="false">Menu 14</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="week15-tab" data-toggle="tab" href="#week15" role="tab" aria-controls="contact" aria-selected="false">Menu 15</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="week16-tab" data-toggle="tab" href="#week16" role="tab" aria-controls="contact" aria-selected="false">Menu 16</a>
-                                        </li>
-                                </ul>
-                                <div class="tab-content pl-3 p-1" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="week1" role="tabpanel" aria-labelledby="home-tab">
-                                        <h3>Week 1</h3>
-                                        <p>Some content here.</p>
+                            
+                            <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body card-block">
+                                <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">ID Materi</label></div>
+                                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="" class="form-control" readonly></div>
                                     </div>
-                                    <div class="tab-pane fade" id="week2" role="tabpanel" aria-labelledby="profile-tab">
-                                        <h3>Week 2</h3>
-                                        <p>Some content here.</p>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="select" class=" form-control-label">Mata Kuliah</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <select name="select" id="select" class="form-control">
+                                                <option value="0">Please select</option>
+                                                <option value="1">Option #1</option>
+                                                <option value="2">Option #2</option>
+                                                <option value="3">Option #3</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="tab-pane fade" id="week3" role="tabpanel" aria-labelledby="week">
-                                        <h3>Week 3</h3>
-                                        <p>Some content here.</p>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="password-input" class=" form-control-label">Judul Materi</label></div>
+                                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="text-input" placeholder="" class="form-control"></div>
                                     </div>
-                                    <div class="tab-pane fade" id="week4" role="tabpanel" aria-labelledby="week2">
-                                        <h3>Week 4</h3>
-                                        <p>Some content here.</p>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Penjelasan Materi</label></div>
+                                        <div class="col-12 col-md-9"><textarea name="textarea-input" id="textarea-input" rows="9" placeholder="" class="form-control"></textarea></div>
                                     </div>
-                                    <div class="tab-pane fade" id="week5" role="tabpanel" aria-labelledby="week3">
-                                        <h3>Week 5</h3>
-                                        <p>Some content here.</p>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="select" class=" form-control-label">Pertemuan Ke-</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <select name="select" id="select" class="form-control">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div class="tab-pane fade" id="week6" role="tabpanel" aria-labelledby="week4">
-                                        <h3>Week 6</h3>
-                                        <p>Some content here.</p>
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="file-multiple-input" class=" form-control-label">Multiple File input</label></div>
+                                        <div class="col-12 col-md-9"><input type="file" id="file-multiple-input" name="file-multiple-input" multiple="" class="form-control-file"></div>
                                     </div>
-                                    <div class="tab-pane fade" id="week7" role="tabpanel" aria-labelledby="week5">
-                                        <h3>Week 7</h3>
-                                        <p>Some content here.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="week8" role="tabpanel" aria-labelledby="week6">
-                                        <h3>Week 8</h3>
-                                        <p>Some content here.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="week9" role="tabpanel" aria-labelledby="week4">
-                                        <h3>Week 9</h3>
-                                        <p>Some content here.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="week10" role="tabpanel" aria-labelledby="week4">
-                                        <h3>Week 10</h3>
-                                        <p>Some content here.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="week11" role="tabpanel" aria-labelledby="week4">
-                                        <h3>Week 11</h3>
-                                        <p>Some content here.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="week12" role="tabpanel" aria-labelledby="week4">
-                                        <h3>Week 12</h3>
-                                        <p>Some content here.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="week13" role="tabpanel" aria-labelledby="week4">
-                                        <h3>Week 13</h3>
-                                        <p>Some content here.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="week14" role="tabpanel" aria-labelledby="week4">
-                                        <h3>Week 14</h3>
-                                        <p>Some content here.</p>
-                                    </div>
-
-                                    <div class="tab-pane fade" id="week15" role="tabpanel" aria-labelledby="week4">
-                                        <h3>Week 15</h3>
-                                        <p>Some content here.</p>
-                                    </div>
-                                    <div class="tab-pane fade" id="week16" role="tabpanel" aria-labelledby="week4">
-                                        <h3>Week 16</h3>
-                                        <p>Some content here.</p>
-                                    </div>
-
-                                </div>
+                                </form>
                             </div>
+                            <div class="card-footer">
+                            <input class="btn btn-outline-success" type="submit" value="Submit">
+                            </div>
+                        </div>
+                    </div>
+                            
                         </div>
                     </div>
 

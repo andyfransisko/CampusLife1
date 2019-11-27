@@ -17,6 +17,7 @@
                             <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/Nilai/index';?>">Nilai</a></li>
                             <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/Materi/index';?>">Mata Kuliah</a></li>
                             
+                            
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">

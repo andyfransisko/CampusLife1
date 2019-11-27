@@ -46,6 +46,18 @@ class M_Mahasiswa extends CI_Model
 		$this->db->where($where);
 		$this->db->delete($table);
 	}
+	function hitungJumlahMahasiswa()
+	{
+		$query = $this->db->get('mahasiswa');
+		if($query->num_rows()>0)
+		{
+			return $query->num_rows();
+		}
+		else
+		{
+			return 0;
+		}
+	}
 }
 
 

@@ -61,27 +61,24 @@
                             </div> <!-- /.card -->
                         </div>  <!-- /.col-lg-8 -->
                         <div class="col-md-4">
-                        <div class="feed-box text-center">
-                            <section class="card">
-                                <div class="card-body">
-                                    <div class="corner-ribon blue-ribon">
-                                        <i class="fa fa-twitter"></i>
-                                    </div>
-                                    <a href="#">
-                                        <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="<?php echo base_url() ?>/assets/images/default.jpeg">
-                                    </a>
-                                    <h2>Kanye West</h2>
-                                    <p>Just got a pretty neat project via <a href="#">@ooomf</a> - Give it a try <a href="#">http://t.co/e02DwGEeOJ</a></p>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere, laudantium explicabo autem molestias eaque, mollitia impedit, officia repudiandae culpa nemo veritatis quisquam totam error voluptate vel, quod nihil nobis tempora.
-                                    </p>
-                                </div>
-                            </section>
-                        </div>
+                        <div class="card text-white bg-flat-color-3">
+                            <div class="card-body">
+                                <div class="card-left pt-1 float-left">
+                                    <h3 class="mb-0 fw-r">
+                                        <span class="count"><?php echo $count; ?></span>
+                                    </h3>
+                                    <p class="text-light mt-1 m-0">Total Mahasiswa</p>
+                                </div><!-- /.card-left -->
+
+                                <div class="card-right float-right text-right">
+                                    <i class="icon fade-5 icon-lg pe-7s-users"></i>
+                                </div><!-- /.card-right -->
+
+                            </div>
                     </div>
                           </div>
                         <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title">Course</strong>
@@ -115,24 +112,6 @@
                             </table>
                         </div>
                         
-                    </div>
-                    <div class="col-sm-6 col-lg-6">
-                        <div class="card text-white bg-flat-color-3">
-                            <div class="card-body">
-                                <div class="card-left pt-1 float-left">
-                                    <h3 class="mb-0 fw-r">
-                                        <span class="count"><?php echo $hitungmahasiswa; ?></span>
-                                    </h3>
-                                    <p class="text-light mt-1 m-0">Total Mahasiswa</p>
-                                </div><!-- /.card-left -->
-
-                                <div class="card-right float-right text-right">
-                                    <i class="icon fade-5 icon-lg pe-7s-users"></i>
-                                </div><!-- /.card-right -->
-
-                            </div>
-
-                        </div>
                     </div>
                         <!-- /# card -->
                         

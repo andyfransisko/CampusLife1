@@ -39,6 +39,8 @@ class Welcome extends CI_Controller {
 	{
 		$data['mahasiswa'] = $this->M_Mahasiswa->tampilkanRecord()->result();
 		$data['matakuliah'] = $this->M_Matakuliah->tampilkanRecord()->result();
+		$data['nav'] = "User";
+        $data['count'] = $this->M_Mahasiswa->tampilkanData()->num_rows();
 		$this->head();
 		$this->load->view('Dashboard/index',$data);
 		$this->foot();
@@ -64,10 +66,10 @@ class Welcome extends CI_Controller {
         
         
         //$data['user'] = $this->M_User->get_where($tipe, $where)->result();
-        $data['nav'] = "User";
         
     }
-
+	
+		
     function logout(){
         $this->session->sess_destroy();
         redirect(base_url('Login'));

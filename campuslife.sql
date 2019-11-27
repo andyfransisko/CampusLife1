@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2019 at 01:43 PM
+-- Generation Time: Nov 27, 2019 at 05:42 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -98,32 +98,6 @@ INSERT INTO `enroll` (`id_enroll`, `id_mata_kuliah`, `nim`, `id_semester`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `file`
---
-
-CREATE TABLE `file` (
-  `id_file` varchar(15) NOT NULL,
-  `direktori_file` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `header`
---
-
-CREATE TABLE `header` (
-  `id_header` varchar(15) NOT NULL,
-  `id_from` varchar(15) NOT NULL,
-  `id_to` varchar(15) NOT NULL,
-  `subjek` varchar(20) NOT NULL,
-  `status` varchar(10) NOT NULL,
-  `time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `jadwal_custom`
 --
 
@@ -186,8 +160,8 @@ CREATE TABLE `jurusan` (
 --
 
 INSERT INTO `jurusan` (`id_jurusan`, `nama_jurusan`, `keterangan_jurusan`) VALUES
-('1', 'TIF', 'FIK'),
-('2', 'SI', 'SISTECH');
+('JUR-1', 'TIF', 'FIK'),
+('JUR-2', 'SI', 'SISTECH');
 
 -- --------------------------------------------------------
 
@@ -242,8 +216,8 @@ CREATE TABLE `matakuliah` (
 --
 
 INSERT INTO `matakuliah` (`id_mata_kuliah`, `nama_mata_kuliah`, `sks`, `id_semester`, `jumlah_penilaian`) VALUES
-('1', 'web', 4, 1, 5),
-('2', 'algo', 4, 1, 4),
+('MTKL-1', 'web', 4, 1, 5),
+('MTKL-2', 'algo', 4, 1, 4),
 ('MTKL-3', 'mpsi', 3, 1, 3);
 
 -- --------------------------------------------------------
@@ -291,20 +265,27 @@ CREATE TABLE `materi` (
   `direktori_file` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `message`
+-- Dumping data for table `materi`
 --
 
-CREATE TABLE `message` (
-  `id_message` varchar(15) NOT NULL,
-  `id_from_sender` varchar(15) NOT NULL,
-  `id_header` varchar(15) NOT NULL,
-  `content` varchar(100) NOT NULL,
-  `status_read` varchar(10) NOT NULL,
-  `time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `materi` (`id_materi`, `id_mata_kuliah`, `judul_materi`, `penjelasan_materi`, `kali_pertemuan`, `direktori_file`) VALUES
+('MTR-1', '1', 'Ini Adalah Judul andy', 'Ini Adalah Penjelasan Andy', 1, ''),
+('MTR-10', '1', 'Ini Adalah Judul Materi', 'Ini Adalah Penjelasan Materi', 10, ''),
+('MTR-11', '1', 'Ini Adalah Judul Materi', 'Ini Adalah Penjelasan Materi', 11, ''),
+('MTR-12', '1', 'Ini Adalah Judul Materi', 'Ini Adalah Penjelasan Materi', 12, ''),
+('MTR-13', '1', 'Ini Adalah Judul Materi', 'Ini Adalah Penjelasan Materi', 13, ''),
+('MTR-14', '1', 'Ini Adalah Judul Materi', 'Ini Adalah Penjelasan Materi', 14, ''),
+('MTR-15', '1', 'Ini Adalah Judul Materi', 'Ini Adalah Penjelasan Materi', 15, ''),
+('MTR-16', '1', 'Ini Adalah Judul Materi', 'Ini Adalah Penjelasan Materi', 16, ''),
+('MTR-2', '1', 'Ini Adalah Judul Materi', 'Ini Adalah Penjelasan Materi', 2, ''),
+('MTR-3', '1', 'Ini Adalah Judul Materi', 'Ini Adalah Penjelasan Materi', 3, ''),
+('MTR-4', '1', 'Ini Adalah Judul Materi', 'Ini Adalah Penjelasan Materi', 4, ''),
+('MTR-5', '1', 'Ini Adalah Judul Materi', 'Ini Adalah Penjelasan Materi', 5, ''),
+('MTR-6', '1', 'Ini Adalah Judul Materi', 'Ini Adalah Penjelasan Materi', 6, ''),
+('MTR-7', '1', 'Ini Adalah Judul Materi', 'Ini Adalah Penjelasan Materi', 7, ''),
+('MTR-8', '1', 'Ini Adalah Judul Materi', 'Ini Adalah Penjelasan Materi', 8, ''),
+('MTR-9', '1', 'Ini Adalah Judul Materi', 'Ini Adalah Penjelasan Materi', 9, '');
 
 -- --------------------------------------------------------
 
@@ -369,20 +350,8 @@ CREATE TABLE `semester` (
 --
 
 INSERT INTO `semester` (`id_semester`, `jenis_semester`, `tahun`, `user_add`, `user_edit`, `user_delete`, `status_delete`) VALUES
-('1', '1', 2019, '', '', '', 0),
+('SMSTR-1', '1', 2019, '', '', '', 0),
 ('SMSTR-2', '2', 2019, 'administrator', 'administrator', '', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tugas`
---
-
-CREATE TABLE `tugas` (
-  `id_tugas` varchar(15) NOT NULL,
-  `id_mata_kuliah` varchar(15) NOT NULL,
-  `direktori_file` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -437,18 +406,6 @@ ALTER TABLE `enroll`
   ADD PRIMARY KEY (`id_enroll`);
 
 --
--- Indexes for table `file`
---
-ALTER TABLE `file`
-  ADD PRIMARY KEY (`id_file`);
-
---
--- Indexes for table `header`
---
-ALTER TABLE `header`
-  ADD PRIMARY KEY (`id_header`);
-
---
 -- Indexes for table `jadwal_custom`
 --
 ALTER TABLE `jadwal_custom`
@@ -491,12 +448,6 @@ ALTER TABLE `materi`
   ADD PRIMARY KEY (`id_materi`);
 
 --
--- Indexes for table `message`
---
-ALTER TABLE `message`
-  ADD PRIMARY KEY (`id_message`);
-
---
 -- Indexes for table `nilai_mhs`
 --
 ALTER TABLE `nilai_mhs`
@@ -513,12 +464,6 @@ ALTER TABLE `ruangan`
 --
 ALTER TABLE `semester`
   ADD PRIMARY KEY (`id_semester`);
-
---
--- Indexes for table `tugas`
---
-ALTER TABLE `tugas`
-  ADD PRIMARY KEY (`id_tugas`);
 
 --
 -- Indexes for table `user`

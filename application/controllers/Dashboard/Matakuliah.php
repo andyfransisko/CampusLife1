@@ -59,6 +59,21 @@ class Matakuliah extends CI_Controller {
 
 			$this->M_Matakuliah->insertTable('matakuliah_nilai',$data2);
 		}
+
+		$this->load->model('M_Materi');
+		$baris_materi = $this->M_Materi->tampilkanData()->num_rows();
+		for($i = 1; $i <= 16; $i++){
+			$data3 = array(
+				'id_materi'			=> 	'MTR-'.($baris_materi+$i),
+				'id_mata_kuliah'	=> 	$tangkapIdmatakuliah,
+				'judul_materi'		=> 	'Ini Adalah Judul Materi',
+				'penjelasan_materi'	=> 	'Ini Adalah Penjelasan Materi',
+				'kali_pertemuan'	=> 	$i,
+				'direktori_file'	=> 	'',
+			);
+
+			$this->M_Matakuliah->insertTable('materi',$data3);
+		}
 		redirect('Dashboard/Matakuliah/index');
 	}
 

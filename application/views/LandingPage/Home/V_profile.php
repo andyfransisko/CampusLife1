@@ -46,12 +46,13 @@
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                        <?php foreach($mahasiswa as $list) { ?>
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <label>NIM</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('username') ?></p>
+                                                <p><?php echo $list->nim?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -59,7 +60,7 @@
                                                 <label>Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('nama_user') ?></p>
+                                                <p><?php echo $list->nama_mhs ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -68,14 +69,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <p>
-                                                <?php 
-                                                    if($this->session->userdata('jenisk') == 1){
-                                                        echo "Laki laki";
-                                                    }
-                                                    else if($this->session->userdata('jenisk') == 2){
-                                                        echo "Perempuan";
-                                                    }
-                                                    ?>
+                                                <?php echo ($list->jenis_kelamin == 1) ? "Laki-laki" : "Perempuan" ?>
                                                 </p>
                                             </div>
                                         </div>
@@ -84,7 +78,7 @@
                                                 <label>Major</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('jurusan') ?></p>
+                                                <p><?php echo $list->nama_jurusan ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -92,7 +86,7 @@
                                                 <label>Cohort</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('angkatan1') ?></p>
+                                                <p><?php echo $list->angkatan ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -100,7 +94,7 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('email1') ?></p>
+                                                <p><?php echo $list->email_mhs ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -108,7 +102,7 @@
                                                 <label>Birth Date</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('tempat1') ?></p>
+                                                <p><?php echo date('d-F-Y', strtotime($list->tgl_lahir))  ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -116,7 +110,7 @@
                                                 <label>Birth Place</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('tanggal1') ?></p>
+                                                <p><?php echo $list->tmpt_lahir ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -124,7 +118,7 @@
                                                 <label>Address</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('alamat1') ?></p>
+                                                <p><?php echo $list->alamat_rumah ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -132,7 +126,7 @@
                                                 <label>Phone Number</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p><?php echo $this->session->userdata('phone1') ?></p>
+                                                <p><?php echo $list->no_telp ?></p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -141,30 +135,30 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <p>
-                                                    <?php 
-                                                    if($this->session->userdata('agama1') == 1){
-                                                        echo "Kristen";
-                                                    }
-                                                    else if($this->session->userdata('agama1') == 2){
-                                                        echo "Katolik";
-                                                    }
-                                                    else if($this->session->userdata('agama1') == 3){
-                                                        echo "Islam";
-                                                    }
-                                                    else if($this->session->userdata('agama1') == 4){
-                                                        echo "Buddha";
-                                                    }
-                                                    else if($this->session->userdata('agama1') == 5){
-                                                        echo "Hindu";
-                                                    }
-                                                    else{
-                                                        echo "Kong Hu Cu";
-                                                    }
-                                                    ?>
+                                                <?php 
+                                                if($list->agama == 1){
+                                                    echo "Kristen";
+                                                }
+                                                else if($list->agama == 2){
+                                                    echo "Katolik";
+                                                }
+                                                else if($list->agama == 3){
+                                                    echo "Islam";
+                                                }
+                                                else if($list->agama == 4){
+                                                    echo "Buddha";
+                                                }
+                                                else if($list->agama == 5){
+                                                    echo "Hindu";
+                                                }
+                                                else{
+                                                    echo "Kong Hu Cu";
+                                                }
+                                                 ?>
                                                 </p>
                                             </div>
                                         </div>
-                            </div>
+                                            <?php } ?>                            </div>
                             
                         </div>
                     </div>

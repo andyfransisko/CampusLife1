@@ -27,5 +27,13 @@ class M_Semester extends CI_Model {
 		$this->db->where($where);
 		$this->db->delete($table);
 	}
+
+	function tampilkanDataSemesterEnroll()
+	{
+		return $this->db->query('SELECT DISTINCT a.id_semester
+        FROM enroll a 
+        JOIN semester b ON a.id_semester = b.id_semester
+        ');
+	}
 }
 ?>

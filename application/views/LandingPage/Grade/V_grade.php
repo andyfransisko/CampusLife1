@@ -22,16 +22,22 @@
 
                   <nav role='navigation' class="transformer-tabs">
                       <ul>
-                      <li><a href="#tab-1" class="active">Semester 1</a></li>
-                      <li><a href="#tab-2">Semester 2</a></li>
-                      <li><a href="#tab-3">Semester 3</a></li>
-                      <li><a href="#tab-4">Semester 4</a></li>
+                      <?php
+                        $no =1;
+                       foreach($semester as $list){
+                      ?>
+                      <li><a href="#tab-<?php echo $no?>">Semester <?php echo $no?></a></li>
+                      
+                      <?php
+                      $no++;
+                       }
+                      ?>
                       </ul>
                   </nav>
                   
                   <div id="tab-1" class="active">
                       <div class="container1">
-                          <h2>Semester 1</h2>
+                          <h2>Semester <?php echo $no?></h2>
                           <div class="cards-list ftco-animate">
   
                               <div class="card 1">

@@ -3,7 +3,8 @@
 class Materi extends CI_Controller
 {
     function __construct(){
-        parent::__construct();
+		parent::__construct();
+        $this->load->model(array('M_Jurusan','M_Mahasiswa','M_User', 'M_Jurusan','M_Jadwalcustom'));
     }
     
     public function head(){
@@ -21,7 +22,7 @@ class Materi extends CI_Controller
 
     function index(){
         //$data['materi'] = $this->M_Jadwalcustom->tampilkanRecord()->result();
-        $data = $this->;
+        $data = $this->M_Jadwalcustom->tampilkanRecord()->result();;
         $this->head();
 		$this->load->view('Dashboard/V_Materi',$data);
 		$this->foot();

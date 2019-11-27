@@ -11,7 +11,7 @@
 				<?php if($this->session->userdata('nama_user') != null) {?>
 	        	<li class="nav-item <?php echo ($nav == 'Schedule') ? 'active' : '' ?>"><a href="<?php echo base_url() ?>Schedule" class="nav-link">My Schedules</a></li>
 	        	<li class="nav-item <?php echo ($nav == 'Course') ? 'active' : '' ?>"><a href="<?php echo base_url() ?>Course" class="nav-link">My Courses</a></li>
-	        	<li class="nav-item <?php echo ($nav == 'Grade') ? 'active' : '' ?>"><a href="<?php echo base_url() ?>Grade" class="nav-link">My Grades</a></li>
+	        	<li class="nav-item <?php echo ($nav == 'Grade') ? 'active' : '' ?>"><a href="<?php echo base_url() ?>Grade/index/<?php echo $this->session->userdata('nama_user')?>" class="nav-link">My Grades</a></li>
 						<li class="nav-item <?php echo ($nav == 'Profile') ? 'active' : '' ?>">
 						<li>	
 						<div class="dropdown" >

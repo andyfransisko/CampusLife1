@@ -68,7 +68,7 @@ class M_Matakuliah extends CI_Model{
         JOIN jadwal_kuliah b ON a.id_mata_kuliah = b.id_mata_kuliah
         JOIN enroll c ON a.id_mata_kuliah = c.id_mata_kuliah
         JOIN semester d ON a.id_semester = d.id_semester
-        WHERE b.nidn ='. $dosen);
+        WHERE b.nidn ='. $dosen.' GROUP BY a.id_mata_kuliah');
     }
 
     function tampilkanData()

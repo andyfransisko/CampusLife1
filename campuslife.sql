@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2019 at 11:42 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.11
+-- Generation Time: Nov 27, 2019 at 01:43 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -167,7 +167,7 @@ CREATE TABLE `jadwal_kuliah` (
 
 INSERT INTO `jadwal_kuliah` (`id_jadwal`, `id_mata_kuliah`, `nidn`, `hari`, `jam_mulai`, `jam_selesai`, `id_ruangan`) VALUES
 ('JDL-KUL-1', '1', '2', '3', '07:00:00', '09:00:00', 'R-1'),
-('JDL-KUL-2', '2', '212', '4', '09:00:00', '11:00:00', 'R-1');
+('JDL-KUL-2', '2', '2', '4', '09:00:00', '11:00:00', 'R-1');
 
 -- --------------------------------------------------------
 
@@ -242,7 +242,7 @@ CREATE TABLE `matakuliah` (
 --
 
 INSERT INTO `matakuliah` (`id_mata_kuliah`, `nama_mata_kuliah`, `sks`, `id_semester`, `jumlah_penilaian`) VALUES
-('1', 'web', 4, 1, 3),
+('1', 'web', 4, 1, 5),
 ('2', 'algo', 4, 1, 4),
 ('MTKL-3', 'mpsi', 3, 1, 3);
 
@@ -264,8 +264,17 @@ CREATE TABLE `matakuliah_nilai` (
 
 INSERT INTO `matakuliah_nilai` (`id_nilai`, `id_mata_kuliah`, `id_tipe_nilai`) VALUES
 ('1', 'MTKL-3', 1),
+('10', '2', 2),
+('11', '2', 4),
+('12', '2', 5),
 ('2', 'MTKL-3', 4),
-('3', 'MTKL-3', 5);
+('3', 'MTKL-3', 5),
+('4', '1', 1),
+('5', '1', 2),
+('6', '1', 3),
+('7', '1', 4),
+('8', '1', 5),
+('9', '2', 1);
 
 -- --------------------------------------------------------
 
@@ -310,6 +319,16 @@ CREATE TABLE `nilai_mhs` (
   `id_enroll` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `nilai_mhs`
+--
+
+INSERT INTO `nilai_mhs` (`id_nilai_mhs`, `tipe_nilai`, `nilai_mahasiswa`, `id_enroll`) VALUES
+('NILMHS-1', 1, 40, 'ENROLL-3'),
+('NILMHS-2', 2, 0, 'ENROLL-3'),
+('NILMHS-3', 4, 0, 'ENROLL-3'),
+('NILMHS-4', 5, 0, 'ENROLL-3');
+
 -- --------------------------------------------------------
 
 --
@@ -352,17 +371,6 @@ CREATE TABLE `semester` (
 INSERT INTO `semester` (`id_semester`, `jenis_semester`, `tahun`, `user_add`, `user_edit`, `user_delete`, `status_delete`) VALUES
 ('1', '1', 2019, '', '', '', 0),
 ('SMSTR-2', '2', 2019, 'administrator', 'administrator', '', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tipe_penilaian`
---
-
-CREATE TABLE `tipe_penilaian` (
-  `id_tipe_penilaian` int(11) NOT NULL,
-  `detail_penilaian` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 

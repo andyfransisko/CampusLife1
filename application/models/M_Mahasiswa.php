@@ -15,7 +15,7 @@ class M_Mahasiswa extends CI_Model
 
 	function getMhsByMatkul($matkul, $semester)
 	{
-		return $this->db->query('SELECT a.nim, a.nama_mhs, b.id_jurusan, b.nama_jurusan, a.angkatan
+		return $this->db->query('SELECT a.nim, a.nama_mhs, b.id_jurusan, b.nama_jurusan, a.angkatan, c.id_enroll, d.id_mata_kuliah, e.id_semester
 		FROM mahasiswa a 
 		JOIN jurusan b ON a.id_jurusan = b.id_jurusan 
 		JOIN enroll c ON a.nim=c.nim

@@ -30,13 +30,25 @@ class Grade extends CI_Controller
 
     public function index($nim)
     {
+        if(intval(date('m')) < 5){
+            $date = 2;
+        }
+        else if(intval(date('m')) >= 5 && intval(date('m')) < 8){
+            $date = 3;
+        }
+        else{
+            $date = 1;
+        } 
         $where = array('nim' => $nim);
         $data['semester'] = $this->M_Semester->tampilkanDataSemesterEnroll($nim)->result();
-        $data['matkul'] = $this->M_Semester->tampilkanMatkul($nim)->result();
+        foreach($data['semester'] as $a){
+            $data['matkul'] = $this->M_Matakuliah->getMatkulByNim($this->session->userdata('username'), $a->id_semester)->result();
+        }
+        
         $data['nav'] = "Grade";
         $this->head();
         $this->load->view('LandingPage/Template/nav', $data );
-        $this->load->view("LandingPage/Grade/V_grade");
+        $this->load->view("LandingPage/Grade/V_grade", $data);
         $this->foot();
     }
 

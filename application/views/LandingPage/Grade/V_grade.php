@@ -39,29 +39,40 @@
                   $no1 = 1;
                   ?>
                   
-                  <div id="tab-<?php echo $no; ?>" class="active">
+                  <?php
+                    $noSemester=1;
+                    foreach($semester as $list){
+                  ?>
+                  <div id="tab-<?php echo $noSemester; ?>" class="<?php if($noSemester == 1){echo "active";} ?>">
                       <div class="container1">
-                          <h2>Semester 
-                          <?php 
-                          foreach($matkul as $listmatkul){
-                            echo $no1;
-                            
-                          ?></h2>
+                          <h2>Semester <?php echo $noSemester ?>
+                          </h2>
+                          
                           <div class="cards-list ftco-animate">
-  
-                              <div class="card <?php echo $no1;?>">
+                            <?php
+                              $noMatkul = 1;
+                              foreach($matkul as $listM){
+                                if($listM->id_semester == $list->id_semester){
+                            ?>
+                              <div class="card <?php echo $noMatkul; ?>">
                                 <div class="card_image"> 
                                     <img src="<?php echo base_url() ?>assets/images/logo4.png"  />
                                 </div>
                                 <div class="card_title title-black">
-                                  <?php 
-                                    echo $listmatkul->id_mata_kuliah;
-                                  ?>
+                                  
                                   <p>
-                                  <!-- Nama Matkul -->
+                                    <!-- Nama Matkul -->
+                                    <?php echo $listM->nama_mata_kuliah ?>
                                   </p>
                                 </div>
                               </div>
+                              <?php
+                                }
+                                $noMatkul++;
+                                }
+                              ?>
+                          </div>
+                            
                               <!--
                                 <div class="card 2">
                                 <div class="card_image">
@@ -108,12 +119,10 @@
                                 </div>
                                 </div>
                                 -->
-                                <?php 
-                                  $no1++;  
-                                }
-                                ?>
+                                
+                                
                               
-                              </div>
+                            
                               <!--
                           <ul class="responsive-table ftco-animate">
                             <li class="table-header">
@@ -146,7 +155,10 @@
                       </div>
                   </div>
                   
-               
+               <?php
+                  $noSemester++;
+                  }
+               ?>
                   
                  
                   

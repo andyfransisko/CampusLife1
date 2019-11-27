@@ -39,7 +39,7 @@ class M_Semester extends CI_Model {
 
 	function tampilkanMatkul($where)
 	{
-		$query = $this->db->query('SELECT id_mata_kuliah
+		$query = $this->db->query('SELECT id_mata_kuliah,id_semester
         FROM enroll a 
 		WHERE a.nim ='.$where);
 		return $query;

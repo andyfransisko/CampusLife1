@@ -45,9 +45,6 @@
                                             Export
                                         </button>
                                     </a>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputAdmin">
-                                        <span class="ti-plus"></span> Input
-                                    </button>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -130,40 +127,6 @@
         </div><!-- .content -->
 
         <!-- Modal -->
-        <div class="modal fade" id="inputAdmin" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="mediumModalLabel">Input Data Admin</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            
-                            <form action="<?php echo 'insertData'?>" method="POST" novalidate="novalidate">
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">ID Admin</label>
-                                                <input type="text" class="form-control" placeholder = "ID Admin" name="id_admin">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Nama Admin</label>
-                                                <input  type="text" class="form-control" placeholder = "Nama Admin" name="nama_admin">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Keterangan</label>
-                                                <input type="text" class="form-control" placeholder = "Keterangan" name="keterangan">
-                                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
             
         <div class="clearfix"></div>
 

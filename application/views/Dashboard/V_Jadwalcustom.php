@@ -172,52 +172,48 @@
                         </div>
                         <div class="modal-body">
                             
-                            <form action="#" method="post" novalidate="novalidate">
+                            <form action="<?php echo base_url(). 'Dashboard/Jadwalcustom/insertData'?>" method="post" novalidate="novalidate">
                                             
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">ID Jadwal Custom</label>
-                                                <input id="cc-payment" name="cc-payment" type="text" class="form-control" placeholder = "ID Jadwal Custom" disabled>
+                                                <input id="cc-payment" name="id_jadwal" type="text" class="form-control" placeholder = "ID Jadwal Custom" value="JDL-CUS-<?php echo $count+1?>">
                                             </div>
                                            <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Nama Mahasiswa</label><br>
                                                 <select data-placeholder="Pilih Mahasiswa" class="standardSelect" tabindex="1">
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
+                                                    <?php foreach($mahasiswa as $a){ ?>
+                                                    <option value="<?php echo $a->nim ?>"><?php echo $a->nama_mhs ?></option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Nama Kegiatan</label>
-                                                <input id="cc-payment" name="cc-payment" type="text" class="form-control" placeholder = "Nama Kegiatan" >
+                                                <input id="cc-payment" name="nama_kegiatan" type="text" class="form-control" placeholder = "Nama Kegiatan" >
                                             </div>
                                             <div class="form-group">
-                                                <label for="cc-payment" class="control-label mb-1">Hari</label>
-                                                <input id="cc-payment" name="cc-payment" type="text" class="form-control" placeholder = "Hari" >
+                                                <label for="cc-payment" class="control-label mb-1">Tanggal</label>
+                                                <input id="cc-payment" name="tanggal" type="date" class="form-control" placeholder = "Tanggal" >
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Jam Mulai</label>
-                                                <input id="cc-payment" name="cc-payment" type="time" class="form-control" placeholder = "Jam Mulai" >
+                                                <input id="cc-payment" name="jam_mulai" type="time" class="form-control" placeholder = "Jam Mulai" >
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Jam Selesai</label>
-                                                <input id="cc-payment" name="cc-payment" type="time" class="form-control" placeholder = "Jam Selesai">
+                                                <input id="cc-payment" name="jam_selesai" type="time" class="form-control" placeholder = "Jam Selesai">
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Tempat</label>
-                                                <input id="cc-payment" name="cc-payment" type="text" class="form-control" placeholder = "Tempat">
+                                                <input id="cc-payment" name="tempat" type="text" class="form-control" placeholder = "Tempat">
                                             </div>
                                             
-                                        </form>
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
+                                        </form>
                     </div>
                 </div>
             </div>

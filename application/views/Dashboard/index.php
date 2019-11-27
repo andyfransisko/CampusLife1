@@ -34,9 +34,9 @@
                                             </thead>
                                             <tbody>
                                             <?php
-                            $i=1;
-                            foreach($mahasiswa as $list){
-                          ?>
+                                                $i=1;
+                                                foreach($mahasiswa as $list){
+                                            ?>
                                                 <tr>
                                                     <td class="serial"><?php echo $i ?></td>
                                                     <td class="avatar">

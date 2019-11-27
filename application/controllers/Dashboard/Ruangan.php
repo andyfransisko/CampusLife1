@@ -25,6 +25,7 @@ class Ruangan extends CI_Controller {
 	public function index()
 	{
 		$data['ruangan']=$this->M_Ruangan->tampilkanData()->result();
+		$data['count'] = $this->M_Ruangan->tampilkanData()->num_rows();
 		$this->head();
 		$this->load->view('Dashboard/V_Ruangan',$data);
 		$this->foot();

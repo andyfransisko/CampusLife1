@@ -10,16 +10,30 @@
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Academics</a>
                         <ul class="sub-menu children dropdown-menu">
-                            
-                            <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/Enroll/index';?>">Enroll</a></li>
-                            <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/JadwalCustom/index';?>">Jadwal Custom</a></li>
-                            <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/JadwalKuliah/index';?>">Jadwal Kuliah</a></li>
-                            <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/Nilai/index';?>">Nilai</a></li>
-                            <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/Materi/index';?>">Mata Kuliah</a></li>
+                            <?php    if($this->session->userdata('tipe_akun')==2){ 
+                                     if($dosen['tipe_dosen'] == 3){
+                                
+                                ?>
+                                        <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/Nilai/index';?>">Nilai</a></li>
+                                        <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/Materi/index';?>">Mata Kuliah</a></li>
+                            <?php }else if($dosen['tipe_dosen'] == 2){
+                             ?>
+                                        <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/Nilai/index';?>">Nilai</a></li>
+                                        <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/Materi/index';?>">Mata Kuliah</a></li>
+                                        <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/Enroll/index';?>">Enroll</a></li>
+                            <?php }else{ ?>
+                                        <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/Nilai/index';?>">Nilai</a></li>
+                                        <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/Materi/index';?>">Mata Kuliah</a></li>
+                                        <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/Enroll/index';?>">Enroll</a></li>
+                                        <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/JadwalKuliah/index';?>">Jadwal Kuliah</a></li>
+                                        <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/JadwalCustom/index';?>">Jadwal Custom</a></li>
+                            <?php }
+                            } ?>
                             
                             
                         </ul>
                     </li>
+                    <?php if($this->session->userdata('tipe_akun') == 0){ ?>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Master Data</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -33,7 +47,7 @@
                             <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/User/index';?>">User</a></li>
                         </ul>
                     </li>
-                    <?php  //} ?>
+                    <?php  } ?>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>

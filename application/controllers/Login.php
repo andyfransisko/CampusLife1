@@ -325,6 +325,68 @@ class Login extends CI_Controller
        
     
 }
+
+    public function signup_kaprodi_cek(){
+        $this->form_validation->set_rules('nidn', 'NIDN', 'required|trim');
+        $this->form_validation->set_rules('nama_dosen', 'Name', 'required|trim');
+        $this->form_validation->set_rules('jenis_kelamin', 'Sex', 'required|trim');
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+        $this->form_validation->set_rules('tmpt_lahir', 'Place of Birth', 'required|trim');
+        $this->form_validation->set_rules('tgl_lahir', 'Date of Birth', 'required|trim');
+        $this->form_validation->set_rules('alamat_rumah', 'Address', 'required|trim');
+        $this->form_validation->set_rules('no_telp', 'Telephone Number', 'required|trim|numeric');
+        $this->form_validation->set_rules('agama', 'Religion', 'required|trim');
+        $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]|matches[password2]');
+        $this->form_validation->set_rules('password2', 'Confirm Password', 'required|trim|min_length[6]|matches[password]');
+
+        if($this->form_validation->run() == FALSE){
+            $data['nav'] = "Login";
+            $data['title'] = "Head Of Drpartment Sign Up";
+            $this->head_open($data);
+            $this->load->view('LandingPage/Template/signup-css');
+            $this->head_close();
+            $this->load->view('LandingPage/Template/nav', $data );
+            $this->load->view("LandingPage/Home/V_signup_kaprodi", $data);
+            $this->foot();
+        }
+        else
+        {
+            $email = $this->input->post('email', true);
+
+            $data_dosen = array(
+                'nidn' => htmlspecialchars($this->input->post('nidn')), 
+                'nama_dosen' => htmlspecialchars($this->input->post('nama_dosen')), 
+                'tipe_dosen' => 1,
+                'jenis_kelamin' => htmlspecialchars($this->input->post('jenis_kelamin')), 
+                'email_dosen' => htmlspecialchars($email), 
+                'tgl_lahir' => date('Y-m-d', strtotime(htmlspecialchars($this->input->post('tgl_lahir')))),
+                'tmpt_lahir' => htmlspecialchars($this->input->post('tmpt_lahir')), 
+                'alamat_rumah' => htmlspecialchars($this->input->post('alamat_rumah')), 
+                'no_telp' => htmlspecialchars($this->input->post('no_telp')), 
+                'agama' => htmlspecialchars($this->input->post('agama')) 
+            );
+    
+            $data_user = array(
+                'username' => htmlspecialchars($this->input->post('nidn'), true),
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),   
+                'images' => 'default.jpg', 
+                'tipe_akun'=> '2',
+                'status' => '0'
+            );
+    
+            
+             $this->M_Login->insertTable('dosen', $data_dosen);
+             $this->M_Login->insertTable('user', $data_user);
+    
+           // $this->_send_email($token, 'verify');
+    
+            $this->session->set_flashdata('message', '<div class="alert alert-success text-center p-t-25 p-b-50" role="alert">Your account has been created! <br> Please wait until your account verified. </div>');
+            redirect('Login');  
+            
+            
+        }
+       
+    }
     private function _send_email($token, $type){
         
         $this->load->library('email');  

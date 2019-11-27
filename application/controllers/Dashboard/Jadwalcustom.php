@@ -25,6 +25,7 @@ class Jadwalcustom extends CI_Controller {
 	public function index()
 	{
 		$data['jadwal_custom'] = $this->M_Jadwalcustom->tampilkanRecord()->result();
+		$data['count'] = $this->M_Jadwalcustom->tampilkanRecord()->num_rows();
 		$this->head();
 		$this->load->view('Dashboard/V_Jadwalcustom',$data);
 		$this->foot();

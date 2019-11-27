@@ -28,7 +28,10 @@ class Welcome extends CI_Controller {
 		$this->load->view('Dashboard/Template/head-open');
 		$this->load->view('Dashboard/Template/css');
 		$this->load->view('Dashboard/Template/head-close');
-		$this->load->view('Dashboard/Template/left');
+		if($this->session->userdata('tipe_akun')== 2){
+			$data2['dosen'] = $this->M_Dosen->getRecord($this->session->userdata('username'))->row_array();
+		}
+		$this->load->view('Dashboard/Template/left', $data2);
 	}
 	
 	public function foot(){
@@ -41,10 +44,10 @@ class Welcome extends CI_Controller {
 		$data['matakuliah'] = $this->M_Matakuliah->tampilkanRecord()->result();
 		$data['nav'] = "User";
         $data['count'] = $this->M_Mahasiswa->tampilkanData()->num_rows();
+		$data['hitungmahasiswa'] = $this->M_Mahasiswa->hitungJumlahMahasiswa();
 		$this->head();
 		$this->load->view('Dashboard/index',$data);
 		$this->foot();
-		$data['hitungmahasiswa'] = $this->M_Mahasiswa->hitungJumlahMahasiswa();
 		if($this->session->userdata('tipe_akun') == '1'){
             $tipe = 'mahasiswa';
             $where = array(

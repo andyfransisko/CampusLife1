@@ -4,6 +4,7 @@ class Grade extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        $this->load->model(array('M_Semester','M_Matakuliah'));
 
     }
 
@@ -27,15 +28,16 @@ class Grade extends CI_Controller
         
     }
 
-    public function index()
+    public function index($nim)
     {
+        $where = array('nim' => $nim);
+        $data['semester'] = $this->M_Semester->tampilkanDataSemesterEnroll($nim)->result();
+        $data['matkul'] = $this->M_Semester->tampilkanMatkul($nim)->result();
         $data['nav'] = "Grade";
         $this->head();
         $this->load->view('LandingPage/Template/nav', $data );
         $this->load->view("LandingPage/Grade/V_grade");
         $this->foot();
-
-        
     }
 
 

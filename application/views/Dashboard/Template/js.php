@@ -40,14 +40,15 @@
                         var tableContent = '';
                         if(data.status){
                             var i;
+                            var a=0;
                             for(i=0;i<data.count;i++){
-                                
                                 tableContent +=  '<tr>'+
-                                        '<td>'+data.message.no+'</td>'+
-                                        '<td>'+data.message.namaMatkul+'</td>'+
-                                        '<td>'+data.message.jumlahMhs+'</td>'+
-                                        '<td><button type="button" class="btn btn-outline-warning"><a href ="<?php echo base_url().'Dashboard/Enroll/enroll/' ?>'+data.message.idSemester+'/'+data.message.idMatkul+'">Enrollment</a></button></td>'+
+                                        '<td>'+data.message.no[a]+'</td>'+
+                                        '<td>'+data.message.namaMatkul[a]+'</td>'+
+                                        '<td>'+data.message.jumlahMhs[a]+'</td>'+
+                                        '<td><button type="button" class="btn btn-outline-warning"><a href ="<?php echo base_url().'Dashboard/Enroll/enroll/' ?>'+data.message.idSemester[a]+'/'+data.message.idMatkul[a]+'">Enrollment</a></button></td>'+
                                         '</tr>';
+                                a= a+1;
                             }
                             
                                 $('#enroll-body').append(tableContent);

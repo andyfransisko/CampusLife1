@@ -68,8 +68,8 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>Edit Profile</a>
-                            <a class="nav-link" href="#" data-toggle="modal" data-target="#logout"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="<?php echo base_url() ?>Dashboard/Welcome/Profile" ><i class="fa fa- user"></i>Edit Profile</a>
+                            <a class="nav-link" href="<?php echo base_url() ?>Welcome/logout" data-toggle="modal" data-target="#logout"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 

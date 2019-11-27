@@ -8,7 +8,6 @@
 
         <!-- Profile -->
         <div class="container emp-profile" style="margin-top:10%;">
-            <form method="post">
                 <div class="row">
                     <div class="col-md-4">
                         
@@ -49,7 +48,7 @@
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" style="padding-bottom:10%;">
-                                <form action="<?php echo base_url(). "Dashboard/Mahasiswa/updateData"?>" method="POST" novalidate="novalidate">
+                                <form action="<?php echo base_url(). "User/updateData"?>" method="POST" novalidate="novalidate">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <label>NIM</label>
@@ -145,7 +144,7 @@
                                                 <select class="form-control" tabindex="1" name="agama">
                                                     <option value="1">Kristen</option>
                                                     <option value="2">Katolik</option>
-                                                    <option value="3" <?php echo ($list->agama == 3 ? "selected" : "")?>>Islam</option>
+                                                    <option value="3">Islam</option>
                                                     <option value="4">Buddha</option>
                                                     <option value="5">Hindu</option>
                                                     <option value="6">Kong Hu Cu</option>

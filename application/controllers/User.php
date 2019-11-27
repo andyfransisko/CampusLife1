@@ -71,12 +71,12 @@ class User extends CI_Controller
         $this->load->model('M_User');
         $data['user'] = $this->M_User->tampilkanData()->result();
         $data['jurusan'] = $this->M_Jurusan->tampilkanData()->result();
-		$data['user'] = $this->M_User->tampilkanData()->result();
+        $data['mahasiswa'] = $this->M_Mahasiswa->tampilkanRecordProfile($this->session->userdata('username'))->result();
         $this->head();
         $this->load->view("LandingPage/Template/profile-css");
         $this->load->view('LandingPage/Template/nav', $data);
         $this->load->view("LandingPage/Home/V_profile");
-        //$this->load->view("User/V_profile", $data);
+        //$this->load->view("V_profile", $data);
         $this->foot();
 
         
@@ -135,7 +135,7 @@ class User extends CI_Controller
 				'nim' => $this->input->post('nim'),
 			);
 			$this->M_Mahasiswa->updateRecord($where,$data_mhs,'mahasiswa');
-			redirect('Dashboard/Mahasiswa/index');
+			redirect('User/profile');
 
 		}
 

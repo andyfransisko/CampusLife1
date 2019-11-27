@@ -21,11 +21,12 @@ class Welcome extends CI_Controller {
 	function __construct()
 	{
 		parent:: __construct();
-		$this->load->model(array('M_Dosen','M_Mahasiswa','M_User'));
+		$this->load->model(array('M_Dosen','M_Mahasiswa','M_User','M_Matakuliah','M_Semester'));
 	}
 	public function index()
 	{
 		$data['mahasiswa'] = $this->M_Mahasiswa->tampilkanRecord()->result();
+		$data['matakuliah'] = $this->M_Matakuliah->tampilkanRecord()->result();
 		$this->load->view('Dashboard/Template/head-open');
 		$this->load->view('Dashboard/Template/index-css');
 		$this->load->view('Dashboard/Template/head-close');
@@ -33,6 +34,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('Dashboard/index',$data);
 		$this->load->view('Dashboard/Template/index-js');
 		$this->load->view('Dashboard/Template/body-close');
+		$data['hitungmahasiswa'] = $this->M_Mahasiswa->hitungJumlahMahasiswa();
 	}
 	public function Activating($username)
 	{

@@ -17,8 +17,6 @@
     <script src="<?php echo base_url() ?>assets/dashboard/js/lib/data-table/buttons.print.min.js"></script>
     <script src="<?php echo base_url() ?>assets/dashboard/js/lib/data-table/buttons.colVis.min.js"></script>
     <script src="<?php echo base_url() ?>assets/dashboard/js/init/datatables-init.js"></script>
-
-
     <script type="text/javascript">
    
 

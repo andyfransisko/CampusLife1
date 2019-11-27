@@ -38,7 +38,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Daftar Mata Kuliah</strong>
+                                <strong class="card-title">Daftar Nilai Mata Kuliah</strong>
                                 <div class="float-right">
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputNilai">
                                         <span class="ti-plus"></span> Input

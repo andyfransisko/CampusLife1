@@ -50,19 +50,18 @@ class Enroll extends CI_Controller {
 	public function getEnrollByAjax(){
 		$id_semester = $this->input->post('id_semester');
 		$where = array('id_semester'=>$id_semester);
-		$matkul = $this->M_Matakuliah->getAllMatkulCond($where)->result();
 		
-		foreach($matkul as $b){
-			$enrollList = $this->M_Enroll->getMatkulEnroll($id_semester, $b->id_mata_kuliah)->result_array();
+		
+			$enrollList = $this->M_Enroll->getMatkulEnroll($id_semester)->result_array();
 			if(count($enrollList) > 0){
 				$response['status'] = true;
 				$i=0;
 				foreach($enrollList as $a){
-					$response['message']['no'] = $i+1;
-					$response['message']['namaMatkul'] = $a['nama_mata_kuliah'];
-					$response['message']['jumlahMhs'] = $a['jumlah_mahasiswa'];
-					$response['message']['idSemester'] = $a['id_semester'];
-					$response['message']['idMatkul'] = $a['id_mata_kuliah'];
+					$response['message']['no'][$i] = $i+1;
+					$response['message']['namaMatkul'][$i] = $a['nama_mata_kuliah'];
+					$response['message']['jumlahMhs'][$i] = $a['jumlah_mahasiswa'];
+					$response['message']['idSemester'][$i] = $a['id_semester'];
+					$response['message']['idMatkul'][$i] = $a['id_mata_kuliah'];
 					$i++;
 				}
 				$response['count'] = count($enrollList);
@@ -70,7 +69,9 @@ class Enroll extends CI_Controller {
 			else{
 				$response['status'] = false;
 			}
-		}
+		
+			
+		
         echo json_encode($response);
 	}
 	
@@ -121,14 +122,45 @@ class Enroll extends CI_Controller {
             );
             $this->M_Enroll->insertTable('enroll', $data);
 		}
-		$baris = $this->M_Nilai->tampilkanData()->num_rows();
-		$data2 = array(
-			'id_nilai_mhs' => 'NILMHS-'.($baris+1),
-			'tipe_nilai' => 1,
-			'nilai_mahasiswa' => 0,
-			'id_enroll' => $id_enroll 
+		$where = array(
+			'id_mata_kuliah'=>$id_matkul
 		);
-		$this->M_Enroll->insertTable('nilai_mhs', $data2);
+		$tipe_nilai = $this->M_Nilai->getRecord($where,'matakuliah_nilai')->num_rows();
+		$baris = $this->M_Nilai->tampilkanData()->num_rows();
+		
+		if($tipe_nilai == 3){
+			for($i=1; $i<=$tipe_nilai;$i++){
+				$data2 = array(
+					'id_nilai_mhs' => 'NILMHS-'.($baris+$i),
+					'tipe_nilai' => ($i == 1 ? 1 : $i == 2 ? 4 : 5),
+					'nilai_mahasiswa' => 0,
+					'id_enroll' => $id_enroll 
+				);
+				$this->M_Enroll->insertTable('nilai_mhs', $data2);
+			}
+			
+		}else if($tipe_nilai == 4){
+			for($i=1; $i<=$tipe_nilai;$i++){
+				$data2 = array(
+					'id_nilai_mhs' => 'NILMHS-'.($baris+$i),
+					'tipe_nilai' => ($i == 1 ? 1 : $i == 2 ? 2 : $i == 3 ? 4 : 5),
+					'nilai_mahasiswa' => 0,
+					'id_enroll' => $id_enroll 
+				);
+				$this->M_Enroll->insertTable('nilai_mhs', $data2);
+			}
+		}else{
+			for($i=1; $i<=5;$i++){
+				$data2 = array(
+					'id_nilai_mhs' => 'NILMHS-'.($baris+$i),
+					'tipe_nilai' => ($i == 1 ? 1 : $i == 2 ? 2 : $i == 3 ? 3 : $i ==  4 ? 4 : 5),
+					'nilai_mahasiswa' => 0,
+					'id_enroll' => $id_enroll 
+				);
+				$this->M_Enroll->insertTable('nilai_mhs', $data2);
+			}
+		}
+		
 		redirect('Dashboard/Enroll/enroll/'.$id_semester.'/'.$id_matkul);
 		
     }

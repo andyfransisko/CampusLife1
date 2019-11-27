@@ -44,6 +44,7 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered" style="text-align:center">
                                     <thead>
                                         <tr>
+                                            <th rowspan="2">ID-Enroll</th>
                                             <th rowspan="2">Nama Mahasiswa</th>
                                             <th colspan="<?php echo ($count == 3) ? "3" : ($count == 4) ? "4" : "5" ?>" style="text-align:center">Nilai</th>
                                             <th rowspan="2">Grade </th>
@@ -60,18 +61,18 @@
                                             ?>
                                             <th>UTS</th>
                                             <th>UAS</th>
-                                            
-                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php 
                                         foreach($mhs as $a){?>
                                         <tr align="center">
+                                            <td><?php echo $a->id_enroll?></td>
                                             <td><?php echo $a->nama_mhs?></td>
                                             
                                             <td><?php echo $kat1['nilai_mahasiswa']?></td>
                                             <?php if($count == 4){?>
+                                                <td><?php echo $kat2['nilai_mahasiswa']?></td>
                                             <?php }else{?>
                                                 <td><?php echo $kat2['nilai_mahasiswa']?></td>
                                                 <td><?php echo $kat3['nilai_mahasiswa']?></td>
@@ -97,6 +98,8 @@
                             
                                                         <form action="<?php echo base_url().'Dashboard/Nilai/updateData'?>" method="POST" novalidate="novalidate">
                                                         <input type="hidden" id="id_enroll" name="id_enroll" value="<?php echo $a->id_enroll ?>">
+                                                        <input type="hidden" id="id_mata_kuliah" name="id_mata_kuliah" value="<?php echo $a->id_mata_kuliah ?>">
+                                                        <input type="hidden" id="id_semester" name="id_semester" value="<?php echo $a->id_semester ?>">
                                                     <div class="form-group">
                                                         <label for="cc-payment" class="control-label mb-1">NIM</label>
                                                         <input type="text" class="form-control" placeholder = "NIM" id="nim" name="nim" value="<?php echo $a->nim ?>" readonly>

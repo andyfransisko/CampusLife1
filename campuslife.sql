@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2019 at 05:42 PM
+-- Generation Time: Nov 27, 2019 at 09:20 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -69,7 +69,6 @@ CREATE TABLE `dosen` (
 --
 
 INSERT INTO `dosen` (`nidn`, `nama_dosen`, `jenis_kelamin`, `tipe_dosen`, `email_dosen`, `tmpt_lahir`, `tgl_lahir`, `alamat_rumah`, `no_telp`, `agama`, `user_add`, `user_edit`, `user_delete`, `status_delete`) VALUES
-('1', 'qwerty', 1, 1, 'rtyyui', 'awdrwqr', '2121-12-11', 'dwaddwd', '12412456', 'dwad', '', '', '', 0),
 ('2', 'joni', 1, 3, 'a@gmail.com', 'asdasd', '1999-12-12', '2131', '2131', '1', '', '', '', 0),
 ('212', 'budi doremi', 1, 3, 'a@gmail.com', 'asdasd', '2000-12-12', 'cengkareng', '123123', '1', '212', '', '', 1);
 
@@ -91,7 +90,7 @@ CREATE TABLE `enroll` (
 --
 
 INSERT INTO `enroll` (`id_enroll`, `id_mata_kuliah`, `nim`, `id_semester`) VALUES
-('1', '1', '1', '1'),
+('ENROLL-1', '1', '1', '1'),
 ('ENROLL-2', '1', '2', '1'),
 ('ENROLL-3', '2', '1', '1');
 
@@ -173,7 +172,7 @@ CREATE TABLE `mahasiswa` (
   `nim` varchar(15) NOT NULL,
   `nama_mhs` varchar(50) NOT NULL,
   `jenis_kelamin` varchar(25) NOT NULL COMMENT '1 = Laki-Laki, 2 = Perempuan',
-  `id_jurusan` int(11) NOT NULL,
+  `id_jurusan` varchar(15) NOT NULL,
   `angkatan` int(11) NOT NULL,
   `email_mhs` varchar(50) NOT NULL,
   `tgl_lahir` date NOT NULL,
@@ -192,10 +191,10 @@ CREATE TABLE `mahasiswa` (
 --
 
 INSERT INTO `mahasiswa` (`nim`, `nama_mhs`, `jenis_kelamin`, `id_jurusan`, `angkatan`, `email_mhs`, `tgl_lahir`, `tmpt_lahir`, `alamat_rumah`, `no_telp`, `agama`, `user_add`, `user_edit`, `user_delete`, `status_delete`) VALUES
-('1', 'jjs', '1', 1, 2017, 'jsj@gmail.com', '0000-00-00', 'jakarta', 'Jln. arwana no 25', '213124214', '2', '', '', '', 0),
-('2', 'asdasd', '1', 2, 2017, 'asd@gmail.com', '1999-01-01', 'jkt', 'asdasd', '123123123', '2', '', '', '', 0),
-('33', 'jo', '2', 2, 2017, 'domelafamily@gmail.com', '2000-12-12', 'asdasd', 'cengkareng', '213123', '3', '33', '', '', 1),
-('41241', 'asd', '1', 1, 2016, 'domelafamily@gmail.com', '1999-12-12', 'asdasd', '213123', '213123', '2', '41241', '', '', 1);
+('1', 'jjs', '1', 'JUR-1', 2017, 'jsj@gmail.com', '0000-00-00', 'jakarta', 'Jln. arwana no 25', '213124214', '2', '', '', '', 0),
+('2', 'asdasd', '1', 'JUR-2', 2017, 'asd@gmail.com', '1999-01-01', 'jkt', 'asdasd', '123123123', '2', '', '', '', 0),
+('33', 'jo', '2', 'JUR-2', 2017, 'domelafamily@gmail.com', '2000-12-12', 'asdasd', 'cengkareng', '213123', '3', '33', '', '', 1),
+('41241', 'asd', '1', 'JUR-1', 2016, 'domelafamily@gmail.com', '1999-12-12', 'asdasd', '213123', '213123', '2', '41241', '', '', 1);
 
 -- --------------------------------------------------------
 
@@ -207,7 +206,7 @@ CREATE TABLE `matakuliah` (
   `id_mata_kuliah` varchar(15) NOT NULL,
   `nama_mata_kuliah` varchar(50) NOT NULL,
   `sks` int(5) NOT NULL,
-  `id_semester` int(11) NOT NULL,
+  `id_semester` varchar(15) NOT NULL,
   `jumlah_penilaian` int(11) NOT NULL COMMENT '3-5'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -216,9 +215,9 @@ CREATE TABLE `matakuliah` (
 --
 
 INSERT INTO `matakuliah` (`id_mata_kuliah`, `nama_mata_kuliah`, `sks`, `id_semester`, `jumlah_penilaian`) VALUES
-('MTKL-1', 'web', 4, 1, 5),
-('MTKL-2', 'algo', 4, 1, 4),
-('MTKL-3', 'mpsi', 3, 1, 3);
+('MTKL-1', 'web', 4, 'SMSTR-1', 5),
+('MTKL-2', 'algo', 4, 'SMSTR-1', 4),
+('MTKL-3', 'mpsi', 3, 'SMSTR-2', 3);
 
 -- --------------------------------------------------------
 
@@ -380,7 +379,7 @@ INSERT INTO `user` (`username`, `password`, `images`, `tipe_akun`, `status`, `us
 ('2', '$2y$10$1JnKmrJknhAS.Ovmnrrkree3ZAXrUvnof1LkAIFh2/CAwn7JGEfN.', 'default.jpg', 2, 1, '', '', '', 0),
 ('212', '$2y$10$Cu5/CZZf24QQO7zfi45CrOCZHVvhupqs3HZbVMnHXyFZt9c9ucZby', 'default.jpg', 2, 1, '', '', '', 0),
 ('33', '$2y$10$gvlS1dW93SPaWP1Tx9WvXOZ16QgjsyrX4C5.dsqKurnhe64/186fS', 'default.jpg', 1, 1, '', '', '', 0),
-('41241', '$2y$10$ISdG3OZr0.Z563pJ4C1y1Owb4AP14ksZ.NaHHgCdUrsqc5TZcNRGS', 'default.jpg', 1, 0, '', '', '', 0),
+('41241', '$2y$10$ISdG3OZr0.Z563pJ4C1y1Owb4AP14ksZ.NaHHgCdUrsqc5TZcNRGS', 'default.jpg', 1, 1, '', '', '', 0),
 ('administrator', '$2y$10$J0UCMTMhJlsUzB2euKHTw.PnQKW122TCSKR65RN507dm2UNsrI0t.', 'default.jpg', 0, 1, '', '', '', 0);
 
 --

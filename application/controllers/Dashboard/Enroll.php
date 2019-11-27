@@ -6,7 +6,7 @@ class Enroll extends CI_Controller {
 	function __construct()
 	{
 		parent:: __construct();
-		$this->load->model(array('M_Matakuliah','M_Enroll','M_Semester','M_Mahasiswa'));
+		$this->load->model(array('M_Matakuliah','M_Enroll','M_Semester','M_Mahasiswa', 'M_Nilai'));
 	}
 	
 	public function head(){
@@ -37,9 +37,9 @@ class Enroll extends CI_Controller {
         else{
             $date = 1;
         }
-
-        //$data['matkul'] = $this->M_Enroll->getMatkulEnroll(date('Y'), $date)->result();
-        $data['mahasiswa'] = $this->M_Mahasiswa->tampilkanData()->result();
+		$data['count'] = $this->M_Enroll->tampilkanData()->num_rows();
+        $data['matkul'] = $this->M_Matakuliah->tampilkanData()->result();
+        $data['mahasiswa'] = $this->M_Mahasiswa->tampilkanRecord()->result();
         $data['tahun'] = $this->M_Semester->tampilkanData()->result();
 		
 		$this->head();
@@ -48,28 +48,29 @@ class Enroll extends CI_Controller {
 	}
 
 	public function getEnrollByAjax(){
-        $id_semester = $this->input->post('id_semester');
-
-        $enrollList = $this->M_Enroll->getMatkulEnroll($id_semester)->result_array();
-
+		$id_semester = $this->input->post('id_semester');
+		$where = array('id_semester'=>$id_semester);
+		$matkul = $this->M_Matakuliah->getAllMatkulCond($where)->result();
 		
-		if(count($enrollList) > 0){
-			$response['status'] = true;
-			$i=0;
-			foreach($enrollList as $a){
-				$response['message']['no'] = $i+1;
-				$response['message']['namaMatkul'] = $a['nama_mata_kuliah'];
-				$response['message']['jumlahMhs'] = $a['jumlah_mahasiswa'];
-				$response['message']['idSemester'] = $a['id_semester'];
-				$response['message']['idMatkul'] = $a['id_mata_kuliah'];
-				$i++;
+		foreach($matkul as $b){
+			$enrollList = $this->M_Enroll->getMatkulEnroll($id_semester, $b->id_mata_kuliah)->result_array();
+			if(count($enrollList) > 0){
+				$response['status'] = true;
+				$i=0;
+				foreach($enrollList as $a){
+					$response['message']['no'] = $i+1;
+					$response['message']['namaMatkul'] = $a['nama_mata_kuliah'];
+					$response['message']['jumlahMhs'] = $a['jumlah_mahasiswa'];
+					$response['message']['idSemester'] = $a['id_semester'];
+					$response['message']['idMatkul'] = $a['id_mata_kuliah'];
+					$i++;
+				}
+				$response['count'] = count($enrollList);
 			}
-			$response['count'] = count($enrollList);
+			else{
+				$response['status'] = false;
+			}
 		}
-		else{
-			$response['status'] = false;
-		}
-
         echo json_encode($response);
 	}
 	
@@ -120,6 +121,14 @@ class Enroll extends CI_Controller {
             );
             $this->M_Enroll->insertTable('enroll', $data);
 		}
+		$baris = $this->M_Nilai->tampilkanData()->num_rows();
+		$data2 = array(
+			'id_nilai_mhs' => 'NILMHS-'.($baris+1),
+			'tipe_nilai' => 1,
+			'nilai_mahasiswa' => 0,
+			'id_enroll' => $id_enroll 
+		);
+		$this->M_Enroll->insertTable('nilai_mhs', $data2);
 		redirect('Dashboard/Enroll/enroll/'.$id_semester.'/'.$id_matkul);
 		
     }

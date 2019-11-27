@@ -11,13 +11,7 @@
             <form method="post">
                 <div class="row">
                     <div class="col-md-4">
-                        <div class="profile-img">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <input type="file" name="file"/>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
@@ -44,18 +38,24 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        
+                        <div class="profile-img">
+                            <img src="<?php echo base_url() ?>assets/images/default.jpg" alt=""/>
+                            <div class="file btn btn-lg btn-primary">
+                                Change Photo
+                                <input type="file" name="file"/>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" style="padding-bottom:10%;">
-                                    <form action="<?php echo base_url(). "User/updateData" ?>" method="post">
+                                <form action="<?php echo base_url(). "Dashboard/Mahasiswa/updateData"?>" method="POST" novalidate="novalidate">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <label>NIM</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <input type = "text" class="form-control" readonly value="<?php echo $this->session->userdata('username') ?>">
+                                                <input type = "text" class="form-control" readonly value="<?php echo $this->session->userdata('username') ?>" name="nim">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -63,7 +63,7 @@
                                                 <label>Name</label>
                                             </div>
                                             <div class="col-md-6">
-                                            <input type = "text" class="form-control"  value="<?php echo $this->session->userdata('nama_user') ?>">
+                                            <input type = "text" class="form-control"  value="<?php echo $this->session->userdata('nama_user') ?>" name="nama_mhs">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -94,7 +94,7 @@
                                                 <label>Cohort</label>
                                             </div>
                                             <div class="col-md-6">
-                                            <input type = "text" class="form-control" value="<?php echo $this->session->userdata('angkatan1') ?>">
+                                            <input type = "text" class="form-control" value="<?php echo $this->session->userdata('angkatan1') ?>" name="angkatan">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -102,7 +102,7 @@
                                                 <label>Email</label>
                                             </div>
                                             <div class="col-md-6">
-                                            <input type = "text" class="form-control"  value="<?php echo $this->session->userdata('email1') ?>">
+                                            <input type = "text" class="form-control"  value="<?php echo $this->session->userdata('email1') ?>" name="email">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -110,7 +110,7 @@
                                                 <label>Birth Date</label>
                                             </div>
                                             <div class="col-md-6">
-                                            <input type = "text" class="form-control"  value="<?php echo $this->session->userdata('tempat1') ?>">
+                                            <input type = "text" class="form-control"  value="<?php echo $this->session->userdata('tempat1') ?>" name="tmpt_lahir" >
                                             </div>
                                         </div>
                                         <div class="row">
@@ -118,7 +118,7 @@
                                                 <label>Birth Place</label>
                                             </div>
                                             <div class="col-md-6">
-                                            <input type = "text" class="form-control"  value="<?php echo $this->session->userdata('tanggal1') ?>">
+                                            <input type = "text" class="form-control"  value="<?php echo $this->session->userdata('tanggal1') ?>" name="tgl_lahir">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -126,7 +126,7 @@
                                                 <label>Address</label>
                                             </div>
                                             <div class="col-md-6">
-                                            <input type = "text" class="form-control"  value="<?php echo $this->session->userdata('alamat1') ?>">
+                                            <input type = "text" class="form-control"  value="<?php echo $this->session->userdata('alamat1') ?>" name="alamat">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -134,7 +134,7 @@
                                                 <label>Phone Number</label>
                                             </div>
                                             <div class="col-md-6">
-                                            <input type = "text" class="form-control" value="<?php echo $this->session->userdata('phone1') ?>">
+                                            <input type = "text" class="form-control" value="<?php echo $this->session->userdata('phone1') ?>" name="no_telp">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -145,7 +145,7 @@
                                                 <select class="form-control" tabindex="1" name="agama">
                                                     <option value="1">Kristen</option>
                                                     <option value="2">Katolik</option>
-                                                    <option value="3">Islam</option>
+                                                    <option value="3" <?php echo ($list->agama == 3 ? "selected" : "")?>>Islam</option>
                                                     <option value="4">Buddha</option>
                                                     <option value="5">Hindu</option>
                                                     <option value="6">Kong Hu Cu</option>

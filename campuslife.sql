@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2019 at 10:39 PM
+-- Generation Time: Nov 26, 2019 at 11:42 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.11
 
@@ -92,7 +92,8 @@ CREATE TABLE `enroll` (
 
 INSERT INTO `enroll` (`id_enroll`, `id_mata_kuliah`, `nim`, `id_semester`) VALUES
 ('1', '1', '1', '1'),
-('ENROLL-2', '1', '2', '1');
+('ENROLL-2', '1', '2', '1'),
+('ENROLL-3', '2', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -232,16 +233,39 @@ CREATE TABLE `matakuliah` (
   `id_mata_kuliah` varchar(15) NOT NULL,
   `nama_mata_kuliah` varchar(50) NOT NULL,
   `sks` int(5) NOT NULL,
-  `id_semester` int(11) NOT NULL
+  `id_semester` int(11) NOT NULL,
+  `jumlah_penilaian` int(11) NOT NULL COMMENT '3-5'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `matakuliah`
 --
 
-INSERT INTO `matakuliah` (`id_mata_kuliah`, `nama_mata_kuliah`, `sks`, `id_semester`) VALUES
-('1', 'web', 4, 1),
-('2', 'algo', 4, 1);
+INSERT INTO `matakuliah` (`id_mata_kuliah`, `nama_mata_kuliah`, `sks`, `id_semester`, `jumlah_penilaian`) VALUES
+('1', 'web', 4, 1, 3),
+('2', 'algo', 4, 1, 4),
+('MTKL-3', 'mpsi', 3, 1, 3);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `matakuliah_nilai`
+--
+
+CREATE TABLE `matakuliah_nilai` (
+  `id_nilai` varchar(15) NOT NULL,
+  `id_mata_kuliah` varchar(15) NOT NULL,
+  `id_tipe_nilai` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `matakuliah_nilai`
+--
+
+INSERT INTO `matakuliah_nilai` (`id_nilai`, `id_mata_kuliah`, `id_tipe_nilai`) VALUES
+('1', 'MTKL-3', 1),
+('2', 'MTKL-3', 4),
+('3', 'MTKL-3', 5);
 
 -- --------------------------------------------------------
 
@@ -276,16 +300,14 @@ CREATE TABLE `message` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nilai`
+-- Table structure for table `nilai_mhs`
 --
 
-CREATE TABLE `nilai` (
-  `id_nilai` varchar(15) NOT NULL,
-  `nim` varchar(15) NOT NULL,
+CREATE TABLE `nilai_mhs` (
+  `id_nilai_mhs` varchar(15) NOT NULL,
   `tipe_nilai` int(11) NOT NULL COMMENT '1=KAT 1, 2=KAT 2, 3=KAT 3, 4=UTS, 5= UAS',
   `nilai_mahasiswa` int(5) NOT NULL,
-  `id_tugas` varchar(15) NOT NULL,
-  `id_mata_kuliah` varchar(15) NOT NULL
+  `id_enroll` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -330,6 +352,17 @@ CREATE TABLE `semester` (
 INSERT INTO `semester` (`id_semester`, `jenis_semester`, `tahun`, `user_add`, `user_edit`, `user_delete`, `status_delete`) VALUES
 ('1', '1', 2019, '', '', '', 0),
 ('SMSTR-2', '2', 2019, 'administrator', 'administrator', '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tipe_penilaian`
+--
+
+CREATE TABLE `tipe_penilaian` (
+  `id_tipe_penilaian` int(11) NOT NULL,
+  `detail_penilaian` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -438,6 +471,12 @@ ALTER TABLE `matakuliah`
   ADD PRIMARY KEY (`id_mata_kuliah`);
 
 --
+-- Indexes for table `matakuliah_nilai`
+--
+ALTER TABLE `matakuliah_nilai`
+  ADD PRIMARY KEY (`id_nilai`);
+
+--
 -- Indexes for table `materi`
 --
 ALTER TABLE `materi`
@@ -450,10 +489,10 @@ ALTER TABLE `message`
   ADD PRIMARY KEY (`id_message`);
 
 --
--- Indexes for table `nilai`
+-- Indexes for table `nilai_mhs`
 --
-ALTER TABLE `nilai`
-  ADD PRIMARY KEY (`id_nilai`);
+ALTER TABLE `nilai_mhs`
+  ADD PRIMARY KEY (`id_nilai_mhs`);
 
 --
 -- Indexes for table `ruangan`

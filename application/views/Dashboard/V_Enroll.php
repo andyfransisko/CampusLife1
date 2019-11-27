@@ -90,68 +90,79 @@
                         </div>
                         <div class="modal-body">
                             
-                            <form action="#" method="post" novalidate="novalidate">
+                            <form action="<?php echo base_url(). "Dashboard/Enroll/insertData" ?>" method="post" novalidate="novalidate">
                                             
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">ID Enroll</label>
-                                                <input id="cc-payment" name="cc-payment" type="text" class="form-control" placeholder = "ID Enroll" disabled>
+                                                <input id="cc-payment" name="id_enroll" type="text" value="ENROLL-<?php echo $count+1?>" class="form-control" placeholder = "ID Enroll" readonly>
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Nama Matakuliah</label><br>
-                                                <select data-placeholder="Pilih Matakuliah" class="standardSelect" tabindex="1">
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
+                                                <select data-placeholder="Pilih Matakuliah" class="standardSelect" tabindex="1" name="id_mata_kuliah">
+                                                    <?php foreach($matkul as $a){ ?>
+                                                        <option value="<?php echo $a->id_mata_kuliah ?>"><?php echo $a->nama_mata_kuliah ?></option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
-                                           <div class="form-group">
+                                            <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Nama Mahasiswa</label><br>
-                                                <select data-placeholder="Pilih Mahasiswa" class="standardSelect" tabindex="1">
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                </select>
+                                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                                    <thead>
+                                                    <tr>
+                                                        <th><input type="checkbox" onClick="toggle(this)" /></th>
+                                                        <th>NIM</th>
+                                                        <th>Nama Mahasiswa</th>
+                                                        <th>Jurusan</th>
+                                                        <th>Angkatan</th>
+
+                                                        <script language="JavaScript">
+                                                            function toggle(source) {
+                                                            checkboxes = document.getElementsByName('mahasiswa[]');
+                                                            for(var i=0, n=checkboxes.length;i<n;i++) {
+                                                                checkboxes[i].checked = source.checked;
+                                                            }
+                                                            }
+                                                        </script>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <?php 
+                                                    $i = 1;
+                                                    foreach($mahasiswa as $a){ 
+                                                        ?>
+                                                        <tr>
+                                                            <td><input type="checkbox" value="<?php echo $a->nim ?>" name="mahasiswa[]"></td>
+                                                            <td><?php echo $a->nim; ?></td>
+                                                            <td><?php echo $a->nama_mhs; ?></td>
+                                                            <td><?php echo $a->nama_jurusan; ?></td>
+                                                            <td><?php echo $a->angkatan; ?></td>
+                                                        </tr>
+                                                    <?php $i++;} ?>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                             <div class="form-group">
-                                                <label for="cc-number" class="control-label mb-1">Jenis Semester</label><br>
-                                                <select data-placeholder="Pilih Semester" class="standardSelect" tabindex="1">
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="cc-number" class="control-label mb-1">Tahun</label><br>
-                                                <select data-placeholder="Pilih Tahun" class="standardSelect" tabindex="1">
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
-                                                    <option value="ambil">Ambil dari database</option>
+                                                <label for="cc-number" class="control-label mb-1">Tahun & Jenis Semester</label><br>
+                                                <select data-placeholder="Pilih Semester" class="standardSelect" tabindex="1" name="id_semester">
+                                                    <?php 
+                                                    $arr = [
+                                                        1 => "Ganjil",
+                                                        2 => "Genap",
+                                                        3 => "Akselerasi",
+                                                    ];
+                                                    foreach($tahun as $a){ ?>
+                                                        <option value="<?php echo $a->id_semester ?>"><?php echo $a->tahun. " - ".$arr[$a->jenis_semester] ?></option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
                                             
-                                        </form>
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary">Submit</button>
-                        </div>
+                                            
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
                     </div>
                 </div>
             </div>

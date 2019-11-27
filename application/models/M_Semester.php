@@ -28,12 +28,21 @@ class M_Semester extends CI_Model {
 		$this->db->delete($table);
 	}
 
-	function tampilkanDataSemesterEnroll()
+	function tampilkanDataSemesterEnroll($where)
 	{
-		return $this->db->query('SELECT DISTINCT a.id_semester
+		$query = $this->db->query('SELECT DISTINCT a.id_semester
         FROM enroll a 
         JOIN semester b ON a.id_semester = b.id_semester
-        ');
+		WHERE a.nim ='.$where);
+		return $query;
+	}
+
+	function tampilkanMatkul($where)
+	{
+		$query = $this->db->query('SELECT id_mata_kuliah
+        FROM enroll a 
+		WHERE a.nim ='.$where);
+		return $query;
 	}
 }
 ?>

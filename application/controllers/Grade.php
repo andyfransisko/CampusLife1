@@ -30,8 +30,9 @@ class Grade extends CI_Controller
 
     public function index($nim)
     {
-        $data['semester'] = $this->M_Semester->tampilkanDataSemesterEnroll()->result();
         $where = array('nim' => $nim);
+        $data['semester'] = $this->M_Semester->tampilkanDataSemesterEnroll($nim)->result();
+        $data['matkul'] = $this->M_Semester->tampilkanMatkul($nim)->result();
         $data['nav'] = "Grade";
         $this->head();
         $this->load->view('LandingPage/Template/nav', $data );

@@ -34,21 +34,35 @@
                       ?>
                       </ul>
                   </nav>
+
+                  <?php
+                  $no1 = 1;
+                  ?>
                   
-                  <div id="tab-1" class="active">
+                  <div id="tab-<?php echo $no; ?>" class="active">
                       <div class="container1">
-                          <h2>Semester <?php echo $no?></h2>
+                          <h2>Semester 
+                          <?php 
+                          foreach($matkul as $listmatkul){
+                            echo $no1;
+                            
+                          ?></h2>
                           <div class="cards-list ftco-animate">
   
-                              <div class="card 1">
+                              <div class="card <?php echo $no1;?>">
                                 <div class="card_image"> 
                                     <img src="<?php echo base_url() ?>assets/images/logo4.png"  />
                                 </div>
                                 <div class="card_title title-black">
-                                  <p>Matkul 1</p>
+                                  <?php 
+                                    echo $listmatkul->id_mata_kuliah;
+                                  ?>
+                                  <p>
+                                  <!-- Nama Matkul -->
+                                  </p>
                                 </div>
                               </div>
-                              
+                              <!--
                                 <div class="card 2">
                                 <div class="card_image">
                                   <img src="<?php echo base_url() ?>assets/images/logo4.png"  />
@@ -93,10 +107,14 @@
                                   <p>Matkul 6</p>
                                 </div>
                                 </div>
-
-                                
+                                -->
+                                <?php 
+                                  $no1++;  
+                                }
+                                ?>
                               
                               </div>
+                              <!--
                           <ul class="responsive-table ftco-animate">
                             <li class="table-header">
                               <div class="col col-1">No</div>
@@ -124,107 +142,15 @@
                                     <div class="col col-3" data-label="Grades">80</div>
                                   </li>
                           </ul>
+                          -->
                       </div>
                   </div>
                   
-                  <div id="tab-2">
-                      <div class="container1">
-                          <h2>Semester 2</h2>
-                          <ul class="responsive-table">
-                            <li class="table-header">
-                              <div class="col col-1">No</div>
-                              <div class="col col-2">Category</div>
-                              <div class="col col-3">Grades</div>
-                            </li>
-                            <li class="table-row">
-                              <div class="col col-1" data-label="No">1</div>
-                              <div class="col col-2" data-label="Category">KAT 1</div>
-                              <div class="col col-3" data-label="Grades">90</div>
-                            </li>
-                            <li class="table-row">
-                                <div class="col col-1" data-label="No">2</div>
-                                <div class="col col-2" data-label="Category">KAT 2</div>
-                                <div class="col col-3" data-label="Grades">95</div>
-                              </li>
-                              <li class="table-row">
-                                  <div class="col col-1" data-label="No">1</div>
-                                  <div class="col col-2" data-label="Category">UTS</div>
-                                  <div class="col col-3" data-label="Grades">97</div>
-                                </li>
-                                <li class="table-row">
-                                    <div class="col col-1" data-label="No">1</div>
-                                    <div class="col col-2" data-label="Category">UAS</div>
-                                    <div class="col col-3" data-label="Grades">80</div>
-                                  </li>
-                          </ul>
-                      </div>
-                  </div>
+               
                   
-                  <div id="tab-3">
-                      <div class="container1">
-                          <h2>Semester 3</h2>
-                          <ul class="responsive-table">
-                            <li class="table-header">
-                              <div class="col col-1">No</div>
-                              <div class="col col-2">Category</div>
-                              <div class="col col-3">Grades</div>
-                            </li>
-                            <li class="table-row">
-                              <div class="col col-1" data-label="No">1</div>
-                              <div class="col col-2" data-label="Category">KAT 1</div>
-                              <div class="col col-3" data-label="Grades">90</div>
-                            </li>
-                            <li class="table-row">
-                                <div class="col col-1" data-label="No">2</div>
-                                <div class="col col-2" data-label="Category">KAT 2</div>
-                                <div class="col col-3" data-label="Grades">95</div>
-                              </li>
-                              <li class="table-row">
-                                  <div class="col col-1" data-label="No">1</div>
-                                  <div class="col col-2" data-label="Category">UTS</div>
-                                  <div class="col col-3" data-label="Grades">97</div>
-                                </li>
-                                <li class="table-row">
-                                    <div class="col col-1" data-label="No">1</div>
-                                    <div class="col col-2" data-label="Category">UAS</div>
-                                    <div class="col col-3" data-label="Grades">80</div>
-                                  </li>
-                          </ul>
-                      </div>
-                  </div>
+                 
                   
-                  <div id="tab-4">
-                      <div class="container1">
-                          <h2>Semester 4</h2>
-                          <ul class="responsive-table">
-                            <li class="table-header">
-                              <div class="col col-1">No</div>
-                              <div class="col col-2">Category</div>
-                              <div class="col col-3">Grades</div>
-                            </li>
-                            <li class="table-row">
-                              <div class="col col-1" data-label="No">1</div>
-                              <div class="col col-2" data-label="Category">KAT 1</div>
-                              <div class="col col-3" data-label="Grades">90</div>
-                            </li>
-                            <li class="table-row">
-                                <div class="col col-1" data-label="No">2</div>
-                                <div class="col col-2" data-label="Category">KAT 2</div>
-                                <div class="col col-3" data-label="Grades">95</div>
-                              </li>
-                              <li class="table-row">
-                                  <div class="col col-1" data-label="No">1</div>
-                                  <div class="col col-2" data-label="Category">UTS</div>
-                                  <div class="col col-3" data-label="Grades">97</div>
-                                </li>
-                                <li class="table-row">
-                                    <div class="col col-1" data-label="No">1</div>
-                                    <div class="col col-2" data-label="Category">UAS</div>
-                                    <div class="col col-3" data-label="Grades">80</div>
-                                  </li>
-                          </ul>
-                      </div>
-                  </div>
+                 
               
               </div>
           </center>

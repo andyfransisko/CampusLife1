@@ -122,7 +122,7 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="id_jurusan" class="control-label mb-1">Account Type</label><br>
-                                                                    <select data-placeholder="Pilih Jenis Semester" class="standardSelect" tabindex="1" name="tipe_akun" id="tipe_akun">
+                                                                    <select data-placeholder="Pilih Jenis Semester" class="standardSelect form-control" tabindex="1" name="tipe_akun" id="tipe_akun">
                                                                         <option value="1" <?php echo ($list->tipe_akun == 1 ? "selected" : "") ?>>Mahasiswa</option>
                                                                         <option value="2" <?php echo ($list->tipe_akun == 2 ? "selected" : "") ?>>Dosen</option>
                                                                         <option value="0" <?php echo ($list->tipe_akun == 3 ? "selected" : "") ?>>Admin</option>
@@ -130,7 +130,7 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="cc-payment" class="control-label mb-1">Status</label>
-                                                                    <select data-placeholder="Pilih Jenis Semester" class="standardSelect" tabindex="1" name="id_jurusan" id="id_jurusan">
+                                                                    <select data-placeholder="Pilih Jenis Semester" class="standardSelect form-control" tabindex="1" name="id_jurusan" id="id_jurusan">
                                                                         <option value="1" <?php echo ($list->status == 1 ? "selected" : "") ?>>Aktif</option>
                                                                         <option value="0" <?php echo ($list->status == 0 ? "selected" : "") ?>>Non-Aktif/Deleted</option>
                                                                     </select>
@@ -184,7 +184,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Tipe Akun</label><br>
-                                                <select data-placeholder="Pilih Tipe Akun" class="standardSelect" tabindex="1" name="tipe_akun">
+                                                <select data-placeholder="Pilih Tipe Akun" class="standardSelect form-control" tabindex="1" name="tipe_akun">
                                                     <option value="1">Mahasiswa</option>
                                                     <option value="2">Dosen</option>
                                                     <option value="0">Admin</option>
@@ -192,7 +192,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Status</label><br>
-                                                <select data-placeholder="Pilih Tipe Dosen" class="standardSelect" tabindex="1" name="">
+                                                <select data-placeholder="Pilih Tipe Dosen" class="standardSelect form-control" tabindex="1" name="">
                                                     <option value="1">Aktif</option>
                                                     <option value="0">Non-aktif</option>
                                                 </select>

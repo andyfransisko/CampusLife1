@@ -44,5 +44,15 @@ class M_Semester extends CI_Model {
 		WHERE a.nim ='.$where);
 		return $query;
 	}
+
+	function tampilkanNilai($idm,$nim)
+	{
+		$query = $this->db->query("SELECT *
+        FROM nilai_mhs a 
+		JOIN enroll b
+		ON a.id_enroll = b.id_enroll 
+		WHERE b.nim ='$nim' AND b.id_mata_kuliah =' $idm'");
+		return $query;
+	}
 }
 ?>

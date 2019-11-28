@@ -22,6 +22,22 @@
                               <div class="col col-2">Category</div>
                               <div class="col col-3">Grades</div>
                             </li>
+                            <?php
+                            $no=1;
+                            foreach($nilai as $list){
+                            ?>
+
+                            <li class="table-row">
+                              <div class="col col-1" data-label="No"><?php echo $no; ?></div>
+                              <div class="col col-2" data-label="Category"><?php echo $list->tipe_nilai ?></div>
+                              <div class="col col-3" data-label="Grades"><?php echo $list->nilai_mahasiswa?></div>
+                            </li>
+
+                            <?php
+                            $no++;
+                            }
+                            ?>
+                            <!--
                             <li class="table-row">
                               <div class="col col-1" data-label="No">1</div>
                               <div class="col col-2" data-label="Category">KAT 1</div>
@@ -42,6 +58,7 @@
                                     <div class="col col-2" data-label="Category">UAS</div>
                                     <div class="col col-3" data-label="Grades">80</div>
                                   </li>
+                              -->
                           </ul>
       </div>
 

@@ -109,9 +109,10 @@ class Grade extends CI_Controller
 		redirect('Mahasiswa');
     }
     
-    public function viewNilai($matkul)
+    public function viewNilai($idM,$nim)
     {
         $data['nav'] = "Grade";
+        $data['nilai'] = $this->M_Semester->tampilkanNilai($idM,$nim)->result();
         $this->head();
         $this->load->view('LandingPage/Template/nav', $data );
         $this->load->view("LandingPage/Grade/V_grade1", $data);

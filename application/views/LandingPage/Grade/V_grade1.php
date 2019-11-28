@@ -24,12 +24,19 @@
                             </li>
                             <?php
                             $no=1;
+                            $arr = [
+                              1 => "KAT 1",
+                              2 => "KAT 2",
+                              3 => "KAT 3",
+                              4 => "UTS",
+                              5 => "UAS",
+                            ];
                             foreach($nilai as $list){
                             ?>
 
                             <li class="table-row">
                               <div class="col col-1" data-label="No"><?php echo $no; ?></div>
-                              <div class="col col-2" data-label="Category"><?php echo $list->tipe_nilai ?></div>
+                              <div class="col col-2" data-label="Category"><?php echo $arr[$list->tipe_nilai] ?></div>
                               <div class="col col-3" data-label="Grades"><?php echo $list->nilai_mahasiswa?></div>
                             </li>
 

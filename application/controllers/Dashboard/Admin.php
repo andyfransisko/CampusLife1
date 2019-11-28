@@ -14,7 +14,12 @@ class Admin extends CI_Controller {
 		$this->load->view('Dashboard/Template/head-open');
 		$this->load->view('Dashboard/Template/css');
 		$this->load->view('Dashboard/Template/head-close');
-		$this->load->view('Dashboard/Template/left');
+		if($this->session->userdata('tipe_akun')== 2){
+			$data2['dosen'] = $this->M_Dosen->getRecord($this->session->userdata('username'))->row_array();
+		}else{
+			$data2['admin'] = $this->M_Admin->getRecord($this->session->userdata('username'))->row_array();
+		}
+		$this->load->view('Dashboard/Template/left', $data2);
 	}
 	
 	public function foot(){

@@ -135,14 +135,14 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="jenis_kelamin" class="control-label mb-1">Jenis Kelamin</label><br>
-                                                                    <select data-placeholder="Choose a Country..." class="standardSelect" tabindex="1" name="jenis_kelamin" id="jenis_kelamin">
+                                                                    <select data-placeholder="Choose a Country..." class="standardSelect form-control" tabindex="1" name="jenis_kelamin" id="jenis_kelamin">
                                                                         <option value="1" <?php echo ($list->jenis_kelamin == 1 ? "selected" : "") ?>>Laki-Laki</option>
                                                                         <option value="2" <?php echo ($list->jenis_kelamin == 2 ? "selected" : "") ?>>Perempuan</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="id_jurusan" class="control-label mb-1">Jurusan</label><br>
-                                                                    <select data-placeholder="Pilih Jenis Semester" class="standardSelect" tabindex="1" name="id_jurusan" id="id_jurusan">
+                                                                    <select data-placeholder="Pilih Jenis Semester" class="standardSelect form-control" tabindex="1" name="id_jurusan" id="id_jurusan">
                                                                         <?php foreach($jurusan as $a){ ?>
                                                                             <option value="<?php echo $a->id_jurusan ?>" <?php echo (($list->id_jurusan == $a->id_jurusan)? "selected" : "" ) ?>><?php echo $a->nama_jurusan ?></option>
                                                                         <?php } ?>
@@ -174,7 +174,7 @@
                                                                 </div>
                                                                 <div class="form-group has-success">
                                                                     <label for="cc-name" class="control-label mb-1">Agama</label><br>
-                                                                    <select data-placeholder="Pilih Agama" class="standardSelect" tabindex="1" name="agama">
+                                                                    <select data-placeholder="Pilih Agama" class="standardSelect form-control" tabindex="1" name="agama">
                                                                         <option value="1" <?php echo ($list->agama == 1 ? "selected" : "")?>>Kristen</option>
                                                                         <option value="2" <?php echo ($list->agama == 2 ? "selected" : "")?>>Katolik</option>
                                                                         <option value="3" <?php echo ($list->agama == 3 ? "selected" : "")?>>Islam</option>
@@ -227,7 +227,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Jenis Kelamin</label><br>
-                                                <select data-placeholder="Pilih Jenis Kelamin" class="standardSelect" tabindex="1" name="jenis_kelamin">
+                                                <select data-placeholder="Pilih Jenis Kelamin" class="standardSelect form-control" tabindex="1" name="jenis_kelamin">
                                                     <option value="1">Laki - Laki</option>
                                                     <option value="2">Perempuan</option>
                                                 </select>
@@ -247,7 +247,7 @@
                                             
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Jurusan</label><br>
-                                                <select data-placeholder="Pilih Jurusan" class="standardSelect" tabindex="1" name="id_jurusan">
+                                                <select data-placeholder="Pilih Jurusan" class="standardSelect form-control" tabindex="1" name="id_jurusan">
                                                     <?php foreach($jurusan as $a){ ?>
                                                         <option value="<?php echo $a->id_jurusan ?>"><?php echo $a->nama_jurusan ?></option>
                                                     <?php } ?>
@@ -275,7 +275,7 @@
                                             </div>
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">Agama</label><br>
-                                                <select data-placeholder="Pilih Agama" class="standardSelect" tabindex="1" name="agama">
+                                                <select data-placeholder="Pilih Agama" class="standardSelect form-control" tabindex="1" name="agama">
                                                     <option value="1">Kristen</option>
                                                     <option value="2">Katolik</option>
                                                     <option value="3">Islam</option>

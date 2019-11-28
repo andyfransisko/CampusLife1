@@ -40,6 +40,11 @@
                             <div class="card-header">
                                 <strong class="card-title">Matakuliah</strong>
                                 <div class="float-right">
+                                <a href="<?php echo base_url().'Dashboard/Matakuliah/exportPDF' ?>" target="_blank">
+                                        <button type="button" class="btn btn-success">
+                                            Export
+                                        </button>
+                                    </a>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputMatakuliah">
                                         <span class="ti-plus"></span> Input
                                     </button>

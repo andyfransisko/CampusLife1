@@ -40,6 +40,11 @@
                             <div class="card-header">
                                 <strong class="card-title">Matakuliah</strong>
                                 <div class="float-right">
+                                <a href="<?php echo base_url().'Dashboard/Matakuliah/exportPDF' ?>" target="_blank">
+                                        <button type="button" class="btn btn-success">
+                                            Export
+                                        </button>
+                                    </a>
                                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inputMatakuliah">
                                         <span class="ti-plus"></span> Input
                                     </button>
@@ -104,7 +109,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Jenis Semester - Tahun</label><br>
-                                                <select data-placeholder="Pilih Jenis Semester" class="standardSelect" tabindex="1"name="id_semester" id="id_semester">
+                                                <select data-placeholder="Pilih Jenis Semester" class="standardSelect form-control" tabindex="1"name="id_semester" id="id_semester">
                                                     <?php 
                                                     $arr=[
                                                         1=>"Ganjil",
@@ -199,7 +204,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Tahun - Jenis Semester</label><br>
-                                                <select data-placeholder="Pilih Jenis Semester" class="standardSelect" tabindex="1"name="id_semester" id="tipe_Matakuliah">
+                                                <select data-placeholder="Pilih Jenis Semester" class="standardSelect form-control" tabindex="1"name="id_semester" id="tipe_Matakuliah">
                                                     <?php 
                                                     $arr=[
                                                         1=>"Ganjil",

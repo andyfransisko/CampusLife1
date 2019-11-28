@@ -146,14 +146,14 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="jenis_kelamin" class="control-label mb-1">Jenis Kelamin</label><br>
-                                                <select data-placeholder="Choose a Country..." class="standardSelect" tabindex="1" name="jenis_kelamin" id="jenis_kelamin">
+                                                <select data-placeholder="Choose a Country..." class="standardSelect form-control" tabindex="1" name="jenis_kelamin" id="jenis_kelamin">
                                                     <option value="1" <?php echo ($list->jenis_kelamin == 1 ? "selected" : "") ?>>Laki-Laki</option>
                                                     <option value="2" <?php echo ($list->jenis_kelamin == 2 ? "selected" : "") ?>>Perempuan</option>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Tipe Dosen</label><br>
-                                                <select data-placeholder="Pilih Tipe Dosen" class="standardSelect" tabindex="1" name="tipe_dosen" id="tipe_dosen">
+                                                <select data-placeholder="Pilih Tipe Dosen" class="standardSelect form-control" tabindex="1" name="tipe_dosen" id="tipe_dosen">
                                                     <option value="1"<?php if(($list->tipe_dosen) == "1")  echo "selected" ?>>Kepala Program Studi</option>
                                                     <option value="2" <?php if(($list->tipe_dosen) == "2") echo "selected" ?>>Dosen Pembimbing Akademik</option>
                                                     <option value="3" <?php if(($list->tipe_dosen) == "3") echo "selected" ?>>Dosen Reguler</option>
@@ -181,7 +181,7 @@
                                             </div>
                                             <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">Agama</label><br>
-                                                <select data-placeholder="Pilih Agama" class="standardSelect" tabindex="1" name="agama">
+                                                <select data-placeholder="Pilih Agama" class="standardSelect form-control" tabindex="1" name="agama">
                                                     <option value="1" <?php echo ($list->agama == 1 ? "selected" : "")?>>Kristen</option>
                                                     <option value="2" <?php echo ($list->agama == 2 ? "selected" : "")?>>Katolik</option>
                                                     <option value="3" <?php echo ($list->agama == 3 ? "selected" : "")?>>Islam</option>
@@ -233,7 +233,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Jenis Kelamin</label><br>
-                                                <select data-placeholder="Pilih Jenis Kelamin" class="standardSelect" tabindex="1" name="jenis_kelamin">
+                                                <select data-placeholder="Pilih Jenis Kelamin" class="standardSelect form-control" tabindex="1" name="jenis_kelamin">
                                                     <option value="1">Laki - Laki</option>
                                                     <option value="2">Perempuan</option>
                                                 </select>
@@ -252,7 +252,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-number" class="control-label mb-1">Tipe Dosen</label><br>
-                                                <select data-placeholder="Pilih Tipe Dosen" class="standardSelect" tabindex="1" name="tipe_dosen">
+                                                <select data-placeholder="Pilih Tipe Dosen" class="standardSelect form-control" tabindex="1" name="tipe_dosen">
                                                     <option value="3">Dosen Reguler</option>
                                                     <option value="2">Dosen Pembimbing Akademik</option>
                                                     <option value="1">Kepala Program Studi</option>
@@ -277,7 +277,7 @@
                                             <div class="form-group has-success">
                                                 <div class="form-group has-success">
                                                 <label for="cc-name" class="control-label mb-1">Agama</label><br>
-                                                <select data-placeholder="Pilih Agama" class="standardSelect" tabindex="1" name="agama">
+                                                <select data-placeholder="Pilih Agama" class="standardSelect form-control" tabindex="1" name="agama">
                                                     <option value="1">Kristen</option>
                                                     <option value="2">Katolik</option>
                                                     <option value="3">Islam</option>

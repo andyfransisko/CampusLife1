@@ -107,7 +107,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="cc-payment" class="control-label mb-1">Jenis Semester</label><br>
-                                                        <select data-placeholder="Pilih Jenis Semester" class="standardSelect" tabindex="1" name="jenis_semester" id="jenis_semester">
+                                                        <select data-placeholder="Pilih Jenis Semester" class="standardSelect form-control" tabindex="1" name="jenis_semester" id="jenis_semester">
                                                             <option value="1"<?php if(($list->jenis_semester) == "1")  echo "selected" ?>>Ganjil</option>
                                                             <option value="2" <?php if(($list->jenis_semester) == "2") echo "selected" ?>>Genap</option>
                                                             <option value="3" <?php if(($list->jenis_semester) == "3") echo "selected" ?>>Akselerasi</option>
@@ -159,7 +159,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Jenis Semester</label><br>
-                                                <select data-placeholder="Pilih Jenis Semester" class="standardSelect" tabindex="1" name="jenis_semester" id="jenis_semester">
+                                                <select data-placeholder="Pilih Jenis Semester" class="standardSelect form-control" tabindex="1" name="jenis_semester" id="jenis_semester">
                                                     <option value="1">Ganjil</option>
                                                     <option value="2">Genap</option>
                                                     <option value="3">Akselerasi</option>

@@ -25,6 +25,7 @@ class Jurusan extends CI_Controller {
 	public function index()
 	{
 		$data['jurusan']=$this->M_Jurusan->tampilkanData()->result();
+		$data['count']=$this->M_Jurusan->tampilkanData()->num_rows();
 		$this->head();
 		$this->load->view('Dashboard/V_Jurusan',$data);
 		$this->foot();
@@ -45,7 +46,7 @@ class Jurusan extends CI_Controller {
 		);
 
 		$this->M_Jurusan->insertTable('jurusan',$data);
-		redirect('Jurusan/index');
+		redirect('Dashboard/Jurusan/index');
 	}
 
 	function editData($id_jurusan) {
@@ -72,7 +73,7 @@ class Jurusan extends CI_Controller {
 		);
 
 		$this->M_Jurusan->updateRecord($where,$data,'jurusan');
-		redirect('Jurusan/index');
+		redirect('Dashboard/Jurusan/index');
 	}
 	
 	function hapusData($id_jurusan){
@@ -80,7 +81,7 @@ class Jurusan extends CI_Controller {
 		$where = array('id_jurusan' => $id_jurusan);
 
 		$this->M_Jurusan->hapusRecord($where,'jurusan');
-		redirect('Jurusan/index');
+		redirect('Dashboard/Jurusan/index');
 	}
 
 	function exportPDF()

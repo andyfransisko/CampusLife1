@@ -15,6 +15,14 @@ class M_Materi extends CI_Model{
         FROM materi a 
         JOIN matakuliah b ON a.id_mata_kuliah = b.id_mata_kuliah 
         ');
+	}
+	
+	function getMateri($id)
+	{
+		return $this->db->query('SELECT a.id_materi, b.nama_mata_kuliah, a.judul_materi, a.penjelasan_materi, a.kali_pertemuan, a.direktori_file
+        FROM materi a 
+        JOIN matakuliah b ON a.id_mata_kuliah = b.id_mata_kuliah 
+		WHERE b.id_mata_kuliah = "'.$id.'"');
     }
     
 	function insertTable($a,$b)

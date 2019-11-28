@@ -41,14 +41,18 @@
                 <h1><?php echo $a->nama_mata_kuliah ?> </h1> 
                             
                 <div class="button">
-                  <?php foreach($detail_matkul as $b){ ?>
+                  <?php foreach($jadwal_matkul as $b){
+                     if(strcmp($b->id_mata_kuliah, $a->id_mata_kuliah) == 0 ){?>
                     <a ><?php echo $b->jam_mulai."-".$b->jam_selesai ?></a><a class="cart-btn" ><?php echo $arr[$b->hari] ?></a>
-                  <?php } ?>
+                     <?php }
+                } ?>
                 </div>
                 <div class="button">
-                  <?php foreach($detail_matkul as $b){ ?>
+                  <?php foreach($jadwal_matkul as $b){ 
+                    if(strcmp($b->id_mata_kuliah, $a->id_mata_kuliah) == 0 ){?>
                     <a ><?php echo $b->detail_ruangan ?></a><a class="cart-btn" ><?php echo $b->nama_dosen ?></a>
-                    <?php } ?>
+                    <?php }
+                  } ?>
                 </div>
                 
               </div>
@@ -69,14 +73,21 @@
         <div class="outer">
           <div class="content animated fadeInLeft">
             <!--<span class="bg animated fadeInDown">EXCLUSIVE</span>-->
-            <h1><?php echo $a->nama_mata_kuliah ?> </h1> 
-            <small><?php echo $a->detail_ruangan ?></small>             
+            <h1><?php echo $a->nama_mata_kuliah ?> </h1>           
             <div class="button">
-              <a ><?php echo $a->jam_mulai ?></a><a class="cart-btn" ><?php echo $a->jam_selesai ?></a>
-            </div>
-            <div class="button">
-                <a ><?php echo $a->hari ?></a><a class="cart-btn" ><?php echo $a->nama_dosen ?></a>
-            </div>             
+                  <?php foreach($jadwal_matkul as $b){ 
+                    if(strcmp($b->id_mata_kuliah, $a->id_mata_kuliah) == 0 ){?>
+                    <a ><?php echo $b->jam_mulai."-".$b->jam_selesai ?></a><a class="cart-btn" ><?php echo $arr[$b->hari] ?></a>
+                  <?php } 
+                  }?>
+                </div>
+                <div class="button">
+                  <?php foreach($jadwal_matkul as $b){ 
+                    if(strcmp($b->id_mata_kuliah, $a->id_mata_kuliah) == 0 ){?>
+                    <a ><?php echo $b->detail_ruangan ?></a><a class="cart-btn" ><?php echo $b->nama_dosen ?></a>
+                    <?php }
+                  } ?>
+            </div>            
           </div>
           <img src="<?php echo base_url() ?>assets/images/courses1.jpeg" width="110%" class="animated fadeInRight">
           <div style="position: absolute;right: 6%;bottom: 5%" class="animated fadeInRight">

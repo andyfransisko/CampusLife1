@@ -22,7 +22,7 @@ class M_Matakuliah extends CI_Model{
         FROM enroll a 
         JOIN semester c ON a.id_semester = c.id_semester 
         JOIN matakuliah d ON a.id_mata_kuliah = d.id_mata_kuliah 
-        WHERE a.nim = '.$nim.' AND c.tahun = '.$tahun.' AND c.jenis_semester = "'.$oddeven.'"');
+        WHERE a.nim = '.$nim.' AND c.tahun = '.$tahun.' AND c.jenis_semester = '.$oddeven);
 
         return $query;
 
@@ -50,16 +50,14 @@ class M_Matakuliah extends CI_Model{
 
     }
 
-    function getJadwalMatkul($id, $nim){
-        $query = $this->db->query('SELECT a.nim, 
-        d.nama_mata_kuliah, c.tahun, c.jenis_semester, b.hari, b.jam_mulai, b.jam_selesai, e.nama_dosen, f.detail_ruangan 
-        FROM enroll a 
-        JOIN jadwal_kuliah b ON a.id_mata_kuliah = b.id_mata_kuliah 
-        JOIN semester c ON a.id_semester = c.id_semester 
-        JOIN matakuliah d ON a.id_mata_kuliah = d.id_mata_kuliah 
+    function getJadwalMatkul($id){
+        $query = $this->db->query('SELECT d.id_mata_kuliah, d.nama_mata_kuliah, c.tahun, c.jenis_semester, b.hari, b.jam_mulai, b.jam_selesai, e.nama_dosen, f.detail_ruangan 
+        FROM jadwal_kuliah b 
+        JOIN matakuliah d ON b.id_mata_kuliah = d.id_mata_kuliah 
+        JOIN semester c ON c.id_semester = d.id_semester 
         JOIN dosen e ON b.nidn = e.nidn 
-        JOIN ruangan f ON b.id_ruangan = f.id_ruangan
-        WHERE a.id_mata_kuliah = "'.$id.'" AND a.nim = '.$nim);
+        JOIN ruangan f ON b.id_ruangan = f.id_ruangan 
+        WHERE b.id_mata_kuliah ="'.$id.'"');
 
         return $query;        
 

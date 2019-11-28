@@ -31,9 +31,10 @@ class CourseDetail extends CI_Controller
     public function index($id)
     {
         $data['nav'] = "Course Detail";
+        $data['matkul'] = $this->M_Matakuliah->getAllMatkulCond(['id_mata_kuliah' => $id])->row_array();
         $this->head();
         $this->load->view('LandingPage/Template/nav', $data);
-        $this->load->view('LandingPage/Course/V_detail_course');
+        $this->load->view('LandingPage/Course/V_detail_course', $data);
         $this->foot();
 
         

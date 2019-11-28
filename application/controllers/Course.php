@@ -5,6 +5,7 @@ class Course extends CI_Controller
     {
         parent::__construct();
         $this->load->model('M_Matakuliah');
+        $this->load->model('M_Jadwalkuliah');
 
     }
 
@@ -42,9 +43,7 @@ class Course extends CI_Controller
         } 
         $data['nav'] = "Course";
         $data['matkul'] = $this->M_Matakuliah->getMatkul($this->session->userdata('username'), date('Y'), $date)->result();
-        foreach ($data['matkul'] as $a) {
-            $data['detail_matkul'] = $this->M_Matakuliah->getJadwalMatkul($a->id_mata_kuliah, $this->session->userdata('username'))->result();
-        }
+        $data['jadwal_matkul'] = $this->M_Jadwalkuliah->tampilkanRecord()->result();
         
         $this->head();
         $this->load->view('LandingPage/Template/nav', $data );

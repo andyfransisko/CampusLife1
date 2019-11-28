@@ -89,7 +89,7 @@ class M_Matakuliah extends CI_Model{
     
 	function tampilkanRecord()
 	{
-		return $this->db->query('SELECT a.id_mata_kuliah, a.nama_mata_kuliah, a.sks, b.id_semester, b.tahun, b.jenis_semester
+		return $this->db->query('SELECT a.id_mata_kuliah, a.nama_mata_kuliah, a.sks, b.id_semester, b.tahun, b.jenis_semester, a.jumlah_penilaian
         FROM matakuliah a 
         JOIN semester b ON a.id_semester = b.id_semester 
         ');

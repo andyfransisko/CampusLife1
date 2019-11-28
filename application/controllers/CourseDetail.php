@@ -4,6 +4,8 @@ class CourseDetail extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        $this->load->model('M_Matakuliah');
+        $this->load->model('M_Materi');
 
     }
 
@@ -32,6 +34,7 @@ class CourseDetail extends CI_Controller
     {
         $data['nav'] = "Course Detail";
         $data['matkul'] = $this->M_Matakuliah->getAllMatkulCond(['id_mata_kuliah' => $id])->row_array();
+        $data['materi'] = $this->M_Materi->getMateri($id)->result();
         $this->head();
         $this->load->view('LandingPage/Template/nav', $data);
         $this->load->view('LandingPage/Course/V_detail_course', $data);

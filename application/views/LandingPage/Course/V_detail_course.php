@@ -5,7 +5,7 @@
     </section>
     
     <div style="color:white; position: absolute; bottom: 9%;width: 100%; font-size:30px;">
-        <center>Nama Mata Kuliah
+        <center>Mata Kuliah <?php echo $matkul['nama_mata_kuliah'] ?>
           <br>
             <a href = "#bawah">
               <img class ="inverted"  src="https://image.flaticon.com/icons/svg/25/25415.svg" width="35px" title="Browse My Courses">
@@ -20,7 +20,7 @@
   
                     <nav role='navigation' class="transformer-tabs">
                         <ul>
-                        <li><a href="#tab-1" class="active">Week 1</a></li>
+                        <li><a href="#tab-1" class="active">Week 1 (Home)</a></li>
                         <li><a href="#tab-2">Week 2</a></li>
                         <li><a href="#tab-3">Week 3</a></li>
                         <li><a href="#tab-4">Week 4</a></li>
@@ -39,76 +39,31 @@
                         </ul>
                     </nav>
                     
-                    <div id="tab-1" class="active">
+                    <?php 
+                    $i = 1;
+                    foreach($materi as $a){ 
+                        if($i == 1){?>
+                    
+                    <div id="tab-<?php echo $i;?>" class="active">
                         <h2>Week 1</h2>
-                        <h2>JUDUL</h2>
-                        <p>PENJELASAN</p>
-                        DOWNLOAD FILE
+                        <h2><?php echo $a->judul_materi ?></h2>
+                        <p><?php echo $a->penjelasan_materi ?></p>
                     </div>
-                    
-                    <div id="tab-2">
+
+                    <?php }else{
+                    ?>
+
+                    <div id="tab-<?php echo $i ?>">
                         <h2>Week 2</h2>
-                        hehe
+                        <h2><?php echo $a->judul_materi ?></h2>
+                        <p><?php echo $a->penjelasan_materi ?></p>
                     </div>
+
+                    <?php }
+                    $i++;
+                    }
+                    ?>
                     
-                    <div id="tab-3">
-                        <h2>Week 3</h2>
-                        apa
-                    </div>
-                    
-                    <div id="tab-4">
-                        <h2>Week 4</h2>
-                        lu
-                    </div>
-                
-                    <div id="tab-5">
-                        <h2>Week 5</h2>
-                        liat
-                    </div>
-                    <div id="tab-6">
-                        <h2>Week 6</h2>
-                        liat
-                    </div>
-                    <div id="tab-7">
-                        <h2>Week 7</h2>
-                        ati 
-                    </div>
-                    <div id="tab-8">
-                        <h2>Week 8</h2>
-                        ati
-                    </div>
-                    <div id="tab-9">
-                        <h2>Week 9</h2>
-                        liat
-                    </div>
-                    <div id="tab-10">
-                        <h2>Week 10</h2>
-                        liat
-                    </div>
-                    <div id="tab-11">
-                        <h2>Week 11</h2>
-                        liat
-                    </div>
-                    <div id="tab-12">
-                        <h2>Week 12</h2>
-                        liat
-                    </div>
-                    <div id="tab-13">
-                        <h2>Week 12</h2>
-                        liat
-                    </div>
-                    <div id="tab-14">
-                        <h2>Week 13</h2>
-                        liat
-                    </div>
-                    <div id="tab-15">
-                        <h2>Week 15</h2>
-                        liat
-                    </div>
-                    <div id="tab-16">
-                        <h2>Week 16</h2>
-                        liat
-                    </div>
                 </div>
             </center>
         </div>  

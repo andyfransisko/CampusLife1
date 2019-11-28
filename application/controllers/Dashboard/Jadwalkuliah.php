@@ -34,11 +34,7 @@ class Jadwalkuliah extends CI_Controller {
 		$data['matkul'] = $this->M_Matakuliah->tampilkanRecord()->result();
 		$data['ruangan'] = $this->M_Ruangan->tampilkanData()->result();
 		$this->head();
-		if($this->session->userdata('tipe_akun') == 2){
-			$this->load->view('Dashboard/V_Jadwalkuliahdosen',$data);
-		}else{
-			$this->load->view('Dashboard/V_Jadwalkuliah',$data);
-		}
+		$this->load->view('Dashboard/V_Jadwalkuliah',$data);
 		$this->foot();
 	}
 

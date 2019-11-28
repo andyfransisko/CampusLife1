@@ -6,7 +6,7 @@ class Jadwalcustom extends CI_Controller {
 	function __construct()
 	{
 		parent:: __construct();
-		$this->load->model(array('M_Jadwalcustom','M_Mahasiswa'));
+		$this->load->model(array('M_Jadwalcustom','M_Mahasiswa','M_Dosen'));
 	}
 	
 	public function head(){

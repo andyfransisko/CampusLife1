@@ -6,6 +6,7 @@ class Materi extends CI_Controller
 		parent::__construct();
 		$this->load->model('M_Matakuliah');
 		$this->load->model('M_Materi');
+		$this->load->model('M_Dosen');
     }
     
     public function head(){

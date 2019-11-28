@@ -6,7 +6,7 @@ class Nilai extends CI_Controller {
 	function __construct()
 	{
 		parent:: __construct();
-		$this->load->model(array('M_Enroll','M_Nilai', 'M_Matakuliah','M_Mahasiswa'));
+		$this->load->model(array('M_Enroll','M_Nilai', 'M_Matakuliah','M_Mahasiswa', 'M_Dosen'));
 	}
 	public function head(){
 		$this->load->view('Dashboard/Template/head-open');

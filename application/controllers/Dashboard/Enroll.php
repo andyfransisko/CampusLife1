@@ -6,7 +6,7 @@ class Enroll extends CI_Controller {
 	function __construct()
 	{
 		parent:: __construct();
-		$this->load->model(array('M_Matakuliah','M_Enroll','M_Semester','M_Mahasiswa', 'M_Nilai'));
+		$this->load->model(array('M_Matakuliah','M_Enroll','M_Semester','M_Mahasiswa', 'M_Nilai', 'M_Dosen'));
 	}
 	
 	public function head(){

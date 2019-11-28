@@ -107,7 +107,16 @@ class Grade extends CI_Controller
 		$data['mahasiswaDelete'] = $this->M_Mahasiswa->delete_record_table($where, 'mahasiswa');
 
 		redirect('Mahasiswa');
-	}
+    }
+    
+    public function viewNilai($matkul)
+    {
+        $data['nav'] = "Grade";
+        $this->head();
+        $this->load->view('LandingPage/Template/nav', $data );
+        $this->load->view("LandingPage/Grade/V_grade1", $data);
+        $this->foot();
+    }
 
 
 }

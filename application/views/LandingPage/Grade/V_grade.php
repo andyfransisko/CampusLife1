@@ -54,6 +54,7 @@
                               foreach($matkul as $listM){
                                 if($listM->id_semester == $list->id_semester){
                             ?>
+                            <a href="<?php echo base_url() ?>Grade/viewNilai/s">
                               <div class="card <?php echo $noMatkul; ?>">
                                 <div class="card_image"> 
                                     <img src="<?php echo base_url() ?>assets/images/logo4.png"  />
@@ -66,6 +67,7 @@
                                   </p>
                                 </div>
                               </div>
+                              </a>
                               <?php
                                 }
                                 $noMatkul++;

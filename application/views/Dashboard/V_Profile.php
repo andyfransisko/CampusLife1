@@ -15,9 +15,11 @@
                             <div class="card-header">
                                 <strong class="card-title">Profile</strong>
                                 <div class="float-right">
-                                    <button type="button" class="btn btn-primary"><a href="<?php echo base_url().'Dashboard/Welcome/Editprofile' ?>">
-                                         Edit </a>
-                                    </button>
+                                    <a href="<?php echo base_url().'Dashboard/Welcome/Editprofile' ?>">
+                                        <button type="button" class="btn btn-primary">
+                                            Edit 
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -27,22 +29,32 @@
                             $i=1;
                             foreach($dosen as $list){
                           ?>
-                                        <tr>
-                                            <th>NIDN</th>
-                                            <td><?php echo $list->nidn ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Nama Dosen</th>
-                                            <td><?php echo $list->nama_dosen ?></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Jenis Kelamin</th>
-                                            <td><?php echo ($list->jenis_kelamin == 1 ? "Laki - laki" : "Perempuan") ?></td>
-                                            </tr>
-                                        <tr>
-                                            <th>Tipe Dosen</th>
-                                            <td>
-                                                <?php 
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label class=" form-control-label">NIDN</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <p class="form-control-static"><?php echo $list->nidn ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label class=" form-control-label">Nama Dosen</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <p class="form-control-static"><?php echo $list->nama_dosen ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label class=" form-control-label">Jenis Kelamin</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <p class="form-control-static"><?php echo ($list->jenis_kelamin == 1 ? "Laki - laki" : "Perempuan") ?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label class=" form-control-label">Tipe Dosen</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <p class="form-control-static">
+                                            <?php 
                                                 if($list->tipe_dosen == 1){
                                                     echo "Kepala Program Studi";
                                                 }
@@ -53,32 +65,50 @@
                                                     echo "Dosen Reguler";
                                                 }
                                                  ?>
-                                            </td>
-                                            </tr>
-                                        <tr>
-                                            <th>Email</th>
-                                            <td><?php echo $list->email_dosen?></td>
-                                            </tr>
-                                        <tr>
-                                            <th>Tempat Lahir</th>
-                                            <td><?php echo $list->tmpt_lahir ?></td>
-                                            </tr>
-                                        <tr>
-                                            <th>Tanggal Lahir</th>
-                                            <td><?php echo date('d-F-Y', strtotime($list->tgl_lahir))  ?></td>
-                                            </tr>
-                                        <tr>
-                                            <th>Alamat Rumah</th>
-                                            <td><?php echo $list->alamat_rumah ?></td>
-                                            </tr>
-                                        <tr>
-                                            <th>No Telepon</th>
-                                            <td><?php echo $list->no_telp ?></td>
-                                            </tr>
-                                        <tr>
-                                            <th>Agama</th>
-                                            <td>
-                                                <?php 
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label class=" form-control-label">Email</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <p class="form-control-static"><?php echo $list->email_dosen?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label class=" form-control-label">Tempat Lahir</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <p class="form-control-static"><?php echo $list->tmpt_lahir?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label class=" form-control-label">Tanggal Lahir</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <p class="form-control-static"><?php echo $list->tgl_lahir?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label class=" form-control-label">Alamat Rumah</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <p class="form-control-static"><?php echo $list->alamat_rumah?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label class=" form-control-label">Nomor Telepon</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <p class="form-control-static"><?php echo $list->no_telp?></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label class=" form-control-label">Agama</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <p class="form-control-static">
+                                            <?php 
                                                 if($list->agama == 1){
                                                     echo "Kristen";
                                                 }
@@ -98,9 +128,12 @@
                                                     echo "Kong Hu Cu";
                                                 }
                                                  ?>
-                                            </td>
-                                            </tr>
-                                    </tbody>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                    
                                         <div class="modal fade" id="editDosen_<?php echo $list->nidn?>" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg" role="document">
                                                 <div class="modal-content">

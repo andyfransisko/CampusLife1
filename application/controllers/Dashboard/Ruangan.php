@@ -6,7 +6,7 @@ class Ruangan extends CI_Controller {
 	function __construct()
 	{
 		parent:: __construct();
-		$this->load->model('M_Ruangan');
+		$this->load->model(array('M_Ruangan','M_Admin'));
 	}
 
 	public function head(){

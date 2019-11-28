@@ -9,6 +9,7 @@ class Matakuliah extends CI_Controller {
 		$this->load->model('M_Matakuliah');
 		$this->load->model('M_Semester');
 		$this->load->model('M_Dosen');
+		$this->load->model('M_Admin');
 	}
 
 	public function head(){

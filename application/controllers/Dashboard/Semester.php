@@ -6,7 +6,7 @@ class Semester extends CI_Controller {
 	function __construct()
 	{
 		parent:: __construct();
-		$this->load->model('M_Semester');
+		$this->load->model(array('M_Admin','M_Semester'));
 	}
 	public function head(){
 		$this->load->view('Dashboard/Template/head-open');

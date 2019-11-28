@@ -6,7 +6,7 @@ class User extends CI_Controller {
 	function __construct()
 	{
 		parent:: __construct();
-		$this->load->model('M_User');
+		$this->load->model(array('M_Admin','M_User'));
 	}
 	public function head(){
 		$this->load->view('Dashboard/Template/head-open');

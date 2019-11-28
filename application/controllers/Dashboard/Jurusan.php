@@ -6,7 +6,7 @@ class Jurusan extends CI_Controller {
 	function __construct()
 	{
 		parent:: __construct();
-		$this->load->model('M_Jurusan');
+		$this->load->model(array('M_Jurusan','M_Admin'));
 	}
 	
 	public function head(){

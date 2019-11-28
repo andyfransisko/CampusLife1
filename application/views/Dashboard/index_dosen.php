@@ -43,13 +43,33 @@
                                                             <a href="#"><img class="rounded-circle" src="<?php echo base_url() ?>assets/dashboard/images/avatar/1.jpg" alt=""></a>
                                                         </div>
                                                     </td>
-                                                    <td> <?php echo $list->nidn ?></td>
+                                                    <td> <?php echo $list->username ?></td>
                                                     <td>  <span class="name"><?php echo $list->nama_dosen ?></span> </td>
                                                     <td><span class="name"><?php if($list->status=="1") echo "Activated"; else echo "Not Activated" ?></span></td>
                                                     <td><button type="button" class="btn btn-outline-success"><a href="<?php echo base_url(). 'Dashboard/Welcome/Activating/'.$list->username;?>">Activation</a></button></td>
                                                 </tr>
                                                 <?php
                                                     $i++ ; 
+                                                    } 
+                                                ?>
+                                            <?php
+                                                $a=1;
+                                                foreach($mahasiswa as $list){
+                                            ?>
+                                                <tr>
+                                                    <td class="serial"><?php echo $i ?></td>
+                                                    <td class="avatar">
+                                                        <div class="round-img">
+                                                            <a href="#"><img class="rounded-circle" src="<?php echo base_url() ?>assets/dashboard/images/avatar/1.jpg" alt=""></a>
+                                                        </div>
+                                                    </td>
+                                                    <td> <?php echo $list->username ?></td>
+                                                    <td>  <span class="name"><?php echo $list->nama_mhs ?></span> </td>
+                                                    <td><span class="name"><?php if($list->status=="1") echo "Activated"; else echo "Not Activated" ?></span></td>
+                                                    <td><button type="button" class="btn btn-outline-success"><a href="<?php echo base_url(). 'Dashboard/Welcome/Activating/'.$list->username;?>">Activation</a></button></td>
+                                                </tr>
+                                                <?php
+                                                    $a++ ; 
                                                     } 
                                                 ?>
                                             </tbody>

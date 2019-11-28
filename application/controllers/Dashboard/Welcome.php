@@ -52,7 +52,8 @@ class Welcome extends CI_Controller {
 			$this->load->view('Dashboard/index',$data);
 		}
 		else{
-			$data['dosen'] = $this->M_Dosen->getRecordActivate()->result();
+			$data['dosen'] = $this->M_User->getAccountDosen()->result();
+			$data['mahasiswa'] = $this->M_User->getAccountMhs()->result();
 			$this->load->view('Dashboard/index_dosen',$data);
 		}
 		$this->foot();

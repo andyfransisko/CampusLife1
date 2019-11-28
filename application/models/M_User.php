@@ -9,6 +9,22 @@ class M_User extends CI_Model {
 		return $query;
 		
 	}
+
+	function getAccountMhs(){
+		$this->db->select('a.username, a.status, b.nama_mhs');
+        $this->db->from('user a'); 
+        $this->db->join('mahasiswa b', 'a.username = b.nim', 'left');
+		$query = $this->db->get();
+		return $query;
+	}
+
+	function getAccountDosen(){
+		$this->db->select('a.username, a.status, b.nama_dosen');
+        $this->db->from('user a'); 
+        $this->db->join('dosen b', 'a.username = b.nidn', 'left');
+		$query = $this->db->get();
+		return $query;
+	}
 	function insertTable($a,$b)
 	{
 		$this->db->insert($a,$b);

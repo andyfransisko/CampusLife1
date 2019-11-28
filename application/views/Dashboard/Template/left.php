@@ -28,6 +28,7 @@
                                         <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/Enroll/index';?>">Enroll</a></li>
                                         <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/JadwalKuliah/index';?>">Jadwal Kuliah</a></li>
                                         <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/JadwalCustom/index';?>">Jadwal Custom</a></li>
+                                        <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/Dosen/assignPA';?>">Assign Dosen PA</a></li>
                             <?php }
                              ?>
                             

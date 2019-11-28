@@ -60,25 +60,9 @@
                                 </div>
                             </div> <!-- /.card -->
                         </div>  <!-- /.col-lg-8 -->
-                        <div class="col-md-4">
-                        <div class="card text-white bg-flat-color-3">
-                            <div class="card-body">
-                                <div class="card-left pt-1 float-left">
-                                    <h3 class="mb-0 fw-r">
-                                        <span class="count"><?php echo $count; ?></span>
-                                    </h3>
-                                    <p class="text-light mt-1 m-0">Total Mahasiswa</p>
-                                </div><!-- /.card-left -->
-
-                                <div class="card-right float-right text-right">
-                                    <i class="icon fade-5 icon-lg pe-7s-users"></i>
-                                </div><!-- /.card-right -->
-
-                            </div>
-                    </div>
-                          </div>
+                        
                         <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-8">
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title">Course</strong>
@@ -116,6 +100,23 @@
                         <!-- /# card -->
                         
                     </div><!-- /# column -->
+                    <div class="col-md-4">
+                        <div class="card text-white bg-flat-color-3">
+                            <div class="card-body">
+                                <div class="card-left pt-1 float-left">
+                                    <h3 class="mb-0 fw-r">
+                                        <span class="count"><?php echo $count; ?></span>
+                                    </h3>
+                                    <p class="text-light mt-1 m-0">Total Mahasiswa</p>
+                                </div><!-- /.card-left -->
+
+                                <div class="card-right float-right text-right">
+                                    <i class="icon fade-5 icon-lg pe-7s-users"></i>
+                                </div><!-- /.card-right -->
+
+                            </div>
+                    </div>
+                          </div>
                     </div>
                     </div>
                 </div>

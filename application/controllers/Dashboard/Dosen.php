@@ -140,6 +140,28 @@ class Dosen extends CI_Controller {
 		redirect('Dosen/index');
 	}
 
+	public function assignPA(){
+		$data['dosen'] = $this->M_Dosen->getRecordOther($this->session->userdata('username'))->result();
+		$this->head();
+		$this->load->view('Dashboard/V_Dosen_PA',$data);
+		$this->foot();
+	}
+
+	public function insertAssign(){
+		$nidn = $this->input->post('nidn');
+
+		$where = array(
+			'nidn'=>$nidn,
+		);
+
+		$data = array(
+			'tipe_dosen' => 2,
+		);
+
+		$this->M_Dosen->updateRecord($where, $data, 'dosen');
+		redirect('Dashboard/Dosen/assignPA');
+	}
+
 	function exportPDF()
 	{
 		$data['dosen'] = $this->M_Dosen->tampilkanData()->result();

@@ -27,7 +27,6 @@
                                                     <th class="avatar">Avatar</th>
                                                     <th>Username</th>
                                                     <th>Nama</th>
-                                                    <th>Angkatan</th>
                                                     <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -35,7 +34,7 @@
                                             <tbody>
                                             <?php
                                                 $i=1;
-                                                foreach($mahasiswa as $list){
+                                                foreach($dosen as $list){
                                             ?>
                                                 <tr>
                                                     <td class="serial"><?php echo $i ?></td>
@@ -44,9 +43,8 @@
                                                             <a href="#"><img class="rounded-circle" src="<?php echo base_url() ?>assets/dashboard/images/avatar/1.jpg" alt=""></a>
                                                         </div>
                                                     </td>
-                                                    <td> <?php echo $list->nim ?></td>
-                                                    <td>  <span class="name"><?php echo $list->nama_mhs ?></span> </td>
-                                                    <td> <span class="product"><?php echo $list->angkatan ?></span> </td>
+                                                    <td> <?php echo $list->nidn ?></td>
+                                                    <td>  <span class="name"><?php echo $list->nama_dosen ?></span> </td>
                                                     <td><span class="name"><?php if($list->status=="1") echo "Activated"; else echo "Not Activated" ?></span></td>
                                                     <td><button type="button" class="btn btn-outline-success"><a href="<?php echo base_url(). 'Dashboard/Welcome/Activating/'.$list->username;?>">Activation</a></button></td>
                                                 </tr>
@@ -60,25 +58,9 @@
                                 </div>
                             </div> <!-- /.card -->
                         </div>  <!-- /.col-lg-8 -->
-                        <div class="col-md-4">
-                        <div class="card text-white bg-flat-color-3">
-                            <div class="card-body">
-                                <div class="card-left pt-1 float-left">
-                                    <h3 class="mb-0 fw-r">
-                                        <span class="count"><?php echo $count; ?></span>
-                                    </h3>
-                                    <p class="text-light mt-1 m-0">Total Mahasiswa</p>
-                                </div><!-- /.card-left -->
-
-                                <div class="card-right float-right text-right">
-                                    <i class="icon fade-5 icon-lg pe-7s-users"></i>
-                                </div><!-- /.card-right -->
-
-                            </div>
-                    </div>
-                          </div>
-                        <div class="row">
-                        <div class="col-lg-12">
+                        
+                    <div class="row">
+                        <div class="col-lg-8">
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title">Course</strong>
@@ -113,9 +95,27 @@
                         </div>
                         
                     </div>
+                    
                         <!-- /# card -->
                         
                     </div><!-- /# column -->
+                    <div class="col-md-4">
+                        <div class="card text-white bg-flat-color-3">
+                            <div class="card-body">
+                                <div class="card-left pt-1 float-left">
+                                    <h3 class="mb-0 fw-r">
+                                        <span class="count"><?php echo $count; ?></span>
+                                    </h3>
+                                    <p class="text-light mt-1 m-0">Total Mahasiswa</p>
+                                </div><!-- /.card-left -->
+
+                                <div class="card-right float-right text-right">
+                                    <i class="icon fade-5 icon-lg pe-7s-users"></i>
+                                </div><!-- /.card-right -->
+
+                            </div>
+                        </div>
+                        </div>
                     </div>
                     </div>
                 </div>

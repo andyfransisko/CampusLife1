@@ -18,7 +18,7 @@ class M_Nilai extends CI_Model {
 		return $this->db->query('SELECT b.id_enroll, b.nim, a.tipe_nilai, a.nilai_mahasiswa 
 		FROM nilai_mhs a 
 		JOIN enroll b ON b.id_enroll = a.id_enroll  
-		WHERE a.tipe_nilai ='.$id.' AND b.id_mata_kuliah =' .$matkul);
+		WHERE a.tipe_nilai ='.$id.' AND b.id_mata_kuliah = "' .$matkul.'"');
 	}
 	function insertTable($a,$b)
 	{

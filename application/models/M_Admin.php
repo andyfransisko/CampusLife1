@@ -17,6 +17,13 @@ class M_Admin extends CI_Model {
 	{
 		return $this->db->get_where($table,$where);
 	}
+	function getRecord($where)
+	{
+		return $this->db->query('SELECT a.id_admin, a.nama_admin, c.username, c.status, c.tipe_akun 
+		FROM admin a 
+		JOIN user c ON a.id_admin=c.username 
+		WHERE c.username = "'.$where.'"');
+	}
 	function updateRecord($where,$data,$table)
 	{
 		$this->db->where($where);

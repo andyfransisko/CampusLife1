@@ -21,7 +21,7 @@ class Welcome extends CI_Controller {
 	function __construct()
 	{
 		parent:: __construct();
-		$this->load->model(array('M_Dosen','M_Mahasiswa','M_User','M_Matakuliah','M_Semester'));
+		$this->load->model(array('M_Dosen','M_Mahasiswa','M_User','M_Matakuliah','M_Semester','M_Admin'));
 	}
 
 	public function head(){
@@ -30,6 +30,8 @@ class Welcome extends CI_Controller {
 		$this->load->view('Dashboard/Template/head-close');
 		if($this->session->userdata('tipe_akun')== 2){
 			$data2['dosen'] = $this->M_Dosen->getRecord($this->session->userdata('username'))->row_array();
+		}else{
+			$data2['admin'] = $this->M_Admin->getRecord($this->session->userdata('username'))->row_array();
 		}
 		$this->load->view('Dashboard/Template/left', $data2);
 	}
@@ -40,33 +42,20 @@ class Welcome extends CI_Controller {
 	}
 	public function index()
 	{
-		$data['mahasiswa'] = $this->M_Mahasiswa->tampilkanRecord()->result();
 		$data['matakuliah'] = $this->M_Matakuliah->tampilkanRecord()->result();
 		$data['nav'] = "User";
         $data['count'] = $this->M_Mahasiswa->tampilkanData()->num_rows();
 		$data['hitungmahasiswa'] = $this->M_Mahasiswa->hitungJumlahMahasiswa();
 		$this->head();
-		$this->load->view('Dashboard/index',$data);
+		if($this->session->userdata('tipe_akun') == 2){
+			$data['mahasiswa'] = $this->M_Mahasiswa->tampilkanRecord()->result();
+			$this->load->view('Dashboard/index',$data);
+		}
+		else{
+			$data['dosen'] = $this->M_Dosen->getRecordActivate()->result();
+			$this->load->view('Dashboard/index_dosen',$data);
+		}
 		$this->foot();
-		if($this->session->userdata('tipe_akun') == '1'){
-            $tipe = 'mahasiswa';
-            $where = array(
-                'nim' => $this->session->userdata('username'),
-            );
-        }
-        else if($this->session->userdata('tipe_akun') == '2'){
-            $tipe = 'dosen';
-            $where = array(
-                'nidn' => $this->session->userdata('username'),
-            );
-        }
-        else{
-            $tipe = 'admin';
-            $where = array(
-                'id_admin' => $this->session->userdata('username'),
-            );
-        }
-        
         
         //$data['user'] = $this->M_User->get_where($tipe, $where)->result();
         

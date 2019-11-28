@@ -7,10 +7,11 @@
                         <a href="<?php echo base_url(). "Dashboard/Welcome" ?>"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
                     <li class="menu-title">Menu</li>
+                    <?php if($this->session->userdata('tipe_akun')==2){   ?>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Academics</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <?php    if($this->session->userdata('tipe_akun')==2){ 
+                            <?php    
                                      if($dosen['tipe_dosen'] == 3){
                                 
                                 ?>
@@ -28,12 +29,12 @@
                                         <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/JadwalKuliah/index';?>">Jadwal Kuliah</a></li>
                                         <li><i class="fa fa-table"></i><a href="<?php echo base_url() .'Dashboard/JadwalCustom/index';?>">Jadwal Custom</a></li>
                             <?php }
-                            } ?>
+                             ?>
                             
                             
                         </ul>
                     </li>
-                    <?php if($this->session->userdata('tipe_akun') == 0){ ?>
+                    <?php }else if($this->session->userdata('tipe_akun') == 0){ ?>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Master Data</a>
                         <ul class="sub-menu children dropdown-menu">

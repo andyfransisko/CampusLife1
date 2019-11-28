@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2019 at 09:20 PM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.11
+-- Generation Time: Nov 28, 2019 at 01:17 PM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -70,7 +70,8 @@ CREATE TABLE `dosen` (
 
 INSERT INTO `dosen` (`nidn`, `nama_dosen`, `jenis_kelamin`, `tipe_dosen`, `email_dosen`, `tmpt_lahir`, `tgl_lahir`, `alamat_rumah`, `no_telp`, `agama`, `user_add`, `user_edit`, `user_delete`, `status_delete`) VALUES
 ('2', 'joni', 1, 3, 'a@gmail.com', 'asdasd', '1999-12-12', '2131', '2131', '1', '', '', '', 0),
-('212', 'budi doremi', 1, 3, 'a@gmail.com', 'asdasd', '2000-12-12', 'cengkareng', '123123', '1', '212', '', '', 1);
+('212', 'budi doremi', 1, 3, 'a@gmail.com', 'asdasd', '2000-12-12', 'cengkareng', '123123', '1', '212', '', '', 1),
+('322', 'Arnold', 1, 1, 'arnold@gmail.com', 'Tangerang', '1966-06-13', 'Karawaci', '08111111111', '2', '', '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -90,9 +91,9 @@ CREATE TABLE `enroll` (
 --
 
 INSERT INTO `enroll` (`id_enroll`, `id_mata_kuliah`, `nim`, `id_semester`) VALUES
-('ENROLL-1', '1', '1', '1'),
-('ENROLL-2', '1', '2', '1'),
-('ENROLL-3', '2', '1', '1');
+('ENROLL-1', 'MTKL-1', '1', 'SMSTR-1'),
+('ENROLL-2', 'MTKL-1', '2', 'SMSTR-1'),
+('ENROLL-3', 'MTKL-2', '1', 'SMSTR-1');
 
 -- --------------------------------------------------------
 
@@ -378,6 +379,7 @@ INSERT INTO `user` (`username`, `password`, `images`, `tipe_akun`, `status`, `us
 ('1', '$2y$10$aZPh/HUUaJnlyH7BmvKVwetZBT/CePiKvCE79SQ35pfHDXCkTzttO', 'default.jpg', 1, 1, '', '', '', 0),
 ('2', '$2y$10$1JnKmrJknhAS.Ovmnrrkree3ZAXrUvnof1LkAIFh2/CAwn7JGEfN.', 'default.jpg', 2, 1, '', '', '', 0),
 ('212', '$2y$10$Cu5/CZZf24QQO7zfi45CrOCZHVvhupqs3HZbVMnHXyFZt9c9ucZby', 'default.jpg', 2, 1, '', '', '', 0),
+('322', '$2y$10$k7eLiyK7uIAK0y8wcA1Lseqy3RiNqUHBE9RyWS7HF5aq40YhiIpaC', 'default.jpg', 2, 0, '', '', '', 0),
 ('33', '$2y$10$gvlS1dW93SPaWP1Tx9WvXOZ16QgjsyrX4C5.dsqKurnhe64/186fS', 'default.jpg', 1, 1, '', '', '', 0),
 ('41241', '$2y$10$ISdG3OZr0.Z563pJ4C1y1Owb4AP14ksZ.NaHHgCdUrsqc5TZcNRGS', 'default.jpg', 1, 1, '', '', '', 0),
 ('administrator', '$2y$10$J0UCMTMhJlsUzB2euKHTw.PnQKW122TCSKR65RN507dm2UNsrI0t.', 'default.jpg', 0, 1, '', '', '', 0);

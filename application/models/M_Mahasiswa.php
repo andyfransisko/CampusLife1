@@ -21,7 +21,7 @@ class M_Mahasiswa extends CI_Model
 		JOIN enroll c ON a.nim=c.nim
 		JOIN matakuliah d ON c.id_mata_kuliah = d.id_mata_kuliah
 		JOIN semester e ON c.id_semester = e.id_semester
-		WHERE d.id_mata_kuliah = '.$matkul.' AND e.id_semester = '.$semester);
+		WHERE d.id_mata_kuliah = "'.$matkul.'" AND e.id_semester = "'.$semester.'"');
 	}
 	function insertTable($a,$b)
 	{

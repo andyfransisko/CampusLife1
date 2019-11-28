@@ -33,7 +33,7 @@ class M_Matakuliah extends CI_Model{
         FROM enroll a 
         JOIN semester c ON a.id_semester = c.id_semester 
         JOIN matakuliah d ON a.id_mata_kuliah = d.id_mata_kuliah 
-        WHERE d.id_mata_kuliah = '.$id.' AND a.id_semester = '.$year);
+        WHERE d.id_mata_kuliah = "'.$id.'" AND a.id_semester = "'.$year.'"');
 
         return $query;
 
@@ -59,7 +59,7 @@ class M_Matakuliah extends CI_Model{
         JOIN matakuliah d ON a.id_mata_kuliah = d.id_mata_kuliah 
         JOIN dosen e ON b.nidn = e.nidn 
         JOIN ruangan f ON b.id_ruangan = f.id_ruangan
-        WHERE a.id_mata_kuliah = '.$id.' AND a.nim = '.$nim);
+        WHERE a.id_mata_kuliah = "'.$id.'" AND a.nim = '.$nim);
 
         return $query;        
 

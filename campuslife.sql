@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2019 at 03:17 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.11
+-- Generation Time: Nov 29, 2019 at 01:56 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -93,7 +93,8 @@ CREATE TABLE `enroll` (
 INSERT INTO `enroll` (`id_enroll`, `id_mata_kuliah`, `nim`, `id_semester`) VALUES
 ('ENROLL-1', 'MTKL-1', '1', 'SMSTR-1'),
 ('ENROLL-2', 'MTKL-1', '2', 'SMSTR-1'),
-('ENROLL-3', 'MTKL-2', '1', 'SMSTR-1');
+('ENROLL-3', 'MTKL-2', '1', 'SMSTR-1'),
+('ENROLL-4', 'MTKL-2', '33', 'SMSTR-1');
 
 -- --------------------------------------------------------
 
@@ -193,8 +194,8 @@ CREATE TABLE `mahasiswa` (
 --
 
 INSERT INTO `mahasiswa` (`nim`, `nama_mhs`, `jenis_kelamin`, `id_jurusan`, `angkatan`, `email_mhs`, `tgl_lahir`, `tmpt_lahir`, `alamat_rumah`, `no_telp`, `agama`, `user_add`, `user_edit`, `user_delete`, `status_delete`) VALUES
-('1', 'jjs', '1', 'JUR-1', 2017, 'jsj@gmail.com', '0000-00-00', 'jakarta', 'Jln. arwana no 25', '213124214', '2', '', '', '', 0),
-('2', 'asdasd', '1', 'JUR-2', 2017, 'asd@gmail.com', '1999-01-01', 'jkt', 'asdasd', '123123123', '2', '', '', '', 0),
+('1', 'jjs', '1', 'JUR-1', 2017, 'jsj@gmail.com', '0000-00-00', 'jakarta', 'Jln. arwana no 25', '213124214', '2', '1', '', '', 1),
+('2', 'asdasd', '1', 'JUR-2', 2017, 'asd@gmail.com', '1999-01-01', 'jkt', 'asdasd', '123123123', '2', '2', '', '', 1),
 ('33', 'jo', '2', 'JUR-2', 2017, 'domelafamily@gmail.com', '2000-12-12', 'asdasd', 'cengkareng', '213123', '3', '33', '', '', 1),
 ('41241', 'asd', '1', 'JUR-1', 2016, 'domelafamily@gmail.com', '1999-12-12', 'asdasd', '213123', '213123', '2', '41241', '', '', 1);
 
@@ -239,17 +240,17 @@ CREATE TABLE `matakuliah_nilai` (
 
 INSERT INTO `matakuliah_nilai` (`id_nilai`, `id_mata_kuliah`, `id_tipe_nilai`) VALUES
 ('1', 'MTKL-3', 1),
-('10', '2', 2),
-('11', '2', 4),
-('12', '2', 5),
+('10', 'MTKL-2', 2),
+('11', 'MTKL-2', 4),
+('12', 'MTKL-2', 5),
 ('2', 'MTKL-3', 4),
 ('3', 'MTKL-3', 5),
-('4', '1', 1),
-('5', '1', 2),
-('6', '1', 3),
-('7', '1', 4),
-('8', '1', 5),
-('9', '2', 1);
+('4', 'MTKL-1', 1),
+('5', 'MTKL-1', 2),
+('6', 'MTKL-1', 3),
+('7', 'MTKL-1', 4),
+('8', 'MTKL-1', 5),
+('9', 'MTKL-2', 1);
 
 -- --------------------------------------------------------
 
@@ -309,7 +310,11 @@ INSERT INTO `nilai_mhs` (`id_nilai_mhs`, `tipe_nilai`, `nilai_mahasiswa`, `id_en
 ('NILMHS-1', 1, 40, 'ENROLL-3'),
 ('NILMHS-2', 2, 0, 'ENROLL-3'),
 ('NILMHS-3', 4, 0, 'ENROLL-3'),
-('NILMHS-4', 5, 0, 'ENROLL-3');
+('NILMHS-4', 5, 0, 'ENROLL-3'),
+('NILMHS-5', 1, 0, 'ENROLL-4'),
+('NILMHS-6', 2, 0, 'ENROLL-4'),
+('NILMHS-7', 4, 0, 'ENROLL-4'),
+('NILMHS-8', 5, 0, 'ENROLL-4');
 
 -- --------------------------------------------------------
 

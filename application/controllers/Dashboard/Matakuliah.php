@@ -163,6 +163,8 @@ class Matakuliah extends CI_Controller {
 		$where = array('id_mata_kuliah' => $id_matakuliah);
 
 		$this->M_Matakuliah->hapusRecord($where,'matakuliah');
+		$this->M_Matakuliah->hapusRecord($where,'matakuliah_nilai');
+		$this->M_Matakuliah->hapusRecord($where,'materi');
 		redirect('Dashboard/Matakuliah/index');
 	}
 

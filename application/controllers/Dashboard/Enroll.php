@@ -94,7 +94,8 @@ class Enroll extends CI_Controller {
         $data['mhs_enrolled'] = $this->M_Enroll->getMahasiswaEnroll($where['id_mata_kuliah'], $where['id_semester'])->result();
         $data['matkul_enrolled'] = $this->M_Matakuliah->getMatkulBySemester($where['id_mata_kuliah'], $where['id_semester'])->row_array();
         $data['enrolled'] = $this->M_Enroll->getAllEnrollCond($where)->row_array();
-        $data['matkul'] = $this->M_Matakuliah->getAllMatkulCond($where)->row_array();
+		$data['matkul'] = $this->M_Matakuliah->getAllMatkulCond($where)->row_array();
+		$data['count'] = $this->M_Enroll->tampilkanData()->num_rows();
         $data['id'] = $matkul;
 		$this->head();
 		$this->load->view('Dashboard/V_Enroll_Matkul', $data);
@@ -213,7 +214,11 @@ class Enroll extends CI_Controller {
 				'id_enroll' => $a,
 			);
             $this->M_Enroll->hapusRecord($where, 'enroll');
+            $this->M_Enroll->hapusRecord($where, 'nilai_mhs');
 		}
+
+
+
 		redirect('Dashboard/Enroll/enroll/'.$id_semester.'/'.$id_matkul);
 	}
 }

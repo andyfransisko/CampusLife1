@@ -105,7 +105,7 @@
                                             <input type="hidden" name="id_mata_kuliah" value="<?php echo $matkul_enrolled['id_mata_kuliah']; ?>">
                                             <input type="hidden" name="jumlah_penilaian" value="<?php echo $matkul_enrolled['id_mata_kuliah']; ?>">
                                             <div class="form-group">
-                                                <input id="cc-payment" name="id_enroll" type="hidden" class="form-control" placeholder = "ID Enroll" value="ENROLL-<?php echo count($mhs_enrolled)+1; ?>" >
+                                                <input id="cc-payment" name="id_enroll" type="hidden" class="form-control" placeholder = "ID Enroll" value="ENROLL-<?php echo ($count)+1; ?>" >
                                             </div>
                                             <div class="form-group">
                                                 <label for="id_matkul" class="control-label mb-1">Nama Matakuliah</label><br>

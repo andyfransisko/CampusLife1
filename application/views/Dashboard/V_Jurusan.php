@@ -140,7 +140,7 @@
                             <form action="<?php echo 'insertData'?>" method="post" novalidate="novalidate">
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">ID Jurusan</label>
-                                                <input name="id_jurusan" type="text" class="form-control" placeholder = "ID Jurusan" value="JUR-<?php echo $count+1 ?>" readonly>
+                                                <input name="id_jurusan" type="text" class="form-control" placeholder = "ID Jurusan" value="JUR-<?php echo $count+1 ?>" readonly>                
                                             </div>
                                             <div class="form-group">
                                                 <label for="cc-payment" class="control-label mb-1">Nama Jurusan</label>
